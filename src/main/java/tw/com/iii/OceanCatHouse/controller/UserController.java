@@ -1,23 +1,28 @@
 package tw.com.iii.OceanCatHouse.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.HashMap;
-
 import java.util.Locale;
 import java.util.Map;
-
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.model.UserRepository;
-
-
 
 @Controller
 public class UserController {
@@ -30,6 +35,7 @@ public class UserController {
 	public String signup(UserBean bean, Model model, Locale locale, @PathVariable("action") String action) {
 		System.out.println("*****" + action + "******");
 		System.out.println(bean);
+//		System.out.println(body);
 		// 接收資料
 		// 轉換資料
 		Map<String, String> errors = new HashMap<>();
@@ -38,20 +44,20 @@ public class UserController {
 			errors.put("email", "Email錯誤");
 		}
 		if (bean.getUsername() == null || bean.getUsername().length() == 0) {
-			if(action.equals("signup"))errors.put("username", "暱稱錯誤");
+			if (action.equals("signup"))
+				errors.put("username", "暱稱錯誤");
 		}
 		if (bean.getUserpassword() == null || bean.getUserpassword().length() == 0) {
 			errors.put("userpassword", "密碼錯誤");
 		}
 
-			
 		if (errors != null && !errors.isEmpty()) {
-			if(action.equals("login")) {
+			if (action.equals("login")) {
 				return "/views/login";
-			}else {
+			} else {
 				return "/views/signup";
 			}
-			
+
 		}
 
 		if (action != null && action.equals("login")) {
@@ -77,21 +83,13 @@ public class UserController {
 
 		}
 
-		if(action.equals("login")) {
+		if (action.equals("login")) {
 			return "/views/login";
-		}else {
+		} else {
 			return "/views/signup";
 		}
 
 	}
-	@RequestMapping("/forget")
-	public void forget(UserBean bean, Model model, Locale locale) {
-		System.out.println("*****forget******");
-		System.out.println(bean);
-		Map<String, String> errors = new HashMap<>();
-		model.addAttribute("errors", errors);
-		if (bean.getEmail() == null || bean.getEmail().length() == 0) {
-			errors.put("email", "Email錯誤");
-		}
-	}
+
+
 }

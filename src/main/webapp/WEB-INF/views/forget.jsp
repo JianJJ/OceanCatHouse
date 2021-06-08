@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="../js/jquery-3.4.1.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam"async defer></script> -->
     <script src="https://www.google.com/recaptcha/enterprise.js"async defer></script>
-    <link rel="stylesheet" href="./css/demo.css">
-    <link rel="stylesheet" href="./css/login.css">
-    <title>✿海貓食屋✿</title>
-    <!-- <script>
-        function onClick(e) {
-          e.preventDefault();
-          grecaptcha.enterprise.ready(function() {
-            grecaptcha.enterprise.execute('6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam', {action: 'LOGIN'}).then(function(token) {
-                // Add your logic to submit to your backend server here.
-            });
-          });
-        }
-       </script> -->
+    <link rel="stylesheet" href="../css/demo.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>✿海貓食屋✿</title> 
 </head>
 
 <body>
@@ -71,6 +61,9 @@
                 .grid-row{
                     height: 550px;
                 }
+                .main{
+                height: 600px;
+                }
             </style>
             <div class="grid-row">
                 <div class="loginTitle">✿海貓食屋✿</div><br>
@@ -80,12 +73,10 @@
                 <form action="/recipe/forget">
                     <input class="formCSS" type="text" placeholder="Email" name="email"><br>
                     <span class="error">${errors.email}</span><br>
-                    <input class="formSubmit" type="submit"><br>
                 </form>
                 <div class="g-recaptcha"
                 data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-                data-callback='onSubmit'
-                data-action='submit'>Submit</div><br>
+                data-callback='verifyCallback'></div><br>
                 <a href="/recipe/views/login">  返回登入</a>
             </div>
         </div>
@@ -125,7 +116,8 @@
             <dd><a href="#">全部分類</a></dd>
         </dl>
     </footer>
-    <script src="./js/umbrella.js"></script>
+    <script src="../js/umbrella.js"></script>
+    <script src="../js/recaptcha.js"></script>
 </body>
 
 </html>
