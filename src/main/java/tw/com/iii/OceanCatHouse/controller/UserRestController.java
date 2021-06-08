@@ -49,7 +49,7 @@ public class UserRestController {
 		System.out.println("*****recaptcha******");
 
 		JSONObject obj = new JSONObject();
-		obj.put("secret", "6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK");
+		obj.put("secret", "");
 		obj.put("response", body);
 		obj.put("remoteip", ip);
 		try {
