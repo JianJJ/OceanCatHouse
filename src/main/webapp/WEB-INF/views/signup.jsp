@@ -65,19 +65,22 @@
                 <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
                 <div class="FaceBook">使用FaceBook註冊</div> 
                 <div class="FaceBook">使用手機號碼註冊</div>
-                <p>_______________________________________________________</p>
+                <p>_____________________________________________________</p>
                 <form action="/recipe/signup/signup">
-                    <input class="formCSS" type="text" placeholder="Email" name="email" ><span class="error">sss${errors.email}</span><br>
-                    <input class="formCSS" type="text" placeholder="暱稱" name="username"><span class="error">${errors.username}</span><br>
-                    <input class="formCSS" type="text" placeholder="密碼" name="userpassword"><span class="error">${errors.userpassword}</span><br>
+                    <input class="formCSS" type="text" placeholder="Email" name="email" ><br>
+                    <span class="error">${errors.email}</span><br>
+                    <input class="formCSS" type="text" placeholder="暱稱" name="username"><br>
+                    <span class="error">${errors.username}</span><br>
+                    <input class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
+                    <span class="error">${errors.userpassword}</span><br>
                     <input class="formSubmit" type="submit"><br>
                 </form>
                 <div class="g-recaptcha"
                 data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
                 data-callback='onSubmit'
                 data-action='submit'>Submit</div><br>
-                <a href="/recipe/login.html">忘記密碼?</a><br><br>
-                <span>已經有帳號？    </span><a href="/recipe/views/login.jsp">  登入</a>
+                <a href="/recipe/forget">忘記密碼?</a><br><br>
+                <span>已經有帳號？    </span><a href="/recipe/views/login">  登入</a>
             </div>
         </div>
 

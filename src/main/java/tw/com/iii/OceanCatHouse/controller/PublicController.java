@@ -1,4 +1,4 @@
-package tw.com.iii.OceanCatHouse;
+package tw.com.iii.OceanCatHouse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,5 +37,12 @@ public class PublicController {
 	public String nlogin() {
 		return "/views/login";
 	}
+	@GetMapping(
+			path = {"/views/forget"}
+	)
+	public String forget() {
+		return "/views/forget";
+	}
+	
 	
 }
