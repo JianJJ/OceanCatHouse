@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,10 +65,10 @@
                 <div class="FaceBook">使用FaceBook註冊</div> 
                 <div class="FaceBook">使用手機號碼註冊</div>
                 <p>_______________________________________________________</p>
-                <form action="">
-                    <input class="formCSS" type="text" placeholder="Email"><br>
-                    <input class="formCSS" type="text" placeholder="暱稱"><br>
-                    <input class="formCSS" type="text" placeholder="密碼"><br>
+                <form action="/recipe/signup">
+                    <input class="formCSS" type="text" placeholder="Email" name="Email"><span class="error">${errors.Email}</span><br>
+                    <input class="formCSS" type="text" placeholder="暱稱" name="Username"><span class="error">${errors.Username}</span><br>
+                    <input class="formCSS" type="text" placeholder="密碼" name="Userpassword"><span class="error">${errors.Userpassword}</span><br>
                     <input class="formSubmit" type="submit"><br>
                 </form>
                 <div class="g-recaptcha"

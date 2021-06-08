@@ -1,0 +1,89 @@
+body {
+    width: 100vw;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.center{
+    width: 100vw;
+}
+.footer{
+    margin: 0px;
+}
+
+.main{
+    transform:translateX(-0%);
+    position: relative;
+    width: 470px;
+    height: 750px;
+    left: 0%;
+    right: 0%;
+    margin: auto;
+}
+.grid-row{
+    border: 1px black solid;
+    position: relative;
+    margin: 50px 0px 50px 0px ;
+    background-color: white;
+    height: 700px;
+    width: 470px;
+    text-align: center;
+    border-radius: 5px;
+}
+#canvas {
+    position: absolute;
+}
+/* ✿海貓食屋✿ */
+.main .grid-row .loginTitle{
+    font-size: 30px;
+    margin: 30px;
+}
+/* 取消 */
+.main .grid-row .loginReturn{
+    position: absolute;
+    background-color: red;
+    width: 35px;
+    height: 35px;
+    right:  -5px;
+    top: -5px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+}
+
+.main .grid-row .FaceBook{
+    left: 0%;
+    right: 0%;
+    margin: 15px auto 15px auto ;
+    height: 40px;
+    font-size: 1.2rem;
+    width: 80%;
+    background-color: rgb(24, 119, 242);
+    border-radius: 5px;
+    padding-top: 10px;
+}
+.main .grid-row .formCSS{
+    height: 30px;
+    font-size: 1.2rem;
+    width: 80%;
+    margin: 10px;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+.main .grid-row .formSubmit{
+    height: 50px;
+    font-size: 1.2rem;
+    width: 80%;
+    margin: 10px;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+.main .grid-row a{
+    color: black;
+    text-decoration:underline;
+}
+.g-recaptcha{
+    display: inline-block;
+}

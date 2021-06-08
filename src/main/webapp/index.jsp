@@ -11,10 +11,9 @@
 
 <h3>Welcome ${user.custid}</h3>
 
-<h3><a href="<c:url value="/views/secure/login.page" />">Login</a></h3>
-<h3><a href="<c:url value="/views/pages/product.isp" />">Product</a></h3>
-<h3><a href="<c:url value="/views/ShoppingMall.jsp" />">ShoppingMall</a></h3>
-<h3><a href="<c:url value="/views/login.html" />">login</a></h3>
-<h3><a href="<c:url value="/views/signup.html" />">signup</a></h3>
+<h3><a href="<c:url value="/views/secure/login.jsp" />">Login</a></h3>
+<h3><a href="<c:url value="/views/pages/product.jsp" />">Product</a></h3>
+<h3><a href="<c:url value="/views/login.jsp" />">login</a></h3>
+<h3><a href="<c:url value="/views/signup.jsp" />">signup</a></h3>
 </body>
 </html>
