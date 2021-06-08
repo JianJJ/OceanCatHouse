@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
@@ -65,10 +66,10 @@
                 <div class="FaceBook">使用FaceBook註冊</div> 
                 <div class="FaceBook">使用手機號碼註冊</div>
                 <p>_______________________________________________________</p>
-                <form action="/recipe/signup">
-                    <input class="formCSS" type="text" placeholder="Email" name="Email"><span class="error">${errors.Email}</span><br>
-                    <input class="formCSS" type="text" placeholder="暱稱" name="Username"><span class="error">${errors.Username}</span><br>
-                    <input class="formCSS" type="text" placeholder="密碼" name="Userpassword"><span class="error">${errors.Userpassword}</span><br>
+                <form action="/recipe/signup/signup">
+                    <input class="formCSS" type="text" placeholder="Email" name="email" ><span class="error">sss${errors.email}</span><br>
+                    <input class="formCSS" type="text" placeholder="暱稱" name="username"><span class="error">${errors.username}</span><br>
+                    <input class="formCSS" type="text" placeholder="密碼" name="userpassword"><span class="error">${errors.userpassword}</span><br>
                     <input class="formSubmit" type="submit"><br>
                 </form>
                 <div class="g-recaptcha"
@@ -76,7 +77,7 @@
                 data-callback='onSubmit'
                 data-action='submit'>Submit</div><br>
                 <a href="/recipe/login.html">忘記密碼?</a><br><br>
-                <span>已經有帳號？    </span><a href="">  登入</a>
+                <span>已經有帳號？    </span><a href="/recipe/views/login.jsp">  登入</a>
             </div>
         </div>
 

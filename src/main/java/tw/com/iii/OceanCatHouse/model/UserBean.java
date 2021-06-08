@@ -8,68 +8,74 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class UserBean {
+	
+	private Integer userid;
+	private Integer fansnum;//分屍數
+	private Integer recnum;//案戰術
+	private String username;
+	private String userpic;
+	private String userphone;
 	@Id
-	private Integer Userid;
-	private Integer Fansnum;//分屍數
-	private Integer Recnum;//案戰術
-	private String Username;
-	private String Userpic;
-	private String Userphone;
-	private String Email;
-	private String Userpassword;
+	private String email;
+	private String userpassword;
+	
+	
+	
 	
 
 	@Override
 	public String toString() {
-		return "UserBean [Userid=" + Userid + ", Username=" + Username + ", Userphone=" + Userphone + "]";
+		return "UserBean [username=" + username + ", email=" + email + ", userpassword=" + userpassword + "]";
 	}
 	public Integer getUserid() {
-		return Userid;
+		return userid;
 	}
 	public void setUserid(Integer userid) {
-		Userid = userid;
+		this.userid = userid;
 	}
 	public Integer getFansnum() {
-		return Fansnum;
+		return fansnum;
 	}
 	public void setFansnum(Integer fansnum) {
-		Fansnum = fansnum;
-	}
-	public String getUserpassword() {
-		return Userpassword;
-	}
-	public void setUserpassword(String userpassword) {
-		Userpassword = userpassword;
+		this.fansnum = fansnum;
 	}
 	public Integer getRecnum() {
-		return Recnum;
+		return recnum;
 	}
 	public void setRecnum(Integer recnum) {
-		Recnum = recnum;
+		this.recnum = recnum;
 	}
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 	public String getUserpic() {
-		return Userpic;
+		return userpic;
 	}
 	public void setUserpic(String userpic) {
-		Userpic = userpic;
+		this.userpic = userpic;
 	}
 	public String getUserphone() {
-		return Userphone;
+		return userphone;
 	}
 	public void setUserphone(String userphone) {
-		Userphone = userphone;
+		this.userphone = userphone;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
+	public String getUserpassword() {
+		return userpassword;
+	}
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
+	}
+	
+
 
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,9 +73,9 @@
                 <div class="FaceBook">使用FaceBook登入</div> 
                 <div class="FaceBook">使用手機號碼登入</div>
                 <p>____________________________________________________</p>
-                <form action="">
-                    <input class="formCSS" type="text" placeholder="Email"><br>
-                    <input class="formCSS" type="text"placeholder="密碼"><br>
+                <form action="/recipe/signup/login">
+                    <input class="formCSS" type="text" placeholder="Email" name="email"><br>
+                    <input class="formCSS" type="text"placeholder="密碼" name="userpassword"><br>
                     <input class="formSubmit" type="submit"><br>
                 </form>
                 <div class="g-recaptcha"
@@ -81,7 +83,7 @@
                 data-callback='onSubmit'
                 data-action='submit'>Submit</div><br>
                 <a href="">忘記密碼?</a><br><br><br>
-                <span>還沒有帳號?    </span><a href="/recipe/signup.html">  註冊</a>
+                <span>還沒有帳號?    </span><a href="/recipe/views/signup.jsp">  註冊</a>
             </div>
         </div>
 
