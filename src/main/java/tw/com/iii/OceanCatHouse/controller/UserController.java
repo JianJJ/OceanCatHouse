@@ -1,17 +1,18 @@
 package tw.com.iii.OceanCatHouse.controller;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.model.UserRepository;
@@ -23,29 +24,42 @@ public class UserController {
 	@Autowired
 	private MessageSource messageSource;
 
-	@RequestMapping("/signup")
-	public String signup(UserBean bean, BindingResult bindingResult, Model model, Locale locale) {
-		System.out.println("*****signup******");
+	@RequestMapping("/signup/{action}")
+	public String signup(UserBean bean, Model model, Locale locale,
+			@PathVariable("action") String action) {
+		System.out.println("*****" + action + "******");
 		System.out.println(bean);
 		// 接收資料
 		// 轉換資料
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
-
-		if (bindingResult != null && bindingResult.hasFieldErrors()) {
-			if (bindingResult.hasFieldErrors("Email")) {
-				errors.put("Email", messageSource.getMessage("product.id.format", null, locale));
-			}
-			if (bindingResult.hasFieldErrors("Username")) {
-				errors.put("Username", messageSource.getMessage("product.price.format", null, locale));
-			}
-			if (bindingResult.hasFieldErrors("Userpassword")) {
-				errors.put("UserPassword", messageSource.getMessage("product.make.format", null, locale));
-			}
-
+		if(bean.getEmail() == null || bean.getEmail().length()==0) {
+			errors.put("email", "Email錯誤");
 		}
+		if(bean.getUsername() == null || bean.getUsername().length()==0) {
+//			errors.put("username", messageSource.getMessage("product.price.format", null, locale));
+		}
+		if(bean.getUserpassword() == null || bean.getUserpassword().length()==0) {
+//			errors.put("userpassword", messageSource.getMessage("product.make.format", null, locale));
+		}
+		
+		
+		
+
+//		if (bindingResult != null && bindingResult.hasFieldErrors()) {
+//			if (bindingResult.hasFieldErrors("email")) {
+//				errors.put("Email", "Email錯誤");
+//			}
+//			if (bindingResult.hasFieldErrors("username")) {
+//				errors.put("Username", messageSource.getMessage("product.price.format", null, locale));
+//			}
+//			if (bindingResult.hasFieldErrors("userpassword")) {
+//				errors.put("UserPassword", messageSource.getMessage("product.make.format", null, locale));
+//			}
+//
+//		}
 //		//驗證資料
-//				if(prodaction!=null) {
+//				if(action!=null) {
 //					if(prodaction.equals("Insert") || prodaction.equals("Update") || prodaction.equals("Delete")) {
 //						if(bean==null || bean.getId()==null) {
 //							errors.put("id",
@@ -54,11 +68,37 @@ public class UserController {
 //					}
 //				}
 //				
-//				if(errors!=null && !errors.isEmpty()) {
-//					return "/pages/product";
-//				}
-//				
+				if(errors!=null && !errors.isEmpty()) {
+					
+					return "/views/signup";
+				}
+
+		if (action != null && action.equals("login")) {
+			if (userRepository.existsByemail(bean.getEmail())) {
+				if(userRepository.existsByuserpassword(bean.getUserpassword())) {
+					System.out.println("login*************************");
+				}
+				
+			}
+
+		}
+		if (action != null && action.equals("signup")) {
+			if (!userRepository.existsByemail(bean.getEmail())) {
+				if(!userRepository.existsByuserpassword(bean.getUsername())) {
+					System.out.println("存資料");
+					userRepository.save(bean);
+				}else {
+					System.out.println("名稱重複");
+				}
+			}else {
+				System.out.println("Email重複");
+			}
+			
+
+		}
+
 //		//呼叫Model，根據Model執行結果導向View
+
 //				if(prodaction!=null && prodaction.equals("Select")) {
 //					List<ProductBean> result = productService.select(bean);
 //					System.out.println(result);
@@ -92,7 +132,7 @@ public class UserController {
 //					errors.put("action", "Unknown Action:"+prodaction);
 //					return "/pages/product";
 //				}
-		return "redirect:/views/signup.jsp";
+		return "/views/signup";
 
 	}
 }
