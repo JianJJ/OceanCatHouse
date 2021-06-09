@@ -14,7 +14,7 @@ function verifyCallback(token) {
 	})
 	function doSuccess(json) {
 		console.log(json);
-		$("form").append('<input class="formSubmit" type="submit"><br>');
+	
 
 	}
 	function doError(json) {

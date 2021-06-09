@@ -1,30 +1,16 @@
 package tw.com.iii.OceanCatHouse;
 
-import java.io.InputStreamReader;
-import java.net.Authenticator;
-import java.util.Collections;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-
 import tw.com.iii.OceanCatHouse.model.UserRepository;
 
+
+import javax.mail.*;
+import javax.mail.internet.*;
+
+import java.util.Properties;
 
 @SpringBootTest
 public class zeroTest {
@@ -35,44 +21,58 @@ public class zeroTest {
 
 	@Test
 	public void AAA() {
+        Properties prop = new Properties();
+        // 發件人的郵箱的SMTP 服務器地址（不同的郵箱，服務器地址不同，如139和qq的郵箱服務器地址不同）
+        prop.setProperty("mail.host", "smtp.gmail.com");
+        // 使用的協議（JavaMail規範要求）
+        prop.setProperty("mail.transport.protocol", "smtp");
+        // 需要請求認證
+        prop.setProperty("mail.smtp.auth", "true");
+      
+        
+        prop.put("mail.smtp.starttls.enable", "true");
+
+        prop.put("mail.smtp.port", "587");     
+        // 使用JavaMail發送郵件的5個步驟
+        // 1、創建session
+        Session session = Session.getInstance(prop);
+        // 開啟Session的debug模式，這樣就可以查看到程序發送Email的運行狀態
+        session.setDebug(true);
+        Transport ts = null;
+        try {
+            // 2、通過session得到transport對象
+            ts = session.getTransport();
+            // 3、使用郵箱的用戶名和密碼連接郵件服務器（不同類型的郵箱不一樣，網易郵箱輸入的是用戶名和密碼，這裏我用的qq郵箱，輸入的是郵箱用戶名和smtp授權碼，smtp授權碼可登陸郵箱，進入設置啟動smtp服務後獲取）
+            // 發送郵件時，發件人需要提交郵箱的用戶名和密碼給smtp服務器，用戶名和密碼都通過驗證之後才能夠正常發送郵件給收件人。
+            ts.connect("smtp.gmail.com", "wiz71029@gmail.com", "  ");
+            // 4、創建郵件
+//            Message message = createComplexMail(session); 
+            MimeMessage message = new MimeMessage(session);
+            // 指明發件人
+            message.setFrom(new InternetAddress("wiz71029@gmail.com"));
+            // 指明收件人
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress("wiz71029@gmail.com"));
+            // 郵件的標題
+            message.setSubject("通知");
+         // 郵件的文本內容
+            message.setContent("<a href=\"/recipe/views/forget\">忘記密碼?</a><br> <br> <br> <span>還沒有帳號?", "text/html;charset=UTF-8");
+//            message.setText("Hello, this is sample for to check send "
+//                    + "email using JavaMailAPI ");
+            // 5、發送郵件
+            
+            ts.sendMessage(message, message.getAllRecipients());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // 關閉transport對象
+                ts.close();
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        }
 
 
-			Properties props = new Properties();
-
-			props.setProperty("mail.smtp.auth", "true"); // 發送伺服器需要身份驗證
-
-			props.setProperty("mail.transport.protocol", "smtp"); // 發送郵件協議名稱
-
-			props.setProperty("mail.smtp.host", "smtp.qq.com"); // 設置郵件伺服器主機名:qq是用 smtp.qq.com
-
-			props.setProperty("mail.smtp.starttls.enable", "true"); //需要時使用SSL登陸方式，隨著各個Mail伺服器對於安全的重視，紛紛採用基於SSL的Mail登陸方式進行發送和接收電子郵件。例如GMail等。當使用JavaMail發送電子郵件時，需要根據SSL設定，增加安全驗證的功能。
-
-			props.setProperty("mail.debug", "true"); // 開啟debug調試
-			
-			
-			
-
-			Session session = Session.getInstance(props);
-
-			Message msg = new MimeMessage(session);
-			 Transport ts = null;
-
-			try {
-				msg.setFrom(new InternetAddress("你的郵箱"));
-
-				msg.setSubject("我是主題");
-
-				msg.setContent("<span style='color:red'>我的文字是紅色的,想複雜自己加</span>", "text/html;charset=utf-8");
-
-				msg.setRecipients(RecipientType.TO, InternetAddress.parse("張三的郵箱,李四的郵箱"));
-				Transport.send(msg);
-			} catch (AddressException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} //發件人
 
 
 	}

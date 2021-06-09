@@ -37,6 +37,8 @@ public class PublicController {
 	public String nlogin() {
 		return "/views/login";
 	}
+	
+	
 	@GetMapping(
 			path = {"/views/forget"}
 	)

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
@@ -70,13 +71,16 @@
                 <p>寄發密碼重設驗證信</p>
                 <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
                 <p>__________________________________________________</p>
-                <form action="/recipe/forget">
+                <form action="/recipe/forget/controller">
                     <input class="formCSS" type="text" placeholder="Email" name="email"><br>
                     <span class="error">${errors.email}</span><br>
-                </form>
-                <div class="g-recaptcha"
+                                    <div class="g-recaptcha"
                 data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-                data-callback='verifyCallback'></div><br>
+                data-callback='verifyCallback'></div><br> 
+                <span class="error">${errors.recaptcha}</span> <br>
+                    <br><input class="formSubmit" type="submit"><br>
+                </form>
+
                 <a href="/recipe/views/login">  返回登入</a>
             </div>
         </div>

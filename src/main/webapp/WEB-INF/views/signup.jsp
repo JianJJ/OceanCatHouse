@@ -73,13 +73,18 @@
 					<span class="error">${errors.username}</span><br> <input
 						class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
 					<span class="error">${errors.userpassword}</span><br>
-
+					
+					<div class="g-recaptcha"
+						data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
+						data-callback='verifyCallback' data-action='submit'>Submit</div>
+					<br>
+					<span class="error">${errors.recaptcha}</span><br>
+					<input class="formSubmit" type="submit"><br>
 				</form>
-				<div class="g-recaptcha"
-					data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-					data-callback='verifyCallback' data-action='submit'>Submit</div>
-				<br> <a href="/recipe/views/forget">忘記密碼?</a><br>
-				<br> <span>已經有帳號？ </span><a href="/recipe/views/login"> 登入</a>
+
+
+				<a href="/recipe/views/forget">忘記密碼?</a><br> <br> <span>已經有帳號？
+				</span><a href="/recipe/views/login"> 登入</a>
 			</div>
 		</div>
 

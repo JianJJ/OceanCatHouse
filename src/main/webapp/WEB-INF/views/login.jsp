@@ -68,19 +68,22 @@
 				<p>__________________________________________________</p>
 				<form action="/recipe/signup/login">
 					<input class="formCSS" type="text" placeholder="Email" name="email"><br>
-					<span class="error">${errors.email}</span><br> <input
-						class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
-					<span class="error">${errors.userpassword}</span><br> 
+					<span class="error">${errors.email}</span><br> 
+					<input class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
+					<span class="error">${errors.userpassword}</span><br>
+					<div class="g-recaptcha"
+						data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
+						data-callback='verifyCallback' data-action='ubmit'>Submit</div>
+					<br> <span class="error">${errors.recaptcha}</span><br>
+		
+					<input class="formSubmit" type="submit"><br>
 				</form>
-				<div class="g-recaptcha"
-					data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-					data-callback='verifyCallback' data-action='ubmit'>Submit</div>
-				<br>
 
 
 
-				<a href="/recipe/views/forget">忘記密碼?</a><br> <br> <br> <span>還沒有帳號?
-				</span><a href="/recipe/views/signup"> 註冊</a>
+
+				<a href="/recipe/views/forget">忘記密碼?</a><br> <br> <br>
+				<span>還沒有帳號? </span><a href="/recipe/views/signup"> 註冊</a>
 			</div>
 		</div>
 
