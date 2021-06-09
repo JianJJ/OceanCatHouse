@@ -1,0 +1,237 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr');
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr#iefix') format('embedded-opentype'),
+      url('../icomoon/./fonts/icomoon.ttf?6rzpr') format('truetype'),
+      url('../icomoon/./fonts/icomoon.woff?6rzpr') format('woff'),
+      url('../icomoon/./fonts/icomoon.svg?6rzpr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    
+    /* 字體設定 */
+    font-family:"Noto Sans TC", 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+
+
+ul li {
+    text-decoration: none;
+    display: inline-block;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	 */
+.mainColor {
+    background-color:  #62A5A1;
+}
+
+/* Icon 顏色設定 */
+.fontIcon {
+    font-family: 'icomoon';
+    color: gainsboro;
+    cursor: pointer;
+}
+
+
+/*  header部分 */
+
+header {
+    display: flex; 
+    position: relative;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 80px;
+    color: aliceblue;
+}
+
+.title { 
+    margin-left: 90px;
+    font-size: 30px;
+}
+
+
+.littleNav {
+    margin-left: 150px;
+    margin-right: 100px;
+    width: 300px;
+}
+
+
+.littleNav ul li {
+    font-weight: 700;
+    margin-left: 15%;
+}
+
+
+.simpleSearch { 
+    margin: 0 10px;
+    width: 250px;
+} 
+
+.simpleSearch input {
+    float: left;
+    line-height: 40px;
+    width: 220px;
+    margin: 15px 0;
+    border:none;
+    text-indent: 1em;
+   
+ }
+
+.searchIcon {
+    float: right;
+    width: 20px;
+    margin: 15px 0;
+    padding-right: 10px;
+    line-height: 40px;
+    background: white; 
+    cursor: pointer;
+}
+
+.Login {
+    margin: 0px 10px;
+    padding: 0 30px;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    color: white;
+    background-color: #B54484;
+    white-space: nowrap;
+    display: inline;
+}
+em {
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+.Login span:hover {
+    color: black;
+    cursor: pointer;
+    
+}
+
+.userIcon {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .4);
+    background-position: center;
+    background-size: cover;
+    /* 用戶的大頭貼 */
+    background-image: url(../images/yarn-brands.svg);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.userIcon:hover {
+    box-shadow: 0 0 5px 5px #5ecec8;
+}
+
+
+
+/* footer */
+footer {
+    position: relative;
+    margin-top: 50px;
+    text-align: right;
+}
+
+footer dl {
+    display: inline-block;
+    vertical-align: top;
+    padding: 30px;
+    margin-right: 50px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+footer dl:last-child {
+    margin-right: 200px;
+}
+
+footer dl dd {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 35px;
+}
+
+footer dl dd a {
+    color: white;
+}
+
+
+.center {
+    display:inline-flex;
+}
+
+/* 左邊浮動區塊 */
+.barNav {
+    position: relative;
+    top: 250px;
+    left: 5%;
+    width: 50px;
+    font-size: 35px;
+    background-color: transparent;
+    text-align: center;
+    
+}
+
+.barNav ul {
+    position: sticky;
+    top:50px;
+    width: 50px;
+}
+
+.barNav ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: lightgray 1px solid;
+    z-index: 1;
+}
+
+.main {
+    position: relative;
+    left: 50%;
+    top: 0;
+    transform:translateX(-55%);
+    width: 70%;
+}
+
+
+.toUP {
+    position: fixed;
+    right:5%;
+    bottom: 50px;
+    font-size: 50px;
+    z-index: 1;
+}
+

@@ -11,11 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController()
 public class CreateRecipeController {
 
-    @GetMapping("/{RecipeName}")
-    public ModelAndView createRecipe(@PathVariable("RecipeName")String RecipeName){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject(RecipeName);
-        modelAndView.setViewName("/pages/jiantest01");
-        return modelAndView;
-    }
+
+
+
 }

@@ -1,0 +1,127 @@
+button {
+    cursor: pointer;
+}
+
+.center {
+    display: unset;
+}
+.center .wallpaper {
+    overflow: hidden;
+    margin: 50px 0;
+    height: 450px;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* 跨頁 */
+#wallpaper1 {
+    background-image: url(../images/wall03.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#wallpaper2 {
+    background-image: url(../images/wall02.jpg);
+    background-position: top;
+    background-size: cover;
+   
+}
+
+.wallpaper span {
+    display: inline-block;
+    text-align: center;
+    line-height: 450px;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, .3);
+
+}
+
+.wallpaper span em {
+    color: white;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 900;
+    text-shadow: 0px 0px 10px teal;
+    cursor: none;
+}
+
+.wallpaper span em:hover {
+    color: teal;
+    font-style: normal;
+    text-shadow: 0px 0px 10px white;
+}
+
+
+
+/* block */
+.contextBlock {
+    margin: 15px auto;
+    width: 70%;
+    height: 500px;
+
+}
+
+.contextBlock .context {
+    float: left;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    line-height: 30px;
+}
+
+.contextBlock .contextImg {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+#block1 .contextImg {
+    background-image: url(../images/wall05.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#block2 .contextImg {
+    background-image: url(../images/wall06.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+/* block Contexts */
+
+.contextBlock .context hr {
+    margin: 90px auto 70px auto;
+    height: 1px;
+    width: 40%;
+    background-color: pink;
+}
+
+.contextBlock .context h2 {
+   margin-bottom: 40px;
+   font-weight: 900;
+   font-size: 40px;
+}
+
+.contextBlock .context p {
+    width: 80%;
+    margin: 0 auto 30px auto;
+    font-size: 17px;
+    color: rgb(120, 120, 120);
+ }
+ 
+ 
+.contextBlock .context button {
+    padding: 15px 40px;
+    border-radius: 45px;
+    border: none;
+    font-weight: 600;
+    font-size: 17px;
+    background-color: transparent;
+    color: #B54484;
+}
+
+.contextBlock .context button:hover {
+    background-color: 	#B54484;
+    color: white;
+}
