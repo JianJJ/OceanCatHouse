@@ -48,13 +48,13 @@ public class UserRestController {
 		System.out.println(body);
 		System.out.println("*****recaptcha******");
 
-		JSONObject obj = new JSONObject();
-		obj.put("secret", "");
-		obj.put("response", body);
-		obj.put("remoteip", ip);
+//		JSONObject obj = new JSONObject();
+//		obj.put("secret", "");
+//		obj.put("response", body);
+//		obj.put("remoteip", ip);
 		try {
 			String url = "https://www.google.com/recaptcha/api/siteverify",
-					params = "secret=" + "6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK" + "&response=" + body;
+					params = "secret=" + "" + "&response=" + body;
 
 			HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
 			http.setDoOutput(true);
