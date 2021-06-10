@@ -31,8 +31,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 @Component
 public class ZeroTools {
-	private String STMP = "cmbatoziyuiunlot";
-	private String secret ="6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK";
+	private String STMP = "";
+	private String secret ="";
 
 	//郵件
 	public void mail(String mailTo, String text) {
@@ -86,7 +86,7 @@ public class ZeroTools {
 		}
 	}
 	
-	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//google登入
 	public void oauth( String idtoken) {
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
@@ -141,7 +141,7 @@ public class ZeroTools {
 	
 	
 	
-	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 	//機器人判斷
 	public boolean recaptcha(String toke) {
