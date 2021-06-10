@@ -27,7 +27,10 @@
 		<a href="<c:url value="/views/signup" />">signup</a>
 	</h3>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	
+	
 	<a href="#" onclick="signOut();">Sign out</a>
+	
 	<script type="text/javascript">
 		function onSignIn(googleUser) {
 			//取得資料

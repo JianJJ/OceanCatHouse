@@ -1,104 +1,35 @@
 package tw.com.iii.OceanCatHouse.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpSession;
-
-import org.json.JSONObject;
-
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-
-import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-
-
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
+
+import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
+import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserRepository;
 
 
 
 @RestController
 public class UserRestController {
 	
-	private String secret ="";
+	@Autowired
+	private ZeroTools zTools;
+	
+	@Autowired 
+	private UserRepository userRepository;
 
-	//機器人判斷
-	@RequestMapping("/recaptcha")
-	public String recaptcha(@RequestBody String body,HttpSession session) {
-		//取得ip
-		String ip = null;
-		try {
-			ip = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//取得token
-		System.out.println(body);
-		System.out.println("*****recaptcha******");
-
-//		JSONObject obj = new JSONObject();
-//		obj.put("secret", "");
-//		obj.put("response", body);
-//		obj.put("remoteip", ip);
-		try {
-			//編輯google需要文件
-			String url = "https://www.google.com/recaptcha/api/siteverify",
-					params = "secret=" + secret + "&response=" + body;
-			//開啟網路發送
-			HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
-			http.setDoOutput(true);
-			http.setRequestMethod("POST");
-			http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			OutputStream out = http.getOutputStream();
-			out.write(params.getBytes("UTF-8"));
-			out.flush();
-			out.close();
-			//接收返回資料
-			InputStream res = http.getInputStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(res, "UTF-8"));
-
-			StringBuilder sb = new StringBuilder();
-			int cp;
-			while ((cp = rd.read()) != -1) {
-				sb.append((char) cp);
-			}
-			JSONObject json = new JSONObject(sb.toString());
-			System.out.println(json);
-			res.close();
-			
-			//判斷成功存在session
-		if((boolean) json.get("success") ) {
-				session.setAttribute("success", "ture");
-		}
-			return json.toString();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/oauth")
 	public void name( String idtoken) {
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
@@ -140,8 +71,18 @@ public class UserRestController {
 			  System.out.println("User locale: " + locale);
 			  System.out.println("User givenName: " + givenName);
 			  
-			  
-			  
+			  if(userRepository.existsByemail(email)) {
+				System.out.println("login");  
+			  }else {
+				  System.out.println("註冊");
+				  UserBean bean = new UserBean();
+				  bean.setUserpassword("googleOauth");
+				  bean.setEmail(email);
+				  bean.setUsername(name);
+				  String text = "<p>歡迎加入海貓食屋</p>";
+				 zTools.mail(email, text);
+				  userRepository.save(bean);
+			}
 			  
 			  // Use or store profile information
 			  // ...

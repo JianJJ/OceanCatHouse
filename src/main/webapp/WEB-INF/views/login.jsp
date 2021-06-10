@@ -13,6 +13,9 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id"
+	content="849367464998-0c4najofsqmh3rteejq2dc3va9iqdps2.apps.googleusercontent.com">
 <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam"async defer></script> -->
 <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 <link rel="stylesheet" href="../css/demo.css">
@@ -62,9 +65,9 @@
 		<div class="main">
 			<div class="grid-row">
 				<div class="loginTitle">✿海貓食屋✿</div>
-				<button class="loginReturn" onclick=window.location.href="/recipe">X</button>
-				<div class="FaceBook">使用FaceBook登入</div>
-				<div class="FaceBook">使用手機號碼登入</div>
+				<button class="loginReturn" onclick=window.location.href="/recipe" >X</button>
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div class="phone">使用手機號碼登入</div>
 				<p>__________________________________________________</p>
 				<form action="/recipe/signup/login">
 					<input class="formCSS" type="text" placeholder="Email" name="email"><br>
@@ -158,6 +161,12 @@
 	</footer>
 	<script src="../js/umbrella.js"></script>
 	<script src="../js/recaptcha.js"></script>
+	<script src="../js/oauth.js"></script>
+	<script>
+		$(".phone").click(function(){
+			window.location.href="/recipe/views/phoneLogin";
+		});
+	</script>
 </body>
 
 </html>
