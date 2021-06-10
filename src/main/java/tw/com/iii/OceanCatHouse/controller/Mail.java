@@ -16,8 +16,7 @@ public class Mail {
 	public void setMail(String mailTo,String text) {
 		
 		 mailTo = "wiz71029@gmail.com";
-		
-		
+
         Properties prop = new Properties();
         // 發件人的郵箱的SMTP 服務器地址（不同的郵箱，服務器地址不同，如139和qq的郵箱服務器地址不同）
         prop.setProperty("mail.host", "smtp.gmail.com");

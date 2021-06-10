@@ -15,16 +15,25 @@
     <style>
         .inner{
             border: 1px solid #bcbebf;
-            margin-top: 40px;
             padding: 15px;
         }
-        #CreateNow{
-            float: right;
+        .showAD{
+            border: 1px solid #bcbebf;
+            text-align: center;
         }
-        #recipeName{
+        #RecTitle{
             border-color: #dc3545;
         }
-
+        .onTop{
+            margin-top: 40px;
+        }
+        #CreateNow{
+            width: 200px;
+            float: right;
+        }
+        .smallInner{
+            margin: 10px 0px;
+        }
     </style>
 </head>
 <body>
@@ -50,22 +59,34 @@
 </header>
 
 <!--主體-->
-<form action="" method="get">
+<form action="${pageContext.request.contextPath}/createRecipe/add/{RecTitle}" method="get">
     <div class="container">
-        <div class="row">
-            <div class="col-md-8  inner">
-                <p>請輸入食譜名稱</p>
-                <hr/>
-                <div class="input-group">
-                    <input id="recipeName" type="text" class="form-control" placeholder="例如：番茄炒蛋" aria-label="Username" aria-describedby="basic-addon1">
-                </div><br/>
-                <p>建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="agree" checked>
-                    <label class="form-check-label" for="agree">發布食譜及代表同意海貓食屋「服務條款」。</label>
+        <div class="row justify-content-around onTop">
+            <div class="col-md-8">
+                <div class="row inner">
+                    <label for="RecTitle"><h3>請輸入食譜名稱</h3></label>
                 </div>
-                <br/>
-                <input id="CreateNow" type="submit" class="btn btn-outline-danger" value="開始寫食譜">
+                <div class="row inner">
+                    <div class="input-group smallInner">
+                        <input id="RecTitle" name="RecTitle"
+                               type="text" class="form-control" placeholder="例如：番茄炒蛋" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
+                    <div class="form-check smallInner">
+                        <input class="form-check-input" type="checkbox" value="" id="agree"><!--checked disabled-->
+                        <label class="form-check-label" for="agree">
+                            發布食譜及代表同意海貓食屋「服務條款」。
+                        </label>
+                    </div>
+                    <div id="CreateNow" style="position: static">
+                        <input type="submit" class="btn btn-outline-danger" value="開始寫食譜">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 showAD">
+                <h3>食譜名稱</h3>
+                <img src="../../images/wall06.jpg" width="200px" height="200px">
+                <p>食譜簡介</p>
             </div>
         </div>
     </div>

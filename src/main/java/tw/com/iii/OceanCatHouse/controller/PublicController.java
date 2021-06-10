@@ -2,6 +2,7 @@ package tw.com.iii.OceanCatHouse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PublicController {
@@ -46,5 +47,9 @@ public class PublicController {
 		return "/views/forget";
 	}
 	
-	
+	@RequestMapping("/createRecipe")
+	public String createRecipeDetail(){
+
+		System.out.println();
+		return "/views/pages/createRecipe";}
 }
