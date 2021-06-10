@@ -69,13 +69,14 @@
 				<div class="g-signin2" data-onsuccess="onSignIn"></div>
 				<p>_____________________________________________________</p>
 				<form action="/recipe/signup/phoneLogin">
-					<input class="formCSS" type="text" placeholder="手機號碼" name="userphone"><br>
-					<span class="error">${errors.userphone}</span><br> 					
+					<input class="formCSS" type="text" placeholder="手機號碼"
+						name="userphone"><br> <span class="error">${errors.userphone}</span><br>
+					<input class="formCSS" type="text" placeholder="密碼"
+						name="userpassword"><br> <span class="error">${errors.userpassword}</span><br>
 					<div class="g-recaptcha"
 						data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
 						data-callback='verifyCallback' data-action='submit'>Submit</div>
-					<br>
-					<span class="error">${errors.recaptcha}</span><br>
+					<br> <span class="error">${errors.recaptcha}</span><br>
 					<!--  -->
 
 					<input class="formSubmit" type="submit"><br>

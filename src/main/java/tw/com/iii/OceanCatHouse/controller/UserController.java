@@ -31,22 +31,19 @@ import tw.com.iii.OceanCatHouse.model.UserRepository;
 
 @Controller
 public class UserController {
-	@GetMapping(
-			path = {"/views/phoneLogin"}
-	)
+	@GetMapping(path = { "/views/phoneLogin" })
 	public String index() {
 		return "/views/phoneLogin";
 	}
-	
-	
-	
-	
+
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private ZeroTools zTools;
+
 	@RequestMapping("/forget/{controller}")
-	public String forget(UserBean bean, Model model, Locale locale, HttpSession session,@RequestParam("g-recaptcha-response") String token) {
+	public String forget(UserBean bean, Model model, Locale locale, HttpSession session,
+			@RequestParam("g-recaptcha-response") String token) {
 		System.out.println("*****forget******");
 		System.out.println(bean);
 		Map<String, String> errors = new HashMap<>();
@@ -55,36 +52,35 @@ public class UserController {
 		if (token == "" || !zTools.recaptcha(token)) {
 			System.out.println("errors.put(\"recaptcha\", \"需要驗證\");");
 			errors.put("recaptcha", "需要驗證");
-			}
+		}
 		// 郵件格式判斷
 		if (bean.getEmail() == null || bean.getEmail().length() == 0) {
 			errors.put("email", "Email錯誤");
 			return "/views/forget";
 		}
-		if (!bean.getEmail().contains("@")) errors.put("email", "Email錯誤");
-		
-		if (errors != null && !errors.isEmpty()) return "/views/forget";
-			
+		if (!bean.getEmail().contains("@"))
+			errors.put("email", "Email錯誤");
+
+		if (errors != null && !errors.isEmpty())
+			return "/views/forget";
+
 		// 寄發郵件
 		String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>從新設定密碼</a></p>";
 		zTools.mail(bean.getEmail(), text);
 		return "/index";
 	}
 
-	
-
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping("/signup/{action}")
 	public String signup(UserBean bean, Model model, Locale locale, @PathVariable("action") String action,
-			HttpSession session,@RequestParam("g-recaptcha-response") String token) {
-		
+			HttpSession session, @RequestParam("g-recaptcha-response") String token) {
+
 		System.out.println(token);
 		System.out.println("*****" + action + "******");
 		System.out.println(bean);// 接收input
-		
-		boolean recaptcha = zTools.recaptcha(token);
-		System.out.println(session.getAttribute("success"));// 機器人判斷
+
+		boolean recaptcha = zTools.recaptcha(token);// 機器人判斷
+
 		// 接收資料
 		// 轉換資料
 		Map<String, String> errors = new HashMap<>();
@@ -96,25 +92,28 @@ public class UserController {
 		}
 		// 判斷欄位輸入
 		if (bean.getUserphone() == null || bean.getUserphone().length() == 0) {
-			errors.put("userphone", "手機號碼錯誤");
+			if (action.equals("phoneLogin"))
+				errors.put("userphone", "沒有手機號碼");
 		}
 		if (bean.getEmail() == null || bean.getEmail().length() == 0) {
-			errors.put("email", "Email錯誤");
+			if (action.equals("logun") || action.equals("signup"))
+				errors.put("email", "沒有Email");
 		}
 		if (bean.getUsername() == null || bean.getUsername().length() == 0) {
 			if (action.equals("signup"))
-				errors.put("username", "暱稱錯誤");
+				errors.put("username", "沒有暱稱");
 		}
 		if (bean.getUserpassword() == null || bean.getUserpassword().length() == 0) {
-			errors.put("userpassword", "密碼錯誤");
+			errors.put("userpassword", "沒有密碼");
 		}
 
 		if (errors != null && !errors.isEmpty()) {
+			System.out.println("errors");
 			if (action.equals("login")) {
 				return "/views/login";
-			} else if(action.equals("signup")){
+			} else if (action.equals("signup")) {
 				return "/views/signup";
-			}else{
+			} else {
 				return "/views/phoneLogin";
 			}
 
@@ -122,10 +121,20 @@ public class UserController {
 		// 登入 判斷email,密碼是否正確
 		if (action != null && action.equals("login")) {
 			if (userRepository.existsByemail(bean.getEmail())) {
-				if (userRepository.existsByuserpassword(bean.getUserpassword())) {
-					System.out.println("login*************************");
+				
+				if (userRepository.findPasswordByEmail(bean.getUserpassword(), bean.getEmail()) != null) {
+					System.out.println("登入成功*************************");
+					return "/index";
+				} else {
+					System.out.println("密碼錯誤");
+					errors.put("userpassword", "密碼錯誤");
+					return "/views/" + action;
 				}
 
+			}else {
+				System.out.println("Email錯誤");
+				errors.put("email", "Email錯誤");
+				return "/views/" + action;
 			}
 
 		}
@@ -136,14 +145,36 @@ public class UserController {
 					System.out.println("存資料");
 					userRepository.save(bean);
 				} else {
-					System.out.println("名稱重複");
+					System.out.println("名稱已經存在");
+					errors.put("username", "名稱已經存在");
+					return "/views/" + action;
 				}
 			} else {
 				System.out.println("Email重複");
+				errors.put("email", "Email重複");
+				return "/views/" + action;
+			}
+		}
+		// 判斷電話
+		if (action != null && action.equals("phoneLogin")) {
+			if (userRepository.existsByuserphone(bean.getUserphone())){
+				if (userRepository.findPasswordByUserPhone(bean.getUserpassword(), bean.getUserphone()) == null) {
+					System.out.println("密碼錯誤");
+					errors.put("userpassword", "密碼錯誤");
+					return "/views/" + action;
+				} else {
+					System.out.println("登入成功");
+				}
+
+			} else {
+				System.out.println("電話錯誤");
+				errors.put("userphone", "電話錯誤");
+				return "/views/" + action;
 			}
 
 		}
 
+		// 成功後去向
 		if (action.equals("login")) {
 			return "/index";
 		} else {
