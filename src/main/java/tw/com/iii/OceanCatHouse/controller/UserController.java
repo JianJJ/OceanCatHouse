@@ -143,6 +143,10 @@ public class UserController {
 			if (!userRepository.existsByemail(bean.getEmail())) {
 				if (!userRepository.existsByuserpassword(bean.getUsername())) {
 					System.out.println("存資料");
+					
+					//發送註冊信
+					String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>海貓食屋歡迎你,點擊認證 </a></p>";
+					zTools.mail(bean.getEmail(), text);
 					userRepository.save(bean);
 				} else {
 					System.out.println("名稱已經存在");
