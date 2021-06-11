@@ -69,11 +69,11 @@
 				<div class="g-signin2" data-onsuccess="onSignIn" data-width="376" data-height="50" data-longtitle="true"></div>
 				<p>_____________________________________________________</p>
 				<form action="/recipe/signup/signup">
-					<input class="formCSS" type="text" placeholder="Email" name="email"><br>
+					<input class="formCSS" type="text" placeholder="Email" name="email" value="${email}"><br>
 					<span class="error">${errors.email}</span><br> <input
-						class="formCSS" type="text" placeholder="暱稱" name="username"><br>
+						class="formCSS" type="text" placeholder="暱稱" name="username" value="${username}"><br>
 					<span class="error">${errors.username}</span><br> <input
-						class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
+						class="formCSS" type="text" placeholder="密碼" name="userpassword" value="${userpassword}"><br>
 					<span class="error">${errors.userpassword}</span><br>
 					
 					<div class="g-recaptcha"

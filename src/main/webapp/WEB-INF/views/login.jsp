@@ -70,9 +70,9 @@
 				<div class="phone">使用手機號碼登入</div>
 				<p>__________________________________________________</p>
 				<form action="/recipe/signup/login">
-					<input class="formCSS" type="text" placeholder="Email" name="email"><br>
+					<input class="formCSS" type="text" placeholder='Email' name="email" value="${email}"><br>
 					<span class="error">${errors.email}</span><br> 
-					<input class="formCSS" type="text" placeholder="密碼" name="userpassword"><br>
+					<input class="formCSS" type="text" placeholder="密碼" name="userpassword" value="${userpassword}"><br>
 					<span class="error">${errors.userpassword}</span><br>
 					<div class="g-recaptcha"
 						data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"

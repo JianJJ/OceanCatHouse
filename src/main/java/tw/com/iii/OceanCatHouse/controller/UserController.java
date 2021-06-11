@@ -48,6 +48,7 @@ public class UserController {
 		System.out.println(bean);
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("errors", errors);
+		model.addAttribute("email", bean.getEmail());
 		// 機器人判斷
 		if (token == "" || !zTools.recaptcha(token)) {
 			System.out.println("errors.put(\"recaptcha\", \"需要驗證\");");
@@ -80,7 +81,11 @@ public class UserController {
 		System.out.println(bean);// 接收input
 
 		boolean recaptcha = zTools.recaptcha(token);// 機器人判斷
-
+		//使有輸入的資料能返回
+		model.addAttribute("email", bean.getEmail());
+		model.addAttribute("username", bean.getUsername());
+		model.addAttribute("userpassword", bean.getUserpassword());
+		model.addAttribute("userphone", bean.getUserphone());
 		// 接收資料
 		// 轉換資料
 		Map<String, String> errors = new HashMap<>();
