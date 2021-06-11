@@ -20,8 +20,6 @@ public class UserBean {
 	private String userpassword;
 	
 	
-	
-	
 
 	@Override
 	public String toString() {
