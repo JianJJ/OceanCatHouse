@@ -87,6 +87,11 @@ body {
 .g-recaptcha{
     display: inline-block;
 }
+/* 錯誤訊息 */
 .error{
 	color :red;
+}
+/* google登入 */
+.g-signin2{
+    display: inline-block;						
 }

@@ -66,7 +66,7 @@
                 }
             </style>
             <div class="grid-row">
-                <div class="loginTitle">✿海貓食屋✿</div><br>
+                <div class="loginTitle">✿海貓食屋✿</div>
                 <p>寄發密碼重設驗證信</p>
                 <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
                 <p>__________________________________________________</p>

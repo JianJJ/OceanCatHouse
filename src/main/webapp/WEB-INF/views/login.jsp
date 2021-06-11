@@ -66,7 +66,7 @@
 			<div class="grid-row">
 				<div class="loginTitle">✿海貓食屋✿</div>
 				<button class="loginReturn" onclick=window.location.href="/recipe" >X</button>
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div class="g-signin2" data-onsuccess="onSignIn" data-width="376" data-height="50" data-longtitle="true"></div>
 				<div class="phone">使用手機號碼登入</div>
 				<p>__________________________________________________</p>
 				<form action="/recipe/signup/login">
@@ -81,7 +81,9 @@
 		
 					<input class="formSubmit" type="submit"><br>
 				</form>
+				<style>
 
+				</style>
 
 
 

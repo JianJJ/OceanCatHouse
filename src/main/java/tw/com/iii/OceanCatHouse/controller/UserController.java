@@ -56,7 +56,7 @@ public class UserController {
 		// 郵件格式判斷
 		if (bean.getEmail() == null || bean.getEmail().length() == 0) {
 			errors.put("email", "Email錯誤");
-			return "/views/forget";
+//			return "/views/forget";
 		}
 		if (!bean.getEmail().contains("@"))
 			errors.put("email", "Email錯誤");
@@ -96,7 +96,7 @@ public class UserController {
 				errors.put("userphone", "沒有手機號碼");
 		}
 		if (bean.getEmail() == null || bean.getEmail().length() == 0) {
-			if (action.equals("logun") || action.equals("signup"))
+			if (action.equals("login") || action.equals("signup"))
 				errors.put("email", "沒有Email");
 		}
 		if (bean.getUsername() == null || bean.getUsername().length() == 0) {
