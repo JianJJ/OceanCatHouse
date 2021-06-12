@@ -20,23 +20,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <script type="text/javascript">
-        var upload = function (c, d) {
-            "use strict";
-            var $c = document.querySelector(c),
-                $d = document.querySelector(d),
-                file = $c.files[0],
-                reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                $d.setAttribute("src", e.target.result);
+        $(document).ready(function () {
+            // 設定 點擊照片上傳+換圖片
+            upload = function (c, d) {
+                var $c = document.querySelector(c);
+                var $d = document.querySelector(d);
+                var file = $c.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    $d.setAttribute("src", e.target.result);
+                };
             };
-        };
+
+            // 執行增加一個食譜步驟
+            var apple = $('stepGO').innerHTML;
+            console.log(apple);
+        })
     </script>
     <style>
         body {
             background-color: #EFECE8;
         }
-
 
         .fileInput {
             position: absolute;
@@ -46,24 +51,26 @@
             right: 0;
             opacity: 0;
             display: block;
-            width: 3.5rem;
+            width: 100%;
             clear: both;
-            display: block;
-            margin: auto;
-            background-color: red;
         }
 
         .inner {
             border: 1px solid #bcbebf;
             padding: 15px;
         }
-        #img-txz {
-            width: 300px;
-            height: 280px;
+        .picmain, .picstep  {
+            position: relative;
+            background-color: #EFECE8;
+            text-align: center;
         }
-
-        .aui-info {
-            background-color: #bcbebf;
+        #img-main{
+            width: 100%;
+            height: 100%;
+        }
+        .img-step{
+            width: 100%;
+            height: 100%;
         }
 
         .row {
@@ -114,7 +121,8 @@
                 <div class="row">
                     <div class="picmain">
                         <div style="width: 350px;height: 280px; margin:0 auto;">
-                            <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main" class="img-thumbnail"/>
+                            <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
+                                 class="img-thumbnail"/>
                             <input type="file" accept="image/*" id="file-main" name="file"
                                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
                         </div>
@@ -184,7 +192,7 @@
                     <button type="button" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
                 </div>
                 <%--                食材新增--%>
-                <div class="row" style="margin-bottom: 0px">
+                <div class="row" style="margin-bottom: 0px" id="stepGO">
                     <label>步驟</label><br/>
                 </div>
 
@@ -196,7 +204,7 @@
                                 <div style="width: 280px;height: 210px; margin:0 auto;">
                                     <img src="${pageContext.request.contextPath}/images/uploadstep.png"
                                          class="img-thumbnail img-step"
-                                          id="img-step${i}"/>
+                                         id="img-step${i}"/>
                                     <input type="file" accept="image/*" id="file-step${i}" name="file"
                                            onchange="upload('#file-step${i}', '#img-step${i}');" class="fileInput"
                                            value=""/>
