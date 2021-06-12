@@ -11,33 +11,16 @@
           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
           crossorigin="anonymous">
     <!--    JavaScript; choose one of the two!-->
-    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"/>
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // 設定 點擊照片上傳+換圖片
-            upload = function (c, d) {
-                var $c = document.querySelector(c);
-                var $d = document.querySelector(d);
-                var file = $c.files[0];
-                var reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function (e) {
-                    $d.setAttribute("src", e.target.result);
-                };
-            };
 
-            // 執行增加一個食譜步驟
-            var apple = $('stepGO').innerHTML;
-            console.log(apple);
-        })
-    </script>
     <style>
         body {
             background-color: #EFECE8;
@@ -59,16 +42,19 @@
             border: 1px solid #bcbebf;
             padding: 15px;
         }
-        .picmain, .picstep  {
+
+        .picmain, .picstep {
             position: relative;
             background-color: #EFECE8;
             text-align: center;
         }
-        #img-main{
+
+        #img-main {
             width: 100%;
             height: 100%;
         }
-        .img-step{
+
+        .img-step {
             width: 100%;
             height: 100%;
         }
@@ -107,153 +93,100 @@
 
 <!--主體-->
 <div class="container Cbody">
-    <form action="${pageContext.request.contextPath}" method="get">
-        <div class="row justify-content-around">
-            <div class="col-md-7 Lbody">
-                <%--                食譜分類 RecCategory--%>
-                <%--                食譜名稱 RecTitle--%>
-                <div class="row">
-                    <div class="inner">
-                        <h5>${RecTitle}</h5>
+    <div class="row justify-content-around">
+        <div class="col-md-7 Lbody" id="divStart">
+            <%--                食譜分類 RecCategory--%>
+            <%--                食譜名稱 RecTitle--%>
+            <div class="row">
+                <div class="inner">
+                    <h5>${RecTitle}</h5>
+                </div>
+            </div>
+            <%--                上傳檔案+顯示圖片 RecPic--%>
+            <div class="row">
+                <div class="picmain">
+                    <div style="width: 350px;height: 280px; margin:0 auto;">
+                        <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
+                             class="img-thumbnail"/>
+                        <input type="file" accept="image/*" id="file-main" name="file"
+                               onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
                     </div>
                 </div>
-                <%--                上傳檔案+顯示圖片 RecPic--%>
-                <div class="row">
-                    <div class="picmain">
-                        <div style="width: 350px;height: 280px; margin:0 auto;">
-                            <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
-                                 class="img-thumbnail"/>
-                            <input type="file" accept="image/*" id="file-main" name="file"
-                                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
-                        </div>
-                    </div>
+            </div>
+            <%--                簡介 RecText --%>
+            <div class="row">
+                <div class="form-group">
+                    <label for="RecText">請輸入食譜簡介</label>
+                    <textarea class="form-control" id="RecText" rows="3"></textarea>
                 </div>
-                <%--                簡介 RecText --%>
-                <div class="row">
-                    <div class="form-group">
-                        <label for="RecText">請輸入食譜簡介</label>
-                        <textarea class="form-control" id="RecText" rows="3"></textarea>
-                    </div>
+            </div>
+            <%--                    --%>
+            <div class="row justify-content-between">
+                <%--                 份量 RecNum--%>
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlSelect1">份量<span>(人份)</span></label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10+</option>
+                    </select>
                 </div>
-                <%--                    --%>
-                <div class="row justify-content-between">
-                    <%--                 份量 RecNum--%>
-                    <div class="form-group col-md-6">
-                        <label for="exampleFormControlSelect1">份量<span>(人份)</span></label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10+</option>
-                        </select>
-                    </div>
-                    <%--                 分鐘數 RecTime  --%>
-                    <div class="form-group col-md-6">
-                        <label for="RecTime">烹調時間<span>(分鐘)</span></label>
-                        <select class="form-control" id="RecTime">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                            <option>30</option>
-                            <option>45</option>
-                            <option>60</option>
-                            <option>90</option>
-                            <option>120</option>
-                            <option>180+</option>
-                        </select>
-                    </div>
+                <%--                 分鐘數 RecTime  --%>
+                <div class="form-group col-md-6">
+                    <label for="RecTime">烹調時間<span>(分鐘)</span></label>
+                    <select class="form-control" id="RecTime">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>30</option>
+                        <option>45</option>
+                        <option>60</option>
+                        <option>90</option>
+                        <option>120</option>
+                        <option>180+</option>
+                    </select>
                 </div>
-                <div class="row" style="margin-bottom: 0px">
-                    <label>食材<span>食材15字以內，份量10字以內</span></label><br/>
-                </div>
-                <div class="row justify-content-between" style="margin-top: 2px">
-                    <div class="col-md-7">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="食材">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="份量">
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
-                    </div>
-                </div>
-                <div class="row justify-content-between">
-                    <button type="button" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
-                </div>
-                <%--                食材新增--%>
-                <div class="row" style="margin-bottom: 0px" id="stepGO">
-                    <label>步驟</label><br/>
-                </div>
+            </div>
+            <div class="row" style="margin-bottom: 0px" id="frodStart">
+                <label>食材<span>食材15字以內，份量10字以內</span></label><br/>
+            </div>
 
-                <c:forEach begin="1" end="3" var="i">
-                    <%--                    步驟的照片--%>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="picstep">
-                                <div style="width: 280px;height: 210px; margin:0 auto;">
-                                    <img src="${pageContext.request.contextPath}/images/uploadstep.png"
-                                         class="img-thumbnail img-step"
-                                         id="img-step${i}"/>
-                                    <input type="file" accept="image/*" id="file-step${i}" name="file"
-                                           onchange="upload('#file-step${i}', '#img-step${i}');" class="fileInput"
-                                           value=""/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row justify-content-between" style="margin: 0px">
-                                    <%--                            步驟的說明 --%>
-                                <div class="col-md-1"><span style="font-size: 32px" id="step${i}">${i}</span></div>
-                                <div class="col-md-8"></div>
-                                <div class="col-md-1">
-                                    <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
-                                </div>
-                                <div class="col-md-1">
-                                    <i class="bi bi-trash" style="font-size: 1.7rem; color: #6c6c71"></i>
-                                </div>
-                                <div class="col-md-1"></div>
-                            </div>
-                            <div class="row justify-content-between" style="margin: 0px">
-                                <div class="form-group col-md-12">
-                                <textarea class="form-control" id="stepText${i}" rows="6"
-                                          placeholder="請輸入步驟說明(最多 150 字)"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
+            <div class="row justify-content-between" style="margin-top: 0px">
+                <button type="button" onclick="createFrod()" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
             </div>
-            <%--            增刪修--%>
-            <div class="col-md-1">
-                <div class="row justify-content-start">
-                    <button id="insert" type="button" class="btn btn-outline-danger">發布</button>
-                </div>
-                <div class="row justify-content-start">
-                    <button type="button" class="btn btn-outline-danger">儲存</button>
-                </div>
-                <div class="row justify-content-start">
-                    <button type="button" class="btn btn-outline-danger">取消</button>
-                </div>
-                <div class="row justify-content-start">
-                    <button type="button" class="btn btn-outline-danger">刪除</button>
-                </div>
+            <%--                食材新增--%>
+            <div class="row" style="margin-bottom: 0px" id="stepStart">
+                <label>步驟</label><br/>
             </div>
-            <div class="col-md-2">
+<%--                這裡用jQuery 載入步驟、步驟圖片--%>
+        </div>
+        <%--            增刪修--%>
+        <div class="col-md-1 sticky-top">
+            <div class="row justify-content-start">
+                <button id="insert" type="button" class="btn btn-outline-danger">發布</button>
+            </div>
+            <div class="row justify-content-start">
+                <button type="button" class="btn btn-outline-danger">儲存</button>
+            </div>
+            <div class="row justify-content-start">
+                <button type="button" class="btn btn-outline-danger">取消</button>
+            </div>
+            <div class="row justify-content-start">
+                <button type="button" class="btn btn-outline-danger">刪除</button>
             </div>
         </div>
+        <div class="col-md-2">
+        </div>
+    </div>
 
-    </form>
 </div>
 <!--頁尾-->
 <footer class="container-fluid mainColor">
