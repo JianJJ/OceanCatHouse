@@ -52,4 +52,13 @@ public class PublicController {
 
 		System.out.println();
 		return "/views/pages/createRecipe";}
+	
+	@RequestMapping(
+			path = {"/homePage"}
+			)
+	public String homePage() {
+		return "/homePage";
+		
+	}
+	
 }
