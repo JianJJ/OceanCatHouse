@@ -11,7 +11,7 @@
           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
           crossorigin="anonymous">
     <!--    JavaScript; choose one of the two!-->
-    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"/>
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -20,16 +20,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <script type="text/javascript">
-        var upload = function (c, d) {
-            "use strict";
-            var $c = document.querySelector(c),
-                $d = document.querySelector(d),
-                file = $c.files[0],
-                reader = new FileReader();
+        upload = function (c, d) {
+            var $c = document.querySelector(c);
+            var $d = document.querySelector(d);
+            file = $c.files[0];
+            reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
                 $d.setAttribute("src", e.target.result);
-            };
+            }
         };
     </script>
     <style>
@@ -37,9 +36,6 @@
             background-color: #EFECE8;
         }
 
-        .aui-info {
-            position: relative;
-        }
 
         .fileInput {
             position: absolute;
@@ -49,24 +45,36 @@
             right: 0;
             opacity: 0;
             display: block;
-            width: 3.5rem;
+            width: 100%;
             clear: both;
-            display: block;
             margin: auto;
-            background-color: red;
+        }
+
+        .picmain {
+            position: relative;
+            background-color: #EFECE8;
+            text-align: center;
+        }
+
+        .picstep {
+            position: relative;
+            background-color: #EFECE8;
+            text-align: center;
+        }
+
+        #img-main {
+            width: 100%;
+            height: 100%;
+        }
+
+        .img-step {
+            width: 100%;
+            height: 100%;
         }
 
         .inner {
             border: 1px solid #bcbebf;
             padding: 15px;
-        }
-        #img-txz {
-            width: 300px;
-            height: 280px;
-        }
-
-        .aui-info {
-            background-color: #bcbebf;
         }
 
         .row {
@@ -115,11 +123,12 @@
                 </div>
                 <%--                上傳檔案+顯示圖片 RecPic--%>
                 <div class="row">
-                    <div class="aui-info">
-                        <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-txz"
-                             class="aui-img-round user-img rounded mx-auto d-block"/>
-                        <input type="file" accept="image/*" id="file-txz" name="file"
-                               onchange="upload('#file-txz', '#img-txz');" class="fileInput" value=""/>
+                    <div class="picmain">
+                        <div style="width: 350px;height: 280px; margin:0 auto;">
+                            <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main" class="img-thumbnail"/>
+                            <input type="file" accept="image/*" id="file-main" name="file"
+                                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
+                        </div>
                     </div>
                 </div>
                 <%--                簡介 RecText --%>
@@ -185,43 +194,63 @@
                 <div class="row justify-content-between">
                     <button type="button" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
                 </div>
-                <div class="row">
-                    <hr>
-                    <div class="col-md-5">
-                        <img src="${pageContext.request.contextPath}/images/uploadstep.png" style="width: 100%;height: 100%">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="row justify-content-between">
-                            <div class="col-md-1"><span style="font-size: 30px">1</span></div>
-                            <div class="col-md-9"></div>
-                            <div class="col-md-1">
-                                <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
-                            </div>
-                            <div class="col-md-1">
-                                <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <textarea class="form-control" id="RecStep" rows="4" placeholder="請輸入步驟說明(最多 150 字)"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                <%--                食材新增--%>
+                <div class="row" style="margin-bottom: 0px">
+                    <label>步驟</label><br/>
                 </div>
+
+                <c:forEach begin="1" end="3" var="i">
+                    <%--                    步驟的照片--%>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="picstep">
+                                <div style="width: 280px;height: 210px; margin:0 auto;">
+                                    <img src="${pageContext.request.contextPath}/images/uploadstep.png"
+                                         class="img-thumbnail img-step"
+                                          id="img-step${i}"/>
+                                    <input type="file" accept="image/*" id="file-step${i}" name="file"
+                                           onchange="upload('#file-step${i}', '#img-step${i}');" class="fileInput"
+                                           value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row justify-content-between" style="margin: 0px">
+                                    <%--                            步驟的說明 --%>
+                                <div class="col-md-1"><span style="font-size: 32px" id="step${i}">${i}</span></div>
+                                <div class="col-md-8"></div>
+                                <div class="col-md-1">
+                                    <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
+                                </div>
+                                <div class="col-md-1">
+                                    <i class="bi bi-trash" style="font-size: 1.7rem; color: #6c6c71"></i>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="row justify-content-between" style="margin: 0px">
+                                <div class="form-group col-md-12">
+                                <textarea class="form-control" id="stepText${i}" rows="6"
+                                          placeholder="請輸入步驟說明(最多 150 字)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
+            <%--            增刪修--%>
             <div class="col-md-1">
-                    <div class="row justify-content-start">
-                        <button id="insert" type="button" class="btn btn-outline-danger">發布</button>
-                    </div>
-                    <div class="row justify-content-start">
-                        <button type="button" class="btn btn-outline-danger">儲存</button>
-                    </div>
-                    <div class="row justify-content-start">
-                        <button type="button" class="btn btn-outline-danger">取消</button>
-                    </div>
-                    <div class="row justify-content-start">
-                        <button type="button" class="btn btn-outline-danger">刪除</button>
-                    </div>
+                <div class="row justify-content-start">
+                    <button id="insert" type="button" class="btn btn-outline-danger">發布</button>
+                </div>
+                <div class="row justify-content-start">
+                    <button type="button" class="btn btn-outline-danger">儲存</button>
+                </div>
+                <div class="row justify-content-start">
+                    <button type="button" class="btn btn-outline-danger">取消</button>
+                </div>
+                <div class="row justify-content-start">
+                    <button type="button" class="btn btn-outline-danger">刪除</button>
+                </div>
             </div>
             <div class="col-md-2">
             </div>
