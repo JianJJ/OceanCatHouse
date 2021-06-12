@@ -31,12 +31,17 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 @Component
 public class ZeroTools {
-	private String STMP = "cmbatoziyuiunlot";
-	private String secret ="6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK";
+	private String STMP = "";
+	private String secret ="";
 
 	//郵件
 	public void mail(String mailTo, String text) {
-		mailTo = "wiz71029@gmail.com";
+//		mailTo = "wiz71029@gmail.com";
+		new Thread() {
+			@Override
+			public void run() {
+
+		
 
 		Properties prop = new Properties();
 		// 發件人的郵箱的SMTP 服務器地址（不同的郵箱，服務器地址不同，如139和qq的郵箱服務器地址不同）
@@ -84,7 +89,10 @@ public class ZeroTools {
 				e.printStackTrace();
 			}
 		}
-	}
+	
+			}}.start();
+		
+		}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//google登入

@@ -11,7 +11,7 @@
           rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
           crossorigin="anonymous">
     <!--    JavaScript; choose one of the two!-->
-    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"/>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -20,15 +20,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <script type="text/javascript">
-        upload = function (c, d) {
-            var $c = document.querySelector(c);
-            var $d = document.querySelector(d);
-            file = $c.files[0];
-            reader = new FileReader();
+        var upload = function (c, d) {
+            "use strict";
+            var $c = document.querySelector(c),
+                $d = document.querySelector(d),
+                file = $c.files[0],
+                reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
                 $d.setAttribute("src", e.target.result);
-            }
+            };
         };
     </script>
     <style>
@@ -45,36 +46,24 @@
             right: 0;
             opacity: 0;
             display: block;
-            width: 100%;
+            width: 3.5rem;
             clear: both;
+            display: block;
             margin: auto;
-        }
-
-        .picmain {
-            position: relative;
-            background-color: #EFECE8;
-            text-align: center;
-        }
-
-        .picstep {
-            position: relative;
-            background-color: #EFECE8;
-            text-align: center;
-        }
-
-        #img-main {
-            width: 100%;
-            height: 100%;
-        }
-
-        .img-step {
-            width: 100%;
-            height: 100%;
+            background-color: red;
         }
 
         .inner {
             border: 1px solid #bcbebf;
             padding: 15px;
+        }
+        #img-txz {
+            width: 300px;
+            height: 280px;
+        }
+
+        .aui-info {
+            background-color: #bcbebf;
         }
 
         .row {
