@@ -9,13 +9,15 @@ import javax.persistence.Table;
 @Table(name="user")
 public class UserBean {
 	
+	@Id
 	private Integer userid;
 	private Integer fansnum;//分屍數
 	private Integer recnum;//案戰術
 	private String username;
 	private String userpic;
 	private String userphone;
-	@Id
+	
+//	@Id
 	private String email;
 	private String userpassword;
 	

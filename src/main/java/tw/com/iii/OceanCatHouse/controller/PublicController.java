@@ -53,6 +53,7 @@ public class PublicController {
 		System.out.println();
 		return "/views/pages/createRecipe";}
 	
+	//食譜首頁
 	@RequestMapping(
 			path = {"/homePage"}
 			)
@@ -60,5 +61,25 @@ public class PublicController {
 		return "/homePage";
 		
 	}
+	
+	//食譜詳細頁面
+	@RequestMapping(
+			path = {"/recipeDetails"}
+			)
+	public String recipeDetails() {
+		return "/recipeDetails";
+		
+	}
+		
+	//食譜搜尋頁面
+	@RequestMapping(
+			path = {"/recipeSearch"}
+			)
+	public String recipeSearch() {
+		return "/recipeSearch";
+		
+	}
+	
+	
 	
 }
