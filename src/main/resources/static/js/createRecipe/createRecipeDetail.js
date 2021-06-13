@@ -1,7 +1,17 @@
 $(document).ready(function () {
     // 儲存食譜
     doUpload = function (){
+        // 食譜主圖片
         var formData = new FormData($('#mainpic')[0]);
+        // 分類, 名稱,
+        var recipeDetail = {
+            "RecTitle" : $('#RecTitle').val(),
+            "RecText"  : $('#RecText').val(),
+            "RecNum"   : $('#RecNum').val(),
+            "RecTime"  : $('#RecTime').val()
+        }
+        formData.append('recipeDetail', JSON.stringify(recipeDetail));
+
         $.ajax({
             url : '/recipe/createRecipe/save',
             type : 'POST',

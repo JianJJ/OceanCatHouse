@@ -74,8 +74,16 @@
     <form action="${pageContext.request.contextPath}/createRecipe/add" method="get">
         <div class="row justify-content-around onTop">
             <div class="col-md-8">
+                <div class="row">
+                    <label for="RecNum">選擇食譜的分類</label>
+                    <select class="form-control" id="RecNum">
+<%--                        <c:forEach items="${categoryList}" var="cateogry">--%>
+<%--                            <option>${cateogry.CategoryName}</option>--%>
+<%--                        </c:forEach>--%>
+                    </select>
+                </div>
                 <div class="row inner">
-                    <label for="RecTitle"><h3>請輸入食譜名稱</h3></label>
+                    <label for="RecTitle">請輸入食譜名稱</label>
                 </div>
                 <div class="row inner">
                     <div class="input-group smallInner">

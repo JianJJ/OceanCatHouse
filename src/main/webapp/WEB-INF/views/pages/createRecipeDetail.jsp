@@ -95,11 +95,16 @@
 <div class="container Cbody">
     <div class="row justify-content-around">
         <div class="col-md-7 Lbody" id="divStart">
-            <%--                食譜分類 RecCategory--%>
-            <%--                食譜名稱 RecTitle--%>
             <div class="row">
-                <div class="inner">
-                    <h5>${RecTitle}</h5>
+            <%--                食譜分類 RecCategory--%>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="食材" style="font-size: 2rem"
+                           id="RecCategory" value="${RecCategory}">
+                </div>
+            <%--                食譜名稱 RecTitle--%>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="食材" style="font-size: 2rem"
+                           id="RecTitle" value="${RecTitle}">
                 </div>
             </div>
             <%--                上傳檔案+顯示圖片 RecPic--%>
@@ -126,8 +131,8 @@
             <div class="row justify-content-between">
                 <%--                 份量 RecNum--%>
                 <div class="form-group col-md-6">
-                    <label for="exampleFormControlSelect1">份量<span>(人份)</span></label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <label for="RecNum">份量<span>(人份)</span></label>
+                    <select class="form-control" id="RecNum">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
