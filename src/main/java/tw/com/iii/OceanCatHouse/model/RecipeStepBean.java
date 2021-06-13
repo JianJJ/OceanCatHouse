@@ -20,8 +20,8 @@ public class RecipeStepBean {
     private String StepText;
 
     // 配置多對一
-    @ManyToOne(targetEntity = RecipeBean.class)
-    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
-    private RecipeBean recipeBean;
+//    @ManyToOne(targetEntity = RecipeBean.class)
+//    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
+//    private RecipeBean recipeBean;
 
 }

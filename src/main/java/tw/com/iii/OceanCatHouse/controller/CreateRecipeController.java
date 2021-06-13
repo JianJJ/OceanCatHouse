@@ -84,12 +84,12 @@ public class CreateRecipeController {
     @RequestMapping("/start")
     public ModelAndView createRecipeDetail(){
         ModelAndView modelAndView = new ModelAndView();
-//        List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
-//        modelAndView.addObject("categoryList", categoryList);
+        List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
+        modelAndView.addObject("categoryList", categoryList);
         modelAndView.setViewName("/views/pages/createRecipe");
-//        for(RecipeCategoryBean apple : categoryList){
-//            System.out.println(apple);
-//        }
+        for(RecipeCategoryBean apple : categoryList){
+            System.out.println(apple);
+        }
         return modelAndView;
     }
 }

@@ -1,5 +1,6 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -20,6 +21,7 @@ public class RecipeCategoryBean {
     private Integer CategoryId;
     private String CategoryName;
 
-    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
-    private Set<RecipeBean> recipeBeans = new HashSet<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
+//    private Set<RecipeBean> recipeBeans = new HashSet<>();
 }

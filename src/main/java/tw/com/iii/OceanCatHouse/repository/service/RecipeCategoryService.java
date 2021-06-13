@@ -16,7 +16,7 @@ public class RecipeCategoryService {
     private RecipeCategoryRepository categoryRepositoryDao;
 
     public List<RecipeCategoryBean> list(){
-//        List<RecipeCategoryBean> categoryList = categoryRepositoryDao.findAll();
-        return null;
+        List<RecipeCategoryBean> categoryList = categoryRepositoryDao.findAll();
+        return categoryList;
     }
 }
