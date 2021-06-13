@@ -5,6 +5,14 @@
 <html lang="en">
 
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="../js/jquery-3.4.1.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,7 +75,8 @@
 				<div class="loginTitle">✿海貓食屋✿</div>
 				<button class="loginReturn" onclick=window.location.href="/recipe" >X</button>
 				<div class="g-signin2" data-onsuccess="onSignIn" data-width="376" data-height="50" data-longtitle="true"></div>
-				<div class="phone">使用手機號碼登入</div>
+				
+				<button type="button" class="btn btn-primary phone">使用手機號碼登入</button>
 				<p>__________________________________________________</p>
 				<form action="/recipe/signup/login">
 					<input class="formCSS" type="text" placeholder='Email' name="email" value="${email}"><br>
