@@ -108,8 +108,12 @@
                     <div style="width: 350px;height: 280px; margin:0 auto;">
                         <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
                              class="img-thumbnail"/>
-                        <input type="file" accept="image/*" id="file-main" name="file"
-                               onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
+<%--                        <form action="" id="mainpic">--%>
+                        <form action="/recipe/createRecipe/save" enctype="multipart/form-data" method="post">
+                            <input type="file" accept="image/*" id="file-main" name="file"
+                                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
+                            <input type="submit" value="go">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -171,7 +175,7 @@
         <%--            增刪修--%>
         <div class="col-md-1 sticky-top">
             <div class="row justify-content-start">
-                <button id="insert" type="button" class="btn btn-outline-danger">發布</button>
+                <button id="insert" onclick="doUpload()" type="button" class="btn btn-outline-danger">發布</button>
             </div>
             <div class="row justify-content-start">
                 <button type="button" class="btn btn-outline-danger">儲存</button>

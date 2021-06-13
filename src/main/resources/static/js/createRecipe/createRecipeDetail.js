@@ -1,4 +1,23 @@
 $(document).ready(function () {
+    // 儲存食譜
+    doUpload = function (){
+        var formData = new FormData($('#mainpic')[0]);
+        $.ajax({
+            url : '/recipe/createRecipe/save',
+            type : 'POST',
+            data : formData,
+            processData: false,
+            contentType : false,
+            async : false,
+            success : function (){
+                alert("上傳成功");
+            },
+            error : function (returndata){
+                alert(returndata);
+            }
+        });
+    }
+
     // 設定 點擊照片上傳+換圖片
     upload = function (c, d) {
         var $c = document.querySelector(c);
