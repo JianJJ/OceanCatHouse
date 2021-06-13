@@ -108,11 +108,9 @@
                     <div style="width: 350px;height: 280px; margin:0 auto;">
                         <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
                              class="img-thumbnail"/>
-<%--                        <form action="" id="mainpic">--%>
-                        <form action="/recipe/createRecipe/save" enctype="multipart/form-data" method="post">
+                        <form action="" id="mainpic">
                             <input type="file" accept="image/*" id="file-main" name="file"
                                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
-                            <input type="submit" value="go">
                         </form>
                     </div>
                 </div>

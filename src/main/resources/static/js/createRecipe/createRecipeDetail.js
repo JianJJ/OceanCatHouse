@@ -6,9 +6,11 @@ $(document).ready(function () {
             url : '/recipe/createRecipe/save',
             type : 'POST',
             data : formData,
+            enctype: 'multipart/form-data',
             processData: false,
             contentType : false,
             async : false,
+            cache: false,  //不做快取
             success : function (){
                 alert("上傳成功");
             },
