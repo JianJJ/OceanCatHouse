@@ -14,7 +14,7 @@ import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.ServletInitializer;
 import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.model.UserRepository;
-import tw.com.yu.test.dao.UserDao;
+
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)
 public class Test01 {

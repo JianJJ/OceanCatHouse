@@ -32,7 +32,7 @@ public class RecipeBean {
     private Integer RecLiked;
     private Date RecCreated;
     private Integer RecViews;
-<<<<<<< HEAD
+
     
     
 	public Integer getRecId() {
@@ -41,11 +41,11 @@ public class RecipeBean {
 	public void setRecId(Integer recId) {
 		RecId = recId;
 	}
-	public Integer getRecCategory() {
-		return RecCategory;
+	public Integer getCategoryId() {
+		return CategoryId;
 	}
-	public void setRecCategory(Integer recCategory) {
-		RecCategory = recCategory;
+	public void setCategoryId(Integer recCategory) {
+		CategoryId = recCategory;
 	}
 	public String getRecTitle() {
 		return RecTitle;
@@ -117,7 +117,7 @@ public class RecipeBean {
 	
 	@Override
 	public String toString() {
-		return "RecipeBean [RecId=" + RecId + ", RecCategory=" + RecCategory + ", RecTitle=" + RecTitle + ", RecPic="
+		return "RecipeBean [RecId=" + RecId + ", RecCategory=" + CategoryId + ", RecTitle=" + RecTitle + ", RecPic="
 				+ RecPic + ", RecText=" + RecText + ", RecTime=" + RecTime + ", RecNum=" + RecNum + ", RecCal=" + RecCal
 				+ ", RecTag=" + RecTag + ", UserId=" + UserId + ", RecLiked=" + RecLiked + ", RecCreated=" + RecCreated
 				+ ", RecViews=" + RecViews + "]";
@@ -125,7 +125,7 @@ public class RecipeBean {
     
     
     
-=======
+
 
     // 配置一對多 (Material表, Step表)
 //    @JsonIgnore
@@ -136,5 +136,5 @@ public class RecipeBean {
 //    @ManyToOne(targetEntity = RecipeCategoryBean.class)
 //    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
 //    private RecipeCategoryBean recipeCategoryBean;
->>>>>>> 433cffc1611061216c2e91f2f21d4ebfaa0c537e
+
 }
