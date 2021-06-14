@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +10,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="./css/homePage.css">
 
 
     <title>Document</title>
@@ -51,7 +58,8 @@
                     Find and share everyday cooking inspiration. <br/>
                     Discover recipes, cooks, and how-tos based on the food you love and the friends you follow.
                 </p>
-                <button>DISCOVER RECIPES</button>
+                <a href="#">DISCOVER RECIPES</a>
+                
 
             </div>
             <div class="contextImg"> </div>
@@ -67,7 +75,8 @@
                 <p>
                     Shop for ingredients online and stock your pantry with everything from miso to paneer to prosciutto.
                 </p>
-                <button>GO FOR SHOP</button>
+                <a href="#">GO FOR SHOP</a>
+                
 
             </div>
         </div>
