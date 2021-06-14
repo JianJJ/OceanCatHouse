@@ -74,14 +74,18 @@
     <form action="${pageContext.request.contextPath}/createRecipe/add" method="get">
         <div class="row justify-content-around onTop">
             <div class="col-md-8">
-                <div class="row inner">
-                    <label for="RecTitle"><h3>請輸入食譜名稱</h3></label>
+                <div class="row">
+                    <label for="RecNum">選擇食譜的分類</label>
+                    <select class="form-control" id="RecNum">
+                        <c:forEach items="${categoryList}" var="cateogry">
+                            <option>${cateogry.categoryName}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="row inner">
-                    <div class="input-group smallInner">
-                        <input id="RecTitle" name="RecTitle" value=""
-                               type="text" class="form-control" placeholder="例如：番茄炒蛋" aria-label="Username"
-                               aria-describedby="basic-addon1">
+                <div class="row">
+                    <label for="RecTitle">請輸入食譜名稱</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle">
                     </div>
                     <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
                     <div class="form-check smallInner">
@@ -93,9 +97,7 @@
                     <div id="CreateNow" style="position: static">
                         <input type="submit" class="btn btn-outline-danger" value="開始寫食譜">
                     </div>
-
                 </div>
-
             </div>
             <div class="col-md-3 showAD">
                 <h3>食譜名稱</h3>

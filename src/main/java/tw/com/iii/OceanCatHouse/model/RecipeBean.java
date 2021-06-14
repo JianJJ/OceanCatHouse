@@ -1,17 +1,14 @@
 package tw.com.iii.OceanCatHouse.model;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.json.JSONObject;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.security.PrivateKey;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 // @NoArgsConstructor  無參建構
 // @AllArgsConstructor 有參建構
@@ -23,7 +20,7 @@ public class RecipeBean {
 
     @Id
     private Integer RecId;
-    private Integer RecCategory;
+    private Integer CategoryId;
     private String RecTitle;
     private String RecPic;
     private String RecText;
@@ -35,6 +32,7 @@ public class RecipeBean {
     private Integer RecLiked;
     private Date RecCreated;
     private Integer RecViews;
+<<<<<<< HEAD
     
     
 	public Integer getRecId() {
@@ -127,4 +125,16 @@ public class RecipeBean {
     
     
     
+=======
+
+    // 配置一對多 (Material表, Step表)
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "recipeBean", cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
+//    private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
+//
+//    // 配置多對一 (Category表)
+//    @ManyToOne(targetEntity = RecipeCategoryBean.class)
+//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
+//    private RecipeCategoryBean recipeCategoryBean;
+>>>>>>> 433cffc1611061216c2e91f2f21d4ebfaa0c537e
 }
