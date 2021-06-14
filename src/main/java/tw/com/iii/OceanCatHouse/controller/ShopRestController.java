@@ -18,13 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tw.com.iii.OceanCatHouse.model.ProductBean;
-import tw.com.iii.OceanCatHouse.model.ProductPictureBean;
-import tw.com.iii.OceanCatHouse.model.ProductPictureJpaReposit;
-import tw.com.iii.OceanCatHouse.model.ProductRepository;
-import tw.com.iii.OceanCatHouse.model.RecipeBean;
-import tw.com.iii.OceanCatHouse.model.RecipeRepository;
-
+import tw.com.iii.OceanCatHouse.model.*;
 
 
 @RestController
@@ -162,11 +156,11 @@ public class ShopRestController {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 推薦商品
 	@RequestMapping("/recommend/{categoryid}")
-	public List<RecipeBean> recommend(@PathVariable("categoryid") Integer categoryid) {
+	public List<RecipeMainBean> recommend(@PathVariable("categoryid") Integer categoryid) {
 		System.out.println("********************推薦商品*********************" );
 		int rand = (int) (Math.random()*150);
-		Page<RecipeBean> page = recipeRepository.findAll(PageRequest.of(rand, 6));
-		List<RecipeBean> result = page.getContent();
+		Page<RecipeMainBean> page = recipeRepository.findAll(PageRequest.of(rand, 6));
+		List<RecipeMainBean> result = page.getContent();
 		return result;
 	}
 

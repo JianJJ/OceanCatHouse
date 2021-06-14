@@ -54,17 +54,15 @@ public class CreateRecipeController {
             recipeMainBean.setRecCreated(recCreated);
 //            recipeMainBean.setRecPic();
             // 之後要加一個userID
-            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
+//            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
 
             RecipeMaterialBean recipeMaterialBean = null;
-            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
-                recipeMaterialBean = new RecipeMaterialBean();
-                recipeMaterialBean.setMaterialName(food.get("MaterialName"));
-                recipeMaterialBean.setUnitNum(food.get("UnitNum"));
-                recipeMaterialBean.setGp("食材");
-
-
-            }
+//            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
+//                recipeMaterialBean = new RecipeMaterialBean();
+//                recipeMaterialBean.setMaterialName(food.get("MaterialName"));
+//                recipeMaterialBean.setUnitNum(food.get("UnitNum"));
+//                recipeMaterialBean.setGp("食材");
+//            }
 
             for (String apple : (List<String>)(map.get("StepTextArray"))){
                 System.out.println(apple);
