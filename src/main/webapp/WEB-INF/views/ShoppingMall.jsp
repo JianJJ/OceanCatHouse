@@ -34,7 +34,10 @@
 
 	<canvas id="canvas"></canvas>
 	<!-- header部分 -->
-			<jsp:include page="/shoopCat.jsp"></jsp:include>
+	<jsp:include page="/shoopCat.jsp"></jsp:include>
+	<div class=".container">
+		<div class="row">
+		<div class="col-lg-12">
 	<header class="mainColor">
 	<div class="title">✿海貓食屋✿</div>
 	<div class="littleNav">
@@ -202,6 +205,9 @@
 
 	<script src="../js/umbrella.js"></script>
 	<script src="../js/shoopCat.js"></script>
+</div>
+</div>
+</div>
 </body>
 
 </html>

@@ -4,6 +4,14 @@
         <html lang="en">
 
         <head>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
             <script src="../js/jquery-3.4.1.js"></script>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +44,7 @@
 
 
             <!-- 1header部分 -->
-            <header class="mainColor">
+            <header class="mainColor row">
                 <div class="title">✿海貓食屋✿</div>
                 <div class="littleNav">
                     <ul>
@@ -60,39 +68,41 @@
             </header>
 
             <!-- 分類條 -->
-            <div class="menu">
-                <div id="home">
+            <div class="row menu">
+                <div id="home" class="col-lg-1">
                     <a href="../views/ShoppingMall"><img src="../images/home.png" alt=""></a>
                 </div>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=1">«米麵五穀</a>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>
-                <a class="menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨»</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">米麵五穀</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>
+                <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>
             </div>
 
 
             <!-- 中間部分 -->
-            <div class="center">
-                <!-- 左邊浮動區塊 -->
-                <div class="barNav">
 
-                    <ul>
-                        <li class="fontIcon" id="f1"></li>
-                        <li class="fontIcon"></li>
-                        <li class="fontIcon"></li>
-                        <li class="fontIcon"></li>
-                    </ul>
+            <div class="row ">
+                <!-- 左邊浮動區塊 -->
+                <div class="col-lg-1 ">
+                    <div class="barNav">
+
+                        <ul>
+                            <li class="fontIcon" id="f1"></li>
+                            <li class="fontIcon"></li>
+                            <li class="fontIcon"></li>
+                            <li class="fontIcon"></li>
+                        </ul>
+                    </div>
                 </div>
 
-
                 <!-- 網頁中間內文 -->
-                <div class="main">
+                <div class="col-lg-10 ">
                     <div class="cenBody">
                         <!-- 輪播圖  -->
-                        <div class="cenDetail">
-                            <div class="leftImg">
+                        <div class="cenDetail row" >
+                            <div class="col-lg-6 leftImg ">
                                 <div class="banner">
                                     <div class="list">
                                         <!--這裡有輪播圖  -->
@@ -103,22 +113,22 @@
 
                                 </div>
                             </div>
-                            <div class="rightImg">
+                            <div class="col-lg-6 rightImg ">
                                 <br>
                                 <h2 class="productname"> ${productname}</h2>
-                                <br>
+                                
                                 <hr>
                                 <br>
                                 <div class="producttext">${producttext}
                                 </div>
-                                <br><br>
+                                <br>
                                 <div class="productspecifications">${productspecifications}</div>
-                                <br><br>
+                                <br>
                                 <div>付款方式
                                     信用卡支付 / ATM轉帳 / 貨到付款($30)
                                     運送方式
-                                    宅配 / 7-11取貨($60)</div><br>
-                                <hr><br>
+                                    宅配 / 7-11取貨($60)</div>
+                                <hr>
                                 <div class="sellingprice">售價 ${sellingprice}</div>
                                 <div>
 
@@ -135,29 +145,29 @@
                             </div>
                         </div>
                         <!-- 推薦食譜 -->
-                        <div class="recommend">
+                        <div class="recommend row">
                             <p>推薦食譜</p>
                             <script>
                                 $.ajax({
                                     url: "/recipe/recommend/${id}",
                                     type: "get",
                                     success: function (json) {
-                                        for (var A of json){
+                                        for (var A of json) {
                                             console.log(A);
-                                            $(".recommend").append('<div class="recommendRecipe">'+
-                                              '<img class="rsNavItem" src='+A.recPic+' alt="">'+
-                                            ' <p>'+A.recTitle+'</p>'+
-                                            ' </div>');
-                                            }
+                                            $(".recommend").append('<div class="col-lg-6 recommendRecipe">' +
+                                                '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +
+                                                ' <p>' + A.recTitle + '</p>' +
+                                                ' </div>');
+                                        }
                                     },
                                     error: function (json) {
-                                        console.log("error"+json);
+                                        console.log("error" + json);
                                     }
                                 });
                             </script>
                         </div>
                         <!-- 同類商品 -->
-                        <div class="SimilarProducts">
+                        <div class="SimilarProducts row">
                             <p>同類商品</p>
                             <script>
                                 $.ajax({
@@ -166,14 +176,14 @@
                                     success: function (json) {
                                         var arr = Object.keys(json);
                                         var a = 1
-                                        if (arr.length > 5) {
-                                            a = 5;
+                                        if (arr.length > 6) {
+                                            a = 6;
                                         } else {
                                             a = arr.length;
                                         }
 
                                         for (var i = 0; i < a; i++)
-                                            $(".SimilarProducts").append('<figure><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
+                                            $(".SimilarProducts").append('<figure class="col-lg-2"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
                                     },
                                     error: function (json) {
                                         console.log("errr");
@@ -195,8 +205,8 @@
                     <span class="fontIcon" id="toUp"></span>
                 </div>
             </div>
-
-            <footer class="mainColor">
+            <div class="col-lg-1 "></div>
+            <footer class="row mainColor">
                 <dl>
                     <dt>關於我們</dt>
                     <dd><a href="#">公司資訊</a></dd>

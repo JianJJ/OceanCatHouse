@@ -33,8 +33,10 @@
 </head>
 
 <body>
+
 	<canvas id="canvas"></canvas>
 	<!-- header部分 -->
+	<div class=".container">
 	<header class="mainColor">
 		<div class="title">✿海貓食屋✿</div>
 		<div class="littleNav">
@@ -178,6 +180,7 @@
 			window.location.href="/recipe/views/phoneLogin";
 		});
 	</script>
+	</div>
 </body>
 
 </html>

@@ -31,24 +31,23 @@ footer {
  .menu #home a {
     background-color: rgb(66, 108, 18);
     float: left;
-
     box-sizing:content-box;
-    padding: 16px 16px 16px 16px;
+    padding: 15px 15px 15px 15px;
     z-index: 11;
 }
 .menuDetail {
-    border: black 1px solid;
+    /* border: black 1px solid; */
     /* left: 50px; */
-    float: left;
-    line-height: 46px;
-    font-size: 100%;
+    /* float: left; */
+    line-height: 46px;    
     height: 48px;
-    width: 100px;
+    /* width: 100px; */
     font-size: 25px;
     margin: 0 10px;
+    top: 5px;
     text-align: center;
-    position: relative;
-    z-index: 10;
+    /* position: relative; */
+    /* z-index: 10; */
 
 }
 
@@ -57,8 +56,7 @@ footer {
     /* border: #bb113b 5px solid; */
     background-color:white;
     position: relative;
-    
-    left: 0%;
+     left: 0%;
     right: 0%;
     margin: auto;
     width: 1520px;
@@ -67,39 +65,41 @@ footer {
     font-size: 25px;
 }
 .cenBody .cenDetail .leftImg {
-	top:30px;
-    float: left;
-    position: relative;
-    width: 700px;
+	/* top:30px; */
+    /* float: left; */
+    /* position: relative; */
+    /* width: 700px; */
     left: 100px;
 }
 
 .cenBody .cenDetail .rightImg {
-    float: left;
-    position: relative;
-    height: 700px;
-    left: 50px;
-    width: 500px;
+    /* float: left; */
+    /* position: relative; */
+    /* height: 700px; */
+    /* left: 50px; */
+    /* width: 500px; */
    
 }
 /* 數量按鈕 */
 .cenBody .cenDetail .rightImg form .num{
     text-align:center;
-    width: 25px;
+    width: 50px;
 }
 
 .cenBody .cenDetail .rightImg form .rightButton {
-    width: 20px;
-    height: 20px;
-    right: 10px;
+    width: 25px;
+    /* height: 20px; */
     position: relative;
+    right: 10px;
+    
 
 }
 .cenBody .cenDetail .rightImg form .leftButton {
-    width: 20px;
-    height: 20px;
-    left:  10px;
+    width: 25px;
+    /* height: 20px; */
     position: relative;
+    left:  10px;
+    
 }
 /* 輪播圖 */
 .cenBody .cenDetail .leftImg .banner {
@@ -115,13 +115,14 @@ footer {
     height: 500px;
     max-width: 500px;
     object-fit:contain;
+    margin: 20px 0px;
 
 }
 .cenBody .cenDetail .leftImg .rsNavItem {
     float: left;
     overflow: hidden;
     width: 94px;
-    margin: 3px;
+    margin: 5px;
     height: 105px;
 }
 
@@ -131,7 +132,7 @@ footer {
 }
 .cenBody .recommend{
     position: relative;
-    background-color: #69AE1E;
+    /* background-color: #69AE1E; */
 }
 .cenBody .recommend p{
     /* top: 1000px; */
@@ -144,7 +145,7 @@ footer {
     position: relative;
     left: 100px;
     /* top: 300px; */
-    width: 45%;
+    /* width: 45%; */
 
     float: left;
 }
