@@ -33,18 +33,18 @@ public class RecipeMainBean {
     private Integer RecViews;
 
 
-    // 配置一對多 (Material表, Step表)
-    @OneToMany(targetEntity = RecipeMaterialBean.class, cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
-    @JoinColumn(name = "RecId", referencedColumnName = "RecId")
-    private Set<RecipeMaterialBean> recipeMaterialBeans = new HashSet<>();
-
-    @OneToMany(targetEntity = RecipeStepBean.class, cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
-    @JoinColumn(name = "RecId", referencedColumnName = "RecId")
-    private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
-
-    // 配置多對一 (Category表)
-    @ManyToOne(targetEntity = RecipeCategoryBean.class)
-    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
-    private RecipeCategoryBean recipeCategoryBean;
+//    // 配置一對多 (Material表, Step表)
+//    @OneToMany(targetEntity = RecipeMaterialBean.class, cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
+//    @JoinColumn(name = "RecId", referencedColumnName = "RecId")
+//    private Set<RecipeMaterialBean> recipeMaterialBeans = new HashSet<>();
+//
+//    @OneToMany(targetEntity = RecipeStepBean.class, cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
+//    @JoinColumn(name = "RecId", referencedColumnName = "RecId")
+//    private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
+//
+//    // 配置多對一 (Category表)
+//    @ManyToOne(targetEntity = RecipeCategoryBean.class)
+//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
+//    private RecipeCategoryBean recipeCategoryBean;
 
 }

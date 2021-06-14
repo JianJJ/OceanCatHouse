@@ -19,7 +19,7 @@ public class RecipeMaterialBean {
     private String MaterialName;
     private String UnitNum;
 
-    @ManyToOne(targetEntity = RecipeMainBean.class)
-    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)  // 外鍵關係設置
-    private RecipeMainBean recipeMainBean;
+//    @ManyToOne(targetEntity = RecipeMainBean.class)
+//    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)  // 外鍵關係設置
+//    private RecipeMainBean recipeMainBean;
 }
