@@ -86,7 +86,7 @@
                                 <div class="producttext">${producttext}
                                 </div>
                                 <br>
-                                <div class="productspecifications">${productspecifications}</div>
+                                <div class="productspecifications">商品規格:${productspecifications}</div>
                                 <br>
                                 <div>付款方式
                                     信用卡支付 / ATM轉帳 / 貨到付款($30)
