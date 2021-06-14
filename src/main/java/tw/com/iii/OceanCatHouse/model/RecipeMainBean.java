@@ -16,9 +16,10 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "`recipe_main`")
-public class RecipeBean {
+public class RecipeMainBean {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer RecId;
     private Integer CategoryId;
     private String RecTitle;
@@ -30,7 +31,7 @@ public class RecipeBean {
     private String RecTag;
     private Integer UserId;
     private Integer RecLiked;
-    private Date RecCreated;
+    private String RecCreated;
     private Integer RecViews;
 
 

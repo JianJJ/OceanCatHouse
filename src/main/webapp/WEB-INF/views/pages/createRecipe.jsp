@@ -77,8 +77,8 @@
                 <div class="row">
                     <label for="CategoryName">選擇食譜的分類</label>
                     <select class="form-control" id="CategoryName" name="CategoryId">
-                        <c:forEach items="${categoryList}" var="cateogry">
-                            <option value="${category.categoryId}">${cateogry.categoryName}</option>
+                        <c:forEach items="${categoryList}" var="category">
+                            <option value="${category.categoryId}">${category.categoryName}</option>
                         </c:forEach>
                     </select>
                 </div>

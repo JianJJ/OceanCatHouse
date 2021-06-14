@@ -6,12 +6,13 @@ $(document).ready(function () {
             // 食譜主圖片
             formData.append('file', $('#file-main')[0].files[0]);
             // 步驟圖片
-            for(var i=0;i<$('.fileStep').length;i++){
-                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
-            }
             // 步驟說明
             var stepText = [];
             for(var i=0;i<$('.fileStep').length;i++){
+                if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==""){
+                    continue;
+                }
+                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
                 stepText[i] = $(`#stepText${i+1}`).val();
             }
             // 食材＋份數
@@ -30,6 +31,7 @@ $(document).ready(function () {
                 "RecText"  : $('#RecText').val(),
                 "RecNum"   : $('#RecNum').val(),
                 "RecTime"  : $('#RecTime').val(),
+                "CategoryId" : $('#CategoryId').val(),
                 "StepTextArray" : stepText,
                 "foodsArrayList" : foods
             }

@@ -6,42 +6,32 @@ $(document).ready(function () {
             // 食譜主圖片
             formData.append('file', $('#file-main')[0].files[0]);
             // 步驟圖片
-            for(var i=0;i<$('.fileStep').length;i++){
-                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
-            }
             // 步驟說明
             var stepText = [];
             for(var i=0;i<$('.fileStep').length;i++){
+                if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==""){
+                    continue;
+                }
+                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
                 stepText[i] = $(`#stepText${i+1}`).val();
             }
             // 食材＋份數
             var foods = [];
             for(var i=0;i<$('.MName').length;i++) {
                 var food = {};
-                if($(`#MaterialName${i+1}`).val()==null && $(`#UnitNum${i+1}`).val()==null){
+                if($(`#MaterialName${i+1}`).val()=="" && $(`#UnitNum${i+1}`).val()==""){
                     continue;
                 }
                 food['MaterialName'] = $(`#MaterialName${i+1}`).val();
                 food['UnitNum'] = $(`#UnitNum${i+1}`).val();
                 foods[foods.length] = food;
             }
-            // 食材名稱
-            // var materialName =[];
-            // for(var i=0;i<$('.MName').length;i++){
-            //     materialName[i] = $(`#MaterialName${i+1}`).val();
-            //     console.log(i +":" +$(`#MaterialName${i+1}`).val());
-            // }
-            // // 食材單位
-            // var unitNum = [];
-            // for(var i=0;i<$('.MNum').length;i++){
-            //     unitNum[i] = $(`#UnitNum${i+1}`).val();
-            //     console.log(i +":" +$(`#UnitNum${i+1}`).val());
-            // }
             var recipeDetail = {
                 "RecTitle" : $('#RecTitle').val(),
                 "RecText"  : $('#RecText').val(),
                 "RecNum"   : $('#RecNum').val(),
                 "RecTime"  : $('#RecTime').val(),
+                "CategoryId" : $('#CategoryId').val(),
                 "StepTextArray" : stepText,
                 "foodsArrayList" : foods
             }

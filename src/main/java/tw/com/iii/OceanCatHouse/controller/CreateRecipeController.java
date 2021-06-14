@@ -10,13 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import tw.com.iii.OceanCatHouse.model.RecipeBean;
 import tw.com.iii.OceanCatHouse.model.RecipeCategoryBean;
+import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
+import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeCategoryService;
+import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -28,25 +28,46 @@ public class CreateRecipeController {
     @Autowired
     private RecipeCategoryService recipeCategoryService;
 
+    @Autowired
+    private RecipeMainService recipeMainService;
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
     @PostMapping(value = "/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ModelAndView save(@RequestParam(required = true, value = "file") MultipartFile[] uploadFileArray,
                              @RequestParam(required = true, value = "recipeDetail") String jsonrecipeDetail,
                              HttpServletRequest request) throws ParseException {
+
+        ModelAndView modelAndView = new ModelAndView();
         ObjectMapper om = new ObjectMapper();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String recCreated = simpleDateFormat.format(new Date());
         try {
+            System.out.println(jsonrecipeDetail);
             Map<String, Object> map = om.readValue(jsonrecipeDetail, new TypeReference<HashMap<String, Object>>(){});
-            System.out.println((String)map.get("RecTitle"));
-            System.out.println((String)map.get("RecText"));
-            System.out.println((String)map.get("RecNum"));
-            System.out.println((String)map.get("RecTime"));
+            RecipeMainBean recipeMainBean = new RecipeMainBean();
+            recipeMainBean.setCategoryId(Integer.parseInt((String)map.get("CategoryId")));
+            recipeMainBean.setRecTitle((String)map.get("RecTitle"));
+            recipeMainBean.setRecText((String)map.get("RecText"));
+            recipeMainBean.setRecTime(Integer.parseInt((String)map.get("RecTime")));
+            recipeMainBean.setRecNum(Integer.parseInt((String)map.get("RecNum")));
+            recipeMainBean.setRecCreated(recCreated);
+//            recipeMainBean.setRecPic();
+            // 之後要加一個userID
+            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
+
+            RecipeMaterialBean recipeMaterialBean = null;
+            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
+                recipeMaterialBean = new RecipeMaterialBean();
+                recipeMaterialBean.setMaterialName(food.get("MaterialName"));
+                recipeMaterialBean.setUnitNum(food.get("UnitNum"));
+                recipeMaterialBean.setGp("食材");
+
+
+            }
+
             for (String apple : (List<String>)(map.get("StepTextArray"))){
                 System.out.println(apple);
-            }
-            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
-                System.out.println(food.get("MaterialName"));
-                System.out.println(food.get("UnitNum"));
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -55,12 +76,6 @@ public class CreateRecipeController {
         for(MultipartFile apple : uploadFileArray){
             System.out.println(apple.getOriginalFilename());
         }
-
-//        );
-//          System.out.println(recipeBean.getRecTitle());
-//          System.out.println(recipeBean.getRecText());
-//          System.out.println(recipeBean.getRecNum());
-//          System.out.println(recipeBean.getRecTime());
 
 //        String format = sdf.format(new Date());
 //        try {
@@ -77,7 +92,7 @@ public class CreateRecipeController {
         return null;
     }
 
-    // 新增食譜 第1頁
+    // 新增食譜 詳細頁
     @GetMapping("/add")
     public ModelAndView add(@RequestParam("RecTitle") String RecTitle,
                             @RequestParam("CategoryId") String CategoryId){
@@ -90,7 +105,7 @@ public class CreateRecipeController {
         return modelAndView;
     }
 
-    // 新增食譜 第2頁
+    // 新增食譜 分類頁
     @RequestMapping("/start")
     public ModelAndView createRecipeDetail(){
         ModelAndView modelAndView = new ModelAndView();
