@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/createRecipe")
@@ -39,11 +36,18 @@ public class CreateRecipeController {
                              HttpServletRequest request) throws ParseException {
         ObjectMapper om = new ObjectMapper();
         try {
-            Map<String, String> map = om.readValue(jsonrecipeDetail, new TypeReference<HashMap<String, String>>(){});
-            System.out.println(map.get("RecTitle"));
-            System.out.println(map.get("RecText"));
-            System.out.println(map.get("RecNum"));
-            System.out.println(map.get("RecTime"));
+            Map<String, Object> map = om.readValue(jsonrecipeDetail, new TypeReference<HashMap<String, Object>>(){});
+            System.out.println((String)map.get("RecTitle"));
+            System.out.println((String)map.get("RecText"));
+            System.out.println((String)map.get("RecNum"));
+            System.out.println((String)map.get("RecTime"));
+            for (String apple : (List<String>)(map.get("StepTextArray"))){
+                System.out.println(apple);
+            }
+            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
+                System.out.println(food.get("MaterialName"));
+                System.out.println(food.get("UnitNum"));
+            }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -73,6 +77,7 @@ public class CreateRecipeController {
         return null;
     }
 
+    // 新增食譜 第1頁
     @GetMapping("/add")
     public ModelAndView add(@RequestParam("RecTitle") String RecTitle,
                             @RequestParam("CategoryId") String CategoryId){
@@ -85,7 +90,7 @@ public class CreateRecipeController {
         return modelAndView;
     }
 
-
+    // 新增食譜 第2頁
     @RequestMapping("/start")
     public ModelAndView createRecipeDetail(){
         ModelAndView modelAndView = new ModelAndView();

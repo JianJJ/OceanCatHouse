@@ -1,40 +1,60 @@
 $(document).ready(function () {
     // 儲存食譜
     doUpload = function (){
-        // 食譜主圖片
-        var formData = new FormData();
-        formData.append('file', $('#file-main')[0].files[0]);
-        for(var i=0;i<$('.fileStep').length;i++){
-            formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
-        }
-        // 分類, 名稱,
-        var recipeDetail = {
-            "RecTitle" : $('#RecTitle').val(),
-            "RecText"  : $('#RecText').val(),
-            "RecNum"   : $('#RecNum').val(),
-            "RecTime"  : $('#RecTime').val()
-        }
-        for(var i=0;i<$('.fileStep').length;i++){
-            recipeDetail[`stepText${i+1}`] = $(`#stepText${i+1}`).val();
-        }
-        formData.append('recipeDetail', JSON.stringify(recipeDetail));
-
-        $.ajax({
-            url : '/recipe/createRecipe/save',
-            type : 'POST',
-            data : formData,
-            enctype: 'multipart/form-data',
-            processData: false,
-            contentType : false,
-            async : false,
-            cache: false,  //不做快取
-            success : function (){
-                alert("上傳成功");
-            },
-            error : function (returndata){
-                alert(returndata);
+        if($('#file-main')[0].files[0]){
+            var formData = new FormData();
+            // 食譜主圖片
+            formData.append('file', $('#file-main')[0].files[0]);
+            // 步驟圖片
+            for(var i=0;i<$('.fileStep').length;i++){
+                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
             }
-        });
+            // 步驟說明
+            var stepText = [];
+            for(var i=0;i<$('.fileStep').length;i++){
+                stepText[i] = $(`#stepText${i+1}`).val();
+            }
+            // 食材＋份數
+            var foods = [];
+            for(var i=0;i<$('.MName').length;i++) {
+                var food = {};
+                if($(`#MaterialName${i+1}`).val()=="" && $(`#UnitNum${i+1}`).val()==""){
+                    continue;
+                }
+                food['MaterialName'] = $(`#MaterialName${i+1}`).val();
+                food['UnitNum'] = $(`#UnitNum${i+1}`).val();
+                foods[foods.length] = food;
+            }
+            var recipeDetail = {
+                "RecTitle" : $('#RecTitle').val(),
+                "RecText"  : $('#RecText').val(),
+                "RecNum"   : $('#RecNum').val(),
+                "RecTime"  : $('#RecTime').val(),
+                "StepTextArray" : stepText,
+                "foodsArrayList" : foods
+            }
+            formData.append('recipeDetail', JSON.stringify(recipeDetail));
+
+            $.ajax({
+                url : '/recipe/createRecipe/save',
+                type : 'POST',
+                data : formData,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType : false,
+                async : false,
+                cache: false,  //不做快取
+                success : function (){
+                    alert("上傳成功");
+                },
+                error : function (returndata){
+                    alert(returndata);
+                }
+            });
+        }else {
+            alert("請上傳食譜封面");
+        }
+
     }
 
     // 設定 點擊照片上傳+換圖片
@@ -126,14 +146,14 @@ $(document).ready(function () {
             `<div class="row justify-content-between" style="margin-top: 2px" id="frod${i}">
             <div class="col-md-7">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="食材" 
-                            name="MaterialName" id="MaterialName">
+                    <input type="text" class="form-control MName" placeholder="食材" 
+                            name="MaterialName" id="MaterialName${i}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="份量"
-                            name="UnitNum" id="UnitNum">
+                    <input type="text" class="form-control MNum" placeholder="份量"
+                            name="UnitNum" id="UnitNum${i}">
                 </div>
             </div>
             <div class="col-md-1">
@@ -143,11 +163,13 @@ $(document).ready(function () {
             </div>
         </div>`;
         $('#frodStart').append(frod);
+        frodNum++;
     }
     for (var i = 0; i < 2; i++) {
         createFrod();
     }
     delFrod = function (delfrod){
         $(`#${delfrod}`).remove();
+        frodNum--;
     }
 })
