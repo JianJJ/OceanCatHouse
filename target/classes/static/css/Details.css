@@ -36,19 +36,12 @@ footer {
     z-index: 11;
 }
 .menuDetail {
-    /* border: black 1px solid; */
-    /* left: 50px; */
-    /* float: left; */
-    line-height: 46px;    
+    line-height: 46px;
     height: 48px;
-    /* width: 100px; */
     font-size: 25px;
     margin: 0 10px;
     top: 5px;
     text-align: center;
-    /* position: relative; */
-    /* z-index: 10; */
-
 }
 
 /* 中間身體 */

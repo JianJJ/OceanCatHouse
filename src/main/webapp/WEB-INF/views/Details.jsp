@@ -26,46 +26,10 @@
         <body>
             <!-- 動態背景 -->
             <canvas id="canvas"></canvas>
-
-            <!-- 購物車 -->
-            <div class="hazy">
-                <div class="cat">
-                    <button class="catReturn">X</button>
-                    <!-- 這裡有圖 -->
-
-                    <div class="foot">
-                        <span class="PPP">總價:</span><button class="catSubmit">確定</button>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
+            <%--購物車插入--%>
+            <jsp:include page="/shoopCat.jsp"></jsp:include>
             <!-- 1header部分 -->
-            <header class="mainColor row">
-                <div class="title">✿海貓食屋✿</div>
-                <div class="littleNav">
-                    <ul>
-                        <li><a href="#">RECIPES</a> </li>
-                        <li><a href="#">SHOP</a></li>
-                    </ul>
-                </div>
-                <div class="simpleSearch">
-                    <input type="text" id="searchLine" placeholder="Search...">
-                    <label for="searchLine">
-                        <span class="fontIcon searchIcon"></span></label>
-                </div>
-
-                <div class="Login">
-                    <span class="text">SIGN UP</span><em>/</em>
-                    <span class="text">LOG IN</span>
-                </div>
-
-                <button class="userIcon"></button>
-
-            </header>
+            <jsp:include page="/header.jsp"></jsp:include>
 
             <!-- 分類條 -->
             <div class="row menu">
@@ -205,35 +169,9 @@
                     <span class="fontIcon" id="toUp"></span>
                 </div>
             </div>
-            <div class="col-lg-1 "></div>
-            <footer class="row mainColor">
-                <dl>
-                    <dt>關於我們</dt>
-                    <dd><a href="#">公司資訊</a></dd>
-                    <dd><a href="#">徵才訊息</a></dd>
-                    <dd><a href="#">廣告合作</a></dd>
-                    <dd><a href="#">市集上架</a></dd>
-                    <dd><a href="#">品牌資產</a></dd>
-                    <dd><a href="#">隱私權與條款</a></dd>
-                </dl>
-                <dl>
-                    <dt>會員服務</dt>
-                    <dd><a href="#">個人頁面</a></dd>
-                    <dd><a href="#">食譜收藏</a></dd>
-                    <dd><a href="#">商品訂單</a></dd>
-                    <dd><a href="#">帳號設定</a></dd>
-                    <dd><a href="#">忘記密碼</a></dd>
-                    <dd><a href="#">VIP會員</a></dd>
-                </dl>
-                <dl>
-                    <dt>逛食譜</dt>
-                    <dd><a href="#">人氣食譜</a></dd>
-                    <dd><a href="#">新廚上菜</a></dd>
-                    <dd><a href="#">今日話題</a></dd>
-                    <dd><a href="#">醉心食譜</a></dd>
-                    <dd><a href="#">全部分類</a></dd>
-                </dl>
-            </footer>
+
+            <jsp:include page="/footer.jsp"></jsp:include>
+
             <script src="../js/umbrella.js"></script>
             <script>
                 var CatProduct;//購物車 id:數量

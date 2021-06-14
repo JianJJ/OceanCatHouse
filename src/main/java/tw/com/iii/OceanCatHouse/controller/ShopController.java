@@ -33,10 +33,10 @@ public class ShopController {
 	}
 
 //	@RequestMapping(
-//			path = {"/views/Details"}
+//			path = {"/ShoopingMall"}
 //	)
 //	public String Details() {
-//		return "/views/Details";
+//		return "/views/ShoopingMall";
 //	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 購物車 處理
