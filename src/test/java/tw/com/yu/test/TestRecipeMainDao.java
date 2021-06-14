@@ -24,8 +24,8 @@ public class TestRecipeMainDao {
 		//1. findByID根據ID查
 		Optional<RecipeBean> optional = recipeDao.findById(21405);
 		RecipeBean recipe = optional.get();
-		String recipeName= recipe.getRecTitle();
-		System.out.println(recipeName);
+//		String recipeName= recipe.getRecTitle();
+//		System.out.println(recipeName);
 		
 		
 //		//2.索引查詢
