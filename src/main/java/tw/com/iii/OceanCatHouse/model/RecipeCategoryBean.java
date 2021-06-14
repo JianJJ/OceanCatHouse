@@ -20,6 +20,6 @@ public class RecipeCategoryBean {
     private Integer CategoryId;
     private String CategoryName;
 
-//    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
+//    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL,  fetch = FetchType.EAGER)
 //    private Set<RecipeBean> recipeBeans = new HashSet<>();
 }

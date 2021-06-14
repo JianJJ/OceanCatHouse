@@ -92,6 +92,7 @@ public class CreateRecipeController {
         List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.setViewName("/views/pages/createRecipe");
+        System.out.println(categoryList);
 
         return modelAndView;
     }

@@ -14,6 +14,9 @@ $(document).ready(function () {
             "RecNum"   : $('#RecNum').val(),
             "RecTime"  : $('#RecTime').val()
         }
+        for(var i=0;i<$('.fileStep').length;i++){
+            recipeDetail[`stepText${i+1}`] = $(`#stepText${i+1}`).val();
+        }
         formData.append('recipeDetail', JSON.stringify(recipeDetail));
 
         $.ajax({

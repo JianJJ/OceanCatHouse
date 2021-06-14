@@ -19,4 +19,6 @@ public class RecipeCategoryService {
         List<RecipeCategoryBean> categoryList = categoryRepositoryDao.findAll();
         return categoryList;
     }
+
+
 }
