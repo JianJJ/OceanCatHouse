@@ -34,7 +34,7 @@ public class CreateRecipeController {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
     @PostMapping(value = "/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ModelAndView save(@RequestParam(required = true, value = "file") MultipartFile uploadFile,
+    public ModelAndView save(@RequestParam(required = true, value = "file") MultipartFile[] uploadFileArray,
                              @RequestParam(required = true, value = "recipeDetail") String jsonrecipeDetail,
                              HttpServletRequest request) throws ParseException {
         ObjectMapper om = new ObjectMapper();
@@ -48,35 +48,40 @@ public class CreateRecipeController {
             e.printStackTrace();
         }
 
+        for(MultipartFile apple : uploadFileArray){
+            System.out.println(apple.getOriginalFilename());
+        }
+
 //        );
 //          System.out.println(recipeBean.getRecTitle());
 //          System.out.println(recipeBean.getRecText());
 //          System.out.println(recipeBean.getRecNum());
 //          System.out.println(recipeBean.getRecTime());
 
-        String format = sdf.format(new Date());
-        try {
-            // 儲存圖片到mainpic資料夾
-            if(uploadFile.getOriginalFilename().length() != 0){
-                uploadFile.transferTo(
-                        new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/mainpic/"+format+".jpg"));
-                System.out.println(format+".jpg");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String format = sdf.format(new Date());
+//        try {
+//            // 儲存圖片到mainpic資料夾
+//            if(uploadFile.getOriginalFilename().length() != 0){
+//                uploadFile.transferTo(
+//                        new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/mainpic/"+format+".jpg"));
+//                System.out.println(format+".jpg");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         return null;
     }
 
     @GetMapping("/add")
-    public ModelAndView add(@RequestParam("RecTitle") String RecTitle){
+    public ModelAndView add(@RequestParam("RecTitle") String RecTitle,
+                            @RequestParam("CategoryId") String CategoryId){
         ModelAndView modelAndView = new ModelAndView();
-//        CreateRecipeService createRecipeService = new CreateRecipeService();
-//        int NewRecId = createRecipeService.createNewRecId();
-//        modelAndView.addObject("RecId", NewRecId);
+        modelAndView.addObject("CategoryId", CategoryId);
         modelAndView.addObject("RecTitle", RecTitle);
         modelAndView.setViewName("views/pages/createRecipeDetail");
+        System.out.println(CategoryId);
+
         return modelAndView;
     }
 
@@ -87,9 +92,7 @@ public class CreateRecipeController {
         List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.setViewName("/views/pages/createRecipe");
-        for(RecipeCategoryBean apple : categoryList){
-            System.out.println(apple);
-        }
+
         return modelAndView;
     }
 }

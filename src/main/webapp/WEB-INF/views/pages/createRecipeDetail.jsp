@@ -98,12 +98,12 @@
             <div class="row">
             <%--                食譜分類 RecCategory--%>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="食材" style="font-size: 2rem"
-                           id="RecCategory" value="${RecCategory}">
+                    <input type="text" class="form-control" placeholder="分類" style="font-size: 2rem"
+                           id="CategoryId" name="CategoryId" value="${CategoryId}" hidden>
                 </div>
             <%--                食譜名稱 RecTitle--%>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="食材" style="font-size: 2rem"
+                    <input type="text" class="form-control" placeholder="食材" style="font-size: 1.5rem"
                            id="RecTitle" value="${RecTitle}">
                 </div>
             </div>
@@ -113,10 +113,8 @@
                     <div style="width: 350px;height: 280px; margin:0 auto;">
                         <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
                              class="img-thumbnail"/>
-                        <form action="" id="mainpic">
-                            <input type="file" accept="image/*" id="file-main" name="file"
-                                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
-                        </form>
+                        <input type="file" accept="image/*" id="file-main" name="file"
+                               onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
                     </div>
                 </div>
             </div>
@@ -162,18 +160,21 @@
                     </select>
                 </div>
             </div>
+            <%--            食材--%>
             <div class="row" style="margin-bottom: 0px" id="frodStart">
                 <label>食材<span>食材15字以內，份量10字以內</span></label><br/>
             </div>
-
+                <%--            食材新增位置--%>
             <div class="row justify-content-between" style="margin-top: 0px">
                 <button type="button" onclick="createFrod()" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
             </div>
-            <%--                食材新增--%>
-            <div class="row" style="margin-bottom: 0px" id="stepStart">
+            <%--            步驟--%>
+            <div class="row" style="margin-bottom: 0px" id="stepStart" >
                 <label>步驟</label><br/>
             </div>
+
 <%--                這裡用jQuery 載入步驟、步驟圖片--%>
+
         </div>
         <%--            增刪修--%>
         <div class="col-md-1 sticky-top">

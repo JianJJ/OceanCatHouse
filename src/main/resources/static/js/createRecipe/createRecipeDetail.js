@@ -2,7 +2,11 @@ $(document).ready(function () {
     // 儲存食譜
     doUpload = function (){
         // 食譜主圖片
-        var formData = new FormData($('#mainpic')[0]);
+        var formData = new FormData();
+        formData.append('file', $('#file-main')[0].files[0]);
+        for(var i=0;i<$('.fileStep').length;i++){
+            formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
+        }
         // 分類, 名稱,
         var recipeDetail = {
             "RecTitle" : $('#RecTitle').val(),
@@ -54,7 +58,7 @@ $(document).ready(function () {
                                  class="img-thumbnail img-step"
                                  id="img-step${i}"/>
                             <input type="file" accept="image/*" id="file-step${i}" name="file"
-                                   onchange="upload('#file-step${i}', '#img-step${i}');" class="fileInput"
+                                   onchange="upload('#file-step${i}', '#img-step${i}');" class="fileInput fileStep"
                                    value=""/>
                         </div>
                     </div>
@@ -64,12 +68,12 @@ $(document).ready(function () {
                         <div class="col-md-1"><span style="font-size: 32px" id="step${i}">${i}</span></div>
                         <div class="col-md-8"></div>
                         <div class="col-md-1">
-                            <button onclick="createStep()">
+                            <button type="button" onclick="createStep()">
                                 <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
                             </button>
                         </div>
                         <div class="col-md-1">
-                            <button onclick="delStep('divId${i}')" id="delbtn${i}">
+                            <button type="button" onclick="delStep('divId${i}')" id="delbtn${i}">
                                 <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
                             </button>
                         </div>
@@ -119,16 +123,18 @@ $(document).ready(function () {
             `<div class="row justify-content-between" style="margin-top: 2px" id="frod${i}">
             <div class="col-md-7">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="食材">
+                    <input type="text" class="form-control" placeholder="食材" 
+                            name="MaterialName" id="MaterialName">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="份量">
+                    <input type="text" class="form-control" placeholder="份量"
+                            name="UnitNum" id="UnitNum">
                 </div>
             </div>
             <div class="col-md-1">
-                <button onclick="delFrod('frod${i}')">
+                <button type="button" onclick="delFrod('frod${i}')">
                     <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
                 </button>
             </div>

@@ -66,7 +66,7 @@
         <span class="text">SIGN UP</span><em>/</em>
         <span class="text">LOG IN</span>
     </div>
-    <button class="userIcon"></button>
+    <button type="button" class="userIcon"></button>
 </header>
 
 <!--主體-->
@@ -75,17 +75,17 @@
         <div class="row justify-content-around onTop">
             <div class="col-md-8">
                 <div class="row">
-                    <label for="RecNum">選擇食譜的分類</label>
-                    <select class="form-control" id="RecNum">
+                    <label for="CategoryName">選擇食譜的分類</label>
+                    <select class="form-control" id="CategoryName" name="CategoryId">
                         <c:forEach items="${categoryList}" var="cateogry">
-                            <option>${cateogry.categoryName}</option>
+                            <option value="${category.categoryId}">${cateogry.categoryName}</option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="row">
                     <label for="RecTitle">請輸入食譜名稱</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle">
+                        <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle">
                     </div>
                     <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
                     <div class="form-check smallInner">
