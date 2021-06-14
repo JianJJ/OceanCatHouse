@@ -154,7 +154,7 @@ public class ShopRestController {
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 推薦商品
+// 推薦食譜
 	@RequestMapping("/recommend/{categoryid}")
 	public List<RecipeMainBean> recommend(@PathVariable("categoryid") Integer categoryid) {
 		System.out.println("********************推薦商品*********************" );
