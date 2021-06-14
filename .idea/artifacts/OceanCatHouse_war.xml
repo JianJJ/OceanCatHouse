@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="OceanCatHouse:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>OceanCatHouse</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="OceanCatHouse-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="OceanCatHouse:war exploded" />
+    </root>
+  </artifact>
+</component>
