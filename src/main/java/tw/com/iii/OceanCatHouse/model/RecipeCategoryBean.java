@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @ToString
@@ -21,6 +19,5 @@ public class RecipeCategoryBean {
     private String CategoryName;
 
 //    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL,  fetch = FetchType.EAGER)
-//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId")
 //    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
 }

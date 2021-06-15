@@ -2,11 +2,8 @@ package tw.com.iii.OceanCatHouse.model;
 
 import lombok.Data;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 // @NoArgsConstructor  無參建構
 // @AllArgsConstructor 有參建構
@@ -32,6 +29,10 @@ public class RecipeMainBean {
     private String RecCreated;
     private Integer RecViews;
 
+    // 配置多對一 (Category表)
+//    @ManyToOne(targetEntity = RecipeCategoryBean.class)
+//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
+//    private RecipeCategoryBean recipeCategoryBean;
 
 //    // 配置一對多 (Material表, Step表)
 //    @OneToMany(targetEntity = RecipeMaterialBean.class, cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
@@ -42,9 +43,5 @@ public class RecipeMainBean {
 //    @JoinColumn(name = "RecId", referencedColumnName = "RecId")
 //    private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
 //
-//    // 配置多對一 (Category表)
-//    @ManyToOne(targetEntity = RecipeCategoryBean.class)
-//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
-//    private RecipeCategoryBean recipeCategoryBean;
 
 }

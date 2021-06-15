@@ -41,7 +41,19 @@
     <button class="userIcon"></button>
 </header>
 <%--主體--%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+<%--       放搜尋食譜 欄位--%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+<%--            個人頭 加一張漂亮的照片--%>
+        </div>
+    </div>
 
+</div>
 
 </div>
 <!--頁尾-->

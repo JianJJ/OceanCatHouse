@@ -16,41 +16,64 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
+        .headtop{
+            position: sticky;
+            top: 0px;
+            z-index: 5;
+        }
+        .navfix{
+            position: fixed;
+            top:80px;
+            height: 100vh;
+        }
+        .navfix li{
+            border: none;
+            cursor: pointer;
+        }
+        .navfix li:hover{
+            background-color: #afe3d5;
+            color: #0c4128;
+        }
+        .list-group-item{
+            background-color: transparent;
+            color: white;
+        }
     </style>
 </head>
 <body>
 <%--    頁首--%>
-<header class="container-fluid mainColor">
+<header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
 
     <button class="userIcon"></button>
 </header>
 
 
-<div class="container-fluid">
-    <div class="row">
         <%--    側邊欄--%>
-        <div class="flex-column col-md-2">
+        <div class="col-md-2 navfix mainColor">
             <ul class="list-group">
-                <li class="list-group-item disabled" aria-disabled="true">訂單管理</li>
+                <li class="list-group-item" aria-disabled="true">訂單管理</li>
                 <li class="list-group-item">商品管理</li>
                 <li class="list-group-item">會員管理</li>
                 <li class="list-group-item">員工管理</li>
             </ul>
         </div>
         <%--    中間主體--%>
+<div class="container-fluid">
+    <div class="row justify-content-end">
         <div class="col-md-10">
-            <%--            導航列--%>
+            <%--            抬頭--%>
             <div class="row">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Home</li>
+                        <li class="breadcrumb-item active" aria-current="page">總覽</li>
                     </ol>
                 </nav>
             </div>
 
-            <div class="row innerBody">
+            <div class="row">
                 <%--                中間之後要放的內容--%>
+                範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字
             </div>
         </div>
     </div>
