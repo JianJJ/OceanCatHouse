@@ -1,5 +1,8 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.ToString;
 
@@ -29,6 +32,7 @@ public class RecipeMainBean {
     private Integer RecLiked;
     private String RecCreated;
     private Integer RecViews;
+
 
     @Override
     public String toString() {
@@ -60,7 +64,7 @@ public class RecipeMainBean {
     @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
     private Set<RecipeMaterialBean> recipeMaterialBeans = new HashSet<>();
 
-    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL) // 放棄外鍵維護權, 開啟級聯操作
+    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL,fetch=FetchType.LAZY) // 放棄外鍵維護權, 開啟級聯操作
     private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
 
 }
