@@ -20,17 +20,11 @@ public class TestRecipeMainDao {
    void selectUser() {
 	   
 		//1. findByID根據ID查
-//<<<<<<< HEAD
-//		Optional<RecipeMainBean> optional = recipeDao.findById(21405);
-//		RecipeMainBean recipe = optional.get();
-//		String recipeName= recipe.getRecTitle();
-//		System.out.println(recipeName);
-//=======
-//		Optional<RecipeBean> optional = recipeDao.findById(21405);
-//		RecipeBean recipe = optional.get();
-////		String recipeName= recipe.getRecTitle();
-////		System.out.println(recipeName);
-//>>>>>>> 9e55a90a5bfa7d157eba3ca2988bf88b8498ef48
+		Optional<RecipeMainBean> optional = recipeDao.findById(21405);
+		RecipeMainBean recipe = optional.get();
+		String recipeName= recipe.getRecTitle();
+		System.out.println(recipeName);
+
 		
 		
 //		//2.索引查詢

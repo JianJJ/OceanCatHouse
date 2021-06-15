@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>寫食譜</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <!--    JavaScript; choose one of the two!-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -74,7 +74,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <label for="CategoryName">選擇食譜的分類</label>
-                    <select class="form-control" id="CategoryName" name="CategoryId">
+                    <select class="form-control inner" id="CategoryName" name="CategoryId">
                         <c:forEach items="${categoryList}" var="category">
                             <option value="${category.categoryId}">${category.categoryName}</option>
                         </c:forEach>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="row">
                     <label for="RecTitle">請輸入食譜名稱</label>
-                    <div class="input-group">
+                    <div class="input-group inner">
                         <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle">
                     </div>
                     <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>

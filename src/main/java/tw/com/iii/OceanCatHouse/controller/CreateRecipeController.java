@@ -45,26 +45,24 @@ public class CreateRecipeController {
         try {
             System.out.println(jsonrecipeDetail);
             Map<String, Object> map = om.readValue(jsonrecipeDetail, new TypeReference<HashMap<String, Object>>(){});
-            RecipeMainBean recipeMainBean = new RecipeMainBean();
-            recipeMainBean.setCategoryId(Integer.parseInt((String)map.get("CategoryId")));
-            recipeMainBean.setRecTitle((String)map.get("RecTitle"));
-            recipeMainBean.setRecText((String)map.get("RecText"));
-            recipeMainBean.setRecTime(Integer.parseInt((String)map.get("RecTime")));
-            recipeMainBean.setRecNum(Integer.parseInt((String)map.get("RecNum")));
-            recipeMainBean.setRecCreated(recCreated);
+//            RecipeMainBean recipeMainBean = new RecipeMainBean();
+//            recipeMainBean.setCategoryId(Integer.parseInt((String)map.get("CategoryId")));
+//            recipeMainBean.setRecTitle((String)map.get("RecTitle"));
+//            recipeMainBean.setRecText((String)map.get("RecText"));
+//            recipeMainBean.setRecTime(Integer.parseInt((String)map.get("RecTime")));
+//            recipeMainBean.setRecNum(Integer.parseInt((String)map.get("RecNum")));
+//            recipeMainBean.setRecCreated(recCreated);
 //            recipeMainBean.setRecPic();
             // 之後要加一個userID
-            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
+//            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
 
             RecipeMaterialBean recipeMaterialBean = null;
-            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
-                recipeMaterialBean = new RecipeMaterialBean();
-                recipeMaterialBean.setMaterialName(food.get("MaterialName"));
-                recipeMaterialBean.setUnitNum(food.get("UnitNum"));
-                recipeMaterialBean.setGp("食材");
-
-
-            }
+//            for(Map<String, String> food : (ArrayList<Map<String, String>>)(map.get("foodsArrayList"))){
+//                recipeMaterialBean = new RecipeMaterialBean();
+//                recipeMaterialBean.setMaterialName(food.get("MaterialName"));
+//                recipeMaterialBean.setUnitNum(food.get("UnitNum"));
+//                recipeMaterialBean.setGp("食材");
+//            }
 
             for (String apple : (List<String>)(map.get("StepTextArray"))){
                 System.out.println(apple);

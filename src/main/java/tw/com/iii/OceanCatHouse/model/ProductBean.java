@@ -109,5 +109,4 @@ public class ProductBean {
 	private String productstatus;
 
 
-
 }

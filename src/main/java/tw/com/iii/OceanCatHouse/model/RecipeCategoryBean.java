@@ -21,5 +21,6 @@ public class RecipeCategoryBean {
     private String CategoryName;
 
 //    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL,  fetch = FetchType.EAGER)
-//    private Set<RecipeBean> recipeBeans = new HashSet<>();
+//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId")
+//    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
 }

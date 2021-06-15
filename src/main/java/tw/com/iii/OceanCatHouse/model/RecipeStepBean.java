@@ -19,9 +19,9 @@ public class RecipeStepBean {
     private String StepPic;
     private String StepText;
 
-    // 配置多對一
-//    @ManyToOne(targetEntity = RecipeBean.class)
+//    // 配置多對一
+//    @ManyToOne(targetEntity = RecipeMainBean.class)
 //    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
-//    private RecipeBean recipeBean;
+//    private RecipeMainBean recipeMainBean;
 
 }
