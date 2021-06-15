@@ -1,0 +1,63 @@
+* {
+    /* 字體設定 */
+    font-family: "Noto Sans TC", 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+
+/* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	*/
+
+.mainColor {
+    background-color: #62A5A1;
+}
+
+/* footer */
+
+footer {
+    position: relative;
+    margin-top: 50px;
+    text-align: right;
+}
+
+footer dl {
+    vertical-align: top;
+    padding: 30px;
+    margin-right: 70px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 50px;
+    float: right;
+}
+
+
+footer dl dd {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 35px;
+}
+
+footer dl dd a {
+    color: white;
+}
+
+
+.clearfix :after, .clearfix:before {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+
+.clearfix:last-child {
+    margin-right: 100px;
+}
