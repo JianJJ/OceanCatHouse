@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%--拼接header--%>
-<jsp:include page="top_nav.jsp"></jsp:include>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,27 +10,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-    <%--Header的CSS、JS樣式放這裡    --%>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
+
+	<%-- bootstrap的CSS、JS樣式放這裡 --%>
+	<link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
     <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    
+    <%-- jQuery放這裡 --%>
+    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+
+    <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/top_nav.css">
 
 
-    <%--footer的CSS、JS樣式放這裡    --%>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <%-- footer的CSS、JS樣式放這裡    --%>
+ 	<link rel="stylesheet" href="/recipe/css/bottom_nav.css">
 
 
-    <%--主要的CSS放在這裡--%>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <%-- 主要的CSS、JS放在這裡--%>
     <script src="/recipe/js/recipeDetails.js"></script>
     <link rel="stylesheet" href="/recipe/css/recipeDetails.css">
 
@@ -41,6 +38,8 @@
 
 <body>
 
+ <!-- 拼接header -->
+<jsp:include page="top_nav.jsp"></jsp:include>
 
     <!-- 中間部分 -->
     <div class="container">
@@ -229,6 +228,9 @@
 
 
 
+   <!-- 拼接footer -->
+<jsp:include page="bottom_nav.jsp"></jsp:include>
+
 </body>
 
 <script>
@@ -238,6 +240,3 @@
 </script>
 
 </html>
-
-<%--拼接footer--%>
-<jsp:include page="bottom_nav.jsp"></jsp:include>
