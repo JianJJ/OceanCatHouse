@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@ToString
 @Data
 @Entity
 @Table(name = "recipe_category")
@@ -18,6 +17,14 @@ public class RecipeCategoryBean {
     private Integer CategoryId;
     private String CategoryName;
 
-//    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL,  fetch = FetchType.EAGER)
-//    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
+    @Override
+    public String toString() {
+        return "RecipeCategoryBean{" +
+                "CategoryId=" + CategoryId +
+                ", CategoryName='" + CategoryName + '\'' +
+                '}';
+    }
+
+    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
+    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
 }
