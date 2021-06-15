@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>寫食譜明細</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <!--    JavaScript; choose one of the two!-->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
@@ -46,11 +46,6 @@
         }
 
         #img-main {
-            width: 100%;
-            height: 100%;
-        }
-
-        .img-step {
             width: 100%;
             height: 100%;
         }

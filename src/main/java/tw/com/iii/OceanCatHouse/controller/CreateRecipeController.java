@@ -45,13 +45,13 @@ public class CreateRecipeController {
         try {
             System.out.println(jsonrecipeDetail);
             Map<String, Object> map = om.readValue(jsonrecipeDetail, new TypeReference<HashMap<String, Object>>(){});
-            RecipeMainBean recipeMainBean = new RecipeMainBean();
-            recipeMainBean.setCategoryId(Integer.parseInt((String)map.get("CategoryId")));
-            recipeMainBean.setRecTitle((String)map.get("RecTitle"));
-            recipeMainBean.setRecText((String)map.get("RecText"));
-            recipeMainBean.setRecTime(Integer.parseInt((String)map.get("RecTime")));
-            recipeMainBean.setRecNum(Integer.parseInt((String)map.get("RecNum")));
-            recipeMainBean.setRecCreated(recCreated);
+//            RecipeMainBean recipeMainBean = new RecipeMainBean();
+//            recipeMainBean.setCategoryId(Integer.parseInt((String)map.get("CategoryId")));
+//            recipeMainBean.setRecTitle((String)map.get("RecTitle"));
+//            recipeMainBean.setRecText((String)map.get("RecText"));
+//            recipeMainBean.setRecTime(Integer.parseInt((String)map.get("RecTime")));
+//            recipeMainBean.setRecNum(Integer.parseInt((String)map.get("RecNum")));
+//            recipeMainBean.setRecCreated(recCreated);
 //            recipeMainBean.setRecPic();
             // 之後要加一個userID
 //            RecipeMainBean bean = recipeMainService.insert(recipeMainBean);
