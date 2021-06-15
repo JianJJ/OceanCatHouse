@@ -19,9 +19,12 @@
 
 <h3><a href="<c:url value="/views/login" />">login</a></h3>
 <h3><a href="<c:url value="/views/signup" />">signup</a></h3>
-<h3><a href="<c:url value="/createRecipe/start"/>">createRecipe</a></h3>
 <h3><a href="<c:url value="/views/ShoppingMall" />">ShoppingMall</a></h3>
-<h3><a href="<c:url value="/backstage/time" />">backstage</a></h3>
+<h3><a href="<c:url value="/backstage/time" />">backstageTime</a></h3>
+<hr/>
+<h3><a href="<c:url value="/createRecipe/start"/>">createRecipe</a></h3>
+<h3><a href="<c:url value="/backstage/home" />">backstageHome</a></h3>
+<h3><a href="<c:url value="/userBack/home" />">userBackHome</a></h3>
 <br><br><br>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	

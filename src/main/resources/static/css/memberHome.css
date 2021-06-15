@@ -1,0 +1,112 @@
+a {
+    text-decoration: none;
+    }
+
+.memberBlock {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    margin-top: 70px;
+    box-shadow: 1px 1px 3px 3px #aaa;
+}
+
+#member-icon {
+    position: absolute;
+    bottom: 50px;
+    left: 35px;
+    width: 100px;
+    height: 100px;
+    border: 3px #fff solid;
+    border-radius: 50px;
+    box-shadow: 0px 1px 3px 2px #777;
+    cursor: pointer;
+
+    background-color: white;
+    background-image: url(../images/paw-solid.svg);
+    background-size: cover;
+}
+
+#member-imgBackground {
+  
+    height: 235px;
+    background-image: url(../images/wall02.jpg);
+    background-size: cover;
+}
+
+#member-navLinks {
+    height: 100px;
+}
+
+#member-navLinks > div > span {
+    display: inline-block;
+    font-size: 25px;
+    margin-left: 145px;
+    margin-top: 10px;
+}
+
+#member-navLinks > div > a {
+    float: right;
+    padding: 5px 15px;
+    margin-top: 10px;
+    margin-right: 20px;
+    font-size: 16px;
+
+    border: 1px orange solid;
+    border-radius: 15px; 
+    color: #222;
+    background-color: white;
+}
+
+#member-navLinks > div > a:hover {
+    /*border-color: 1px #aaa solid;*/
+    border-radius: 15px; 
+    color: white;
+    text-shadow: 0px 0px 3px black;
+    background-color: orange;
+}
+
+#member-navLinks > ul > li {
+    display: inline-block;
+    list-style: none;
+    margin-top: 17px;
+    margin-right: 20px;
+    
+}
+
+#member-navLinks >ul > li a {
+    color: #222;
+}
+
+#member-navLinks >ul > li:hover a {
+    border-bottom: #aaa 3px solid;
+}
+
+#member-navLinks > ul > .currentLink a {
+    color: brown;
+    border-bottom: brown 3px solid;
+}
+
+
+.memberBlock h2 {
+    font-size: 16px;
+    text-indent: 2rem;
+    margin: 20px;
+    color: #db742a;
+}
+
+.recipeSimpleContext {
+    background-color: wheat;
+    height: 210px;
+    margin: 10px auto;
+}
+.fileInput {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    display: block;
+    width: 100%;
+    clear: both;
+}
