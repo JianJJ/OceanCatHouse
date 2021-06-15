@@ -48,17 +48,12 @@ body{
     padding: 18px 16px 18px 16px;
 }
 .menuDetail {
-    border: black 1px solid;
-    float: left;
     line-height: 46px;
-    font-size: 100%;
     height: 48px;
-    width: 100px;
     font-size: 25px;
     margin: 0 10px;
+    top: 5px;
     text-align: center;
-    position: relative;
-
 }
 /* 動態背景 */
 canvas {

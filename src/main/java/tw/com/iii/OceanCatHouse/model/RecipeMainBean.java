@@ -13,7 +13,7 @@ import java.util.Set;
 @ToString
 @Data
 @Entity
-@Table(name = "`recipe_main`")
+@Table(name = "recipe_main")
 public class RecipeMainBean {
 
     @Id
