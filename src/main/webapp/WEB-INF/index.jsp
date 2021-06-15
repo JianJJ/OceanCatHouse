@@ -16,8 +16,7 @@
 
 <h3>Welcome ${user.custid}</h3>
 
-<h3><a href="<c:url value="/views/secure/login.jsp" />">Login</a></h3>
-<h3><a href="<c:url value="/views/pages/product.jsp" />">Product</a></h3>
+
 <h3><a href="<c:url value="/views/login" />">login</a></h3>
 <h3><a href="<c:url value="/views/signup" />">signup</a></h3>
 <h3><a href="<c:url value="/createRecipe/start"/>">createRecipe</a></h3>
