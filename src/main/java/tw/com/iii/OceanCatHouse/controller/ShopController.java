@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.com.iii.OceanCatHouse.model.ProductBean;
-import tw.com.iii.OceanCatHouse.model.ProductPictureJpaReposit;
-import tw.com.iii.OceanCatHouse.model.ProductRepository;
+import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
+import tw.com.iii.OceanCatHouse.repository.ProductRepository;
 
 
 @Controller

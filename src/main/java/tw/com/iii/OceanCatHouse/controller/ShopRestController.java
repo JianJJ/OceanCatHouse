@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tw.com.iii.OceanCatHouse.model.*;
+import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
+import tw.com.iii.OceanCatHouse.repository.ProductRepository;
+import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
 
 
 @RestController

@@ -1,9 +1,11 @@
-package tw.com.iii.OceanCatHouse.model;
+package tw.com.iii.OceanCatHouse.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import tw.com.iii.OceanCatHouse.model.UserBean;
 
 
 public interface UserRepository extends JpaRepository<UserBean, Integer>{

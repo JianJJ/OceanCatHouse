@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.UserBean;
-import tw.com.iii.OceanCatHouse.model.UserRepository;
+import tw.com.iii.OceanCatHouse.repository.UserRepository;
 
 @Controller
 public class UserController {

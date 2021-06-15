@@ -47,7 +47,7 @@ footer {
 /* 中間身體 */
 .cenBody {
     background-color:white;
-    height:1500px;
+    /* height:1500px; */
     z-index: 7;
     font-size: 25px;
 }
@@ -120,6 +120,7 @@ footer {
 }
 .cenBody .recommend p{
     /* top: 1000px; */
+    left: 20px;
     position: relative;
 
 }
@@ -152,7 +153,10 @@ footer {
     height: 200px;
 
 }
-
+.cenBody .SimilarProducts p{
+    position: relative;
+    left: 20px;
+}
 .cenBody .SimilarProducts figure {
     width: 200px;
     height: 300px;

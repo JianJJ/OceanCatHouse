@@ -13,7 +13,7 @@ import com.jayway.jsonpath.Option;
 import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.ServletInitializer;
 import tw.com.iii.OceanCatHouse.model.UserBean;
-import tw.com.iii.OceanCatHouse.model.UserRepository;
+import tw.com.iii.OceanCatHouse.repository.UserRepository;
 
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)

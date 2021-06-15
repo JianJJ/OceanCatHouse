@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
-import tw.com.iii.OceanCatHouse.model.RecipeRepository;
+import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)
 public class TestRecipeMainDao {
