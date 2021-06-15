@@ -20,6 +20,7 @@ public class UserBean {
 //	@Id
 	private String email;
 	private String userpassword;
+	private String state;
 	
 	
 
@@ -75,7 +76,13 @@ public class UserBean {
 	public void setUserpassword(String userpassword) {
 		this.userpassword = userpassword;
 	}
-	
 
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 }
