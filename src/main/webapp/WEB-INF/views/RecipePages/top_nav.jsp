@@ -38,7 +38,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="navLink navColor" href="#" tabindex="-1" aria-disabled="true">商城</a>
+                        <a class="navLink navColor" href="/recipe/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
                     </li>
                 </ul>
 

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?6rzpr');
-  src:  url('fonts/icomoon.eot?6rzpr#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?6rzpr') format('truetype'),
-    url('fonts/icomoon.woff?6rzpr') format('woff'),
-    url('fonts/icomoon.svg?6rzpr#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?m89u1j');
+  src:  url('fonts/icomoon.eot?m89u1j#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?m89u1j') format('truetype'),
+    url('fonts/icomoon.woff?m89u1j') format('woff'),
+    url('fonts/icomoon.svg?m89u1j#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -84,4 +84,28 @@
 }
 .icon-github:before {
   content: "\eab0";
+}
+.icon-price-tags:before {
+  content: "\e936";
+}
+.icon-key:before {
+  content: "\e98d";
+}
+.icon-spoon-knife:before {
+  content: "\e9a3";
+}
+.icon-airplane:before {
+  content: "\e9af";
+}
+.icon-heart1:before {
+  content: "\e9db";
+}
+.icon-loop2:before {
+  content: "\ea2e";
+}
+.icon-arrow-up-right:before {
+  content: "\ea33";
+}
+.icon-circle-right:before {
+  content: "\ea42";
 }

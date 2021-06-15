@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -10,14 +11,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+    <%-- bootstrap的CSS、JS樣式放這裡 --%>
+    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+
+    <%-- jQuery放這裡 --%>
+    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+
+    <%-- Header的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+
+
+    <%-- footer的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+
+
+    <%-- 主要的CSS、JS放在這裡--%>
+    <link rel="stylesheet" href="/recipe/css/homePage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
             rel="stylesheet">
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
           content="849367464998-0c4najofsqmh3rteejq2dc3va9iqdps2.apps.googleusercontent.com">
-    <link rel="stylesheet" href="../css/demo.css">
     <link rel="stylesheet" href="../css/login.css">
     <style>
     </style>
@@ -27,19 +46,19 @@
 <body>
 <canvas id="canvas"></canvas>
 <!-- header部分 -->
-<jsp:include page="/header.jsp"></jsp:include>
+
 <!-- 中間部分 -->
 <div class="center">
 
     <!-- 左邊浮動區塊 -->
-    <div class="barNav">
-        <ul>
-            <li class="fontIcon"></li>
-            <li class="fontIcon"></li>
-            <li class="fontIcon"></li>
-            <li class="fontIcon"></li>
-        </ul>
-    </div>
+<%--    <div class="barNav">--%>
+<%--        <ul>--%>
+<%--            <li class="fontIcon"></li>--%>
+<%--            <li class="fontIcon"></li>--%>
+<%--            <li class="fontIcon"></li>--%>
+<%--            <li class="fontIcon"></li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
 
 
     <!-- 網頁中間內文 -->
@@ -82,7 +101,6 @@
     </div>
 </div>
 
-<jsp:include page="/footer.jsp"></jsp:include>
 <script src="../js/umbrella.js"></script>
 <script src="../js/recaptcha.js"></script>
 <script src="../js/oauth.js"></script>
@@ -92,3 +110,4 @@
 </body>
 
 </html>
+<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
