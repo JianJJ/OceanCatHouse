@@ -16,31 +16,66 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
-        .headtop{
+        .headtop {
             position: sticky;
             top: 0px;
             z-index: 5;
         }
-        .navfix{
+
+        .navfix {
             position: fixed;
-            top:80px;
+            top: 80px;
             height: 100vh;
         }
-        .navfix li{
+
+        .navfix li {
             border: none;
             cursor: pointer;
         }
-        .navfix li:hover{
+
+        .navfix li:hover {
             background-color: #afe3d5;
             color: #0c4128;
         }
-        .list-group-item{
+
+        .list-group-item {
             background-color: transparent;
             color: white;
         }
     </style>
 </head>
 <body>
+<!-- 購物車 -->
+<div class="hazy">
+    <div class="cat">
+        <button class="catReturn">X</button>
+        <!-- 這裡有圖 -->
+<%--        <form><div class="form-group"><label id="productid">商品ID : </label></div>--%>
+<%--            <div class="form-group"><label for="productname">名稱</label>--%>
+<%--                <input type="email" class="form-control" id="productname" placeholder="productname" name="productname"></div>--%>
+<%--            <div class="form-group"><label for="productmodel">商品號</label>--%>
+<%--                <input type="password" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>--%>
+<%--            <div class="form-group"><label for="producttext">詳細描述</label>--%>
+<%--                <input type="password" class="form-control" id="producttext" placeholder="producttext" name="producttext">--%>
+<%--            </div><div class="form-group"><label for="purchaseprice">進價</label>--%>
+<%--                <input type="password" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>--%>
+<%--            <div class="form-group"><label for="sellingprice">售價</label>--%>
+<%--                <input type="password" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>--%>
+<%--            <div class="form-group"><label for="stocks">庫存</label>--%>
+<%--                <input type="password" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>--%>
+<%--            <div class="form-group"><label for="productspecifications">商品規格</label>--%>
+<%--                <input type="password" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>--%>
+<%--            <div class="form-group"><label for="vendorid">廠商號</label>--%>
+<%--            <input type="password" class="form-control" id="vendorid" placeholder="vendorid" name="vendorid"></div>--%>
+<%--            <div class="form-group"><label for="productcategoryid">分類號</label>--%>
+<%--            <input type="password" class="form-control" id="productcategoryid" placeholder="productcategoryid"></div>--%>
+<%--            <div class="form-group"><label for="productstatus">產品狀態</label>--%>
+<%--            <input type="password" class="form-control" id="productstatus" placeholder=productstatus" name="productcategoryid"></div>--%>
+<%--            <div class="form-group"><label id="createdon">創建日期</label></div>--%>
+<%--            <div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>--%>
+<%--            <button type="submit" class="">Submit</button></form>--%>
+    </div>
+</div>
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
@@ -63,10 +98,19 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
-                <div class="row">
-                    <button class="col-lg-1">新增</button>
-                    <button class="col-lg-1">bbb</button>
-                    <button class="col-lg-1">ccc</button> </div>
+            <div class="row">
+                <button class="col-lg-1" id="addPoduct">新增</button>
+                <button class="col-lg-1">bbb</button>
+                <button class="col-lg-1">ccc</button>
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button">搜索</button> </span>
+
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+
             <div class="row">
                 <table class="table table-striped">
                     <tr>
@@ -80,26 +124,27 @@
                     </tr>
                 </table>
             </div>
-<%--                分頁--%>
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <%--                分頁--%>
+            <nav>
+                <ul class="pagination">
+                    <li>
+
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             <div class="row">
                 <%--                中間之後要放的內容--%>
                 範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字
@@ -112,35 +157,184 @@
     $.ajax({
         url: "/recipe/backstage/product/data",
         type: "post",
+        async: false,
         // contentType: "application/json",
         // dataType: "json",
         success: doSuccess,
         error: doError
     });
+
     function doSuccess(json) {
         $(".TTT").remove();
-        console.log(json);
-        for (var A of json){
-            $(".table").append('<tr class="TTT" onclick="Detailed('+A+')"><td class="col-lg-1">'+A.productid+'</td>'+
-                '<td class="col-lg-1 ">'+A.productmodel+'</td>'+
-                '<td class="col-lg-2 ">'+A.productname+'</td>'+
-                '<td class="col-lg-1 ">'+A.purchaseprice+'</td>'+
-                '<td class="col-lg-1 ">'+A.sellingprice+'</td>' +
-                '<td class="col-lg-1 ">'+A.stocks+'</td>' +
-                '<td class="col-lg-1 ">'+A.productspecifications+'</td>' +
-                '</tr>');}
+        for (var A of json) {
+            $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')"><td class="col-lg-1">' + A.productid + '</td>' +
+                '<td class="col-lg-1 ">' + A.productmodel + '</td>' +
+                '<td class="col-lg-2 ">' + A.productname + '</td>' +
+                '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
+                '<td class="col-lg-1 ">' + A.stocks + '</td>' +
+                '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                '</tr>');
+        }
     }
+
     function doError(json) {
         console.log(json);
+    }
+
+    // 顯細資料
+    function Detailed(id) {
+        console.log(id);
+        $(".hazy").css("visibility", "visible");
+        $.ajax({
+            url: "/recipe/product/"+id,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (A) {
+                $(".cat").prepend(' <form action=""><div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>'+
+                    '<div class="form-group"><label for="productname">名稱</label>'+
+                    '<input type="email" class="form-control" id="productname" placeholder="'+A.productname+'" name="productname"></div>'+
+                '<div class="form-group"><label for="productmodel">商品號</label>'+
+                    '<input type="password" class="form-control" id="productmodel" placeholder="'+A.productmodel+'" name="productmodel"></div>'+
+                '<div class="form-group"><label for="producttext">詳細描述</label>'+
+                    '<input type="password" class="form-control" id="producttext" placeholder="'+A.producttext+'" name="producttext">'+
+                '</div><div class="form-group"><label for="purchaseprice">進價</label>'+
+                    '<input type="password" class="form-control" id="purchaseprice" placeholder="'+A.purchaseprice+'" name="purchaseprice"></div>'+
+                '<div class="form-group"><label for="sellingprice">售價</label>'+
+                    '<input type="password" class="form-control" id="sellingprice" placeholder="'+A.sellingprice+'" name="sellingprice"></div>'+
+                '<div class="form-group"><label for="stocks">庫存</label>'+
+                    '<input type="password" class="form-control" id="stocks" placeholder="'+A.stocks+'" name="stocks"></div>'+
+                '<div class="form-group"><label for="productspecifications">商品規格</label>'+
+                   ' <input type="password" class="form-control" id="productspecifications" placeholder="'+A.productspecifications+'" name="productspecifications"></div>'+
+                '<div class="form-group"><label for="vendorid">廠商號</label>'+
+                    '<input type="password" class="form-control" id="vendorid" placeholder="'+A.vendorid+'" name="vendorid"></div>'+
+                '<div class="form-group"><label for="productcategoryid">分類號</label>'+
+                    '<input type="password" class="form-control" id="productcategoryid" placeholder="'+A.productcategoryid+'"></div>'+
+                '<div class="form-group"><label for="productstatus">產品狀態</label>'+
+                    '<input type="password" class="form-control" id="productstatus" placeholder="'+A.productstatus+'" name="productcategoryid"></div>'+
+            '<div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>'+
+            '<div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>'+
+            '<button type="submit" class="">修改</button></form>');
+            },
+            error: doError
+        });
+
 
     }
+
+    $(document).ready(function () {
+        $("#addPoduct").click(function () {
+
+            $(".hazy").css("visibility", "visible");
+            $(".cat").prepend('        <form><div class="form-group"><label id="productid">商品ID : </label></div>'+
+                '<div class="form-group"><label for="productname">名稱</label>'+
+                '<input type="email" class="form-control" id="productname" placeholder="productname" name="productname"></div>'+
+                '<div class="form-group"><label for="productmodel">商品號</label>'+
+                '<input type="password" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>'+
+                '<div class="form-group"><label for="producttext">詳細描述</label>'+
+                '<input type="password" class="form-control" id="producttext" placeholder="producttext" name="producttext">'+
+                '</div><div class="form-group"><label for="purchaseprice">進價</label>'+
+                '<input type="password" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>'+
+                '<div class="form-group"><label for="sellingprice">售價</label>'+
+                '<input type="password" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>'+
+                '<div class="form-group"><label for="stocks">庫存</label>'+
+                '<input type="password" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>'+
+                '<div class="form-group"><label for="productspecifications">商品規格</label>'+
+                ' <input type="password" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>'+
+                '<div class="form-group"><label for="vendorid">廠商號</label>'+
+                '<input type="password" class="form-control" id="vendorid" placeholder="vendorid" name="vendorid"></div>'+
+                '<div class="form-group"><label for="productcategoryid">分類號</label>'+
+                '<input type="password" class="form-control" id="productcategoryid" placeholder="productcategoryid"></div>'+
+                '<div class="form-group"><label for="productstatus">產品狀態</label>'+
+                '<input type="password" class="form-control" id="productstatus" placeholder=productstatus" name="productcategoryid"></div>'+
+                '<div class="form-group"><label id="createdon">創建日期</label></div>'+
+                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'+
+                '<button type="submit" class="">新增</button></form>');
+        })
+            // 關閉按紐
+            $('.catReturn').click(function () {
+                $(".hazy").css("visibility", "hidden");
+                $(".cat").empty();
+            });
+        }
+    )
+    ;
 </script>
 <style>
-    .TTT:hover{
-    background-color: #afe3d5;
+    .TTT:hover {
+        background-color: #afe3d5;
+    }
+
+    .hazy {
+        visibility: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 50;
+
+    }
+
+    .cat {
+        border: blue 1px solid;
+        background-color: white;
+        width: 830px;
+        height: 850px;
+        z-index: 25;
+        position: fixed;
+        left: 0%;
+        right: 0%;
+        margin: auto;
+        top: 50px;
+        border-radius: 15px;
+    }
+    .cat form{
+        top: 10px;
+        position: relative;
+        left: 20px;
+    }
+    .cat input{
+        width: 95%;
+    }
+
+    /* 購物車返回 */
+    .catReturn {
+        top: -10px;
+        right: -10px;
+        position: absolute;
+        background-color: red;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        z-index: 20;
     }
 
 
 </style>
 </body>
 </html>
+<%--$(".cat").prepend('        <form><div class="form-group"><label id="productid">商品ID : </label></div>'+--%>
+<%--    '<div class="form-group"><label for="productname">名稱</label>'+--%>
+<%--        '<input type="email" class="form-control" id="productname" placeholder="productname" name="productname"></div>'+--%>
+<%--    '<div class="form-group"><label for="productmodel">商品號</label>'+--%>
+<%--        '<input type="password" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>'+--%>
+<%--    '<div class="form-group"><label for="producttext">詳細描述</label>'+--%>
+<%--        '<input type="password" class="form-control" id="producttext" placeholder="producttext" name="producttext">'+--%>
+<%--        '</div><div class="form-group"><label for="purchaseprice">進價</label>'+--%>
+<%--        '<input type="password" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>'+--%>
+<%--    '<div class="form-group"><label for="sellingprice">售價</label>'+--%>
+<%--        '<input type="password" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>'+--%>
+<%--    '<div class="form-group"><label for="stocks">庫存</label>'+--%>
+<%--        '<input type="password" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>'+--%>
+<%--    '<div class="form-group"><label for="productspecifications">商品規格</label>'+--%>
+<%--        ' <input type="password" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>'+--%>
+<%--    '<div class="form-group"><label for="vendorid">廠商號</label>'+--%>
+<%--        '<input type="password" class="form-control" id="vendorid" placeholder="vendorid" name="vendorid"></div>'+--%>
+<%--    '<div class="form-group"><label for="productcategoryid">分類號</label>'+--%>
+<%--        '<input type="password" class="form-control" id="productcategoryid" placeholder="productcategoryid"></div>'+--%>
+<%--    '<div class="form-group"><label for="productstatus">產品狀態</label>'+--%>
+<%--        '<input type="password" class="form-control" id="productstatus" placeholder=productstatus" name="productcategoryid"></div>'+--%>
+<%--    '<div class="form-group"><label id="createdon">創建日期</label></div>'+--%>
+<%--    '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'+--%>
+<%--    '<button type="submit" class="">Submit</button></form>');--%>
