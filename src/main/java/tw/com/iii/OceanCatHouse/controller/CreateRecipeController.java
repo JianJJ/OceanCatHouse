@@ -97,7 +97,7 @@ public class CreateRecipeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("CategoryId", CategoryId);
         modelAndView.addObject("RecTitle", RecTitle);
-        modelAndView.setViewName("views/pages/createRecipeDetail");
+        modelAndView.setViewName("views/user/createRecipeDetail");
         System.out.println(CategoryId);
 
         return modelAndView;
@@ -109,7 +109,7 @@ public class CreateRecipeController {
         ModelAndView modelAndView = new ModelAndView();
         List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
         modelAndView.addObject("categoryList", categoryList);
-        modelAndView.setViewName("/views/pages/createRecipe");
+        modelAndView.setViewName("/views/user/createRecipe");
         System.out.println(categoryList);
 
         return modelAndView;

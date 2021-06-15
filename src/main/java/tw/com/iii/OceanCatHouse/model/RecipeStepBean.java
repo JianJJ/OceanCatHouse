@@ -19,9 +19,21 @@ public class RecipeStepBean {
     private String StepPic;
     private String StepText;
 
-//    // 配置多對一
-//    @ManyToOne(targetEntity = RecipeMainBean.class)
-//    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
-//    private RecipeMainBean recipeMainBean;
+    @Override
+    public String toString() {
+        return "RecipeStepBean{" +
+                "StepId=" + StepId +
+                ", RecId=" + RecId +
+                ", Step='" + Step + '\'' +
+                ", StepPic='" + StepPic + '\'' +
+                ", StepText='" + StepText + '\'' +
+                ", recipeMainBean=" + recipeMainBean +
+                '}';
+    }
+
+    //    // 配置多對一
+    @ManyToOne(targetEntity = RecipeMainBean.class)
+    @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
+    private RecipeMainBean recipeMainBean;
 
 }

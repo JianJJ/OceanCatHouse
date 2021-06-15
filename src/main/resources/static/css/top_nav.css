@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+    /* 字體設定 */
+    font-family:"Noto Sans TC", 'Times New Roman', Times, serif;
+}
+
+.navbar {
+    position: sticky;
+    top:0;
+    z-index: 99;
+}
+
+
+#mainTitle {
+    font-size: 28px;
+    margin-left: 25px;
+}
+
+.navColor {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+   }
+
+.navLink {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+
+
+.navColor:hover {
+    color: black;
+}
+
+
+input:focus {
+    outline: none;
+}
+
+/* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	*/
+.mainColor {
+    background-color:  #62A5A1;
+}
+
+.btn-search {
+    margin: 0px 10px;
+    padding: 0 30px;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    color: white;
+    background-color: #B54484;
+}
+
+.btn-search:hover {
+    box-shadow: 0px 0px 10px 0px #e086b9;
+}
+
+/* 
+.Login {
+    margin: 0px 10px;
+    padding: 0 30px;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    color: white;
+    background-color: #B54484;
+    
+}
+em {
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+.Login span:hover {
+    color: black;
+    cursor: pointer;
+    
+} */
+
+.userIcon {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .4);
+    background-position: center;
+    background-size: cover;
+    /* 用戶的大頭貼 */
+    background-image: url(../images/yarn-brands.svg);
+    background-size: cover;
+    background-position: center;
+    
+}
