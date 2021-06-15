@@ -1,0 +1,170 @@
+* {
+    padding: 0;
+    margin: 0;    
+}
+
+.carou li, .blank li {
+    list-style: none;
+    display: inline-block;
+}
+
+
+.carou h2 {
+    position: absolute;
+    top: 25px;
+    font-size: 26px;
+    line-height: 70px;
+    background: linear-gradient(to right, #222, transparent);
+    color: #eee;
+    text-shadow: 1px 1px 1px black;
+    text-indent: 2em;
+    /* opacity: .8; */
+}
+
+/* Carousel */
+.focusBlock {
+    position: relative;
+    width: 720px;
+    height: 455px;
+    overflow: hidden;
+    text-align: center;
+
+
+    margin: 30px auto;
+}
+
+.focusBlock .carou li img {
+    width: 720px;
+    height: 455px;
+}
+
+
+.focusBlock .carou {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 600%;
+    padding: 0;
+}
+
+.focusBlock .carou li {
+    float: left;
+    width: 720px;
+    height: 455px;
+}
+
+.arrow-lef, .arrow-r {
+    display: none;
+    position: absolute;
+    
+    top:50%;
+    margin-top: -20px;
+    width: 24px;
+    height: 40px;
+    background: rgba(0, 0, 0, .7);
+    border:none;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;
+    z-index: 5;
+    opacity: .7;
+    cursor: pointer;
+}
+.arrow-lef {
+    border-radius:0 5px 5px  0;
+}
+
+.arrow-r  {
+    right:0;
+    border-radius:5px 0  0 5px;
+}
+
+
+
+.blank {
+    position: absolute;
+    display: block;
+    bottom: 30px;
+    left: 35%;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.blank li {
+    float: left;
+    width: 35px;
+    border-bottom: 10px solid rgba(0, 0, 0, .7);
+    box-shadow: 0 0 2px 2px gray;
+    margin-right: 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.blank .current {
+    border-color: white;
+}
+
+
+
+
+/* recommendRecipe */
+
+.recommendRec {
+    margin-top: 70px;
+}
+
+.recommendRec ul {
+    padding: 0;
+}
+
+
+.recommendRec ul li {
+    height: 190px;
+    margin-top: 10px;
+    padding: 10px;
+    list-style: none;
+    border-left: 5px solid rgba(62, 199, 183, 0.3);
+}
+
+.recommendRec ul li:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+}
+
+.recommendRec ul li img {
+    height: 100%;
+    background-color: wheat;
+    float: left; 
+}
+
+
+.showLines {
+    margin: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    color: #222;
+}
+
+.recommendRec li h4 {
+    font-size: 25px;
+    line-height: 40px;
+
+}
+
+.recommendRec li p {
+    -webkit-line-clamp: 3;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.recommendRec li span {
+    display: inline-block;
+    color: #888;
+    font-size: 14px;
+}
+
+
+

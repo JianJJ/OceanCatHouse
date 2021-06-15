@@ -49,7 +49,7 @@ public class PublicController {
 
 
 
-	//食譜首頁
+	//網站首頁
 	@RequestMapping(
 			path = {"/homePage"}
 	)
@@ -57,6 +57,15 @@ public class PublicController {
 		return "views/RecipePages/homePage";
 
 	}
+	
+	//食譜主頁
+		@RequestMapping(
+				path = {"/recipeHome"}
+		)
+		public String recipeHome() {
+			return "views/RecipePages/recipeHome";
+
+		}
 
 	//食譜詳細頁面
 	@RequestMapping(
