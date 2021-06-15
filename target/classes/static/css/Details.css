@@ -9,8 +9,8 @@ body {
     left: 250px;
 } */
 .main{
-    width: 80%;
-    left: 200px;
+    /* width: 80%; */
+ 
     transform:translateX(0);
     z-index: 9;
     margin:0px;
@@ -24,7 +24,7 @@ footer {
  .menu {
     height: 50px;
     background-color: #69AE1E;
-    width : 100vw;
+    /* width : 100vw; */
 }
 
 
@@ -46,18 +46,12 @@ footer {
 
 /* 中間身體 */
 .cenBody {
-    /* border: #bb113b 5px solid; */
     background-color:white;
-    position: relative;
-     left: 0%;
-    right: 0%;
-    margin: auto;
-    width: 1520px;
     height:1500px;
     z-index: 7;
     font-size: 25px;
 }
-.cenBody .cenDetail .leftImg {
+.cenBody  .leftImg {
 	/* top:30px; */
     /* float: left; */
     /* position: relative; */
@@ -65,21 +59,21 @@ footer {
     left: 100px;
 }
 
-.cenBody .cenDetail .rightImg {
+.cenBody  .rightImg {
     /* float: left; */
     /* position: relative; */
     /* height: 700px; */
-    /* left: 50px; */
+    right: 50px;
     /* width: 500px; */
    
 }
 /* 數量按鈕 */
-.cenBody .cenDetail .rightImg form .num{
+.cenBody  .rightImg form .num{
     text-align:center;
     width: 50px;
 }
 
-.cenBody .cenDetail .rightImg form .rightButton {
+.cenBody  .rightImg form .rightButton {
     width: 25px;
     /* height: 20px; */
     position: relative;
@@ -87,7 +81,7 @@ footer {
     
 
 }
-.cenBody .cenDetail .rightImg form .leftButton {
+.cenBody  .rightImg form .leftButton {
     width: 25px;
     /* height: 20px; */
     position: relative;
@@ -95,23 +89,23 @@ footer {
     
 }
 /* 輪播圖 */
-.cenBody .cenDetail .leftImg .banner {
+.cenBody  .leftImg .banner {
     width: 500px;
     overflow: hidden;
 }
 
-.cenBody .cenDetail .leftImg .banner .list {
+.cenBody  .leftImg .banner .list {
     position: relative;
     width: 2600px;
 }
-.cenBody .cenDetail .leftImg .banner .list .rsimg {
+.cenBody  .leftImg .banner .list .rsimg {
     height: 500px;
     max-width: 500px;
     object-fit:contain;
     margin: 20px 0px;
 
 }
-.cenBody .cenDetail .leftImg .rsNavItem {
+.cenBody  .leftImg .rsNavItem {
     float: left;
     overflow: hidden;
     width: 94px;
@@ -119,10 +113,7 @@ footer {
     height: 105px;
 }
 
-.cenBody .cenDetail {
-    position: relative;
-    width: 1500px;
-}
+
 .cenBody .recommend{
     position: relative;
     /* background-color: #69AE1E; */

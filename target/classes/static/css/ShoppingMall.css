@@ -1,41 +1,40 @@
 body{
     width:  100vw;
  }
-.clearfix::after{
+/* .clearfix::after{
     content: "";
     display: block;
     clear:both;
-}
-.main .grid-row{
-    left: 80px;
-    position: relative;
-    top: 30px;
-    width: 1300px;
-}
-.main .grid-row .Product a img{
-    height: 280px;
+} */
+/* .centerA{
+    background-color: #69AE1E;
+} */
+/* .main{
+    background-color: #69AE1E;
+} */
+.main  .Product a img{
+    /* height: 280px; */
     width: 280px;
 }
-.main .grid-row .Product a h2{
-    margin: 0 0 4px;
+.main  .Product a h2{
+    margin: 0 0 4px 0;
     color: #564e4a;
     width:  100%;
     font-size: 18px;
     font-weight: 700;
     display: block;
 }
-.main .grid-row .Product a :hover{
+.main  .Product a :hover{
     color: #564e4a;
-   
-    background: #e2e0db;
+    /* background: #e2e0db; */
 }
-.main .grid-row .Product{
-    float: left;
-    margin: 20px;
-}
+.main  .Product{
+    /* float: left; */
+    margin:  20px 0;
+} 
 /* 分類條 */
 .menu {
-    width: 100%;
+    
     height: 50px;
     background-color: #69AE1E;
 

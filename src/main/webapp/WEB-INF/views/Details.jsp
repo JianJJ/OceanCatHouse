@@ -29,8 +29,9 @@
             <%--購物車插入--%>
             <jsp:include page="/shoopCat.jsp"></jsp:include>
             <!-- 1header部分 -->
+            <div class="row ">
             <jsp:include page="/header.jsp"></jsp:include>
-
+			</div>
             <!-- 分類條 -->
             <div class="row menu">
                 <div id="home" class="col-lg-1">
