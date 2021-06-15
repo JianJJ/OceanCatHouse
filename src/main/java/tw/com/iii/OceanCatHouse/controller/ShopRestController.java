@@ -148,7 +148,7 @@ public class ShopRestController {
 	@RequestMapping("cutCat/{id}")
 	public HashMap<String, Integer> cutCat(@PathVariable("id") String id, HttpSession session,
 			@RequestBody HashMap<String, Integer> body, Model model) {
-		System.out.println("********************delCat*****************************************" + id);
+		System.out.println("********************cutCat*****************************************" + id);
 		int AAA = body.get(id);
 		AAA--;
 		body.put(id, AAA);

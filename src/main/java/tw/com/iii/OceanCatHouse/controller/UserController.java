@@ -40,7 +40,8 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private ZeroTools zTools;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//忘記密碼
 	@RequestMapping("/forget/{controller}")
 	public String forget(UserBean bean, Model model, Locale locale, HttpSession session,
 			@RequestParam("g-recaptcha-response") String token) {
@@ -75,6 +76,7 @@ public class UserController {
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//登入檢查
 	@RequestMapping("/signup/{action}")
 	public String signup(UserBean bean, Model model, Locale locale, @PathVariable("action") String action,
 			HttpSession session, @RequestParam("g-recaptcha-response") String token) {
@@ -132,6 +134,9 @@ public class UserController {
 				
 				if (userRepository.findPasswordByEmail(bean.getUserpassword(), bean.getEmail()) != null) {
 					System.out.println("登入成功*************************");
+					bean = userRepository.findByemail(bean.getEmail());
+					session.setAttribute("state",bean.getState());
+					session.setAttribute("name",bean.getUsername());
 					return "/index";
 				} else {
 					System.out.println("密碼錯誤");
@@ -175,6 +180,9 @@ public class UserController {
 					errors.put("userpassword", "密碼錯誤");
 					return "/views/" + action;
 				} else {
+					bean = userRepository.findByUserphone(bean.getUserphone());
+					session.setAttribute("state",bean.getState());
+					session.setAttribute("name",bean.getUsername());
 					System.out.println("登入成功");
 				}
 

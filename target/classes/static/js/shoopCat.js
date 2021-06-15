@@ -4,7 +4,7 @@ var c = [];//合計
 var sell = [];//售價
 // 商品資料
 $.ajax({
-	url: "/recipe/pic/${id}",
+	url: "/recipe/pic/"+id,
 	type: "get",
 	async: false,
 	success: function(pic) {
@@ -112,7 +112,7 @@ function addCat(A) {
 
 		},
 		error: function(json) {
-			console.log("delCat*****err " + json);
+			console.log("addCat*****err " + json);
 		}
 	})
 	var i = $("#pnum" + A).val();
@@ -123,6 +123,7 @@ function addCat(A) {
 
 
 }
+// 減少數量
 function cutCat(A) {
 
 	var i = $("#pnum" + A).val();
@@ -148,7 +149,7 @@ function cutCat(A) {
 				$(".PPP").text("總價:" + m);
 			},
 			error: function(json) {
-				console.log("delCat*****err " + json);
+				console.log("cutCat*****err " + json);
 			}
 		});
 		i--;
@@ -164,7 +165,7 @@ function cutCat(A) {
 function delCat(id) {
 	var AAA = JSON.stringify(CatProduct);
 	$.ajax({
-		url: "/recipe/delCat/" + id,
+		url: "/recipe/delCat/"+id ,
 		type: "post",
 		contentType: "application/json",
 		dataType: "json",
@@ -175,6 +176,12 @@ function delCat(id) {
 			$(".catNum").text(key.length);
 			$("#catProduct" + id).remove();
 			CatProduct = json;
+			//總價
+			var m = 0;
+			for (var k in json) {
+				m += json[k] * sell[k];
+			}
+			$(".PPP").text("購物車刪除   總價:" + m);
 			if (key.length == 0)
 				window.location.assign("/recipe/Details/${id}");
 		},
