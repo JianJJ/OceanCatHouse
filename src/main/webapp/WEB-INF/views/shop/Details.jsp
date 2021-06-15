@@ -178,4 +178,23 @@
             <script src="../js/shoopCat.js"></script>
         </body>
 
+        <script>
+            // 商品資料
+            $.ajax({
+                url: "/recipe/pic/"+id,
+                type: "get",
+                async: false,
+                success: function(pic) {
+
+                    var i = 0;
+                    for (var A of pic) {
+
+                        $(".list").append('<img class="rsimg" src="../images/' + A.producturl + '.jpg" alt="">');
+                        $(".producturl").append('<img class="rsNavItem" onclick="rsmove(' + i + ')" src="../images/' + A.producturl + '.jpg" alt="">');
+                        i++;
+                    }
+                }
+            })
+        </script>
+
         </html>
