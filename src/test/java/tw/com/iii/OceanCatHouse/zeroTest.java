@@ -16,12 +16,12 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 
+import tw.com.iii.OceanCatHouse.repository.UserRepository;
+
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import tw.com.iii.OceanCatHouse.model.UserRepository;
 
 @SpringBootTest
 public class zeroTest {
