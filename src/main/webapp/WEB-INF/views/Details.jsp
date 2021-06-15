@@ -67,7 +67,7 @@
                     <div class="cenBody">
                         <!-- 輪播圖  -->
                         <div class="cenDetail row" >
-                            <div class="col-lg-6 leftImg ">
+                            <div class="col-lg-6 col-sm-12 leftImg ">
                                 <div class="banner">
                                     <div class="list">
                                         <!--這裡有輪播圖  -->
@@ -78,7 +78,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 rightImg ">
+                            <div class="col-lg-6 col-sm-12 rightImg ">
                                 <br>
                                 <h2 class="productname"> ${productname}</h2>
                                 
@@ -119,7 +119,7 @@
                                     success: function (json) {
                                         for (var A of json) {
                                             console.log(A);
-                                            $(".recommend").append('<div class="col-lg-6 recommendRecipe">' +
+                                            $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +
                                                 '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +
                                                 ' <p>' + A.recTitle + '</p>' +
                                                 ' </div>');
@@ -148,7 +148,7 @@
                                         }
 
                                         for (var i = 0; i < a; i++)
-                                            $(".SimilarProducts").append('<figure class="col-lg-2"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
+                                            $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
                                     },
                                     error: function (json) {
                                         console.log("errr");

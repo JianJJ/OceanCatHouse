@@ -90,7 +90,7 @@
                                                 for (var y = 1; y < 5; y++) {
 
                                                     console.log(i);
-                                                    $(".AAA" + x).append('<div class="col-lg-3 Product"><a href="/recipe/Details/' + json[i].productid + '"><figure><img src="../images/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
+                                                    $(".AAA" + x).append('<div class="col-sm-6 col-lg-3 Product"><a href="/recipe/Details/' + json[i].productid + '"><figure><img src="../images/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
                                                     i++;
                                                 }
                                                 $(".main").append('</div>');
@@ -150,11 +150,12 @@
                             </nav>
 
                         </div>
-                        <!-- <div class="row">
-                            <jsp:include page="/footer.jsp"></jsp:include>
-                        </div> -->
+
                         <script src="../js/umbrella.js"></script>
                         <script src="../js/shoopCat.js"></script>
+                    </div>
+                    <div class="row">
+                        <jsp:include page="/footer.jsp"></jsp:include>
                     </div>
                 </div>
         </body>
