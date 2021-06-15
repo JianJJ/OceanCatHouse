@@ -19,9 +19,10 @@
 
 <h3><a href="<c:url value="/views/login" />">login</a></h3>
 <h3><a href="<c:url value="/views/signup" />">signup</a></h3>
-<h3><a href="<c:url value="/createRecipe/start"/>">createRecipe</a></h3>
+<h3><a href="<c:url value="/createRecipe/start"/>">新增食譜</a></h3>
 <h3><a href="<c:url value="/views/ShoppingMall" />">ShoppingMall</a></h3>
-<h3><a href="<c:url value="/backstage/home" />">backstage</a></h3>
+<h3><a href="<c:url value="/backstage/home" />">管理員後台</a></h3>
+<h3><a href="<c:url value="/userback/home" />">會員個人頁面</a></h3>
 <br><br><br>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	

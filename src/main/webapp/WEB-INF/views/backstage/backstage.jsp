@@ -19,15 +19,15 @@
     </style>
 </head>
 <body>
-<div class="container-fluid">
 <%--    頁首--%>
-    <header class="container-fluid mainColor">
-        <div class="title">廠商後台</div>
+<header class="container-fluid mainColor">
+    <div class="title">廠商後台</div>
 
-        <button class="userIcon"></button>
-    </header>
+    <button class="userIcon"></button>
+</header>
 
 
+<div class="container-fluid">
     <div class="row">
         <%--    側邊欄--%>
         <div class="flex-column col-md-2">
@@ -40,7 +40,7 @@
         </div>
         <%--    中間主體--%>
         <div class="col-md-10">
-<%--            導航列--%>
+            <%--            導航列--%>
             <div class="row">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -50,7 +50,7 @@
             </div>
 
             <div class="row innerBody">
-<%--                中間之後要放的內容--%>
+                <%--                中間之後要放的內容--%>
             </div>
         </div>
     </div>
