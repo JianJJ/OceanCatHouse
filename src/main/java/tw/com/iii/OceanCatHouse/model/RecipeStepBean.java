@@ -1,11 +1,12 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 
-@ToString
 @Data
 @Entity
 @Table(name = "`recipe_step`")
@@ -19,6 +20,8 @@ public class RecipeStepBean {
     private String StepPic;
     private String StepText;
 
+        // 配置多對一
+
     @Override
     public String toString() {
         return "RecipeStepBean{" +
@@ -31,8 +34,7 @@ public class RecipeStepBean {
                 '}';
     }
 
-    //    // 配置多對一
-    @ManyToOne(targetEntity = RecipeMainBean.class)
+    @ManyToOne(cascade={CascadeType.MERGE})
     @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
     private RecipeMainBean recipeMainBean;
 
