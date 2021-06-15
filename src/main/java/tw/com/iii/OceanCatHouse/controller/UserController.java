@@ -1,27 +1,16 @@
 package tw.com.iii.OceanCatHouse.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,7 +22,7 @@ import tw.com.iii.OceanCatHouse.repository.UserRepository;
 public class UserController {
 	@GetMapping(path = { "/views/phoneLogin" })
 	public String index() {
-		return "/views/phoneLogin";
+		return "views/user/phoneLogin";
 	}
 
 	@Autowired
@@ -64,7 +53,7 @@ public class UserController {
 			errors.put("email", "Email錯誤");
 
 		if (errors != null && !errors.isEmpty())
-			return "/views/forget";
+			return "views/user/forget";
 
 		// 寄發郵件
 		String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>從新設定密碼</a></p>";
@@ -120,11 +109,11 @@ public class UserController {
 		if (errors != null && !errors.isEmpty()) {
 			System.out.println("errors");
 			if (action.equals("login")) {
-				return "/views/login";
+				return "views/user/login";
 			} else if (action.equals("signup")) {
-				return "/views/signup";
+				return "views/user/signup";
 			} else {
-				return "/views/phoneLogin";
+				return "views/user/phoneLogin";
 			}
 
 		}

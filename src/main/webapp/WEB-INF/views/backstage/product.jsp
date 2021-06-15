@@ -63,30 +63,43 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
-
+                <div class="row">
+                    <button class="col-lg-1">新增</button>
+                    <button class="col-lg-1">bbb</button>
+                    <button class="col-lg-1">ccc</button> </div>
             <div class="row">
-
+                <table class="table table-striped">
+                    <tr>
+                        <td>id</td>
+                        <td>modela</td>
+                        <td>名稱</td>
+                        <td>進價</td>
+                        <td>售價</td>
+                        <td>庫存</td>
+                        <td>規格</td>
+                    </tr>
+                </table>
             </div>
-            <%--                分頁--%>
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<%--                分頁--%>
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             <div class="row">
                 <%--                中間之後要放的內容--%>
                 範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字
@@ -94,6 +107,40 @@
         </div>
     </div>
 </div>
+<script>
+    <%--    商品管理--%>
+    $.ajax({
+        url: "/recipe/backstage/product/data",
+        type: "post",
+        // contentType: "application/json",
+        // dataType: "json",
+        success: doSuccess,
+        error: doError
+    });
+    function doSuccess(json) {
+        $(".TTT").remove();
+        console.log(json);
+        for (var A of json){
+            $(".table").append('<tr class="TTT" onclick="Detailed('+A+')"><td class="col-lg-1">'+A.productid+'</td>'+
+                '<td class="col-lg-1 ">'+A.productmodel+'</td>'+
+                '<td class="col-lg-2 ">'+A.productname+'</td>'+
+                '<td class="col-lg-1 ">'+A.purchaseprice+'</td>'+
+                '<td class="col-lg-1 ">'+A.sellingprice+'</td>' +
+                '<td class="col-lg-1 ">'+A.stocks+'</td>' +
+                '<td class="col-lg-1 ">'+A.productspecifications+'</td>' +
+                '</tr>');}
+    }
+    function doError(json) {
+        console.log(json);
 
+    }
+</script>
+<style>
+    .TTT:hover{
+    background-color: #afe3d5;
+    }
+
+
+</style>
 </body>
 </html>

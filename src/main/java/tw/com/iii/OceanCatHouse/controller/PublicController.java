@@ -30,13 +30,13 @@ public class PublicController {
 			path = {"/views/signup"}
 	)
 	public String signup() {
-		return "/views/signup";
+		return "views/user/signup";
 	}
 	@GetMapping(
 			path = {"/views/login"}
 	)
 	public String nlogin() {
-		return "/views/login";
+		return "views/user/login";
 	}
 	
 	
@@ -44,7 +44,7 @@ public class PublicController {
 			path = {"/views/forget"}
 	)
 	public String forget() {
-		return "/views/forget";
+		return "views/user/forget";
 	}
 
 

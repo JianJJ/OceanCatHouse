@@ -29,7 +29,7 @@ public class ShopController {
 
 	@RequestMapping(path = { "/views/ShoppingMall" })
 	public String ShoppingMall() {
-		return "/views/ShoppingMall";
+		return "views/shop/ShoppingMall";
 	}
 
 //	@RequestMapping(
@@ -88,7 +88,7 @@ public class ShopController {
 		model.addAttribute("sellingprice", bean.getSellingprice());
 		model.addAttribute("productspecifications", bean.getProductspecifications());
 		model.addAttribute("id", bean.getProductid());
-		return "/views/Details";
+		return "views/shop/Details";
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
