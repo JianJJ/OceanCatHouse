@@ -6,6 +6,13 @@
     font-family:"Noto Sans TC", 'Times New Roman', Times, serif;
 }
 
+.navbar {
+    position: sticky;
+    top:0;
+    z-index: 99;
+}
+
+
 #mainTitle {
     font-size: 28px;
     margin-left: 25px;
