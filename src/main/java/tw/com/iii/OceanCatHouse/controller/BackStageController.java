@@ -29,6 +29,17 @@ public class BackStageController {
     public String prod(){
         return "views/backstage/product";
     }
+    @RequestMapping("/recipeDetails")
+    public String recipeDetails(){
+        return "views/RecipePages/recipeDetails";
+    }
+
+    @RequestMapping("/recipeSearch")
+    public String recipeSearch(){
+        return "views/RecipePages/recipeSearch";
+    }
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //讀取商品資訊
     @RequestMapping("/product/data")
