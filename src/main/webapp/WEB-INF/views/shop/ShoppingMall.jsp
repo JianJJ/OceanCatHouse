@@ -3,7 +3,6 @@
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html lang="en">
         <!-- 拼接header -->
-        <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +12,10 @@
             <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
             <%-- bootstrap的CSS、JS樣式放這裡 --%>
+<%--            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
             <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
             <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+
 
             <%-- jQuery放這裡 --%>
             <script src="/recipe/js/jquery-3.6.0.min.js"></script>
@@ -37,11 +38,11 @@
              <canvas id="canvas"></canvas>
             <!-- <%--購物車插入--%> -->
 
-            <jsp:include page="/WEB-INF/views/shop/shoopCat.jsp"></jsp:include>
+            <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 
             <div class=".container">
-                <div class="row">
-                    <div class="col-lg-12">
+<%--                <div class="row">--%>
+<%--                    <div class="col-lg-12">--%>
 
                         <!-- 分類條 -->
                         <div class="row menu">
@@ -60,7 +61,7 @@
                         <!-- 中間部分 -->
                         <div class="row centerA">
                             <!-- 左邊浮動區塊 -->
-                            <div class="col-lg-1 barNav">
+                            <div class="col-lg-2 barNav">
                                 <ul>
                                     <li class="fontIcon" id="f1"></li>
                                     <li class="fontIcon"></li>
@@ -71,7 +72,7 @@
 
                             <!-- 網頁中間內文 -->
 
-                            <div class="col-lg-10 main ">
+                            <div class="col-lg-8 main ">
 
 
                                 <!-- 這裡有商品 -->
@@ -117,49 +118,73 @@
 
                         </div>
                         <!-- 分頁表 -->
-                        <nav class="pag">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag-1}"
-                                        aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=1">1</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=2">2</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=3">3</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=4">4</a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=5">5</a>
-                                </li>
-                                <li>
-                                    <a href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag+1}"
-                                        aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag==1?1:param.pag-1}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=3">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag+1}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+
+
+<%--                        <div class="row">--%>
+<%--                        <nav class="pag">--%>
+<%--                            <ul class="pagination">--%>
+<%--                                <li>--%>
+<%--                                    <a href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag-1}"--%>
+<%--                                        aria-label="Previous"> <span aria-hidden="true">&laquo;</span>--%>
+<%--                                    </a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a--%>
+<%--                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=1">1</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a--%>
+<%--                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=2">2</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a--%>
+<%--                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=3">3</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a--%>
+<%--                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=4">4</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a--%>
+<%--                                        href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=5">5</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag+1}"--%>
+<%--                                        aria-label="Next"> <span aria-hidden="true">&raquo;</span>--%>
                                     </a>
                                 </li>
                             </ul>
                         </nav>
-
-                    </div>
+                        </div>
+<%--                    </div>--%>
 
                     <script src="../js/umbrella.js"></script>
                     <script src="../js/shoopCat.js"></script>
-                </div>
-                <div class="row">
+<%--                </div>--%>
+<%--                <div class="row">--%>
 
-                </div>
+<%--                </div>--%>
             </div>
         </body>
 
