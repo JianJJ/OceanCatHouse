@@ -36,9 +36,9 @@
         <div class="col-xs-10 col-md-10 memberBlock">
 
             <div id='member-icon' style="background-image:
-                    url('${sessionScope.user.userpic!=null?sessionScope.user.userpic:"../images/paw-solid.svg"}')">
-                <input type="file" accept="image/*" id="file-main" name="file"
-                       onchange="upload('#file-main', '#member-icon');" class="fileInput" value=""/>
+                    url('../images/userPic/${sessionScope.user.userpic!=null?sessionScope.user.userpic:"paw-solid.svg"}')">
+                <input type="file" accept="image/*" id="file-userPic" name="file"
+                       onchange="upload('#file-userPic');" class="fileInput" value=""/>
             </div>
 
             <div id='member-imgBackground'></div>
@@ -59,7 +59,7 @@
 
     <div class="row justify-content-center">
         <div class="col-xs-10 col-md-10 memberBlock">
-            <h2>目前已經撰寫了<span>53</span>篇食譜</h2>
+            <h2>目前已經撰寫了<span style="font-weight: bolder">${requestScope.recCount}</span>篇食譜</h2>
             <div class="col-md-11 justify-content-center recipeSimpleContext">
                 如果是列表狀的食譜內容
             </div>

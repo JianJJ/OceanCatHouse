@@ -21,13 +21,23 @@ public class UserBean {
 	private String email;
 	private String userpassword;
 	private String state;
-	
-	
+
 
 	@Override
 	public String toString() {
-		return "UserBean [username=" + username + ", email=" + email + ", userpassword=" + userpassword + "]";
+		return "UserBean{" +
+				"userid=" + userid +
+				", fansnum=" + fansnum +
+				", recnum=" + recnum +
+				", username='" + username + '\'' +
+				", userpic='" + userpic + '\'' +
+				", userphone='" + userphone + '\'' +
+				", email='" + email + '\'' +
+				", userpassword='" + userpassword + '\'' +
+				", state='" + state + '\'' +
+				'}';
 	}
+
 	public Integer getUserid() {
 		return userid;
 	}

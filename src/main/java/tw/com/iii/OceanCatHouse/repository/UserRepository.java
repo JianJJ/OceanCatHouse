@@ -19,4 +19,6 @@ public interface UserRepository extends JpaRepository<UserBean, Integer>{
 	UserBean findPasswordByEmail(String password,String email);
 	@Query( "FROM UserBean WHERE userpassword = ?1 and userphone = ?2")
 	UserBean findPasswordByUserPhone(String password,String userphone);
+	@Query( "FROM UserBean WHERE userid = ?1 and userpassword = ?2")
+	UserBean findUserByUserIdAndPassword(Integer id,String password);
 }

@@ -23,6 +23,44 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userProfile.css">
 </head>
+<script>
+    $(document).ready(function (){
+        // 查看信箱是否驗證
+        var state = '${sessionScope.user.state}';
+        if(state == '0'){
+            $('#emailMsg').prop('hidden', false);
+        }
+        // 抓取要更新的資料
+        var name = '${sessionScope.user.username}';
+        var phone = '${sessionScope.user.userphone}';
+        var email = '${sessionScope.user.email}';
+        changeNPE = function (){
+            var newName = $('#username').val();
+            var newPhone = $('#userPhone').val();
+            var newEmail = $('#userEmail').val();
+            if(name != newName || phone != newPhone || email != newEmail){
+                $.ajax({
+                    url : "/recipe/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail,
+                    type : 'PUT',
+                    data : "",
+                    async : false,
+                    cache: false,  //不做快取
+                    success : function (ok){
+                        alert(ok);
+                    },
+                    error : function (returndata){
+                        console.log("變更失敗");
+                    }
+                })
+                if(email != newEmail){
+                    $('#emailMsg').prop('hidden', false);
+                }
+            }else{
+                alert("儲存成功");
+            }
+        }
+    })
+</script>
 <body>
 <%--頁首--%>
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
@@ -35,6 +73,7 @@
                 <dt>帳號管理</dt>
                 <dd><a href="${pageContext.request.contextPath}/userBack/userSetting">基本資料</a></dd>
                 <dd class="current"><a href="${pageContext.request.contextPath}/userBack/userSetPassword">密碼修改</a></dd>
+                <dd class="current"><a href="${pageContext.request.contextPath}/userBack/home">返回個人首頁</a></dd>
             </dl>
         </section>
 
@@ -43,16 +82,16 @@
             <h3>個人資料</h3>
             <hr>
             <p>你的個人資料只用於海貓食屋相關事宜，例如：海貓食屋活動中獎的獎品寄送使用。</p>
-            <form action="POST">
-                <label for="username">基本資料</label><br/>
+            <form action="#">
+                <label for="username"><h5>＊基本資料</h5></label><br/>
 
-                <input type="text" placeholder="姓名" id='username' name='userName' ><br/>
-                <label for="birth">生日</label><br/>
-                <input type="date" id='birth' name='userBirthday'><br/>
-                <label for="tele">聯絡資料</label><br/>
-                <input type="tel" name="userPhone" id="tele" pattern="[0-9]{10}" placeholder="手機號碼"><br/>
-                <input type="email" name="userEmail" placeholder="E-mail"><br/>
-                <input type="submit" value="儲存更新">
+                <span>姓名：</span><input type="text" placeholder="姓名" id='username' name='userName' value="${sessionScope.user.username}"><br/>
+                <label for="userPhone"><h5>＊聯絡資料</h5></label><br/>
+                <span>手機：</span><input type="tel" name="userPhone" id="userPhone" pattern="[0-9]{10}" placeholder="手機號碼" value="${sessionScope.user.userphone}"><br/>
+                <span>信箱：</span><input type="email" name="userEmail" id="userEmail" placeholder="E-mail" value="${sessionScope.user.email}">
+                <span id="emailMsg" hidden style="color: red">Email驗證尚未通過</span>
+                <br><br>
+                <input type="button" value="儲存更新" onclick="changeNPE()">
             </form>
         </section>
 

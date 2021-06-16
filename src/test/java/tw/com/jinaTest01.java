@@ -31,8 +31,8 @@ public class jinaTest01 {
         sb2.setStep("22");
         sb2.setStepPic("222");
 
-        rmb.getRecipeStepBeans().add(sb);
-        rmb.getRecipeStepBeans().add(sb2);
+//        rmb.getRecipeStepBeans().add(sb);
+//        rmb.getRecipeStepBeans().add(sb2);
 //        sb.setRecipeMainBean(rmb);
 
 //        RecipeStepBean In = repositoryStepDao.save(sb);

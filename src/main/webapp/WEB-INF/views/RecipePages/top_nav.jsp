@@ -51,8 +51,8 @@
                     <img src="./images/yarn-brands.svg" id="userIcon">
                     <button id="userName">haha</button>
                     <ul>
-                      <li><a href="#">個人主頁</a></li>
-                      <li><a href="#">帳號設定</a></li>
+                      <li><a href="${pageContext.request.contextPath}/userBack/home">個人主頁</a></li>
+                      <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
                       <li><a href="#">登出</a></li>
                     </ul>
                   </div>

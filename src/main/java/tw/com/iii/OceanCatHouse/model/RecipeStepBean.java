@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "`recipe_step`")
 public class RecipeStepBean {
@@ -32,6 +31,54 @@ public class RecipeStepBean {
                 ", StepText='" + StepText + '\'' +
                 ", recipeMainBean=" + recipeMainBean +
                 '}';
+    }
+
+    public Integer getStepId() {
+        return StepId;
+    }
+
+    public void setStepId(Integer stepId) {
+        StepId = stepId;
+    }
+
+    public Integer getRecId() {
+        return RecId;
+    }
+
+    public void setRecId(Integer recId) {
+        RecId = recId;
+    }
+
+    public String getStep() {
+        return Step;
+    }
+
+    public void setStep(String step) {
+        Step = step;
+    }
+
+    public String getStepPic() {
+        return StepPic;
+    }
+
+    public void setStepPic(String stepPic) {
+        StepPic = stepPic;
+    }
+
+    public String getStepText() {
+        return StepText;
+    }
+
+    public void setStepText(String stepText) {
+        StepText = stepText;
+    }
+
+    public RecipeMainBean getRecipeMainBean() {
+        return recipeMainBean;
+    }
+
+    public void setRecipeMainBean(RecipeMainBean recipeMainBean) {
+        this.recipeMainBean = recipeMainBean;
     }
 
     @ManyToOne(cascade={CascadeType.MERGE})
