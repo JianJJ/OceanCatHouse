@@ -15,7 +15,6 @@
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
     <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
@@ -44,13 +43,13 @@
             <div id='member-imgBackground'></div>
             <div id="member-navLinks">
                 <div>
-                    <span>hahaha 暱稱</span>
+                    <span>${sessionScope.name.username}</span>
                     <a href="#">食譜收藏</a>
                     <a href="${pageContext.request.contextPath}/createRecipe/start">寫食譜</a>
                 </div>
                 <ul>
                     <li class="currentLink"><a href="#">食譜</a></li>
-                    <li><a href="#">帳號設定</a></li>
+                    <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
                 </ul>
             </div>
         </div>

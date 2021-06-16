@@ -31,8 +31,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 @Component
 public class ZeroTools {
-	private String STMP = "";
-	private String secret ="";
+	private String STMP = "cmbatoziyuiunlot";
+	private String secret ="6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK";
 
 	//郵件
 	public void mail(String mailTo, String text) {

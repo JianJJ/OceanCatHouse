@@ -27,7 +27,6 @@
 <%--頁首--%>
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 
-<%--主體--%>
 <div class="container">
     <div class='row justify-content-around'>
         <section class="col-xs-3 col-md-3" id='settingList'>
@@ -40,19 +39,16 @@
 
         <section class="col-xs-7 col-md-7" id='settingInfoBlock'>
 
-            <h3>個人資料</h3>
+            <h3>密碼修改</h3>
             <hr>
-            <p>你的個人資料只用於海貓食屋相關事宜，例如：海貓食屋活動中獎的獎品寄送使用。</p>
             <form action="POST">
-                <label for="username">基本資料</label><br/>
-
-                <input type="text" placeholder="姓名" id='username' name='userName' ><br/>
-                <label for="birth">生日</label><br/>
-                <input type="date" id='birth' name='userBirthday'><br/>
-                <label for="tele">聯絡資料</label><br/>
-                <input type="tel" name="userPhone" id="tele" pattern="[0-9]{10}" placeholder="手機號碼"><br/>
-                <input type="email" name="userEmail" placeholder="E-mail"><br/>
-                <input type="submit" value="儲存更新">
+                <label for="pwdNow">原本的密碼</label><br/>
+                <input type="password" placeholder="目前在用的密碼" id='pwdNow' name='pwdNow' maxlength="12"><br/>
+                <label for="pwdNew">新密碼</label><br/>
+                <input type="password" placeholder="點此輸入新密碼" id='pwdNew' name='pwdNew' maxlength="12"><br/>
+                <label for="pwdNewAgian">再次輸入新密碼</label><br/>
+                <input type="password" placeholder="點此再次輸入新密碼" id='pwdNewAgian' name='pwdNewAgian' maxlength="12"><br/>
+                <input type="submit" value="儲存新密碼">
             </form>
         </section>
 

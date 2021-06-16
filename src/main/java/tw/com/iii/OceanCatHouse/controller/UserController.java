@@ -125,7 +125,7 @@ public class UserController {
 					System.out.println("登入成功*************************");
 					bean = userRepository.findByemail(bean.getEmail());
 					session.setAttribute("state",bean.getState());
-					session.setAttribute("name",bean.getUsername());
+					session.setAttribute("name",bean);
 					return "/index";
 				} else {
 					System.out.println("密碼錯誤");
@@ -171,7 +171,7 @@ public class UserController {
 				} else {
 					bean = userRepository.findByUserphone(bean.getUserphone());
 					session.setAttribute("state",bean.getState());
-					session.setAttribute("name",bean.getUsername());
+					session.setAttribute("name",bean);
 					System.out.println("登入成功");
 				}
 
