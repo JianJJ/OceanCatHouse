@@ -47,26 +47,18 @@ footer {
 /* 中間身體 */
 .cenBody {
     background-color:white;
-    /* height:1500px; */
     z-index: 7;
     font-size: 25px;
 }
 .cenBody  .leftImg {
-	/* top:30px; */
-    /* float: left; */
-    /* position: relative; */
-    /* width: 700px; */
-    left: 100px;
+    position: relative;
+    left: 50px;
 }
 
-.cenBody  .rightImg {
-    /* float: left; */
-    /* position: relative; */
-    /* height: 700px; */
-    right: 50px;
-    /* width: 500px; */
-   
-}
+/*.cenBody  .rightImg {*/
+/*     position: relative;*/
+/*     right: 50px;*/
+/*}*/
 /* 數量按鈕 */
 .cenBody  .rightImg form .num{
     text-align:center;
@@ -160,9 +152,8 @@ footer {
 .cenBody .SimilarProducts figure {
     width: 200px;
     height: 300px;
-    float: left;
     z-index: 5;
-    margin: 20px;
+    margin: 18px;
 }
 /* 動態背景 */
 canvas {
