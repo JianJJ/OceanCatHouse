@@ -35,14 +35,15 @@ public class ShopRestController {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 主頁身體
 	@RequestMapping("/shopping")
-	public List<ProductBean> mmmm() {
+	public List<ProductBean> mmmm(Model model) {
 		System.out.println("/shopping**************************************************************************");
 		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 12));
 //		page.getSize();每頁條數
 //		page.getNumber();當前頁
 //		page.getNumberOfElements();本頁條數
 //		page.getTotalElements();全部幾筆
-//		page.getTotalPages();全部有幾頁		
+//		page.getTotalPages();全部有幾頁
+		model.addAttribute("maxPage", page.getTotalPages());
 		List<ProductBean> result = page.getContent();
 		return result;
 	}
@@ -50,9 +51,11 @@ public class ShopRestController {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 主頁身體分類
 	@RequestMapping("/shopping/{categoryid}")
-	public List<ProductBean> categoryid(@PathVariable("categoryid") Integer categoryid) {
+	public List<ProductBean> categoryid(@PathVariable("categoryid") Integer categoryid,HttpSession session) {
 		System.out.println("/categoryid*****************************************" + categoryid);
-		List<ProductBean> result = productRepository.findByProductcategoryid(categoryid);
+		Page<ProductBean> page = productRepository.findByProductcategoryid(categoryid,PageRequest.of(0, 12));
+		session.setAttribute("maxPage", page.getTotalPages());
+		List<ProductBean> result = page.getContent();
 		return result;
 	}
 
@@ -92,6 +95,7 @@ public class ShopRestController {
 	public ResponseEntity<List<ProductBean>> category(@PathVariable("id") Integer id) {
 		System.out.println("category******************************************************************" + id);
 		List<ProductBean> result = productRepository.findProductcategoryid(id);
+
 		if (result != null) {
 			return ResponseEntity.ok(result);
 		} else {
