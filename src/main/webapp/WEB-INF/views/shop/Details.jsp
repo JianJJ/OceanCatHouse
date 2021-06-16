@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-<!-- 拼接header -->
-<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,6 +27,7 @@
 
 
     <%-- 主要的CSS、JS放在這裡--%>
+    <link rel="stylesheet" href="../css/demo.css">
     <link rel="stylesheet" href="../css/Details.css">
     <script type="text/javascript">
         var id = "${id}";
@@ -38,6 +38,8 @@
 </head>
 
 <body>
+<!-- 拼接header -->
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <!-- 動態背景 -->
 <canvas id="canvas"></canvas>
 <!-- <%--購物車插入--%> -->
@@ -131,26 +133,26 @@
                     </div>
                 </div>
                 <!-- 推薦食譜 -->
-                <div class="recommend row">
-                    <p>推薦食譜</p>
-                    <script>
-                        $.ajax({
-                            url: "/recipe/recommend/${id}",
-                            type: "get",
-                            success: function (json) {
-                                for (var A of json) {
-                                    $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +
-                                        '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +
-                                        ' <p>' + A.recTitle + '</p>' +
-                                        ' </div>');
-                                }
-                            },
-                            error: function (json) {
-                                console.log("error" + json);
-                            }
-                        });
-                    </script>
-                </div>
+<%--                <div class="recommend row">--%>
+<%--                    <p>推薦食譜</p>--%>
+<%--                    <script>--%>
+<%--                        $.ajax({--%>
+<%--                            url: "/recipe/recommend/${id}",--%>
+<%--                            type: "get",--%>
+<%--                            success: function (json) {--%>
+<%--                                for (var A of json) {--%>
+<%--                                    $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +--%>
+<%--                                        '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +--%>
+<%--                                        ' <p>' + A.recTitle + '</p>' +--%>
+<%--                                        ' </div>');--%>
+<%--                                }--%>
+<%--                            },--%>
+<%--                            error: function (json) {--%>
+<%--                                console.log("error" + json);--%>
+<%--                            }--%>
+<%--                        });--%>
+<%--                    </script>--%>
+<%--                </div>--%>
                 <!-- 同類商品 -->
                 <div class="SimilarProducts row">
                     <p>同類商品</p>

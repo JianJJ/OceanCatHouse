@@ -42,10 +42,11 @@ body{
 }
 
  .menu #home a {
+     position: relative;
+     top: 10px;
     background-color: rgb(66, 108, 18);
-    float: left;
     box-sizing:content-box;
-    padding: 18px 16px 18px 16px;
+    padding: 16px 16px 16px 16px;
 }
 .menuDetail {
     line-height: 46px;

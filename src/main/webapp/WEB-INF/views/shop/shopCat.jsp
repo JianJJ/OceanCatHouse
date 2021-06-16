@@ -8,13 +8,13 @@
         <style>
             /* 購物車 */
             .hazy {
-                visibility: hidden; 
+                visibility: hidden;
                 position:fixed;
                 width: 100%;
                 height: 100%;
                 background-color: rgba(0, 0, 0, 0.5);
                 z-index: 50;
-                
+
             }
 
             .cat {
@@ -31,7 +31,7 @@
                 border-radius: 15px;
                 overflow: scroll;
                 overflow-X: hidden;
-               
+
             }
 
             /* 購物車返回 */
@@ -149,8 +149,8 @@
                 position: absolute;
                 z-index: 10;
                 color: #000;
-                top: 6px;
-                right: 6px;
+                /*top: 6px;*/
+                right: -25px;
             }
         </style>
 

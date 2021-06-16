@@ -29,12 +29,15 @@
 
 
             <%-- 主要的CSS、JS放在這裡--%>
+            <link rel="stylesheet" href="../css/demo.css">
             <link rel="stylesheet" href="../css/ShoppingMall.css">
             <title>✿海貓食屋✿</title>
 
         </head>
 
         <body>
+        <!-- 拼接header -->
+        <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
              <canvas id="canvas"></canvas>
             <!-- <%--購物車插入--%> -->
 

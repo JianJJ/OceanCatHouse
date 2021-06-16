@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +42,8 @@
 </head>
 
 <body>
-
+<!-- 拼接header -->
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <canvas id="canvas"></canvas>
 <!-- header部分 -->
 
@@ -106,7 +107,7 @@
 <script src="../js/oauth.js"></script>
 <script>
     $(".phone").click(function () {
-        window.location.href = "/recipe/views/phoneLogin";
+        window.location.href = "/views/phoneLogin";
     });
 </script>
 </div>

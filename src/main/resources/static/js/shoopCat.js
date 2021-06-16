@@ -13,7 +13,12 @@ $.ajax({
 	success: function(json) {
 		CatProduct = json;
 		var key = Object.keys(json);
-		$('.barNav').prepend('<spean class="catNum">' + key.length + '</spean>');
+		if(key.length == 0){
+			$("#f1").text("");
+		}else{
+			$("#f1").text(""+key.length);
+		}
+		// $('.barNav').prepend('<spean class="catNum">' + key.length + '</spean>');
 		for (var A in json) {
 
 			//用id找資料
@@ -167,8 +172,9 @@ function delCat(id) {
 				m += json[k] * sell[k];
 			}
 			$(".PPP").text("購物車刪除   總價:" + m);
+
 			if (key.length == 0)
-				window.location.assign("/recipe/Details/${id}");
+				window.location.assign("/recipe/Details/"+id);
 		},
 		error: function(json) {
 			console.log("delCat*****err " + json);
