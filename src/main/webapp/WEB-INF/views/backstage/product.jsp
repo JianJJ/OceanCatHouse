@@ -100,8 +100,6 @@
             <%--            抬頭--%>
             <div class="row">
                 <button class="col-lg-1" id="addPoduct">新增</button>
-                <button class="col-lg-1">bbb</button>
-                <button class="col-lg-1">ccc</button>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">

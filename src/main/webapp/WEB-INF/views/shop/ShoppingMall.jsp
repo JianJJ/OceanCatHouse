@@ -58,13 +58,14 @@
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>
+
     </div>
 
 
     <!-- 中間部分 -->
     <div class="row centerA">
         <!-- 左邊浮動區塊 -->
-        <div class="col-lg-2 barNav">
+        <div class="col-lg-3 barNav">
             <ul>
                 <li class="fontIcon" id="f1"></li>
                 <li class="fontIcon"></li>
@@ -75,7 +76,7 @@
 
         <!-- 網頁中間內文 -->
 
-        <div class="col-lg-8 main ">
+        <div class=" main col-lg-6">
 
 
             <!-- 這裡有商品 -->
@@ -110,7 +111,7 @@
             </script>
 
         </div>
-        <div class="col-lg-1">
+        <div class="col-lg-3">
             <!-- 右邊至頂 -->
             <div class="toUP">
                 <span class="fontIcon" id="toUp"></span>
@@ -119,12 +120,7 @@
 
     </div>
     <!-- 分頁表 -->
-    <%--    <style>--%>
-    <%--        .per{--%>
-    <%--            visibility: hidden;--%>
-    <%--        }--%>
-    <%--    </style>--%>
-        //最多頁數
+<%--        //最多頁數--%>
     <script>
         $(document).ready(function () {
             var url = location.href;

@@ -64,7 +64,7 @@ public class UserController {
         String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>從新設定密碼</a></p>";
 
 
-        bean.setEmail("wiz71029@gmail.com");
+        bean.setEmail("wiz710329@gmail.com");
         zTools.mail(bean.getEmail(), text);
         return "/index";
     }

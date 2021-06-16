@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -16,6 +17,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
+        body{
+            background-color: #222;
+        }
         .headtop{
             position: sticky;
             top: 0px;
@@ -38,6 +42,13 @@
             background-color: transparent;
             color: white;
         }
+        #timeCenter {
+            color: #ffffff;
+            position: relative;
+            top : 350px;
+            margin:  auto;
+            width: 40px;
+        }
     </style>
 </head>
 <body>
@@ -52,10 +63,10 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" aria-disabled="true">訂單管理</button>
+        <label class="list-group-item" aria-disabled="true">訂單管理</label>
         <button class="list-group-item" onclick="javascript:location.href='../backstage/product'">商品管理</button>
-        <button class="list-group-item">會員管理</button>
-        <button class="list-group-item">員工管理</button>
+        <label class="list-group-item">會員管理</label>
+        <label class="list-group-item">員工管理</label>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -88,9 +99,10 @@
                 </ul>
             </nav>
             <div class="row">
+                <div id="timeCenter">Error</div>
+                <script src="${pageContext.request.contextPath}/js/time.js"></script>
                 <%--                中間之後要放的內容--%>
-                範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字
-            </div>
+                </div>
         </div>
     </div>
 </div>

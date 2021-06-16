@@ -31,7 +31,7 @@ $.ajax({
 					c[product.productid] = product.sellingprice * json[product.productid];//合計
 					$('.cat').prepend('<div class="catProduct" id="catProduct' + product.productid + '">' +
 						'<img src="../images/' + product.productmodel + '-1.jpg" alt="">' +
-						'<div class="context"><h1>' + product.productname + '</h1><br>' +
+						'<div class="context"><h3>' + product.productname + '</h3><br>' +
 						'<span>商品規格:' + product.productspecifications + '</span></div>' +
 						'<div><span class="cash">' + product.sellingprice + '</span>' +
 						'<button class="catProductLeftButton" type="button" onclick="cutCat(' + product.productid + ')">-</button>' +

@@ -172,6 +172,17 @@
             </div>
         </div>
 
+        <script>
+            $(".catSubmit").click(function (){
+                var user = '${user.username}';
+                console.log("user");
+
+
+
+                alert("感謝購買");
+                window.location.href = "/recipe/views/catSave";
+            })
+        </script>
 
     </body>
 

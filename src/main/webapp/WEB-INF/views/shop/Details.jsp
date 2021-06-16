@@ -148,7 +148,7 @@
                                 }
                             },
                             error: function (json) {
-                                console.log("error" + json);
+                                console.log("error 推薦食譜" + json);
                             }
                         });
                     </script>
