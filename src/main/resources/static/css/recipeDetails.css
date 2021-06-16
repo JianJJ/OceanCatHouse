@@ -44,12 +44,6 @@ a:hover {
 }
 
 
-ul li {
-    text-decoration: none;
-    display: inline-block;
-}
-
-
 /* 左邊浮動區塊 */
 .barNav {
     position: relative;
@@ -73,6 +67,8 @@ ul li {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-decoration: none;
+    display: inline-block;
     width: 50px;
     height: 50px;
     border: lightgray 1px solid;
@@ -198,6 +194,8 @@ ul li {
 
 
 .recommendRec ul li, .seenRec ul li {
+	text-decoration: none;
+    display: inline-block;
     width: 185px;
     height: 240px;
     margin: 0px 5px;

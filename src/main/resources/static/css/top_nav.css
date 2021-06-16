@@ -64,44 +64,70 @@ input:focus {
     box-shadow: 0px 0px 10px 0px #e086b9;
 }
 
-/* 
-.Login {
-    margin: 0px 10px;
-    padding: 0 30px;
-    border-radius: 5px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    color: white;
-    background-color: #B54484;
-    
-}
-em {
-    font-weight: 700;
-    margin: 0 5px;
+
+#userConsole {
+    position: relative;
 }
 
-.Login span:hover {
-    color: black;
-    cursor: pointer;
-    
-} */
-
-.userIcon {
-    margin-right: 20px;
+#userIcon {
+    margin-right: 10px;
     width: 50px;
     height: 50px;
     border-radius: 25px;
     border: none;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, .4);
-    background-position: center;
-    background-size: cover;
-    /* 用戶的大頭貼 */
-    background-image: url(../images/yarn-brands.svg);
-    background-size: cover;
-    background-position: center;
-    
+    background-color: transparent;
+
+}
+
+
+#userName {
+    margin-right: 15px;
+    border: none;
+    background: transparent;
+}
+
+
+#userConsole:hover ul, #userConsole ul:hover {
+    display: block;
+}
+
+#userConsole ul {
+    display: none;
+    position: absolute;
+    top:50px;
+    padding: 0;
+    margin:0;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .3);
+    box-shadow: 0px 0px 3px 1px rgba(168, 226, 251, 0.292);
+}
+
+#userConsole ul li {
+	padding: 0;
+    margin:0;
+    list-style: none;
+    width: 100px;
+    line-height: 35px;
+    text-align: center;
+    background-color: white;
+}
+
+#userConsole ul li a {
+    text-decoration: none;
+    color: #444;
+}
+
+
+#userConsole ul li:hover {
+    background: rgba(245, 222, 179, 0.353);
+}
+
+
+
+em {
+    font-style: normal;
+    margin: 0 20px;
+    font-weight: 700;
+    color: #777;
 }

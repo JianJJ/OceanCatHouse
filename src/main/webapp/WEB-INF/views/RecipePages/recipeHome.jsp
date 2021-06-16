@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 
  <!-- 拼接header -->
-<jsp:include page="top_nav.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,6 +39,7 @@
 
 
 <body>
+<jsp:include page="top_nav.jsp"></jsp:include>
  <div class="center">
 
             <div class="focusBlock">
@@ -46,7 +47,7 @@
                 <button href="#" class='arrow-r'>&gt;</button>
                 <ul class='carou'>
                     <li>
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/recipeDetails">
                             <h2>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h2>
                             <img src="./images/testPic1.jpg" alt="">
                         </a>
