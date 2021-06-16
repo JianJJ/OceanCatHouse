@@ -14,9 +14,7 @@
 <!-- 123 -->
 <%--	<h3>Welcome ${user.custid}</h3>--%>
 　　<c:if test="${!empty user.custid}">
-
 　　<h3>Welcome ${user.custid}</h3>
-
 　　</c:if>
 <%--<h3>Welcome ${user.custid}</h3>--%>
 

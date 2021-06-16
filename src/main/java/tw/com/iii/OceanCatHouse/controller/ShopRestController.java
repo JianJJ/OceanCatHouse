@@ -125,11 +125,10 @@ public class ShopRestController {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //刪除購物車商品
 	@RequestMapping("delCat/{id}")
-	public HashMap<String, Integer> delCat(@PathVariable("id") Integer id, HttpSession session,
-			@RequestBody HashMap<String, Integer> body, Model model) {
+	public HashMap<String, Integer> delCat(@PathVariable("id") Integer id,
+			@RequestBody HashMap<String, Integer> body) {
 		System.out.println("********************delCat*****************************************" + id);
 		body.remove("" + id);
-		session.setAttribute("cat", body);
 		System.out.println(body);
 		return body;
 	}
@@ -137,26 +136,24 @@ public class ShopRestController {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //++購物車商品
 	@RequestMapping("addCat/{id}")
-	public HashMap<String, Integer> addCat(@PathVariable("id") String id, HttpSession session,
-			@RequestBody HashMap<String, Integer> body, Model model) {
+	public HashMap<String, Integer> addCat(@PathVariable("id") String id,
+			@RequestBody HashMap<String, Integer> body) {
 		System.out.println("********************addCat*****************************************" + id);
 		int AAA = body.get(id);
 		AAA++;
 		body.put(id, AAA);
-//		session.setAttribute("cat", body);
 		return body;
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////55
 //---購物車商品
 	@RequestMapping("cutCat/{id}")
-	public HashMap<String, Integer> cutCat(@PathVariable("id") String id, HttpSession session,
-			@RequestBody HashMap<String, Integer> body, Model model) {
+	public HashMap<String, Integer> cutCat(@PathVariable("id") String id,
+			@RequestBody HashMap<String, Integer> body) {
 		System.out.println("********************cutCat*****************************************" + id);
 		int AAA = body.get(id);
 		AAA--;
 		body.put(id, AAA);
-//		session.setAttribute("cat", body);
 		return body;
 	}
 
@@ -169,6 +166,27 @@ public class ShopRestController {
 		Page<RecipeMainBean> page = recipeRepository.findAll(PageRequest.of(rand, 6));
 		List<RecipeMainBean> result = page.getContent();
 		return result;
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//取得最大夜面
+	@RequestMapping("/pag/")
+	public Integer pag() {
+		System.out.println("/categoryid*****************************************" );
+		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 12));
+		Integer AAA =  page.getTotalPages();
+		return AAA;
+	}
+	@RequestMapping("/pag/{categoryid}")
+	public Integer pagc(@PathVariable("categoryid") Integer categoryid) {
+		System.out.println("/categoryid*****************************************" + categoryid);
+		Page<ProductBean> page = null;
+		if (categoryid == 0) {
+			page = productRepository.findAll(PageRequest.of(0, 12));
+		} else {
+			page = productRepository.findByProductcategoryid(categoryid, PageRequest.of(0, 12));
+		}
+		Integer AAA =  page.getTotalPages();
+		return AAA;
 	}
 
 }

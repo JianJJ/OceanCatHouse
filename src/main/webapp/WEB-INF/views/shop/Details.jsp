@@ -133,26 +133,26 @@
                     </div>
                 </div>
                 <!-- 推薦食譜 -->
-<%--                <div class="recommend row">--%>
-<%--                    <p>推薦食譜</p>--%>
-<%--                    <script>--%>
-<%--                        $.ajax({--%>
-<%--                            url: "/recipe/recommend/${id}",--%>
-<%--                            type: "get",--%>
-<%--                            success: function (json) {--%>
-<%--                                for (var A of json) {--%>
-<%--                                    $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +--%>
-<%--                                        '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +--%>
-<%--                                        ' <p>' + A.recTitle + '</p>' +--%>
-<%--                                        ' </div>');--%>
-<%--                                }--%>
-<%--                            },--%>
-<%--                            error: function (json) {--%>
-<%--                                console.log("error" + json);--%>
-<%--                            }--%>
-<%--                        });--%>
-<%--                    </script>--%>
-<%--                </div>--%>
+                <div class="recommend row">
+                    <p>推薦食譜</p>
+                    <script>
+                        $.ajax({
+                            url: "/recipe/recommend/${id}",
+                            type: "get",
+                            success: function (json) {
+                                for (var A of json) {
+                                    $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +
+                                        '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +
+                                        ' <p>' + A.recTitle + '</p>' +
+                                        ' </div>');
+                                }
+                            },
+                            error: function (json) {
+                                console.log("error" + json);
+                            }
+                        });
+                    </script>
+                </div>
                 <!-- 同類商品 -->
                 <div class="SimilarProducts row">
                     <hr>
