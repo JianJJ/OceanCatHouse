@@ -155,7 +155,9 @@
 <%--                </div>--%>
                 <!-- 同類商品 -->
                 <div class="SimilarProducts row">
+                    <hr>
                     <p>同類商品</p>
+
                     <script>
                         $.ajax({
                             url: "/recipe/category/" + id,
