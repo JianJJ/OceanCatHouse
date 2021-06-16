@@ -29,12 +29,12 @@ public class BackStageController {
     public String prod(){
         return "views/backstage/product";
     }
-    @RequestMapping("/recipeDetails")
+    @RequestMapping("/r")
     public String recipeDetails(){
         return "views/RecipePages/recipeDetails";
     }
 
-    @RequestMapping("/recipeSearch")
+    @RequestMapping("/h")
     public String recipeSearch(){
         return "views/RecipePages/recipeSearch";
     }

@@ -1,14 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
-    <script src="../js/jquery-3.4.1.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+    <%-- bootstrap的CSS、JS樣式放這裡 --%>
+    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+
+    <%-- jQuery放這裡 --%>
+    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery-3.4.1.js"></script>
+
+    <%-- Header的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+
+
+    <%-- footer的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+
+
+    <%-- 主要的CSS、JS放在這裡--%>
+    <script src="/recipe/js/recipeDetails.js"></script>
+
+    <meta charset="UTF-8">
+    <%--    google--%>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam"async defer></script> -->
@@ -20,9 +45,7 @@
 
 <body>
     <canvas id="canvas"></canvas>
-    <!-- header部分 -->
-    <jsp:include page="/header.jsp"></jsp:include>
-    <!-- 中間部分 -->
+        <!-- 中間部分 -->
     <div class="center">
 
         <!-- 左邊浮動區塊 -->
@@ -71,9 +94,11 @@
         </div>
     </div>
 
-    <jsp:include page="/footer.jsp"></jsp:include>
+
     <script src="../js/umbrella.js"></script>
     <script src="../js/recaptcha.js"></script>
+    <!-- 拼接footer -->
+    <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
 </body>
 
 </html>

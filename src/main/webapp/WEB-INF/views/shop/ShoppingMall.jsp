@@ -2,23 +2,32 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html lang="en">
-
+        <!-- 拼接header -->
+        <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
         <head>
-            <!-- Latest compiled and minified CSS -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-            <!-- Optional theme -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-            <!-- Latest compiled and minified JavaScript -->
-            <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-            <script src="../js/jquery-3.4.1.js"></script>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
             <link rel="preconnect" href="https://fonts.gstatic.com">
             <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="../css/demo.css">
+
+            <%-- bootstrap的CSS、JS樣式放這裡 --%>
+            <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+
+            <%-- jQuery放這裡 --%>
+            <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+            <script src="../js/jquery-3.4.1.js"></script>
+            <%-- Header的CSS、JS樣式放這裡    --%>
+            <link rel="stylesheet" href="/recipe/css/top_nav.css">
+
+
+            <%-- footer的CSS、JS樣式放這裡    --%>
+            <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+
+
+            <%-- 主要的CSS、JS放在這裡--%>
             <link rel="stylesheet" href="../css/ShoppingMall.css">
             <title>✿海貓食屋✿</title>
 
@@ -28,15 +37,12 @@
              <canvas id="canvas"></canvas>
             <!-- <%--購物車插入--%> -->
 
-            <jsp:include page="/shoopCat.jsp"></jsp:include>
+            <jsp:include page="/WEB-INF/views/shop/shoopCat.jsp"></jsp:include>
 
             <div class=".container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <!-- header部分 -->
-                        <div class="row">
-                            <jsp:include page="/header.jsp"></jsp:include>
-                        </div>
+
                         <!-- 分類條 -->
                         <div class="row menu">
                             <div id="home" class="col-lg-1">
@@ -152,9 +158,10 @@
                     <script src="../js/shoopCat.js"></script>
                 </div>
                 <div class="row">
-                    <jsp:include page="/footer.jsp"></jsp:include>
+
                 </div>
             </div>
         </body>
 
         </html>
+<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>

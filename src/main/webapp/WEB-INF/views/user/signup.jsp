@@ -6,7 +6,6 @@
 <html lang="en">
 
 <head>
-    <script src="../js/jquery-3.4.1.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +18,7 @@
 
     <%-- jQuery放這裡 --%>
     <script src="/recipe/js/jquery-3.6.0.min.js"></script>
-
+    <script src="../js/jquery-3.4.1.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/top_nav.css">
 
