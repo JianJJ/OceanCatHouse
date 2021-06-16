@@ -27,6 +27,7 @@ public class RecipeMainBean {
     private String RecCreated;
     private Integer RecViews;
 
+
     @Override
     public String toString() {
         return "RecipeMainBean{" +

@@ -6,5 +6,7 @@ import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 
 public interface RecipeRepository extends JpaRepository<RecipeMainBean,Integer>{
 
-	
+
+
+
 }
