@@ -35,7 +35,8 @@
     <div class='row justify-content-center'>
         <div class="col-xs-10 col-md-10 memberBlock">
 
-            <div id='member-icon'>
+            <div id='member-icon' style="background-image:
+                    url('${sessionScope.user.userpic!=null?sessionScope.user.userpic:"../images/paw-solid.svg"}')">
                 <input type="file" accept="image/*" id="file-main" name="file"
                        onchange="upload('#file-main', '#member-icon');" class="fileInput" value=""/>
             </div>
@@ -43,7 +44,7 @@
             <div id='member-imgBackground'></div>
             <div id="member-navLinks">
                 <div>
-                    <span>${sessionScope.name.username}</span>
+                    <span>${sessionScope.user.username}</span>
                     <a href="#">食譜收藏</a>
                     <a href="${pageContext.request.contextPath}/createRecipe/start">寫食譜</a>
                 </div>

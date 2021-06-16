@@ -12,8 +12,8 @@ public class UserBackController {
 
     @RequestMapping("/home")
     public String home(HttpSession session){
-        UserBean name = (UserBean) session.getAttribute("name");
-
+        UserBean name = (UserBean) session.getAttribute("user");
+        session.setAttribute("pic", name.getUserpic());
         System.out.println(name);
 
         return "/views/user/userHome";
