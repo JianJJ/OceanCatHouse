@@ -67,14 +67,6 @@ public class PublicController {
 
 		}
 
-	//食譜詳細頁面
-	@RequestMapping(
-			path = {"/recipeDetails"}
-	)
-	public String recipeDetails() {
-		return "views/RecipePages/recipeDetails";
-
-	}
 
 	//食譜搜尋頁面
 	@RequestMapping(
@@ -86,23 +78,9 @@ public class PublicController {
 	}
 
 
-	//食譜頁首測試
-	@RequestMapping(
-			path = {"/top"}
-	)
-	public String topNav() {
-		return "views/RecipePages/top_nav";
 
-	}
 
-	//食譜頁尾測試
-	@RequestMapping(
-			path = {"/bot"}
-	)
-	public String botNav() {
-		return "views/RecipePages/bottom_nav";
 
-	}
 
 
 

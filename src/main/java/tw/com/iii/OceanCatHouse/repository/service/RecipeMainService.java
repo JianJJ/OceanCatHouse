@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class RecipeMainService {
@@ -17,4 +19,8 @@ public class RecipeMainService {
         RecipeMainBean save = recipeMainDao.save(recipeMainBean);
         return save;
     }
+
+
+
+
 }
