@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--拼接header--%>
-<jsp:include page="top_nav.jsp"></jsp:include>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-
+<jsp:include page="top_nav.jsp"></jsp:include>
 
     <!-- 中間部分 -->
     <div class="center">
@@ -53,7 +53,7 @@
                     Find and share everyday cooking inspiration. <br/>
                     Discover recipes, cooks, and how-tos based on the food you love and the friends you follow.
                 </p>
-                <a href="#">DISCOVER RECIPES</a>
+                <a href="${pageContext.request.contextPath}/recipeSearch">DISCOVER RECIPES</a>
                 
 
             </div>
@@ -70,7 +70,7 @@
                 <p>
                     Shop for ingredients online and stock your pantry with everything from miso to paneer to prosciutto.
                 </p>
-                <a href="#">GO FOR SHOP</a>
+                <a href="/recipe/views/ShoppingMall">GO FOR SHOP</a>
                 
 
             </div>

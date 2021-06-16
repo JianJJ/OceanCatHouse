@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <head>
+     <meta charset="UTF-8">
+<%--     <meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
+<%--     <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
 <%--    <link rel="preconnect" href="https://fonts.gstatic.com">--%>
 <%--    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">--%>
 <%--    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">--%>
 <%--    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">--%>
 <%--    <link rel="stylesheet" href="/recipe/css/top_nav.css">--%>
 
-    <title>Header</title>
-</head>
+<%--     <title>Header</title>--%>
+ </head>
 
-<body>
+ <body>
 
     <!-- header部分 -->
 
@@ -42,17 +42,20 @@
                     </li>
                 </ul>
 
-                <form class="d-flex">
+                <form class="d-flex" action="" method="">
                     <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
                     <button class="btn btn-search" type="submit">Search</button>
-                </form>
-
-                <!-- <div class="Login me-2" >
-                <a href="#" class="navColor"><span class="text">SIGN UP</span></a><em>/</em>
-                <a href="#" class="navColor" ><span class="text">LOG IN</span></a>
-            </div> -->
-
-                <button class="userIcon"></button>
+                  </form>
+                  <em>|</em>
+                  <div id='userConsole'>
+                    <img src="./images/yarn-brands.svg" id="userIcon">
+                    <button id="userName">haha</button>
+                    <ul>
+                      <li><a href="#">個人主頁</a></li>
+                      <li><a href="#">帳號設定</a></li>
+                      <li><a href="#">登出</a></li>
+                    </ul>
+                  </div>
 
             </div>
         </div>

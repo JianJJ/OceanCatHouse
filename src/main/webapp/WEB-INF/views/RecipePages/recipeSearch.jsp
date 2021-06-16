@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%--拼接header--%>
-<jsp:include page="top_nav.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,9 +37,9 @@
 </head>
 
 <body>
-
+<jsp:include page="top_nav.jsp"></jsp:include>
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-between">
             <form class="col-lg-3 d-none d-md-none d-lg-block recFilter">
                 <h3 class="littleTitle"><span>詳細搜尋</span><input type="reset" value="清除"></input></h3>
                 <hr class='underline'>
@@ -54,9 +54,9 @@
                 <input type="submit" value="搜尋" class="btn-search" id='btnRecResult'></input>
             </form>
   
-            <section class="col-xs-12 col-lg-9 recResult offset-lg-3">
-                <ul class="row">
-                    <li class="col-lg-3 col-xs-6"><a href="#">
+            <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
+                <ul class="row row justify-content-around">
+                    <li class="col-lg-3 col-xs-6"><a href="${pageContext.request.contextPath}/recipeDetails">
                         <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
                         <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
                         <p class='showLines'>防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜</p>
