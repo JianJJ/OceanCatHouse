@@ -31,6 +31,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 @Component
 public class ZeroTools {
+//	window.location.href = "/recipe/views/phoneLogin";
 	private String STMP = "";
 	private String secret ="";
 

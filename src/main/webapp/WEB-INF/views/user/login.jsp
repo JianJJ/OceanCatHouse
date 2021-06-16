@@ -22,14 +22,11 @@
     <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/top_nav.css">
 
-
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <script src="/recipe/js/recipeHome.js"></script>
-    <link rel="stylesheet" href="/recipe/css/recipeHome.css">
     <%--	GOOGLE--%>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -68,6 +65,7 @@
         <div class="grid-row">
             <div class="loginTitle">✿海貓食屋✿</div>
             <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
+
             <div class="g-signin2" data-onsuccess="onSignIn" data-width="376" data-height="50"
                  data-longtitle="true"></div>
 

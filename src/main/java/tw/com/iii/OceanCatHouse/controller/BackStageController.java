@@ -21,10 +21,13 @@ public class BackStageController {
     public String home(){
         return "/views/backstage/backstage";
     }
+
     @RequestMapping("/time")
     public String tiem(){
         return "views/backstage/time";
     }
+
+
     @RequestMapping("/product")
     public String prod(){
         return "views/backstage/product";
