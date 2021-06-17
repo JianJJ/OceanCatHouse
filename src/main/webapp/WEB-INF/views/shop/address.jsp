@@ -34,25 +34,96 @@
 <!-- 拼接header -->
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <canvas id="canvas"></canvas>
-
+<jsp:include page="../user/inculeLogin.jsp"></jsp:include>
 <div class=".container">
-    <jsp:include page="../user/inculeLogin.jsp"></jsp:include>
-        ${user}<br>
+    <div class="row">
+        dib
+    </div>
+    <div class="row cat ">
+        <div class="col-lg-3">xx</div>
+        <div class="col-lg-3">xx</div>
+        <div class="col-lg-3">xx</div>
+        <div class="col-lg-3">xx</div>
+    </div>
+         ${user}<br>
         ${cat}<br>
         ${state}
+<%--            <div>--%>
+<%--                $('.cat').prepend('<div class="catProduct" id="catProduct' + product.productid + '">' +--%>
+<%--                '<img src="../images/' + product.productmodel + '-1.jpg" alt="">' +--%>
+<%--                '<div class="context"><h3>' + product.productname + '</h3><br>' +--%>
+<%--                    '<span>商品規格:' + product.productspecifications + '</span></div>' +--%>
+<%--                '<div><span class="cash">' + product.sellingprice + '</span>' +--%>
+<%--                    '<button class="catProductLeftButton" type="button" onclick="cutCat(' + product.productid + ')">-</button>' +--%>
+<%--                    '<input type="number" name="catProductNum' + product.productid + '" value="' + json[product.productid] + '" class="pnum" id="pnum' + product.productid + '">' +--%>
+<%--                    '<button class="catProductRightButton" type="button" onclick="addCat(' + product.productid + ')">+</button>' +--%>
+<%--                    '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span></div>' +--%>
+<%--                '<button class="del" onclick="delCat(' + product.productid + ')">刪除</button></div>');--%>
+<%--            </div>--%>
+
+
         <script>
-            var cat = '${cat}';
-            if(cat == 0) {
-                alert("未購買商品");
-                window.location.href = "/recipe/views/ShoppingMall";
-            }
-            var user = '${user}';
-            if(user == 0){
-                alert("請先登入");
-            }
+            var sell = [];
+            var c = [];
+            $.ajax({
+                url: "/recipe/catData",
+                type: "get",
+                async: false,
+                // dataType: "json",
+                success: function(json) {
+                    CatProduct = json;
+                    var key = Object.keys(json);
+                    for (var A in json) {
+                        //用id找資料
+                        $.ajax({
+                            url: "/recipe/product/" + A,
+                            type: "get",
+                            async: false,
+                            success: function(product) {
+                                sell[product.productid] = product.sellingprice;
+                                c[product.productid] = product.sellingprice * json[product.productid];//合計
+                                $('.cat').prepend('<div class="col-lg-3">xx<div class="catProduct" id="catProduct' + product.productid + '">' +
+                                    '<img src="./images/shop/' + product.productmodel + '-1.jpg" alt="">' +
+                                    '<div class="context"><h3>' + product.productname + '</h3><br>' +
+                                    '<span>商品規格:' + product.productspecifications + '</span></div>' +
+                                    '<div><span class="cash">' + product.sellingprice + '</span>' +
+                                    '<button class="catProductLeftButton" type="button" onclick="cutCat(' + product.productid + ')">-</button>' +
+                                    '<input type="number" name="catProductNum' + product.productid + '" value="' + json[product.productid] + '" class="pnum" id="pnum' + product.productid + '">' +
+                                    '<button class="catProductRightButton" type="button" onclick="addCat(' + product.productid + ')">+</button>' +
+                                    '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span></div>' +
+                                    '<button class="del" onclick="delCat(' + product.productid + ')">刪除</button></div></div>');
+
+                            }
+                            , error: function(json) {
+                                console.log("err " + json);
+                                function suc(product, A) {
+
+                                }
+
+
+
+                            }
+                        })
+
+
+                    }
+                }, error: function(json) {
+                    console.log("err " + json);
+                }
+            })
+            <%--if(cat == 0) {--%>
+            <%--    alert("未購買商品");--%>
+            <%--    window.location.href = "/recipe/views/ShoppingMall";--%>
+            <%--}--%>
+            <%--var user = '${user}';--%>
+            <%--if(user == 0){--%>
+            <%--    alert("請先登入");--%>
+            <%--}--%>
         </script>
     <style>
-
+    .main {
+        visibility: hidden;
+    }
     </style>
 </div>
 </body>
