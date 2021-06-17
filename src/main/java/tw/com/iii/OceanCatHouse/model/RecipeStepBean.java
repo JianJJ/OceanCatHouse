@@ -81,6 +81,7 @@ public class RecipeStepBean {
         this.recipeMainBean = recipeMainBean;
     }
 
+    @JsonIgnore
     @ManyToOne(cascade={CascadeType.MERGE})
     @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
     private RecipeMainBean recipeMainBean;

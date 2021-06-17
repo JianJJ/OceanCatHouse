@@ -31,13 +31,14 @@ public class jinaTest01 {
         sb2.setStep("22");
         sb2.setStepPic("222");
 
-//        rmb.getRecipeStepBeans().add(sb);
-//        rmb.getRecipeStepBeans().add(sb2);
 //        sb.setRecipeMainBean(rmb);
+        rmb.getRecipeStepBeans().add(sb);
+//        rmb.getRecipeStepBeans().add(sb2);
 
-//        RecipeStepBean In = repositoryStepDao.save(sb);
         RecipeMainBean In = recipeMainDao.save(rmb);
+        RecipeStepBean out = repositoryStepDao.save(sb);
         System.out.println(In);
+        System.out.println(out);
 
     }
 }

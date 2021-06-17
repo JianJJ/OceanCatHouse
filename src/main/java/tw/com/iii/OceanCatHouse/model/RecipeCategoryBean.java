@@ -24,9 +24,6 @@ public class RecipeCategoryBean {
                 '}';
     }
 
-    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
-    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
-
     public Integer getCategoryId() {
         return CategoryId;
     }
@@ -50,4 +47,7 @@ public class RecipeCategoryBean {
     public void setRecipeMainBeans(Set<RecipeMainBean> recipeMainBeans) {
         this.recipeMainBeans = recipeMainBeans;
     }
+
+    @OneToMany(mappedBy = "recipeCategoryBean", cascade=CascadeType.ALL)
+    private Set<RecipeMainBean> recipeMainBeans = new HashSet<>();
 }

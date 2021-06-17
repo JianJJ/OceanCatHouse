@@ -1,5 +1,7 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -163,7 +165,31 @@ public class RecipeMainBean {
     @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL,fetch=FetchType.LAZY) // 放棄外鍵維護權, 開啟級聯操作
     private Set<RecipeMaterialBean> recipeMaterialBeans = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL,fetch=FetchType.LAZY) // 放棄外鍵維護權, 開啟級聯操作
     private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
 
+    public RecipeCategoryBean getRecipeCategoryBean() {
+        return recipeCategoryBean;
+    }
+
+    public void setRecipeCategoryBean(RecipeCategoryBean recipeCategoryBean) {
+        this.recipeCategoryBean = recipeCategoryBean;
+    }
+
+    public Set<RecipeMaterialBean> getRecipeMaterialBeans() {
+        return recipeMaterialBeans;
+    }
+
+    public void setRecipeMaterialBeans(Set<RecipeMaterialBean> recipeMaterialBeans) {
+        this.recipeMaterialBeans = recipeMaterialBeans;
+    }
+
+    public Set<RecipeStepBean> getRecipeStepBeans() {
+        return recipeStepBeans;
+    }
+
+    public void setRecipeStepBeans(Set<RecipeStepBean> recipeStepBeans) {
+        this.recipeStepBeans = recipeStepBeans;
+    }
 }
