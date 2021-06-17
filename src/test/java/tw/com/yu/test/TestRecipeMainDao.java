@@ -25,35 +25,35 @@ public class TestRecipeMainDao {
 
    @Test
    void selectUser() {
-      List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0, 6);
-      List<List> tagList = new ArrayList<>();
-
-
-      for(int i = 0;i<6;i++){
-         JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
-         String key = jsonObject.keys().next();
-         JSONArray jsonArray = jsonObject.getJSONArray(key);
-         List list = jsonArray.toList();
-         tagList.add(list);
-      }
-
-      System.out.println(tagList);
-
-      System.out.println(tagList.get(1).get(0));
-
-
-
-
-
-
-
-
-
-      List<JSONArray> jsonArrayList ;
-
-
-
-
+//      List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0, 6);
+//      List<List> tagList = new ArrayList<>();
+//
+//
+//      for(int i = 0;i<6;i++){
+//         JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
+//         String key = jsonObject.keys().next();
+//         JSONArray jsonArray = jsonObject.getJSONArray(key);
+//         List list = jsonArray.toList();
+//         tagList.add(list);
+//      }
+//
+//      System.out.println(tagList);
+//
+//      System.out.println(tagList.get(1).get(0));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//      List<JSONArray> jsonArrayList ;
+//
+//
+//
+//
 
 //      for(int i = 0;i<6;i++){
 //         jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());

@@ -48,6 +48,7 @@
         <button href="#" class='arrow-lef'>&lt;</button>
         <button href="#" class='arrow-r'>&gt;</button>
         <ul class='carou'>
+            <%--推薦食譜輪播圖迴圈--%>
 <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
     <li>
         <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
@@ -55,7 +56,6 @@
             <img src="${recReccBean.get(loop.index).recPic}" alt="">
         </a>
     </li>
-
 </c:forEach>
 
         </ul>
