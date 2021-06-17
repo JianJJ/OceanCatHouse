@@ -75,7 +75,7 @@
                 <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
                 <p>__________________________________________________</p>
                 <form action="/recipe/forget/controller">
-                    <input class="formCSS" type="text" placeholder="Email" name="email" value="${email}"><br>
+                    <input class="formCSS" type="email" placeholder="Email" name="email" value="${email}"><br>
                     <span class="error">${errors.email}</span><br>
                                     <div class="g-recaptcha"
                 data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"

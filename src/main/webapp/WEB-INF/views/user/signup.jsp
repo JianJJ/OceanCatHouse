@@ -71,7 +71,7 @@
                  data-longtitle="true"></div>
             <p>_____________________________________________________</p>
             <form action="/recipe/signup/signup">
-                <input class="formCSS" type="text" placeholder="Email" name="email" value="${email}"><br>
+                <input class="formCSS" type="email" placeholder="Email" name="email" value="${email}"><br>
                 <span class="error">${errors.email}</span><br> <input
                     class="formCSS" type="text" placeholder="暱稱" name="username" value="${username}"><br>
                 <span class="error">${errors.username}</span><br> <input

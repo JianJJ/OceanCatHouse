@@ -111,10 +111,9 @@
                         <br>
                         <div class="productspecifications">商品規格:${productspecifications}</div>
                         <br>
-                        <div>付款方式
-                            信用卡支付 / ATM轉帳 / 貨到付款($30)
-                            運送方式
-                            宅配 / 7-11取貨($60)
+                        <div>付款方式 : 貨到付款
+                            <br> 運送方式
+                            宅配 ($30)/ 7-11取貨($60)
                         </div>
                         <hr>
                         <div class="sellingprice">售價 ${sellingprice}</div>
