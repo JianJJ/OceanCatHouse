@@ -1,5 +1,5 @@
 
-var CatProduct;//購物車 id:數量
+var CatProduct;//購物車 {id:數量}
 var c = [];//合計
 var sell = [];//售價
 
@@ -137,6 +137,9 @@ function cutCat(A) {
 					m += json[k] * sell[k];
 				}
 				$(".PPP").text("總價:" + m);
+
+
+
 			},
 			error: function(json) {
 				console.log("cutCat*****err " + json);
@@ -175,6 +178,12 @@ function delCat(id) {
 
 			if (key.length == 0)
 				window.location.assign("/recipe/Details/"+id);
+			var key = Object.keys(json);
+			if(key.length == 0){
+				$("#f1").text("");
+			}else{
+				$("#f1").text(""+key.length);
+			}
 		},
 		error: function(json) {
 			console.log("delCat*****err " + json);
@@ -206,6 +215,7 @@ $(".PPP").text("總價:" + m);
 
 $(".catSubmit").click(function() {
 	console.log("總價 " + m);
+	window.location.href = "/recipe/toAddress";
 	// window.location.assign("/recipe/Details/${id}");
 })
 

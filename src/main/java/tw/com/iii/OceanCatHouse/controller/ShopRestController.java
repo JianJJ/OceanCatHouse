@@ -126,10 +126,11 @@ public class ShopRestController {
 //刪除購物車商品
 	@RequestMapping("delCat/{id}")
 	public HashMap<String, Integer> delCat(@PathVariable("id") Integer id,
-			@RequestBody HashMap<String, Integer> body) {
+			@RequestBody HashMap<String, Integer> body,HttpSession session) {
 		System.out.println("********************delCat*****************************************" + id);
 		body.remove("" + id);
 		System.out.println(body);
+		session.setAttribute("cat",body);
 		return body;
 	}
 
@@ -137,11 +138,12 @@ public class ShopRestController {
 //++購物車商品
 	@RequestMapping("addCat/{id}")
 	public HashMap<String, Integer> addCat(@PathVariable("id") String id,
-			@RequestBody HashMap<String, Integer> body) {
+			@RequestBody HashMap<String, Integer> body,HttpSession session) {
 		System.out.println("********************addCat*****************************************" + id);
 		int AAA = body.get(id);
 		AAA++;
 		body.put(id, AAA);
+		session.setAttribute("cat",AAA);
 		return body;
 	}
 
@@ -149,11 +151,12 @@ public class ShopRestController {
 //---購物車商品
 	@RequestMapping("cutCat/{id}")
 	public HashMap<String, Integer> cutCat(@PathVariable("id") String id,
-			@RequestBody HashMap<String, Integer> body) {
+			@RequestBody HashMap<String, Integer> body,HttpSession session) {
 		System.out.println("********************cutCat*****************************************" + id);
 		int AAA = body.get(id);
 		AAA--;
 		body.put(id, AAA);
+		session.setAttribute("cat",AAA);
 		return body;
 	}
 
@@ -168,7 +171,7 @@ public class ShopRestController {
 		return result;
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//取得最大夜面
+	//取得最大頁面數
 	@RequestMapping("/pag/")
 	public Integer pag() {
 		System.out.println("/categoryid*****************************************" );
