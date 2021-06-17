@@ -21,13 +21,13 @@
                 border: blue 1px solid;
                 background-color: white;
                 width: 830px;
-                height: 600px;
+                height: 800px;
                 z-index: 25;
                 position: fixed;
                 left: 0%;
                 right: 0%;
                 margin: auto;
-                top: 150px;
+                top: 100px;
                 border-radius: 15px;
                 overflow: scroll;
                 overflow-X: hidden;

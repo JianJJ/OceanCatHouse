@@ -135,13 +135,13 @@ public class UserController {
                 } else {
                     System.out.println("密碼錯誤");
                     errors.put("userpassword", "密碼錯誤");
-                    return "/views/" + action;
+                    return "/views/user/" + action;
                 }
 
             } else {
                 System.out.println("Email錯誤");
                 errors.put("email", "Email錯誤");
-                return "/views/" + action;
+                return "/views/user/" + action;
             }
 
         }
@@ -154,16 +154,17 @@ public class UserController {
                     //發送註冊信
                     String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>海貓食屋歡迎你,點擊認證 </a></p>";
                     zTools.mail(bean.getEmail(), text);
+                    bean.setState("1");
                     userRepository.save(bean);
                 } else {
                     System.out.println("名稱已經存在");
                     errors.put("username", "名稱已經存在");
-                    return "/views/" + action;
+                    return "/views/user/" + action;
                 }
             } else {
                 System.out.println("Email重複");
                 errors.put("email", "Email重複");
-                return "/views/" + action;
+                return "/views/user/" + action;
             }
         }
         // 判斷電話
@@ -172,7 +173,7 @@ public class UserController {
                 if (userRepository.findPasswordByUserPhone(bean.getUserpassword(), bean.getUserphone()) == null) {
                     System.out.println("密碼錯誤");
                     errors.put("userpassword", "密碼錯誤");
-                    return "/views/" + action;
+                    return "/views/user/" + action;
                 } else {
                     bean = userRepository.findByUserphone(bean.getUserphone());
                     session.setAttribute("state", bean.getState());
@@ -183,9 +184,13 @@ public class UserController {
             } else {
                 System.out.println("電話錯誤");
                 errors.put("userphone", "電話錯誤");
-                return "/views/" + action;
+                return "/views/user/" + action;
             }
 
+        }
+        if(action.equals("cat")){
+            session.setAttribute("id",bean.getUserid());
+            return "/views/shop/address";
         }
 
         // 成功後去向
@@ -252,6 +257,8 @@ public class UserController {
                     bean.setUsername(name);
                     bean.setUserpassword("googleOauth");
                     bean.setUserpic(pictureUrl);
+                    bean.setState("1");
+                    userRepository.save(bean);
                 }
 
 

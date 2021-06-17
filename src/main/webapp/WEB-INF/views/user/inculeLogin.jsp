@@ -3,7 +3,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="/recipe/css/login.css">
+    <meta name="google-signin-client_id"
+          content="849367464998-0c4najofsqmh3rteejq2dc3va9iqdps2.apps.googleusercontent.com">
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam"async defer></script> -->
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 <body>
 <div class="center">
@@ -18,7 +23,7 @@
 
             <button type="button" class="btn btn-primary phone">使用手機號碼登入</button>
             <p>__________________________________________________</p>
-            <form action="/recipe/signup/login">
+            <form action="/recipe/signup/cat">
                 <input class="formCSS" type="email" placeholder='Email' name="email" value="${email}"><br>
                 <span class="error">${errors.email}</span><br>
                 <input class="formCSS" type="password" placeholder="密碼" name="userpassword" value="${userpassword}"><br>
@@ -53,7 +58,7 @@
 <%--<script src="/recipe/js/oauth.js"></script>--%>
 <script>
     $(".phone").click(function () {
-        window.location.href = "/views/phoneLogin";
+        window.location.href = "/recipe/views/phoneLogin";
     });
 </script>
 </div>
