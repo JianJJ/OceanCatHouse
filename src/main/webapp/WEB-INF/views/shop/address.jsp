@@ -34,216 +34,199 @@
 <!-- 拼接header -->
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <canvas id="canvas"></canvas>
-<jsp:include page="../user/inculeLogin.jsp"></jsp:include>
-<div class=".container">
+<%--<jsp:include page="../user/inculeLogin.jsp"></jsp:include>--%>
+<div class="hazy"></div>
+<div class=".container BBB">
+    <%--    --%>
+    <div class=" row AAA">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 row cat ">
+            <%--        這裡有圖--%>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+    <%--    --%>
     <div class="row">
-        dib
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 row ">
+            <div class="col-lg-8 address">
+                <form action="/recipe/saveOrder/${id}" class="">
+                    送貨地址:
+                    <input type="text" class="form-control" name="address"><br>
+                    <button class="btn btn-primary" type="submit">完成訂單</button>
+                </form>
+            </div>
+            <div class="col-lg-4 allTotal">
+                <br>
+                <p>總價:100000000</p>
+                <p>運費:60</p>
+                <hr>
+                <p>合計:100000060</p>
+                <div class="d-grid gap-2">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
     </div>
-    <div class="row cat ">
-<%--        這裡有圖--%>
-    </div>
+    <script>
+        var sell = [];
+        var c = [];
+        $.ajax({
+            url: "/recipe/catData",
+            type: "get",
+            async: false,
+            // dataType: "json",
+            success: function (json) {
+                CatProduct = json;
+                var key = Object.keys(json);
 
-<%--            <div>--%>
-<%--                $('.cat').prepend('<div class="catProduct" id="catProduct' + product.productid + '">' +--%>
-<%--                '<img src="../images/' + product.productmodel + '-1.jpg" alt="">' +--%>
-<%--                '<div class="context"><h3>' + product.productname + '</h3><br>' +--%>
-<%--                    '<span>商品規格:' + product.productspecifications + '</span></div>' +--%>
-<%--                '<div><span class="cash">' + product.sellingprice + '</span>' +--%>
-<%--                    '<button class="catProductLeftButton" type="button" onclick="cutCat(' + product.productid + ')">-</button>' +--%>
-<%--                    '<input type="number" name="catProductNum' + product.productid + '" value="' + json[product.productid] + '" class="pnum" id="pnum' + product.productid + '">' +--%>
-<%--                    '<button class="catProductRightButton" type="button" onclick="addCat(' + product.productid + ')">+</button>' +--%>
-<%--                    '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span></div>' +--%>
-<%--                '<button class="del" onclick="delCat(' + product.productid + ')">刪除</button></div>');--%>
-<%--            </div>--%>
+                for (var A in json) {
+
+                    //用id找資料
+                    $.ajax({
+                        url: "/recipe/product/" + A,
+                        type: "get",
+                        async: false,
+                        success: function (product) {
+                            sell[product.productid] = product.sellingprice;
+                            c[product.productid] = product.sellingprice * json[product.productid];//合計
+                            $('.cat').append('<div class="catProduct col-lg-6 " id="catProduct' + product.productid + '">' +
+                                '<img src="./images/shop/' + product.productmodel + '-1.jpg" alt="">' +
+                                '<div class="context"><h3>' + product.productname + '</h3><br>' +
+                                '<span>商品規格:' + product.productspecifications + '</span>' +
+                                ' </div>' +
+                                '<div><span class="pnum">X' + json[product.productid] + '</span>' +
+                                '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span>' +
+                                '</div>' +
+                                '</div>');
 
 
-        <script>
-            var sell = [];
-            var c = [];
-            $.ajax({
-                url: "/recipe/catData",
-                type: "get",
-                async: false,
-                // dataType: "json",
-                success: function(json) {
-                    CatProduct = json;
-                    var key = Object.keys(json);
-                    for (var A in json) {
-                        //用id找資料
-                        $.ajax({
-                            url: "/recipe/product/" + A,
-                            type: "get",
-                            async: false,
-                            success: function(product) {
-                                sell[product.productid] = product.sellingprice;
-                                c[product.productid] = product.sellingprice * json[product.productid];//合計
-                                $('.cat').prepend('<div class="col-lg-6">xx<div class="catProduct" id="catProduct' + product.productid + '">' +
-                                    '<img src="./images/shop/' + product.productmodel + '-1.jpg" alt="">' +
-                                    '<div class="context"><h3>' + product.productname + '</h3><br>' +
-                                    '<span>商品規格:' + product.productspecifications + '</span></div>' +
-                                    '<div><span class="cash">' + product.sellingprice + '</span>' +
-                                    '<button class="catProductLeftButton" type="button" onclick="cutCat(' + product.productid + ')">-</button>' +
-                                    '<input type="number" name="catProductNum' + product.productid + '" value="' + json[product.productid] + '" class="pnum" id="pnum' + product.productid + '">' +
-                                    '<button class="catProductRightButton" type="button" onclick="addCat(' + product.productid + ')">+</button>' +
-                                    '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span></div>' +
-                                    '<button class="del" onclick="delCat(' + product.productid + ')">刪除</button></div></div>');
+                        }
+                        , error: function (json) {
+                            console.log("err " + json);
+
+                            function suc(product, A) {
 
                             }
-                            , error: function(json) {
-                                console.log("err " + json);
-                                function suc(product, A) {
 
-                                }
-
-                            }
-                        })
+                        }
+                    })
 
 
-                    }
-                }, error: function(json) {
-                    console.log("err " + json);
                 }
-            })
-            <%--if(cat == 0) {--%>
-            <%--    alert("未購買商品");--%>
-            <%--    window.location.href = "/recipe/views/ShoppingMall";--%>
-            <%--}--%>
-            <%--var user = '${user}';--%>
-            <%--if(user == 0){--%>
-            <%--    alert("請先登入");--%>
-            <%--}--%>
-        </script>
+            }, error: function (json) {
+                console.log("err " + json);
+            }
+        })
+        <%--var cat = '${cat}';--%>
+        <%--if (cat == 0) {--%>
+        <%--    alert("未購買商品");--%>
+        <%--    window.location.href = "/recipe/views/ShoppingMall";--%>
+        <%--}--%>
+        var user = '${id}';
+        // if (user == 0) {
+        //     alert("請先登入");
+        //     window.location.href = "/recipe/views/login";
+        // }
+
+
+
+
+
+    </script>
     <style>
-    .main {
-        position: absolute;
-        top : 50px;
-        visibility: hidden;
-        z-index: 30;
-    }
-    .catProduct img{
-        width: 100px;
-    }
-    .cat {
-        /*border: blue 1px solid;*/
-        /*background-color: white;*/
-        /*width: 830px;*/
-        /*height: 600px;*/
-        /*z-index: 25;*/
-        /*position: fixed;*/
-        /*left: 0%;*/
-        /*right: 0%;*/
-        /*margin: auto;*/
-        /*top: 150px;*/
-        /*border-radius: 15px;*/
-        /*overflow: scroll;*/
-        /*overflow-X: hidden;*/
+        .hazy {
+            visibility: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
 
-    }
+        }
+        .main {
+            position: absolute;
+            top: 50px;
+            visibility: hidden;
+            z-index: 60;
+        }
 
-    /* 購物車返回 */
-    /*.catReturn {*/
-    /*    top: 0px;*/
-    /*    right: 0px;*/
-    /*    position: absolute;*/
-    /*    background-color: red;*/
-    /*    width: 40px;*/
-    /*    height: 40px;*/
-    /*    border-radius: 50%;*/
-    /*    z-index: 20;*/
-    /*}*/
+        .cat {
+            top: 10px;
+            border: #69AE1E 3px solid;
+            margin: 10px;
+        }
 
-    /*.cat .foot {*/
-    /*    bottom: 0px;*/
-    /*    position: relative;*/
-    /*    width: 800px;*/
-    /*    height: 50px;*/
+        .address {
+            width: 60%;
+            top: 10px;
+            border: #69AE1E 3px solid;
+            margin: 10px;
+        }
 
-    /*}*/
+        .allTotal {
+            position: relative;
+            left: 50px;
+            margin: 10px;
+            text-align: center;
 
-    /*.cat .foot .PPP {*/
-    /*    position: absolute;*/
-    /*    right: 100px;*/
-    /*    bottom: 10px;*/
-    /*}*/
+        }
 
-    /*.cat .foot .catSubmit {*/
-    /*    position: absolute;*/
-    /*    right: 10px;*/
-    /*    bottom: 10px;*/
 
-    /*}*/
 
-    .cat .catProduct {
-        position: relative;
-        border: #69AE1E 3px solid;
-        /*width: 480px;*/
-        height: 140px;
-        margin: 15px;
-        border-radius: 15px;
-    }
+        .cat .catProduct {
+            position: relative;
+            border: #69AE1E 3px solid;
+            width: 47%;
+            height: 140px;
+            margin: 15px;
+            border-radius: 15px;
+        }
 
-    .cat .catProduct img {
-        position: absolute;
-        /*width: 140px;*/
-        height: 133px;
-        border-radius: 15px;
-    }
+        .cat .catProduct img {
+            position: absolute;
+            left: 0px;
+            width: 133px;
+            height: 133px;
+            border-radius: 15px;
+        }
 
-    .cat .catProduct .del {
-        top: 100px;
-        position: absolute;
-        height: 30px;
-        right: 10px;
-    }
 
-    /* 文字部分 */
-    .cat .catProduct .context {
-        position: absolute;
-        right: 100px;
-        bottom: 10px;
-        left: 150px;
-        width: 400px;
-    }
+        /* 文字部分 */
+        .cat .catProduct .context {
+            position: absolute;
+            right: 100px;
+            bottom: 10px;
+            left: 150px;
 
-    .cat .catProduct .cash {
-        position: absolute;
-        top: 60px;
-        right: 210px;
-    }
+        }
 
-    /* +-按鈕 */
-    .cat .catProduct .catProductLeftButton {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        right: 155px;
-        z-index: 16;
-        top: 60px;
-    }
+        .cat .catProduct .cash {
+            position: absolute;
+            top: 60px;
+            right: 210px;
+        }
 
-    .cat .catProduct .pnum {
-        position: absolute;
-        width: 50px;
-        text-align: center;
-        right: 110px;
-        top: 60px;
-        height: 20px;
-    }
 
-    .cat .catProduct .catProductRightButton {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        right: 110px;
-        top: 60px;
-    }
+        /* x數量  */
+        .cat .catProduct .pnum {
+            position: absolute;
+            width: 50px;
+            text-align: center;
+            right: 70px;
+            top: 60px;
+            height: 20px;
+        }
 
-    .cat .catProduct .total {
-        position: absolute;
-        top: 60px;
-        right: 10px;
-    }
+
+        .cat .catProduct .total {
+            position: absolute;
+            top: 60px;
+            right: 10px;
+        }
     </style>
+</div>
 </div>
 </body>
 </html>

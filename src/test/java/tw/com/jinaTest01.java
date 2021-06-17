@@ -20,7 +20,9 @@ public class jinaTest01 {
     @Test
     public void insert(){
         RecipeMainBean rmb = new RecipeMainBean();
+        rmb.setRecId(379641);
         rmb.setRecTitle("Apple");
+        rmb.setRecPic("aaa");
         rmb.setCategoryId(3);
 
         RecipeStepBean sb = new RecipeStepBean();

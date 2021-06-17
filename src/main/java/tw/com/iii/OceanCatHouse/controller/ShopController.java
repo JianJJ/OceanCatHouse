@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import tw.com.iii.OceanCatHouse.model.ProductBean;
-import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
+import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.repository.ProductRepository;
+import tw.com.iii.OceanCatHouse.repository.service.OrdersService;
 
 
 @Controller
@@ -25,7 +27,9 @@ public class ShopController {
     private ProductRepository productRepository;
 
     @Autowired
-    private ProductPictureJpaReposit ppr;
+    private OrdersService ordersService;
+
+
 
     @RequestMapping(path = {"/views/ShoppingMall"})
     public String ShoppingMall() {
@@ -97,10 +101,13 @@ public class ShopController {
     @RequestMapping("/toAddress")
     public String toAddress(HttpSession session,Model model) {
         System.out.println("**********");
+
+            UserBean bean = (UserBean) session.getAttribute("user");
+
         if(session.getAttribute("user") == null){
-            model.addAttribute("user",0);}
+            model.addAttribute("id",0);}
         else {
-            model.addAttribute("user",session.getAttribute("user"));
+            model.addAttribute("id", bean.getUserid());
         }
         Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
         System.out.println(cat);
@@ -110,11 +117,33 @@ public class ShopController {
         else {
             model.addAttribute("cat",  session.getAttribute("cat"));
         }
+
         if(session.getAttribute("state") == null){
             model.addAttribute("state",0);}
         else {
             model.addAttribute("state",session.getAttribute("state"));
         }
         return "/views/shop/address";
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 存訂單
+    @RequestMapping("/saveOrder/{id}")
+    public String saveOrder(@PathVariable("id") Integer id, @RequestParam("address") String address,HttpSession session) {
+        System.out.println("*****存訂單*****");
+        OrdersBean bean = new OrdersBean();
+        //地址判斷
+
+        //
+
+        //取得購物車內容
+        Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
+        if (cat != null){
+            ordersService.insert( id , cat);
+
+            System.out.println("*****存訂單成功*****");
+            cat.clear();
+        }
+
+        return "redirect:/index";
     }
 }

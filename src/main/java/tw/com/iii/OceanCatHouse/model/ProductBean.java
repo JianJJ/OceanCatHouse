@@ -1,9 +1,6 @@
 package tw.com.iii.OceanCatHouse.model;
 
-import javax.persistence.Entity;
-
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -11,6 +8,7 @@ import javax.persistence.Table;
 
 public class ProductBean {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productid;
 	private String productmodel;
 	private String productname;

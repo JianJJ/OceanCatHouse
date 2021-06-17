@@ -107,7 +107,7 @@
 <script src="../js/oauth.js"></script>
 <script>
     $(".phone").click(function () {
-        window.location.href = "/views/phoneLogin";
+        window.location.href = "/recipe/views/phoneLogin";
     });
 </script>
 </div>

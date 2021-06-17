@@ -13,4 +13,6 @@ public interface RecipeStepRepository extends JpaRepository<RecipeStepBean, Inte
     @Query(value = "select * from recipe_step where RecId = ?1", nativeQuery=true)
     List<RecipeStepBean> findByRecId(int RecId);
 
+    @Query(value = "delete from RecipeStepBean where RecId = :recId")
+    Integer deleteAllByRecId(Integer recId);
 }

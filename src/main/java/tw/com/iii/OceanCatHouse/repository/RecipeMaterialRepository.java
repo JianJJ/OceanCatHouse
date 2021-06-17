@@ -12,5 +12,6 @@ public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBe
     @Query(value = "select * from recipe_material where RecId = ?1", nativeQuery=true)
     List<RecipeMaterialBean> findByRecId(int RecId);
 
-
+    @Query(value = "delete from RecipeMaterialBean where RecId = :recId")
+    Integer deleteAllByRecId(Integer recId);
 }

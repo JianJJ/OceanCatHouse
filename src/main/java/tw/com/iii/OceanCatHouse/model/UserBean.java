@@ -1,8 +1,6 @@
 package tw.com.iii.OceanCatHouse.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -10,6 +8,7 @@ import javax.persistence.Table;
 public class UserBean {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userid;
 	private Integer fansnum;//分屍數
 	private Integer recnum;//案戰術
