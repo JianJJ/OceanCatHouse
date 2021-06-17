@@ -70,13 +70,18 @@
                 <h3 class="littleTitle">推薦食譜</h3>
                 <hr class='underline'>
                 <ul class='row'>
+                    <%--推薦食譜迴圈--%>
                     <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                     <li class='col-xs-9 col-md-9'>
                         <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                             <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
                             <div class="row">
                                 <h4 class='showLines'>${recReccBean.get(loop.index).recTitle}</h4>
-                                <span>${jsonArray.get(loop.index).get(loop.index)}</span>
+                                <span>
+                        <c:forEach varStatus="loop2" begin="0" end="${recReccBean.get(loop.index).recTag.length()-1}">
+                                ${recReccBean.get(loop.index).recTag.split("、")[loop2.index]}
+                        </c:forEach>
+                                </span>
                                 <p class='showLines'>
                                     ${recReccBean.get(loop.index).recText}
                                 </p>
@@ -84,7 +89,6 @@
                         </a>
                     </li>
                     </c:forEach>
-
                 </ul>
             </section>
         </div>

@@ -45,7 +45,7 @@
             text-align: center;
         }
 
-        #img-main {
+        #img-main, .img-step {
             width: 100%;
             height: 100%;
         }

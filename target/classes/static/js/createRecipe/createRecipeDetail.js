@@ -4,7 +4,7 @@ $(document).ready(function () {
         if($('#file-main')[0].files[0]){
             var formData = new FormData();
             // 食譜主圖片
-            formData.append('file', $('#file-main')[0].files[0]);
+            formData.append('fileMain', $('#file-main')[0].files[0]);
             // 步驟圖片
             // 步驟說明
             var stepText = [];
@@ -12,7 +12,7 @@ $(document).ready(function () {
                 if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==""){
                     continue;
                 }
-                formData.append('file', $(`#file-step${i+1}`)[0].files[0]);
+                formData.append(`file${i}`, $(`#file-step${i+1}`)[0].files[0]);
                 stepText[i] = $(`#stepText${i+1}`).val();
             }
             // 食材＋份數
