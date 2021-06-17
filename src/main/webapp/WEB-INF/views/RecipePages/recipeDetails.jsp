@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="/recipe/css/recipeDetails.css">
 
 
-    <title>${recTitle}</title>
+    <title>${recMainBean.recTitle}</title>
 </head>
 
 <body>
@@ -62,22 +62,22 @@
             <div class="main col-xs-10 col-md-11">
                 <!-- RecTitle -->
                 <div class='row'>
-                    <h1 class='recTitle col-md-12'>${recTitle}</h1>
+                    <h1 class='recTitle col-md-12'>${recMainBean.recTitle}</h1>
                     <hr class='titleLine col-md-10'>
                 </div>
 
                 <!-- RecContext Block -->
                 <section class='RecContextBlock row'>
-                    <img src="${recPic}" alt="${recTitle}" class="recPic  col-lg-7 col-xs-12">
+                    <img src="${recMainBean.recPic}" alt="${recMainBean.recTitle}" class="recPic  col-lg-7 col-xs-12">
 
                     <div class='recDetail col-lg-4 col-xs-10'>
                         <div class="recTime">
                             <span class='fontIcon'></span>
-                            <span class='time'>${recTime}</span> 分鐘
+                            <span class='time'>${recMainBean.recTime}</span> 分鐘
                         </div>
                         <div class="recPerson">
                             <span class='fontIcon'></span>
-                            <span>${recNum}</span>人份
+                            <span>${recMainBean.recNum}</span>人份
                         </div>
                         <div class='tags'>
                             <span class='fontIcon'></span>
@@ -93,7 +93,7 @@
                 <!-- RecTextContext -->
                 <div class='row'>
                     <p class="RecTextContext col-xs-12">
-                        ${recText}
+                        ${recMainBean.recText}
                     </p>
                 </div>
 
@@ -104,18 +104,14 @@
                         <div class='blockOne'>
                             <h3 class="littleTitle">食材</h3>
                             <hr class='underline'>
+
+                            <c:forEach varStatus="loop" begin="0" end="${recMatBean.size()-1}">
                             <div class="ingredent">
-                                <span class='ingreContext'>低筋麵粉</span>
-                                <span class='ingreUnit'>180克</span>
+                                <span class='ingreContext'>${recMatBean.get(loop.index).materialName}</span>
+                                <span class='ingreUnit'>${recMatBean.get(loop.index).unitNum}</span>
                             </div>
-                            <div class="ingredent">
-                                <span class='ingreContext'>低筋麵粉</span>
-                                <span class='ingreUnit'>180克</span>
-                            </div>
-                            <div class="ingredent">
-                                <span class='ingreContext'>低筋麵粉</span>
-                                <span class='ingreUnit'>180克</span>
-                            </div>
+                            </c:forEach>
+
                         </div>
                     </div>
 
@@ -123,7 +119,7 @@
                     <div class="recStep blockColor col-md-8 col-xs-12">
                         <h3 class="littleTitle">作法</h3>
                         <hr class='underline'>
-                        <c:forEach varStatus="loop" begin="0" end="${recStepCount-1}">
+                        <c:forEach varStatus="loop" begin="0" end="${recStepBean.size()-1}">
                             <div class="step">
                                 <img src= "${recStepBean.get(loop.index).stepPic}" alt="空">
                                 <h1>${loop.index+1}</h1>

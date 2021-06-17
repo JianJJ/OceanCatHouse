@@ -10,7 +10,7 @@ import java.util.List;
 public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBean, Integer> {
 
     @Query(value = "select * from recipe_material where RecId = ?1", nativeQuery=true)
-    List<RecipeStepBean> findByRecId(int RecId);
+    List<RecipeMaterialBean> findByRecId(int RecId);
 
 
 }

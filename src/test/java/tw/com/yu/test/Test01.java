@@ -22,7 +22,7 @@ public class Test01 {
 	@Autowired
 	UserRepository userDao;
 
-//	測試JPA增刪修查
+	//	測試JPA增刪修查
 	//測試新增
 //	@Test
 //	void addUser() {
@@ -40,7 +40,7 @@ public class Test01 {
 	//測試查詢
 	@Test
 	void selectUser() {
-		
+
 		//1. findByID根據ID查
 //		Optional<UserBean> optional = userDao.findById(30);
 //		UserBean user = optional.get();
@@ -48,35 +48,7 @@ public class Test01 {
 //		String eMail =  user.getEmail() ;
 //		String passWord = user.getUserpassword() ;
 //		System.out.printf("客戶姓名:%s%n信箱:%s%n密碼:%s%n",userName,eMail ,passWord);
-		
-		//2.findAll(全部查)
-		
-//		List<UserBean> users =  userDao.findAll();
-//		for(UserBean user : users) {
-//			System.out.println(user.getUsername());
-//		}
-				//根據索引查詢(欄位名稱)
-		List<UserBean> emails =  userDao.findAll(Sort.by("email"));
-		List<UserBean> users =  userDao.findAll(Sort.by("username"));
-				
-//		for(int i = 0; i < users.size();i++) {
-//			String userName = (String)users.get(i) ;
-//			
-//			System.out.println(+ ":" + emails.get(i));
-//		}
-		
-//		for(UserBean user : users) {
-//			System.out.println(user);
-//		}
-			for(UserBean email : emails) {
-			System.out.println(email);
-		}
-						
-	}
-	
-	
-	
-	
-	
 
+
+	}
 }
