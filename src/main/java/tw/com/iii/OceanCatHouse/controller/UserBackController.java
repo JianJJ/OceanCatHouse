@@ -6,6 +6,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
+import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
 import tw.com.iii.OceanCatHouse.repository.UserRepository;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/userBack")
@@ -37,7 +39,12 @@ public class UserBackController {
         UserBean user = (UserBean) session.getAttribute("user");
             // 查看user自己的食譜數量
         Integer recCount = recipeMainRepository.recCount(user.getUserid());
+        List<RecipeMainBean> recipeMainList = recipeMainRepository.findAllByUserid(user.getUserid());
+        for (RecipeMainBean apple :recipeMainList){
+            System.out.println(apple);
+        }
         request.setAttribute("recCount", recCount);
+        request.setAttribute("recipeMainList", recipeMainList);
 
         return "/views/user/userHome";
     }

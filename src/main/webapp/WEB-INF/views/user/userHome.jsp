@@ -9,7 +9,7 @@
     <title>✿海貓食屋✿</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
-<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css">--%>
+    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css">--%>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!--    JavaScript; choose one of the two!-->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
@@ -60,13 +60,34 @@
     <div class="row justify-content-center">
         <div class="col-xs-10 col-md-10 memberBlock">
             <h2>目前已經撰寫了<span style="font-weight: bolder">${requestScope.recCount}</span>篇食譜</h2>
-            <div class="col-md-11 justify-content-center recipeSimpleContext">
-                如果是列表狀的食譜內容
-            </div>
 
+            <div class="col-md-11 justify-content-center recipeSimpleContext">
+                <div class="container">
+
+                    <c:forEach items="${recipeMainList}" var="list">
+                        <div class="row justify-content-center" style=" margin: 5px 5px">
+                            <div class="col-md-4" style="height: 200px;">
+                                <a href="#">
+                                    <img id="${list.recId}"
+                                         src="${pageContext.request.contextPath}/images/mainpic/${list.recPic}"
+                                         style="width: 100%;height: 100%" class="img-thumbnail"
+                                         alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class='showLines'>${list.recTitle}</h4>
+                                <span>南瓜、南瓜濃湯、蟹肉棒、南瓜盅、鮮蝦、奶油蘑菇、起司絲</span>
+                                <p class='showLines'>
+                                        ${list.recText}
+                                </p>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 
 

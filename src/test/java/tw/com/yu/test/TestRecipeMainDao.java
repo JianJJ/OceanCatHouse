@@ -27,13 +27,16 @@ public class TestRecipeMainDao {
 //    ID:21405
    @Test
    void selectUser() {
-	   
-       //1. findByID根據ID查
 
+      RecipeMainBean recipeData = service.getRecipeMainData(351059);
+      JSONObject jsonObject = new JSONObject(recipeData.getRecTag());
+//      System.out.println(jsonObject.keySet());
+//      jsonObject.length();
 
-
+      String key = jsonObject.keys().next();
+      System.out.println(key);
+      JSONArray jsonArray = jsonObject.getJSONArray(key);
+      System.out.println(jsonArray);
    }
-	
-	
-	
+
 }
