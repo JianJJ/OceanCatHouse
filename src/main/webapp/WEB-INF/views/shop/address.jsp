@@ -40,14 +40,9 @@
         dib
     </div>
     <div class="row cat ">
-        <div class="col-lg-3">xx</div>
-        <div class="col-lg-3">xx</div>
-        <div class="col-lg-3">xx</div>
-        <div class="col-lg-3">xx</div>
+<%--        這裡有圖--%>
     </div>
-         ${user}<br>
-        ${cat}<br>
-        ${state}
+
 <%--            <div>--%>
 <%--                $('.cat').prepend('<div class="catProduct" id="catProduct' + product.productid + '">' +--%>
 <%--                '<img src="../images/' + product.productmodel + '-1.jpg" alt="">' +--%>
@@ -82,7 +77,7 @@
                             success: function(product) {
                                 sell[product.productid] = product.sellingprice;
                                 c[product.productid] = product.sellingprice * json[product.productid];//合計
-                                $('.cat').prepend('<div class="col-lg-3">xx<div class="catProduct" id="catProduct' + product.productid + '">' +
+                                $('.cat').prepend('<div class="col-lg-6">xx<div class="catProduct" id="catProduct' + product.productid + '">' +
                                     '<img src="./images/shop/' + product.productmodel + '-1.jpg" alt="">' +
                                     '<div class="context"><h3>' + product.productname + '</h3><br>' +
                                     '<span>商品規格:' + product.productspecifications + '</span></div>' +
@@ -99,8 +94,6 @@
                                 function suc(product, A) {
 
                                 }
-
-
 
                             }
                         })
@@ -122,7 +115,133 @@
         </script>
     <style>
     .main {
+        position: absolute;
+        top : 50px;
         visibility: hidden;
+        z-index: 30;
+    }
+    .catProduct img{
+        width: 100px;
+    }
+    .cat {
+        /*border: blue 1px solid;*/
+        /*background-color: white;*/
+        /*width: 830px;*/
+        /*height: 600px;*/
+        /*z-index: 25;*/
+        /*position: fixed;*/
+        /*left: 0%;*/
+        /*right: 0%;*/
+        /*margin: auto;*/
+        /*top: 150px;*/
+        /*border-radius: 15px;*/
+        /*overflow: scroll;*/
+        /*overflow-X: hidden;*/
+
+    }
+
+    /* 購物車返回 */
+    /*.catReturn {*/
+    /*    top: 0px;*/
+    /*    right: 0px;*/
+    /*    position: absolute;*/
+    /*    background-color: red;*/
+    /*    width: 40px;*/
+    /*    height: 40px;*/
+    /*    border-radius: 50%;*/
+    /*    z-index: 20;*/
+    /*}*/
+
+    /*.cat .foot {*/
+    /*    bottom: 0px;*/
+    /*    position: relative;*/
+    /*    width: 800px;*/
+    /*    height: 50px;*/
+
+    /*}*/
+
+    /*.cat .foot .PPP {*/
+    /*    position: absolute;*/
+    /*    right: 100px;*/
+    /*    bottom: 10px;*/
+    /*}*/
+
+    /*.cat .foot .catSubmit {*/
+    /*    position: absolute;*/
+    /*    right: 10px;*/
+    /*    bottom: 10px;*/
+
+    /*}*/
+
+    .cat .catProduct {
+        position: relative;
+        border: #69AE1E 3px solid;
+        /*width: 480px;*/
+        height: 140px;
+        margin: 15px;
+        border-radius: 15px;
+    }
+
+    .cat .catProduct img {
+        position: absolute;
+        /*width: 140px;*/
+        height: 133px;
+        border-radius: 15px;
+    }
+
+    .cat .catProduct .del {
+        top: 100px;
+        position: absolute;
+        height: 30px;
+        right: 10px;
+    }
+
+    /* 文字部分 */
+    .cat .catProduct .context {
+        position: absolute;
+        right: 100px;
+        bottom: 10px;
+        left: 150px;
+        width: 400px;
+    }
+
+    .cat .catProduct .cash {
+        position: absolute;
+        top: 60px;
+        right: 210px;
+    }
+
+    /* +-按鈕 */
+    .cat .catProduct .catProductLeftButton {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 155px;
+        z-index: 16;
+        top: 60px;
+    }
+
+    .cat .catProduct .pnum {
+        position: absolute;
+        width: 50px;
+        text-align: center;
+        right: 110px;
+        top: 60px;
+        height: 20px;
+    }
+
+    .cat .catProduct .catProductRightButton {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 110px;
+        top: 60px;
+    }
+
+    .cat .catProduct .total {
+        position: absolute;
+        top: 60px;
+        right: 10px;
     }
     </style>
 </div>
