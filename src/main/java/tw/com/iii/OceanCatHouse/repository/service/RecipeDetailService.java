@@ -36,16 +36,19 @@ public class RecipeDetailService {
     //2.訪問recipe_step，取得返回Bean(使用自定義查詢findByRecId)
     public List<RecipeStepBean> getRecipeStepData(int recID){
         List<RecipeStepBean> stepBean = recipeStepDao.findByRecId(recID);
-
         return stepBean;
-
     }
 
     //3.訪問recipe_material，取得返回Bean(使用自定義查詢findByRecId)
     public List<RecipeMaterialBean> getRecipeMaterialData(int recID){
         List<RecipeMaterialBean> matBean = recipeMatDao.findByRecId(recID);
-
         return matBean;
+    }
+
+    //4.推薦系統
+    public List<RecipeMainBean> getRecipeRecommend(int id,int recNum){
+        List<RecipeMainBean> recomBean = recipeMainDao.findByRecIdNot(id,recNum);
+        return recomBean;
     }
 
 

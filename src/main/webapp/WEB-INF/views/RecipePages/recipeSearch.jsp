@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%--拼接header--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +39,7 @@
 </head>
 
 <body>
+<%--拼接header--%>
 <jsp:include page="top_nav.jsp"></jsp:include>
     <div class="container">
         <div class="row justify-content-between">
@@ -56,51 +59,14 @@
   
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
-                    <li class="col-lg-3 col-xs-6"><a href="${pageContext.request.contextPath}/recipeDetails">
-                        <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
-                        <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
-                        <p class='showLines'>防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic2.jpg" alt="味噌湯">
-                        <h4 class='showLines'>味噌湯</h4>
-                        <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
-                        <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
-                        <p class='showLines'>防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic2.jpg" alt="味噌湯">
-                        <h4 class='showLines'>味噌湯</h4>
-                        <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
-                        <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
-                        <p class='showLines'>防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic2.jpg" alt="味噌湯">
-                        <h4 class='showLines'>味噌湯</h4>
-                        <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic2.jpg" alt="味噌湯">
-                        <h4 class='showLines'>味噌湯</h4>
-                        <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
-                        <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
-                        <p class='showLines'>防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜</p>
-                    </a></li>
-                    <li class="col-lg-3 col-xs-6"><a href="#">
-                        <img src="./images/testPic2.jpg" alt="味噌湯">
-                        <h4 class='showLines'>味噌湯</h4>
-                        <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
-                    </a></li>
+                    <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
+                        <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+                            <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
+                            <h4 class='showLines'>"${recReccBean.get(loop.index).recTitle}"</h4>
+                            <p class='showLines'>${recReccBean.get(loop.index).recText}</p>
+                        </a></li>
+                    </c:forEach>
+
                 </ul>
                 <button class="btn-search" id='btnRecMore'>載入更多</button>
                 

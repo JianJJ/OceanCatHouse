@@ -68,20 +68,5 @@ public class PublicController {
 		}
 
 
-	//食譜搜尋頁面
-	@RequestMapping(
-			path = {"/recipeSearch"}
-	)
-	public String recipeSearch() {
-		return "views/RecipePages/recipeSearch";
-
-	}
-
-
-
-
-
-
-
 
 }
