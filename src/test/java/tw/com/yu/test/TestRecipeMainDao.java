@@ -25,18 +25,6 @@ public class TestRecipeMainDao {
 
    @Test
    void testYu() {
-      int id = 374855;
-
-      RecipeMainBean recipeData = service.getRecipeMainData(id);
-      String[] recTag = recipeData.getRecTag().split("、");
-
-      System.out.println(recTag.length);
-
-      for(String tag : recTag){
-         System.out.println(tag);
-      }
-
-
 
 
 

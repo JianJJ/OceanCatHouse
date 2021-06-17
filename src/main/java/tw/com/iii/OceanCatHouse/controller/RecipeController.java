@@ -53,9 +53,6 @@ public class RecipeController {
         mav.addObject("recMatBean",recipeMaterialBean);
         mav.addObject("recReccBean",recipeRecommendBean);
 
-
-
-
 //設定回傳試圖畫面路徑---------------------------------------------------
         mav.setViewName("views/RecipePages/recipeDetails");
         return mav;
@@ -73,7 +70,6 @@ public class RecipeController {
        mav.addObject("recReccBean",recipeRecommendBean);
 
 
-
         mav.setViewName("views/RecipePages/recipeSearch");
         return mav;
 
@@ -88,8 +84,6 @@ public class RecipeController {
 
         List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,6);
         ModelAndView mav = new ModelAndView();
-
-
         mav.addObject("recReccBean",recipeRecommendBean);
 
 
