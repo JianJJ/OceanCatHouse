@@ -6,7 +6,7 @@ a {
     position: relative;
     padding: 0;
     margin: 0;
-    margin-top: 70px;
+    margin-top: 50px;
     box-shadow: 1px 1px 3px 3px #aaa;
 }
 
@@ -27,7 +27,7 @@ a {
 }
 
 #member-imgBackground {
-  
+
     height: 235px;
     background-image: url(../images/wall02.jpg);
     background-size: cover;
@@ -52,14 +52,14 @@ a {
     font-size: 16px;
 
     border: 1px orange solid;
-    border-radius: 15px; 
+    border-radius: 15px;
     color: #222;
     background-color: white;
 }
 
 #member-navLinks > div > a:hover {
     /*border-color: 1px #aaa solid;*/
-    border-radius: 15px; 
+    border-radius: 15px;
     color: white;
     text-shadow: 0px 0px 3px black;
     background-color: orange;
@@ -70,7 +70,7 @@ a {
     list-style: none;
     margin-top: 17px;
     margin-right: 20px;
-    
+
 }
 
 #member-navLinks >ul > li a {
@@ -85,19 +85,16 @@ a {
     color: brown;
     border-bottom: brown 3px solid;
 }
-
-
 .memberBlock h2 {
     font-size: 16px;
     text-indent: 2rem;
     margin: 20px;
     color: #db742a;
 }
-
 .recipeSimpleContext {
     background-color: wheat;
-    height: 210px;
     margin: 10px auto;
+    padding-top: 5px;
 }
 .fileInput {
     position: absolute;
@@ -109,4 +106,38 @@ a {
     display: block;
     width: 100%;
     clear: both;
+}
+.showLines {
+    margin: 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    color: #222;
+}
+.recommendRec {
+    margin-top: 70px;
+}
+
+.recommendRec ul {
+    padding: 0;
+}
+
+
+.recommendRec ul li {
+    height: 190px;
+    margin-top: 10px;
+    padding: 10px;
+    list-style: none;
+    border-left: 5px solid rgba(62, 199, 183, 0.3);
+}
+
+.recommendRec ul li:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, .3);
+}
+
+.recommendRec ul li img {
+    height: 100%;
+    background-color: wheat;
+    float: left;
 }
