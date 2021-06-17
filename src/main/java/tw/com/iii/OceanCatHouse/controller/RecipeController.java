@@ -80,4 +80,36 @@ public class RecipeController {
     }
 
 
+    //3.食譜主頁
+    @RequestMapping(
+            path = {"/recipeHome"}
+    )
+    public ModelAndView recipeHome() {
+
+        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,6);
+        ModelAndView mav = new ModelAndView();
+
+//JSON---------------------------
+//        JSONArray jsonArray = null;
+//        List<JSONArray> tagArray = null;
+//        for(int i =0;i<6;i++){
+//            JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
+//            String key = jsonObject.keys().next();
+//            jsonArray = jsonObject.getJSONArray(key);
+//            tagArray.add(jsonArray);
+//        }
+
+
+//Add-----------------------------------------------------------
+
+//        mav.addObject("jsonArray",tagArray);
+        mav.addObject("recReccBean",recipeRecommendBean);
+
+
+        mav.setViewName("views/RecipePages/recipeHome");
+        return mav;
+
+    }
+
+
 }

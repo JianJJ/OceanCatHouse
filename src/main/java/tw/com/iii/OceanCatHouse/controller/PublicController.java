@@ -58,14 +58,7 @@ public class PublicController {
 
 	}
 	
-	//食譜主頁
-		@RequestMapping(
-				path = {"/recipeHome"}
-		)
-		public String recipeHome() {
-			return "views/RecipePages/recipeHome";
 
-		}
 
 
 

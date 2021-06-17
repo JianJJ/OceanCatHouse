@@ -2,7 +2,6 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,10 +81,19 @@
                         <div class='tags'>
                             <span class='fontIcon'></span>
                             <span>
+                            <%--取出JSON元素迴圈--%>
                             <c:forEach varStatus="loop" begin="0" end="${jsonArray.length()-1}">
                                 ${jsonArray.get(loop.index)}
                             </c:forEach>
                             </span>
+                        </div>
+                        <%--TODO 額外新增資料 暫放--%>
+                        <div>
+                            <h2>額外資料:</h2>
+                            按讚數:${recMainBean.recLiked}人 <br>
+                            瀏覽人數:${recMainBean.recViews}人  <br>
+                            食譜創建時間:${recMainBean.recCreated}<br>
+                            卡路里:${recMainBean.recCal}卡路里<br>
                         </div>
                     </div>
                 </section>
@@ -104,14 +112,13 @@
                         <div class='blockOne'>
                             <h3 class="littleTitle">食材</h3>
                             <hr class='underline'>
-
+                            <%--載入該食材迴圈--%>
                             <c:forEach varStatus="loop" begin="0" end="${recMatBean.size()-1}">
                             <div class="ingredent">
                                 <span class='ingreContext'>${recMatBean.get(loop.index).materialName}</span>
                                 <span class='ingreUnit'>${recMatBean.get(loop.index).unitNum}</span>
                             </div>
                             </c:forEach>
-
                         </div>
                     </div>
 
@@ -119,6 +126,7 @@
                     <div class="recStep blockColor col-md-8 col-xs-12">
                         <h3 class="littleTitle">作法</h3>
                         <hr class='underline'>
+                        <%--載入食譜步驟迴圈--%>
                         <c:forEach varStatus="loop" begin="0" end="${recStepBean.size()-1}">
                             <div class="step">
                                 <img src= "${recStepBean.get(loop.index).stepPic}" alt="空">
@@ -126,7 +134,6 @@
                                 <p>${recStepBean.get(loop.index).stepText}</p>
                             </div>
                             <hr class='divLine'>
-
                         </c:forEach>
                     </div>
                 </section>
@@ -137,6 +144,7 @@
                         <h3 class="littleTitle">推薦食譜</h3>
                         <hr class='underline'>
                         <ul class='row'>
+                            <%--推薦食譜迴圈--%>
                         <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                             <li class='col-xs-6 col-md-2'><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                                     <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
@@ -146,7 +154,6 @@
                                     </p>
                                 </a></li>
                         </c:forEach>
-
                         </ul>
                     </section>
                 </div>

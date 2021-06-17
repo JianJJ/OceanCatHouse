@@ -59,6 +59,7 @@
   
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
+                    <%--推薦食譜輪播圖迴圈 暫放，要改成搜尋功能--%>
                     <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                         <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                             <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
@@ -80,8 +81,6 @@
         <div class="toUP">
             <span class="fontIcon hyLink" id="toUp"></span>
         </div>
-
-
 
     </div>
 

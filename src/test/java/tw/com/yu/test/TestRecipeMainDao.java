@@ -1,7 +1,7 @@
 package tw.com.yu.test;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,32 +11,71 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
-import tw.com.iii.OceanCatHouse.model.RecipeStepBean;
-import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
-import tw.com.iii.OceanCatHouse.repository.RecipeStepRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeDetailService;
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)
 public class TestRecipeMainDao {
-		
 
 
    @Autowired
    RecipeDetailService service;
 
-//    ID:21405
+   //    ID:21405
+
+
    @Test
    void selectUser() {
+//      List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0, 6);
+//      List<List> tagList = new ArrayList<>();
+//
+//
+//      for(int i = 0;i<6;i++){
+//         JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
+//         String key = jsonObject.keys().next();
+//         JSONArray jsonArray = jsonObject.getJSONArray(key);
+//         List list = jsonArray.toList();
+//         tagList.add(list);
+//      }
+//
+//      System.out.println(tagList);
+//
+//      System.out.println(tagList.get(1).get(0));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//      List<JSONArray> jsonArrayList ;
+//
+//
+//
+//
 
-      RecipeMainBean recipeData = service.getRecipeMainData(351059);
-      JSONObject jsonObject = new JSONObject(recipeData.getRecTag());
-//      System.out.println(jsonObject.keySet());
-//      jsonObject.length();
+//      for(int i = 0;i<6;i++){
+//         jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
+//         for(int j = 0;j<6;j++){
+//
+//         String key = jsonObject.keys().next();
+//         JSONArray jsonArray = jsonObject.getJSONArray(key);
+//         System.out.println(jsonArray.get(i));
+//      }
 
-      String key = jsonObject.keys().next();
-      System.out.println(key);
-      JSONArray jsonArray = jsonObject.getJSONArray(key);
-      System.out.println(jsonArray);
-   }
 
+
+
+//      JSONArray jsonArray = null;
+//      List<JSONArray> tagArray = null;
+//      for (int i = 0; i < 6; i++) {
+//         JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
+//         String key = jsonObject.keys().next();
+//         jsonArray = jsonObject.getJSONArray(key);
+//         tagArray.add(jsonArray);
+//      }
+
+//   }
+}
 }
