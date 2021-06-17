@@ -20,8 +20,8 @@ public class RecipeMainBean {
     private String RecTitle;
     private String RecPic;
     private String RecText;
-    private Integer RecTime;
-    private Integer RecNum;
+    private String RecTime;
+    private String RecNum;
     private Integer RecCal;
     private String RecTag;
     private Integer UserId;
@@ -92,19 +92,19 @@ public class RecipeMainBean {
         RecText = recText;
     }
 
-    public Integer getRecTime() {
+    public String getRecTime() {
         return RecTime;
     }
 
-    public void setRecTime(Integer recTime) {
+    public void setRecTime(String recTime) {
         RecTime = recTime;
     }
 
-    public Integer getRecNum() {
+    public String getRecNum() {
         return RecNum;
     }
 
-    public void setRecNum(Integer recNum) {
+    public void setRecNum(String recNum) {
         RecNum = recNum;
     }
 

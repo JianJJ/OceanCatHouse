@@ -68,7 +68,7 @@ public class UserBackController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         String picName = sdf.format(new Date()) + ".jpg";
         try {
-            // 儲存圖片到userPic資料夾
+            // 儲存改名後的圖片到資料夾
             if (userPic.getOriginalFilename().length() != 0) {
                 userPic.transferTo(
                         new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/userPic/" + picName));
@@ -79,7 +79,7 @@ public class UserBackController {
         UserBean user = (UserBean) session.getAttribute("user");
             // 刪除原先的檔案
         FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/userPic/" + user.getUserpic()));
-            // 改名存到資料庫
+            // 存到資料庫
         user.setUserpic(picName);
         UserBean update = userService.update(user);
         System.out.println("Update:"+update);
