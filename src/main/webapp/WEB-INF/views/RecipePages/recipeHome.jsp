@@ -52,7 +52,7 @@
 <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
     <li>
         <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
-            <h2>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h2>
+            <h2>${recReccBean.get(loop.index).recTitle}</h2>
             <img src="${recReccBean.get(loop.index).recPic}" alt="">
         </a>
     </li>
