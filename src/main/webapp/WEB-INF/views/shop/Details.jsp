@@ -171,7 +171,7 @@
                                 }
 
                                 for (var i = 0; i < a; i++)
-                                    $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
+                                    $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
                             },
                             error: function (json) {
                                 console.log("errr");
@@ -209,8 +209,8 @@
             var i = 0;
             for (var A of pic) {
 
-                $(".list").append('<img class="rsimg" src="../images/' + A.producturl + '.jpg" alt="">');
-                $(".producturl").append('<img class="rsNavItem" onclick="rsmove(' + i + ')" src="../images/' + A.producturl + '.jpg" alt="">');
+                $(".list").append('<img class="rsimg" src="../images/shop/' + A.producturl + '.jpg" alt="">');
+                $(".producturl").append('<img class="rsNavItem" onclick="rsmove(' + i + ')" src="../images/shop/' + A.producturl + '.jpg" alt="">');
                 i++;
             }
         }
