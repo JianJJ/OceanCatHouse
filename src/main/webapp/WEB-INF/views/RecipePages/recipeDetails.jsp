@@ -82,16 +82,17 @@
                             <span class='fontIcon'></span>
                             <span>
                             <%--取出JSON元素迴圈--%>
-                            <c:forEach varStatus="loop" begin="0" end="${jsonArray.length()-1}">
-                                ${jsonArray.get(loop.index)}
+                            <c:forEach varStatus="loop" begin="0" end="${recTagLen}">
+                                ${recTag[loop.index]}
                             </c:forEach>
                             </span>
                         </div>
-                        <%--TODO 額外新增資料 暫放--%>
+                        <%-- 額外新增資料 待配置版面--%>
                         <div>
-                            <h2>額外資料:</h2>
-                            按讚數:${recMainBean.recLiked}人 <br>
-                            瀏覽人數:${recMainBean.recViews}人  <br>
+                            <br>
+                            額外資料:<br>
+                            按讚數:${recMainBean.recLiked}人<br>
+                            瀏覽人數:${recMainBean.recViews}人 <br>
                             食譜創建時間:${recMainBean.recCreated}<br>
                             卡路里:${recMainBean.recCal}卡路里<br>
                         </div>
@@ -112,7 +113,7 @@
                         <div class='blockOne'>
                             <h3 class="littleTitle">食材</h3>
                             <hr class='underline'>
-                            <%--載入該食材迴圈--%>
+                            <%--載入食材迴圈--%>
                             <c:forEach varStatus="loop" begin="0" end="${recMatBean.size()-1}">
                             <div class="ingredent">
                                 <span class='ingreContext'>${recMatBean.get(loop.index).materialName}</span>
@@ -128,12 +129,22 @@
                         <hr class='underline'>
                         <%--載入食譜步驟迴圈--%>
                         <c:forEach varStatus="loop" begin="0" end="${recStepBean.size()-1}">
-                            <div class="step">
-                                <img src= "${recStepBean.get(loop.index).stepPic}" alt="空">
-                                <h1>${loop.index+1}</h1>
-                                <p>${recStepBean.get(loop.index).stepText}</p>
-                            </div>
-                            <hr class='divLine'>
+                            <c:if test="${recStepBean.get(loop.index).stepPic ne 'null'}">
+                                <div class="step">
+                                    <img src= "${recStepBean.get(loop.index).stepPic}" alt="空">
+                                    <h1>${loop.index+1}</h1>
+                                    <p>${recStepBean.get(loop.index).stepText}</p>
+                                </div>
+                                <hr class='divLine'>
+                            </c:if>
+                            <c:if test="${recStepBean.get(loop.index).stepPic eq 'null'}">
+                                <div class="step">
+<%--                                    <img src= "${recStepBean.get(loop.index).stepPic}" alt="空">--%>
+                                    <h1>${loop.index+1}</h1>
+                                    <p>${recStepBean.get(loop.index).stepText}</p>
+                                </div>
+                                <hr class='divLine'>
+                            </c:if>
                         </c:forEach>
                     </div>
                 </section>

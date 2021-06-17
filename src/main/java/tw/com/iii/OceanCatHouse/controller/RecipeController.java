@@ -40,12 +40,12 @@ public class RecipeController {
 
         ModelAndView mav = new ModelAndView();
 
-//JSON標籤處理--------------------------------------------------
-        JSONObject jsonObject = new JSONObject(recipeData.getRecTag());
-        String key = jsonObject.keys().next();
-        JSONArray jsonArray = jsonObject.getJSONArray(key);
+//Rectag切割轉成Array-----------------------------------------------------
+      String[] recTags = recipeData.getRecTag().split("、");
+      int recTagLen = recTags.length;
 
-        mav.addObject("jsonArray",jsonArray);
+      mav.addObject("recTag",recTags);
+      mav.addObject("recTagLen",recTagLen);
 
 //傳入JSP，主要Bean-------------------------------------------------------
         mav.addObject("recMainBean",recipeData);
@@ -89,20 +89,7 @@ public class RecipeController {
         List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,6);
         ModelAndView mav = new ModelAndView();
 
-//JSON---------------------------
-//        JSONArray jsonArray = null;
-//        List<JSONArray> tagArray = null;
-//        for(int i =0;i<6;i++){
-//            JSONObject jsonObject = new JSONObject(recipeRecommendBean.get(i).getRecTag());
-//            String key = jsonObject.keys().next();
-//            jsonArray = jsonObject.getJSONArray(key);
-//            tagArray.add(jsonArray);
-//        }
 
-
-//Add-----------------------------------------------------------
-
-//        mav.addObject("jsonArray",tagArray);
         mav.addObject("recReccBean",recipeRecommendBean);
 
 
