@@ -126,7 +126,6 @@
                                 <p>${recStepBean.get(loop.index).stepText}</p>
                             </div>
                             <hr class='divLine'>
-
                         </c:forEach>
                     </div>
                 </section>
