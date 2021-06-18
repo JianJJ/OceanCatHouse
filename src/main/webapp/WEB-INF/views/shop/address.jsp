@@ -35,7 +35,7 @@
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 <canvas id="canvas"></canvas>
 <%--<jsp:include page="../user/inculeLogin.jsp"></jsp:include>--%>
-<div class="hazy"></div>
+<%--<div class="hazy"></div>--%>
 <div class=".container BBB">
     <%--    --%>
     <div class=" row AAA">
@@ -58,10 +58,10 @@
             </div>
             <div class="col-lg-4 allTotal">
                 <br>
-                <p>總價:100000000</p>
-                <p>運費:60</p>
+                <p class="PPP">總價:100000000</p>
+                <p>運費 : 60</p>
                 <hr>
-                <p>合計:100000060</p>
+                <p class="SSS">合計:100000060</p>
                 <div class="d-grid gap-2">
 
                 </div>
@@ -70,6 +70,7 @@
         <div class="col-lg-2"></div>
     </div>
     <script>
+        var CatProduct = [];
         var sell = [];
         var c = [];
         $.ajax({
@@ -129,8 +130,15 @@
         //     alert("請先登入");
         //     window.location.href = "/recipe/views/login";
         // }
-
-
+        //總價
+        var key = Object.keys(CatProduct);
+        var m = 0;
+        for (var k of key) {
+            m += CatProduct[k] * sell[k];
+        }
+        $(".PPP").text("小記 : " + m);
+        var a = m + 60
+        $(".SSS").text("總價 : "+a);
 
 
 

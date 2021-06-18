@@ -72,7 +72,7 @@
 
             <button type="button" class="btn btn-primary phone">使用手機號碼登入</button>
             <p>__________________________________________________</p>
-            <form action="/recipe/signup/login">
+            <form action="/recipe/signup/login" >
                 <input class="formCSS" type="email" placeholder='Email' name="email" value="${email}"><br>
                 <span class="error">${errors.email}</span><br>
                 <input class="formCSS" type="password" placeholder="密碼" name="userpassword" value="${userpassword}"><br>
@@ -102,13 +102,49 @@
     </div>
 </div>
 
-<script src="../js/umbrella.js"></script>
+
 <script src="../js/recaptcha.js"></script>
 <script src="../js/oauth.js"></script>
 <script>
     $(".phone").click(function () {
         window.location.href = "/recipe/views/phoneLogin";
     });
+
+        var x = [];
+        var y = [];
+        var d = [];//下落速度
+        var size = [];
+        var canvas = document.getElementById("canvas");
+        var w = canvas.width = window.innerWidth;
+        var h = canvas.height = window.innerHeight;
+
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "red";
+        for (var s = 0; s < 200; s++) {
+        x[s] = window.innerWidth * Math.random();
+        y[s] = window.innerHeight * Math.random();
+        d[s] = Math.random() * 3 + 1;
+        size[s]=Math.floor( Math.random() * 3+1);
+        console.log(size[s]);
+        }
+
+        setInterval(() => {
+        ctx.clearRect(0, 0, w, h);
+
+        for (var i = 0; i < 200; i++) {
+        x[i] = x[i] + Math.random()*3;
+        y[i] = y[i] + d[i];
+        ctx.fillRect(x[i], y[i], 3,3);
+        if (y[i] > h) y[i] = 0;
+        if (x[i] > w) x[i] = 0;
+
+        }
+        }, 100);
+
+
+
+
+
 </script>
 </div>
 </body>
