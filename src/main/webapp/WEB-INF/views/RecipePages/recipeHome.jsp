@@ -72,7 +72,7 @@
                 <ul class='row'>
                     <%--推薦食譜迴圈--%>
                     <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
-                    <li class='col-xs-9 col-md-9'>
+                    <li class='col-xs-10 col-md-10'>
                         <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                             <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
                             <div class="row">
