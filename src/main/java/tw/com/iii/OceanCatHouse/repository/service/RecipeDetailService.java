@@ -26,6 +26,7 @@ public class RecipeDetailService {
     @Autowired
     private RecipeMaterialRepository recipeMatDao;
 
+
    //1.訪問recipe_main，取得返回Bean
     public RecipeMainBean getRecipeMainData(int id){
         Optional<RecipeMainBean> ob = recipeMainDao.findById(id);
@@ -51,6 +52,10 @@ public class RecipeDetailService {
         return recomBean;
     }
 
-
+    //5.搜尋系統
+    public List<RecipeMainBean> getSearchResult(String searchString){
+        List<RecipeMainBean> searchBean = recipeMainDao.findByRecTitleContains(searchString);
+        return searchBean;
+    }
 
 }

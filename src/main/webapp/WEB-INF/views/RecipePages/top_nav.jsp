@@ -42,8 +42,8 @@
                     </li>
                 </ul>
 
-                <form class="d-flex" action="" method="">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                <form class="d-flex" action="/recipe/recipeSearch" method="get">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="searchString">
                     <button class="btn btn-search" type="submit">Search</button>
                   </form>
                   <em>|</em>

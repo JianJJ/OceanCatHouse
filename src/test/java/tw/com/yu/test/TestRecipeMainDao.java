@@ -25,6 +25,12 @@ public class TestRecipeMainDao {
 
    @Test
    void testYu() {
+       String searchString = "麵";
+       List<RecipeMainBean> searchResultBean = service.getSearchResult(searchString);
+       System.out.println("總共搜尋到:" + searchResultBean.size());
+       System.out.println(searchResultBean.get(1).getRecTitle() + searchResultBean.get(1).getRecTag());
+
+
 
 
 

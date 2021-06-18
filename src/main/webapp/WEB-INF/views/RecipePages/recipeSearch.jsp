@@ -43,11 +43,11 @@
 <jsp:include page="top_nav.jsp"></jsp:include>
     <div class="container">
         <div class="row justify-content-between">
-            <form class="col-lg-3 d-none d-md-none d-lg-block recFilter">
+            <form class="col-lg-3 d-none d-md-none d-lg-block recFilter" action="/recipe/recipeSearch">
                 <h3 class="littleTitle"><span>詳細搜尋</span><input type="reset" value="清除"></input></h3>
                 <hr class='underline'>
                 <h5>食譜名搜尋</h5>
-                <input class="form-control me-2 textSize" type="search" placeholder="關鍵字" aria-label="Search" id='searchName' name='recTitle'>
+                <input class="form-control me-2 textSize" type="search" placeholder="關鍵字" aria-label="Search" id='searchName' name='searchString'>
                 <hr class='underline'>
                 <h5>材料搜尋</h5>
                 <label for="searchIngre">包含材料</label>
@@ -59,15 +59,27 @@
   
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
-                    <%--推薦食譜輪播圖迴圈 暫放，要改成搜尋功能--%>
-                    <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
-                        <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
-                            <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
-                            <h4 class='showLines'>"${recReccBean.get(loop.index).recTitle}"</h4>
-                            <p class='showLines'>${recReccBean.get(loop.index).recText}</p>
+                    <%--預設搜尋畫面，在沒有輸入搜尋關鍵字前提下，預設使用推薦系統--%>
+                    <c:if test="${searchString eq '0'}">
+                        <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
+                            <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+                                <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
+                                <h4 class='showLines'>"${recReccBean.get(loop.index).recTitle}"</h4>
+                                <p class='showLines'>${recReccBean.get(loop.index).recText}</p>
+                            </a></li>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${searchString ne '0'}">
+                    <%--成搜尋功能關鍵字--%>
+                        <h1>搜尋:"${searchString}"，共找到${recipeSearchBean.size()}筆結果</h1>
+                    <c:forEach varStatus="loop" begin="0" end="${recipeSearchBean.size()-1}">
+                        <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recipeSearchBean.get(loop.index).recId}">
+                            <img src="${recipeSearchBean.get(loop.index).recPic}" alt="${recipeSearchBean.get(loop.index).recTitle}">
+                            <h4 class='showLines'>"${recipeSearchBean.get(loop.index).recTitle}"</h4>
+                            <p class='showLines'>${recipeSearchBean.get(loop.index).recText}</p>
                         </a></li>
                     </c:forEach>
-
+                    </c:if>
                 </ul>
                 <button class="btn-search" id='btnRecMore'>載入更多</button>
                 

@@ -13,4 +13,8 @@ public interface RecipeRepository extends JpaRepository<RecipeMainBean,Integer>{
     @Query(value="SELECT * FROM recipe_main where RecId <> ?1 ORDER BY RAND() LIMIT ?2",nativeQuery=true)
     List<RecipeMainBean> findByRecIdNot(int id,int recNum);
 
+
+    @Query(value="SELECT * FROM recipe_main where RecTitle like %?1%",nativeQuery=true)
+    List<RecipeMainBean> findByRecTitleContains(String searchString);
+
 }
