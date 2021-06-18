@@ -33,8 +33,8 @@ import com.google.api.client.json.gson.GsonFactory;
 @Component
 public class ZeroTools {
     //	window.location.href = "/recipe/views/phoneLogin";
-    private String STMP = "";
-    private String secret ="";
+    private String STMP = "cmbatoziyuiunlot";
+    private String secret ="6LdUNRobAAAAAJR5LsTpyF-A_hIxRltekXBxWWAK";
 
     //郵件
     public void mail(String mailTo, String text) {
