@@ -60,7 +60,7 @@
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
                     <%--預設搜尋畫面，在沒有輸入搜尋關鍵字前提下，預設使用推薦系統--%>
-                    <c:if test="${searchString eq '0'}">
+                    <c:if test="${searchString eq 'default'}">
                         <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                             <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                                 <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
@@ -69,7 +69,7 @@
                             </a></li>
                         </c:forEach>
                     </c:if>
-                    <c:if test="${searchString ne '0'}">
+                    <c:if test="${searchString ne 'default' && recipeSearchBean.size() > 0}">
                     <%--成搜尋功能關鍵字--%>
                         <h1>搜尋:"${searchString}"，共找到${recipeSearchBean.size()}筆結果</h1>
                     <c:forEach varStatus="loop" begin="0" end="${recipeSearchBean.size()-1}">
@@ -79,6 +79,9 @@
                             <p class='showLines'>${recipeSearchBean.get(loop.index).recText}</p>
                         </a></li>
                     </c:forEach>
+                    </c:if>
+                    <c:if test="${recipeSearchBean.size() eq 0}">
+                        <h1>搜尋:"${searchString}"，共找到${recipeSearchBean.size()}筆結果</h1>
                     </c:if>
                 </ul>
                 <button class="btn-search" id='btnRecMore'>載入更多</button>
