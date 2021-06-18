@@ -236,7 +236,8 @@
     function doSuccess(json) {
         $(".TTT").remove();
         for (var A of json) {
-            $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')"><td class="col-lg-1">' + A.productid + '</td>' +
+            $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')">' +
+                '<td class="col-lg-1">' + A.productid + '</td>' +
                 '<td class="col-lg-1 ">' + A.productmodel + '</td>' +
                 '<td class="col-lg-2 ">' + A.productname + '</td>' +
                 '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
