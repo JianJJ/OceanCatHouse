@@ -63,7 +63,7 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order'">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order'">訂單管理</label>
         <button class="list-group-item" onclick="javascript:location.href='../backstage/product'">商品管理</button>
         <label class="list-group-item">會員管理</label>
         <label class="list-group-item">員工管理</label>
@@ -99,10 +99,9 @@
                 </ul>
             </nav>
             <div class="row">
-                <div id="timeCenter">Error</div>
-                <script src="${pageContext.request.contextPath}/js/time.js"></script>
                 <%--                中間之後要放的內容--%>
-                </div>
+                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            </div>
         </div>
     </div>
 </div>

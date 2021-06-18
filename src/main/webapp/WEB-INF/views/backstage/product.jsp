@@ -46,15 +46,70 @@
 </head>
 
 
-
-
 <body>
 <!-- 購物車 -->
 <div class="hazy">
     <div class="cat">
         <button class="catReturn">X</button>
         <form action="/recipe/backstage/updata/" class="form" method="post">
-        <!-- 這裡有圖 -->
+            <!-- 這裡有圖 -->
+            <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
+
+            <div class="form-group"><label for="productname">名稱</label>
+                <input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname">
+            </div>
+
+            <div class="form-group"><label for="productmodel">商品號</label>
+                <input type="text" class="form-control" id="productmodel" value="'+A.productmodel+'"
+                       name="productmodel"></div>
+
+            <div class="form-group"><label for="producttext">詳細描述</label>
+                <input type="text" class="form-control" id="producttext" value="'+A.producttext+'" name="producttext">
+
+            </div>
+            <div class="form-group"><label for="purchaseprice">進價</label>
+                <input type="text" class="form-control" id="purchaseprice" value="'+A.purchaseprice+'"
+                       name="purchaseprice"></div>
+
+            <div class="form-group"><label for="sellingprice">售價</label>
+                <input type="text" class="form-control" id="sellingprice" value="'+A.sellingprice+'"
+                       name="sellingprice"></div>
+
+            <div class="form-group"><label for="stocks">庫存</label>
+                <input type="text" class="form-control" id="stocks" value="'+A.stocks+'" name="stocks"></div>
+
+            <div class="form-group"><label for="productspecifications">商品規格</label>
+                <input type="text" class="form-control" id="productspecifications" value="'+A.productspecifications+'"
+                       name="productspecifications"></div>
+
+
+            <label for="vendorid">廠商號</label>
+            <select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <label for="productcategoryid">分類號</label>
+            <select class="form-select" aria-label="Default select example" id="productcategoryid"
+                    name="productcategoryid">
+                <option value="1">1 五穀雜糧</option>
+                <option value="2">2 蔬果</option>
+                <option value="3">3 生鮮</option>
+                <option value="4">4 醬料</option>
+                <option value="5">5 油</option>
+                <option value="6">6 乾貨</option>
+            </select>
+
+            <label for="vendorid">產品狀態</label>
+            <select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">
+                <option value="1">1 銷售</option>
+                <option value="2">2 下架</option>
+            </select>
+
+            <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>
+            <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>
+            <button type="submit" class="">修改</button>
         </form>
     </div>
 </div>
@@ -69,7 +124,7 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" aria-disabled="true">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order'">訂單管理</button>
         <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product'">商品管理</button>
         <button class="list-group-item">會員管理</button>
         <button class="list-group-item">員工管理</button>
@@ -167,37 +222,27 @@
         console.log(id);
         $(".hazy").css("visibility", "visible");
         $.ajax({
-            url: "/recipe/product/"+id,
+            url: "/recipe/product/" + id,
             type: "get",
             contentType: "application/json",
             dataType: "json",
             success: function (A) {
-                $(".form").prepend(' <div class="form-group"><label id="productid" >商品ID : '+A.productid+'</label></div>'+
-                    '<div class="form-group"><label for="productname">名稱</label>'+
-                    '<input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname"></div>'+
-                '<div class="form-group"><label for="productmodel">商品號</label>'+
-                    '<input type="text" class="form-control" id="productmodel" value="'+A.productmodel+'" name="productmodel"></div>'+
-                '<div class="form-group"><label for="producttext">詳細描述</label>'+
-                    '<input type="text" class="form-control" id="producttext" value="'+A.producttext+'" name="producttext">'+
-                '</div><div class="form-group"><label for="purchaseprice">進價</label>'+
-                    '<input type="text" class="form-control" id="purchaseprice" value="'+A.purchaseprice+'" name="purchaseprice"></div>'+
-                '<div class="form-group"><label for="sellingprice">售價</label>'+
-                    '<input type="text" class="form-control" id="sellingprice" value="'+A.sellingprice+'" name="sellingprice"></div>'+
-                '<div class="form-group"><label for="stocks">庫存</label>'+
-                    '<input type="text" class="form-control" id="stocks" value="'+A.stocks+'" name="stocks"></div>'+
-                '<div class="form-group"><label for="productspecifications">商品規格</label>'+
-                   ' <input type="text" class="form-control" id="productspecifications" value="'+A.productspecifications+'" name="productspecifications"></div>'+
-                '<div class="form-group"><label for="vendorid">廠商號</label>'+
-                    '<input type="text" class="form-control" id="vendorid" value="'+A.vendorid+'" name="vendorid"></div>'+
-                '<div class="form-group"><label for="productcategoryid">分類號</label>'+
-                    '<input type="text" class="form-control" id="productcategoryid" value="'+A.productcategoryid+'"></div>'+
-                '<div class="form-group"><label for="productstatus">產品狀態</label>'+
-                    '<input type="text" class="form-control" id="productstatus" value="'+A.productstatus+'" name="productstatus"></div>'+
-            '<div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>'+
-            '<div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>'+
-            '<button type="submit" class="">修改</button>');
+                $("#productid").text("商品ID : " + A.productid);
+                $("#productname").val(A.productname);
+                $("#productmodel").val(A.productmodel);
+                $("#producttext").val(A.producttext);
+                $("#purchaseprice").val(A.purchaseprice);
+                $("#sellingprice").val(A.sellingprice);
+                $("#stocks").val(A.stocks);
+                $("#productspecifications").val(A.productspecifications);
+                $("#vendorid").val(A.vendorid);
+                $("#productcategoryid").val(A.productcategoryid);
 
-                $(".form").attr("action","/recipe/backstage/updata/"+A.productid);
+                $("#productstatus").val(A.productstatus);
+                $("#createdon").text("創建日期 : " + A.createdon);
+                $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
+
+                $(".form").attr("action", "/recipe/backstage/updata/" + A.productid);
             },
             error: doError
         });
@@ -206,39 +251,45 @@
     }
 
     $(document).ready(function () {
-        //新增商品
-        $("#addPoduct").click(function () {
-            $(".form").empty();
-            $(".hazy").css("visibility", "visible");
-            $(".form").prepend('  <div class="form-group"><label id="productid">商品ID : </label></div>'+
-                '<div class="form-group"><label for="productname">名稱</label>'+
-                '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>'+
-                '<div class="form-group"><label for="productmodel">商品號</label>${errors.productmodel}'+
-                '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>'+
-                '<div class="form-group"><label for="producttext">詳細描述</label>${errors.producttext}'+
-                '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext">'+
-                '</div><div class="form-group"><label for="purchaseprice">進價</label>${errors.purchaseprice}'+
-                '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>'+
-                '<div class="form-group"><label for="sellingprice">售價</label>${errors.sellingprice}'+
-                '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>'+
-                '<div class="form-group"><label for="stocks">庫存</label>${errors.stocks}'+
-                '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>'+
-                '<div class="form-group"><label for="productspecifications">商品規格</label>${errors.productspecifications}'+
-                ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>'+
-                '<div class="form-group"><label for="vendorid">廠商號</label>${errors.vendorid}'+
-                '<input type="text" class="form-control" id="vendorid" placeholder="vendorid" name="vendorid"></div>'+
-                '<div class="form-group"><label for="productcategoryid">分類號</label>'+
-                '<input type="text" class="form-control" id="productcategoryid" placeholder="productcategoryid"></div>'+
-                '<div class="form-group"><label for="productstatus">產品狀態</label>'+
-                '<input type="text" class="form-control" id="productstatus" placeholder=productstatus" name="productstatus"></div>'+
-                '<div class="form-group"><label id="createdon">創建日期</label></div>'+
-                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'+
-                '<button type="submit" class="">新增</button>');
-        })
+            //新增商品
+            $("#addPoduct").click(function () {
+                $(".form").empty();
+                $(".hazy").css("visibility", "visible");
+                $(".form").prepend('  <div class="form-group"><label id="productid">商品ID : </label></div>' +
+                    '<div class="form-group"><label for="productname">名稱</label>' +
+                    '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>' +
+                    '<div class="form-group"><label for="productmodel">商品號</label>${errors.productmodel}' +
+                    '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>' +
+                    '<div class="form-group"><label for="producttext">詳細描述</label>${errors.producttext}' +
+                    '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext">' +
+                    '</div><div class="form-group"><label for="purchaseprice">進價</label>${errors.purchaseprice}' +
+                    '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>' +
+                    '<div class="form-group"><label for="sellingprice">售價</label>${errors.sellingprice}' +
+                    '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>' +
+                    '<div class="form-group"><label for="stocks">庫存</label>${errors.stocks}' +
+                    '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>' +
+                    '<div class="form-group"><label for="productspecifications">商品規格</label>${errors.productspecifications}' +
+                    ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>' +
+                   '<label for="vendorid">廠商號</label>'+
+                     '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">'+
+                    '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>'+
+                 '<label for="productcategoryid">分類號</label>'+
+                    '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">'+
+                    '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>'+
+                    '<option value="5">5 油</option><option value="6">6 乾貨</option></select>'+
+                '<label for="vendorid">產品狀態</label>'+
+                '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">'+
+                '<option value="1">1 銷售</option><option value="2">2 下架</option></select>'+
+                '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
+                '<button type="submit" class="">新增</button>'
+            )
+                ;
+            })
             // 關閉按紐
             $('.catReturn').click(function () {
                 $(".hazy").css("visibility", "hidden");
-                $(".form").empty();
+                // $(".form").empty();
 
             });
         }
@@ -273,12 +324,14 @@
         top: 50px;
         border-radius: 15px;
     }
-    .cat form{
+
+    .cat form {
         top: 10px;
         position: relative;
         left: 20px;
     }
-    .cat input{
+
+    .cat input {
         width: 95%;
     }
 

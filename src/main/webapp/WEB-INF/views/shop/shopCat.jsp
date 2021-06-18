@@ -21,7 +21,7 @@
                 border: blue 1px solid;
                 background-color: white;
                 width: 830px;
-                height: 800px;
+                height: 600px;
                 z-index: 25;
                 position: fixed;
                 left: 0%;

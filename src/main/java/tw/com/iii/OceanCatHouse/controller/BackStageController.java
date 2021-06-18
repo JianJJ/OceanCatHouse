@@ -39,14 +39,9 @@ public class BackStageController {
     public String prod(){
         return "views/backstage/product";
     }
-    @RequestMapping("/r")
-    public String recipeDetails(){
-        return "views/RecipePages/recipeDetails";
-    }
-
-    @RequestMapping("/h")
-    public String recipeSearch(){
-        return "views/RecipePages/recipeSearch";
+    @RequestMapping("/order")
+    public String order(){
+        return "views/backstage/order";
     }
 
 
