@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
-        body{
-            background-color: #222;
-        }
+
         .headtop{
             position: sticky;
             top: 0px;
@@ -49,6 +47,9 @@
             margin:  auto;
             width: 40px;
         }
+        .TTT:hover {
+            background-color: #afe3d5;
+        }
     </style>
 </head>
 <body>
@@ -74,37 +75,93 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
+             <div class="row">   第1層  </div>
 
             <div class="row">
+                <div class="row">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>訂單編號</td>
+                            <td>顧客ID</td>
+                            <td>日期</td>
+                            <td>狀態</td>
 
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <%--                分頁--%>
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="row">
-                <%--                中間之後要放的內容--%>
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            </div>
+                <div class="row">  底層   </div>
         </div>
     </div>
 </div>
 
+
+<script>
+    $.ajax({
+        url: "/recipe/backstage/selectorder",
+        type: "post",
+        async: false,
+        success: doSuccess,
+        error: doError
+    });
+
+    //取得列表
+    function doSuccess(json) {
+    var state ;
+
+
+        $(".TTT").remove();
+        for (var A of json) {
+            var  StatusId = A.orderStatusId;
+            switch (StatusId) {
+                case 0 : state ="刪除";break;
+                case 1 :state ="訂單成立,未付款";break;
+                case 2 :state ="訂單成立,已付款";break;
+                case 3 :state ="運送中";break;
+                case 4 :state ="已完成";break;
+            }
+
+            console.log(A);
+            $(".table").append('<tr class="TTT" onclick="Detailed(' + A.orderId + ')">' +
+                '<td class="col-lg-1">' + A.orderId + '</td>' +
+                '<td class="col-lg-1 ">' + A.userId + '</td>' +
+                '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
+                '<td class="col-lg-1 ">' + state + '</td>' +
+                '</tr>');
+        }
+    }
+    function doError(json) {
+        console.log("error ajax");
+    }
+    function Detailed(id) {
+        console.log(id);
+        $(".hazy").css("visibility", "visible");
+        $.ajax({
+            url: "/recipe/backstage/orderDetail/" + id,
+            type: "get",
+            success: function (A) {
+                // $("#productid").text("商品ID : " + A.productid);
+                // $("#productname").val(A.productname);
+                // $("#productmodel").val(A.productmodel);
+                // $("#producttext").val(A.producttext);
+                // $("#purchaseprice").val(A.purchaseprice);
+                // $("#sellingprice").val(A.sellingprice);
+                // $("#stocks").val(A.stocks);
+                // $("#productspecifications").val(A.productspecifications);
+                // $("#vendorid").val(A.vendorid);
+                // $("#productcategoryid").val(A.productcategoryid);
+                //
+                // $("#productstatus").val(A.productstatus);
+                // $("#createdon").text("創建日期 : " + A.createdon);
+                // $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
+                //
+                // $(".form").attr("action", "/recipe/backstage/updata/" + A.productid);
+            },
+            error: doError
+        });
+
+
+    }
+</script>
 </body>
 </html>

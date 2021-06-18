@@ -116,6 +116,7 @@
 </div>
 
 
+
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
@@ -138,14 +139,21 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
-            <div class="row">
-                <button class="col-lg-1" id="addPoduct">新增</button>
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn"><button class="btn btn-default" type="button">搜索</button> </span>
-
-                    </div><!-- /input-group -->
+            <div class="row ">
+                <div class="col-lg-1">
+                <button type="button" class="btn btn-primary ccc " id="addPoduct">新增</button>
+                </div >
+                <style>
+                    .ccc{
+                        position: relative;
+                        top: 5px;
+                    }
+                </style>
+                <div class="col-lg-3 ccc">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="名稱" aria-label="Recipient's username" aria-describedby="button-addon2" id="selectProduct">
+                        <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>
+                    </div>
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->
 
@@ -164,7 +172,7 @@
                 </table>
             </div>
             <%--       分頁表--%>
-            <div class="row">
+            <div class="row lll">
                 <div class="col-lg-5"></div>
                 <nav aria-label="Page navigation example" class="col-lg-1">
                     <ul class="pagination">
@@ -320,8 +328,48 @@
 
             });
         }
-    )
-    ;
+    );
+    //搜索按鈕
+    $("#buttonaddon2").click(function (){
+        console.log("#buttonaddon2" +$("#selectProduct").val());
+
+        $.ajax({
+            url: "/recipe/backstage/selectproduct/"+$("#selectProduct").val(),
+            type: "post",
+            async: false,
+            success: doSuc,
+            error: doError
+        });
+
+        //取得列表
+        function doSuc(json) {
+            $(".TTT").remove();
+            $(".lll").remove();
+            for (var A of json) {
+                $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')"><td class="col-lg-1">' + A.productid + '</td>' +
+                    '<td class="col-lg-1 ">' + A.productmodel + '</td>' +
+                    '<td class="col-lg-2 ">' + A.productname + '</td>' +
+                    '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                    '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
+                    '<td class="col-lg-1 ">' + A.stocks + '</td>' +
+                    '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                    '<td class="col-lg-1 "> 圖片 </td>' +
+                    '</tr>');
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+    })
+
+
 </script>
 <style>
     .TTT:hover {
@@ -377,8 +425,6 @@
         border-radius: 50%;
         z-index: 20;
     }
-
-
 </style>
 </body>
 </html>

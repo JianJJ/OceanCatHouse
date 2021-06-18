@@ -24,7 +24,7 @@ public class OrdersService {
         ordersBean.setUserId(id);
         ordersBean.setOrderStatusId(1);
         OrdersBean save = ordersRepository.save(ordersBean);
-        System.out.println("Orderid = "+save.getOrderId());
+        System.out.println("orderid = "+save.getOrderId());
 
         for (String key : cat.keySet()){
             OrderDetailBean detailBean = new OrderDetailBean();
