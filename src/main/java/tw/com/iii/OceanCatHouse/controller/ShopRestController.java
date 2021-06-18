@@ -37,7 +37,7 @@ public class ShopRestController {
 	@RequestMapping("/shopping")
 	public List<ProductBean> mmmm(Model model) {
 		System.out.println("/shopping**************************************************************************");
-		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 12));
+		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 20));
 //		page.getSize();每頁條數
 //		page.getNumber();當前頁
 //		page.getNumberOfElements();本頁條數
@@ -72,7 +72,6 @@ public class ShopRestController {
 		}
 
 		List<ProductBean> result = page.getContent();
-		result.size();
 		return result;
 	}
 

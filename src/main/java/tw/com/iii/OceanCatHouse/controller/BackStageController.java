@@ -1,6 +1,8 @@
 package tw.com.iii.OceanCatHouse.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,26 +48,36 @@ public class BackStageController {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//讀取商品資訊
-    @RequestMapping("/product/data")
+//讀取商品資訊 和分頁
+    @RequestMapping("/product/{pag}")
     @ResponseBody
-    public List<ProductBean> product(){
+    public List<ProductBean> product(@PathVariable("pag") Integer p){
         System.out.println("*****讀取商品資訊 *****");
-        List<ProductBean> result = productRepository.findAll();
-
+        Page<ProductBean> page = productRepository.findAll(PageRequest.of(p-1, 20));
+        List<ProductBean> result = page.getContent();
         return result;
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //讀取最多頁數
+    @RequestMapping("/product/data/{page}")
+    @ResponseBody
+    public Integer page(@PathVariable("page") Integer p){
+        System.out.println("*****讀取最多頁數 *****");
+        Page<ProductBean> page = productRepository.findAll(PageRequest.of(p-1, 20));
+        Integer result = page.getTotalPages();
+        return result;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //修改商品
     @RequestMapping("/updata/{productid}")
-    public String updata(ProductBean bean, @PathVariable("productid") Integer productid){
+    public String updata(ProductBean bean, @PathVariable("productid") Integer productid,Model model){
         System.out.println("*****修改商品 *****");
         System.out.println(bean);
         bean.setProductid(productid);
         productService.insert(bean);
+        model.addAttribute("pag",1);
         return "/views/backstage/product";
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //新增商品
     @RequestMapping("/updata/")
     public String updata(ProductBean bean, Model model){

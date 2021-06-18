@@ -52,6 +52,7 @@
     <div class="cat">
         <button class="catReturn">X</button>
         <form action="/recipe/backstage/updata/" class="form" method="post">
+            <button type="submit" class="">修改</button>
             <!-- 這裡有圖 -->
             <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
 
@@ -109,10 +110,12 @@
 
             <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>
             <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>
-            <button type="submit" class="">修改</button>
+
         </form>
     </div>
 </div>
+
+
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
@@ -124,8 +127,8 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order'">訂單管理</button>
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product'">商品管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1'">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product?pag=1'">商品管理</button>
         <button class="list-group-item">會員管理</button>
         <button class="list-group-item">員工管理</button>
     </ul>
@@ -156,49 +159,72 @@
                         <td>售價</td>
                         <td>庫存</td>
                         <td>規格</td>
+                        <td>圖片</td>
                     </tr>
                 </table>
             </div>
-            <%--                分頁--%>
-            <nav>
-                <ul class="pagination">
-                    <li>
-
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <%--       分頁表--%>
             <div class="row">
-                <%--                中間之後要放的內容--%>
-                範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字範例字
+                <div class="col-lg-5"></div>
+                <nav aria-label="Page navigation example" class="col-lg-1">
+                    <ul class="pagination">
+                        <li class="page-item per">
+                            <a class="page-link" href="" aria-label="Previous"> <span>&laquo;</span> </a>
+                        </li>
+<%--                        <li class="page-item"><a class="page-link" href="">1</a></li>--%>
+<%--                        <li class="page-item"><a class="page-link" href="" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>--%>
+                        </li>
+                    </ul>
+                </nav>
+
             </div>
         </div>
     </div>
 </div>
 <script>
+    var p = '${param.pag}';
+    if(p == "")p=1;
+    // 分頁管理
+    $(document).ready(function () {
+        var url = location.href;
+        if (url.indexOf("pag") == -1 || url.indexOf("pag=1") != -1) {
+            $(".per").remove();
+        }
+        $.ajax({
+            url: "/recipe/backstage/product/data/"+p,
+            type: "get",
+            success: function (max) {
+
+                for(var i = 1; i<= max ; i ++ ){
+
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag='+i+'">'+i+'</a></li>');
+                }
+                if(max != '${param.pag}' )
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=${param.pag==null?2:param.pag+1}"'+
+                        'aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>');
+
+
+            },
+            error: function (pag) {
+                console.log("error");
+            }
+        })
+
+
+        // $(".page-item").remove();
+    })
+
     <%--    商品管理--%>
+
     $.ajax({
-        url: "/recipe/backstage/product/data",
+        url: "/recipe/backstage/product/"+p,
         type: "post",
         async: false,
-        // contentType: "application/json",
-        // dataType: "json",
         success: doSuccess,
         error: doError
     });
 
+    //取得列表
     function doSuccess(json) {
         $(".TTT").remove();
         for (var A of json) {
@@ -209,6 +235,7 @@
                 '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
                 '<td class="col-lg-1 ">' + A.stocks + '</td>' +
                 '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                '<td class="col-lg-1 "> 圖片 </td>' +
                 '</tr>');
         }
     }
@@ -255,7 +282,8 @@
             $("#addPoduct").click(function () {
                 $(".form").empty();
                 $(".hazy").css("visibility", "visible");
-                $(".form").prepend('  <div class="form-group"><label id="productid">商品ID : </label></div>' +
+                $(".form").prepend('<button type="submit" class="">新增</button>' +
+                    '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
                     '<div class="form-group"><label for="productname">名稱</label>' +
                     '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>' +
                     '<div class="form-group"><label for="productmodel">商品號</label>${errors.productmodel}' +
@@ -270,20 +298,19 @@
                     '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>' +
                     '<div class="form-group"><label for="productspecifications">商品規格</label>${errors.productspecifications}' +
                     ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>' +
-                   '<label for="vendorid">廠商號</label>'+
-                     '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">'+
-                    '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>'+
-                 '<label for="productcategoryid">分類號</label>'+
-                    '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">'+
-                    '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>'+
-                    '<option value="5">5 油</option><option value="6">6 乾貨</option></select>'+
-                '<label for="vendorid">產品狀態</label>'+
-                '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">'+
-                '<option value="1">1 銷售</option><option value="2">2 下架</option></select>'+
-                '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
-                '<button type="submit" class="">新增</button>'
-            )
+                    '<label for="vendorid">廠商號</label>' +
+                    '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">' +
+                    '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>' +
+                    '<label for="productcategoryid">分類號</label>' +
+                    '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">' +
+                    '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>' +
+                    '<option value="5">5 油</option><option value="6">6 乾貨</option></select>' +
+                    '<label for="vendorid">產品狀態</label>' +
+                    '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
+                    '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
+                    '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                    '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'
+                )
                 ;
             })
             // 關閉按紐
@@ -332,6 +359,10 @@
     }
 
     .cat input {
+        width: 95%;
+    }
+
+    .cat select {
         width: 95%;
     }
 
