@@ -14,22 +14,21 @@ a {
     position: absolute;
     bottom: 50px;
     left: 35px;
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     border: 3px #fff solid;
-    border-radius: 50px;
+    border-radius: 50%;
     box-shadow: 0px 1px 3px 2px #777;
     cursor: pointer;
 
     background-color: white;
-    background-image: url(../images/paw-solid.svg);
     background-size: cover;
 }
 
 #member-imgBackground {
 
     height: 235px;
-    background-image: url(../images/wall02.jpg);
+    background-image: url(../images/homePic/wall02.jpg);
     background-size: cover;
 }
 
@@ -40,7 +39,7 @@ a {
 #member-navLinks > div > span {
     display: inline-block;
     font-size: 25px;
-    margin-left: 145px;
+    margin-left: 220px;
     margin-top: 10px;
 }
 

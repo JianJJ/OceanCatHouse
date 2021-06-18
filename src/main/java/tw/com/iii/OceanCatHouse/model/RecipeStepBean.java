@@ -29,7 +29,7 @@ public class RecipeStepBean {
                 ", Step='" + Step + '\'' +
                 ", StepPic='" + StepPic + '\'' +
                 ", StepText='" + StepText + '\'' +
-                ", recipeMainBean=" + recipeMainBean +
+                ", recipeMainBean=" + recipeMainBean.getRecId() +
                 '}';
     }
 
@@ -82,7 +82,7 @@ public class RecipeStepBean {
     }
 
     @JsonIgnore
-    @ManyToOne(cascade={CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)
     private RecipeMainBean recipeMainBean;
 

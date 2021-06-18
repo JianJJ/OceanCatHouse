@@ -12,10 +12,14 @@
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
+    <%-- Header的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
+    <%-- footer的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+    <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
 
     <style>
         body {
@@ -62,25 +66,7 @@
 </head>
 <body>
 <!--頁首-->
-<header class="container-fluid mainColor">
-    <div class="title">✿海貓食屋✿</div>
-    <div class="littleNav">
-        <ul>
-            <li><a href="#" class="top">RECIPES</a></li>
-            <li><a href="#">SHOP</a></li>
-        </ul>
-    </div>
-    <div class="simpleSearch">
-        <input type="text" id="searchLine" placeholder="Search...">
-        <label for="searchLine">
-            <span class="fontIcon searchIcon"></span></label>
-    </div>
-    <div class="Login">
-        <span class="text">SIGN UP</span><em>/</em>
-        <span class="text">LOG IN</span>
-    </div>
-    <button class="userIcon"></button>
-</header>
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 
 <!--主體-->
 <div class="container Cbody">
@@ -102,7 +88,7 @@
             <div class="row">
                 <div class="picmain">
                     <div style="width: 350px;height: 280px; margin:0 auto;">
-                        <img src="${pageContext.request.contextPath}/images/uploadpic.png" id="img-main"
+                        <img src="${pageContext.request.contextPath}/images/mainpic/uploadpic.png" id="img-main"
                              class="img-thumbnail"/>
                         <input type="file" accept="image/*" id="file-main" name="file"
                                onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
@@ -152,12 +138,12 @@
                 </div>
             </div>
             <%--            食材--%>
-            <div class="row" style="margin-bottom: 0px" id="frodStart">
+            <div class="row" style="margin-bottom: 0px" id="foodStart">
                 <label>食材<span>食材15字以內，份量10字以內</span></label><br/>
             </div>
                 <%--            食材新增位置--%>
             <div class="row justify-content-between" style="margin-top: 0px">
-                <button type="button" onclick="createFrod()" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
+                <button type="button" onclick="createFood()" class="btn btn-outline-info" style=" width: 100%">加入食材</button>
             </div>
             <%--            步驟--%>
             <div class="row" style="margin-bottom: 0px" id="stepStart" >
@@ -173,9 +159,6 @@
                 <button id="insert" onclick="doUpload()" type="button" class="btn btn-outline-danger">發布</button>
             </div>
             <div class="row justify-content-start">
-                <button type="button" class="btn btn-outline-danger">儲存</button>
-            </div>
-            <div class="row justify-content-start">
                 <button type="button" class="btn btn-outline-danger">取消</button>
             </div>
             <div class="row justify-content-start">
@@ -188,33 +171,6 @@
 
 </div>
 <!--頁尾-->
-<footer class="container-fluid mainColor">
-    <dl>
-        <dt>關於我們</dt>
-        <dd><a href="#">公司資訊</a></dd>
-        <dd><a href="#">徵才訊息</a></dd>
-        <dd><a href="#">廣告合作</a></dd>
-        <dd><a href="#">市集上架</a></dd>
-        <dd><a href="#">品牌資產</a></dd>
-        <dd><a href="#">隱私權與條款</a></dd>
-    </dl>
-    <dl>
-        <dt>會員服務</dt>
-        <dd><a href="#">個人頁面</a></dd>
-        <dd><a href="#">食譜收藏</a></dd>
-        <dd><a href="#">商品訂單</a></dd>
-        <dd><a href="#">帳號設定</a></dd>
-        <dd><a href="#">忘記密碼</a></dd>
-        <dd><a href="#">VIP會員</a></dd>
-    </dl>
-    <dl>
-        <dt>逛食譜</dt>
-        <dd><a href="#">人氣食譜</a></dd>
-        <dd><a href="#">新廚上菜</a></dd>
-        <dd><a href="#">今日話題</a></dd>
-        <dd><a href="#">醉心食譜</a></dd>
-        <dd><a href="#">全部分類</a></dd>
-    </dl>
-</footer>
+<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
 </body>
 </html>

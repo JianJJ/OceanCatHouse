@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/userBack")
@@ -32,11 +33,17 @@ public class UserBackController {
     private UserRepository userRepository;
 
     @Autowired
+    private UserRepository userDao;
+
+    @Autowired
     private RecipeMainRepository recipeMainRepository;
 
     @RequestMapping("/home")
     public String home(HttpSession session, HttpServletRequest request) {
-        UserBean user = (UserBean) session.getAttribute("user");
+        Optional<UserBean> byId = userDao.findById(21);
+        UserBean user = byId.get();
+//            UserBean user = (UserBean) session.getAttribute("user");
+        session.setAttribute("user", user);
             // 查看user自己的食譜數量
         Integer recCount = recipeMainRepository.recCount(user.getUserid());
         List<RecipeMainBean> recipeMainList = recipeMainRepository.findAllByUserid(user.getUserid());

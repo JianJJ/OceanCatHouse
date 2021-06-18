@@ -1,5 +1,7 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,7 +24,7 @@ public class RecipeMaterialBean {
                 ", Gp='" + Gp + '\'' +
                 ", MaterialName='" + MaterialName + '\'' +
                 ", UnitNum='" + UnitNum + '\'' +
-                ", recipeMainBean=" + recipeMainBean +
+                ", recipeMainBean=" + recipeMainBean.getRecTitle() +
                 '}';
     }
 
@@ -74,7 +76,8 @@ public class RecipeMaterialBean {
         this.recipeMainBean = recipeMainBean;
     }
 
-    @ManyToOne(cascade={CascadeType.MERGE})
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "RecId", referencedColumnName = "RecId",insertable = false, updatable = false)  // 外鍵關係設置
     private RecipeMainBean recipeMainBean;
 }

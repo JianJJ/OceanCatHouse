@@ -46,8 +46,8 @@ $(document).ready(function () {
                 contentType : false,
                 async : false,
                 cache: false,  //不做快取
-                success : function (){
-                    alert("上傳成功");
+                success : function (str){
+                    alert(str);
                 },
                 error : function (returndata){
                     alert(returndata);
@@ -79,7 +79,7 @@ $(document).ready(function () {
                 <div class="col-md-5">
                     <div class="picstep">
                         <div style="width: 280px;height: 210px; margin:0 auto;">
-                            <img src="/recipe/images/uploadstep.png"
+                            <img src="/recipe/images/homePic/uploadstep.png"
                                  class="img-thumbnail img-step"
                                  id="img-step${i}"/>
                             <input type="file" accept="image/*" id="file-step${i}" name="file"
@@ -111,7 +111,7 @@ $(document).ready(function () {
                     </div>
                 </div>
             </div>`;
-        $('#stepStart').append(stepGO);
+        stepNum == 0?$('#stepStart').after(stepGO):$(`#divId${stepNum}`).after(stepGO);
         stepNum++;
     }
 
@@ -141,11 +141,11 @@ $(document).ready(function () {
     }
 
     // 新增食材欄位, 刪除食材欄位
-    var frodNum = 0;
-    createFrod = function () {
-        var i = frodNum + 1;
-        var frod =
-            `<div class="row justify-content-between" style="margin-top: 2px" id="frod${i}">
+    var foodNum = 0;
+    createFood = function () {
+        var i = foodNum + 1;
+        var food =
+            `<div class="row justify-content-between" style="margin-top: 2px" id="food${i}">
             <div class="col-md-7">
                 <div class="input-group">
                     <input type="text" class="form-control MName" placeholder="食材" 
@@ -159,19 +159,19 @@ $(document).ready(function () {
                 </div>
             </div>
             <div class="col-md-1">
-                <button type="button" onclick="delFrod('frod${i}')">
+                <button type="button" onclick="delFood('food${i}')">
                     <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
                 </button>
             </div>
         </div>`;
-        $('#frodStart').append(frod);
-        frodNum++;
+        foodNum == 0?$('#foodStart').after(food):$(`#food${foodNum}`).after(food);
+        foodNum++;
     }
     for (var i = 0; i < 2; i++) {
-        createFrod();
+        createFood();
     }
-    delFrod = function (delfrod){
-        $(`#${delfrod}`).remove();
-        frodNum--;
+    delFood = function (delfood){
+        $(`#${delfood}`).remove();
+        foodNum--;
     }
 })

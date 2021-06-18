@@ -13,13 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.model.*;
+import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
 import tw.com.iii.OceanCatHouse.repository.RecipeMaterialRepository;
 import tw.com.iii.OceanCatHouse.repository.RecipeStepRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeCategoryService;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
-import tw.com.iii.OceanCatHouse.repository.service.RecipeMaterialService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +37,9 @@ public class CreateRecipeController {
     private RecipeMainService recipeMainService;
 
     @Autowired
+    private RecipeMainRepository recipeMainDao;
+
+    @Autowired
     private RecipeMaterialRepository materialRepositoryDao;
 
     @Autowired
@@ -45,13 +47,30 @@ public class CreateRecipeController {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
+    // 查看食譜
+    @GetMapping("/select/{recId}")
+    public ModelAndView select(HttpSession session,
+                               @PathVariable(value = "recId")Integer recId){
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<RecipeMainBean> byId = recipeMainDao.findById(recId);
+        RecipeMainBean bean = byId.get();
+        session.setAttribute("main", bean);
+        modelAndView.addObject("main", bean);
+        modelAndView.addObject("stepList", bean.getRecipeStepBeans());
+        modelAndView.addObject("materialList", bean.getRecipeMaterialBeans());
+        modelAndView.setViewName("views/user/selectRecIdDetail");
 
+        return modelAndView;
+    }
+
+    // 發布食譜
     @PostMapping(value = "/save",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ModelAndView save(HttpSession session,
-                             MultipartHttpServletRequest request) throws ParseException {
+    @ResponseBody
+    public String save(HttpSession session,
+                       MultipartHttpServletRequest multipartRequest) throws ParseException {
         // 獲取檔案文件
-        String recipeDetail = request.getParameter("recipeDetail");
-        Map<String, MultipartFile> fileMap = request.getFileMap();
+        String recipeDetail = multipartRequest.getParameter("recipeDetail");
+        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String recCreated = simpleDateFormat.format(new Date());
         Map<String, Object> map =null;
@@ -78,11 +97,15 @@ public class CreateRecipeController {
         String format = sdf.format(new Date())+".jpg";
         try {
             // 2. 儲存圖片到資料夾
-            if(fileMap.get("fileMain") != null){
+            if(fileMap != null && fileMap.get("fileMain") != null){
+                System.out.println(fileMap.get("fileMain"));
                 fileMap.get("fileMain").transferTo(
                         new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/"+format));
-            // 3. 儲存檔案名稱到資料庫
-            recipeMainBean.setRecPic(format);
+                // 3. 儲存檔案名稱到資料庫
+                recipeMainBean.setRecPic(format);
+            }else {
+                // 保存原本圖片名稱到資料庫
+                recipeMainBean.setRecPic(main.getRecPic());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,13 +123,12 @@ public class CreateRecipeController {
             mainBean = recipeMainService.insert(recipeMainBean);
             recid = mainBean.getRecId();
         }
-        // 刪除資料夾舊封面照片
-        if(isUpdate){
+        // 刪除資料夾舊封面照片, 判斷更新是否有更換圖片
+        if(isUpdate && fileMap != null && fileMap.get("fileMain") != null){
             FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/" + main.getRecPic()));
         }
         // 刪除舊食材表
-        RecipeMaterialBean materialBeanList = (RecipeMaterialBean) session.getAttribute("materialList");
-        if(materialBeanList != null){
+        if(main.getRecipeMaterialBeans() != null){
             materialRepositoryDao.deleteAllByRecId(main.getRecId());
         }
         // 食材表 儲存資料庫
@@ -120,11 +142,13 @@ public class CreateRecipeController {
             materialRepositoryDao.save(recipeMaterialBean);
         }
         // 刪除步驟資料夾的舊照片
-        List<RecipeStepBean> stepBeanList = (List<RecipeStepBean>) session.getAttribute("stepList");
+        // 沒有圖片, 有可能是沒有更新, 保留本的檔名
+        List<RecipeStepBean> stepBeanList = main.getRecipeStepBeans();
         if(stepBeanList != null){
-            for(int i=0;i<stepBeanList.size();i++){
-                if(stepBeanList.get(i) != null && stepBeanList.get(i).getStepPic() != null) {
-                    FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + stepBeanList.get(i).getStepPic()));
+            for(RecipeStepBean stepBean : stepBeanList){
+                if(stepBean != null && stepBean.getStepPic() != null) {
+//                    FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + stepBean.getStepPic()));
+                    // -----------------
                 }
             }
             // 刪除舊的步驟表
@@ -143,19 +167,22 @@ public class CreateRecipeController {
                     stepPicName = sdf.format(new Date())+".jpg";
                     fileMap.get("file"+i).transferTo(
                             new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/"+i+stepPicName));
+                    recipeStepBean.setStepPic(i+stepPicName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }else{
+                recipeStepBean.setStepPic(stepBeanList.get(i).getStepPic());
+                // -----------------
             }
-            recipeStepBean.setStepPic(stepPicName);
             recipeStepBean.setRecId(recid);
             recipeStepDao.save(recipeStepBean);
         }
         System.out.println("mainBean:"+mainBean);
-        return null;
+        return "發佈成功";
     }
 
-    // 新增食譜 詳細頁
+    // 食譜的詳細頁(新增頁面)
     @GetMapping("/add")
     public ModelAndView add(@RequestParam("RecTitle") String RecTitle,
                             @RequestParam("CategoryId") String CategoryId){
