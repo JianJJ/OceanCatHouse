@@ -9,6 +9,7 @@
     <title>✿海貓食屋✿</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
+  
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css">--%>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!--    JavaScript; choose one of the two!-->
@@ -86,7 +87,7 @@
             <h3>個人資料</h3>
             <hr>
             <p>你的個人資料只用於海貓食屋相關事宜，例如：海貓食屋活動中獎的獎品寄送使用。</p>
-            <form class="form-floating">
+            <form>
                   <h5>＊基本資料</h5>
                   
                   <div class="form-floating mb-3">

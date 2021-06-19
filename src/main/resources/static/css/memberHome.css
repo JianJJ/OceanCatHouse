@@ -25,6 +25,10 @@ a {
     background-size: cover;
 }
 
+#member-icon input {
+	cursor:pointer;
+	}
+
 #member-imgBackground {
 
     height: 235px;
@@ -33,14 +37,14 @@ a {
 }
 
 #member-navLinks {
-    height: 100px;
+    height: 120px;
 }
 
 #member-navLinks > div > span {
     display: inline-block;
     font-size: 25px;
     margin-left: 220px;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 #member-navLinks > div > a {
@@ -62,6 +66,10 @@ a {
     color: white;
     text-shadow: 0px 0px 3px black;
     background-color: orange;
+}
+
+#member-navLinks > div > a:hover .fontIcon {
+	color:#fff;
 }
 
 #member-navLinks > ul > li {
@@ -90,11 +98,28 @@ a {
     margin: 20px;
     color: #db742a;
 }
-.recipeSimpleContext {
-    background-color: wheat;
+.recipeSimpleContext { 
     margin: 10px auto;
     padding-top: 5px;
 }
+
+.recipeSimpleContext > div > a > div {
+	padding: 10px;
+	margin: 5px;
+	height: 220px;
+	background-color: wheat;
+	border-radius:5px;
+}
+
+.recipeSimpleContext > div > a  > div:hover {
+	box-shadow: 0 0 5px 5px rgba(245, 222, 179, .3);
+	background-color:#fce3b6;
+}
+
+.recipeSimpleContext > div > a  > div span {
+	color:#666;
+}
+
 .fileInput {
     position: absolute;
     top: 0;
@@ -139,4 +164,43 @@ a {
     height: 100%;
     background-color: wheat;
     float: left;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr');
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr#iefix') format('embedded-opentype'),
+      url('../icomoon/./fonts/icomoon.ttf?6rzpr') format('truetype'),
+      url('../icomoon/./fonts/icomoon.woff?6rzpr') format('woff'),
+      url('../icomoon/./fonts/icomoon.svg?6rzpr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+/* Icon 顏色設定 */
+.fontIcon {
+    font-family: 'icomoon';
+    color: #EFB343;
+    margin-right:5px;
+    font-size: 18px;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
+}
+
+.hyLink {
+    cursor: pointer;
+    font-size: 30px;
+}
+
+
+.toUP {
+    position: fixed;
+    display: none;
+    right:5%;
+    bottom: 50px;
+    z-index: 1;
+}
+
+#toUp {
+	font-size: 50px;
 }

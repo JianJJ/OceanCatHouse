@@ -119,8 +119,12 @@
 }
 
 
-
 .is-invalid {
 	display: inline-block;
+}
+
+
+.me-auto {
+  margin-left: auto !important;
 }
 
