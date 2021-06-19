@@ -113,7 +113,7 @@
                         <br>
                         <div>付款方式 : 貨到付款
                             <br> 運送方式
-                            宅配 ($30)/ 7-11取貨($60)
+                            宅配 ($30)
                         </div>
                         <hr>
                         <div class="sellingprice">售價 ${sellingprice}</div>
@@ -123,7 +123,8 @@
                                 <button class="leftButton" type="button" onclick="leftButton()">-</button>
                                 <input type="text" name="num" value="1" class="num">
                                 <button class="rightButton" type="button" onclick="rightButton()">+</button>
-                                <input type="submit" value="加入購物車">
+
+                                <button type="submit" value="加入購物車" class="btn btn-outline-dark btn-lg bs">加入購物車</button>
                             </form>
 
                         </div>
@@ -140,10 +141,11 @@
                             type: "get",
                             success: function (json) {
                                 for (var A of json) {
-                                    $(".recommend").append('<div class="col-lg-6 col-sm-12 recommendRecipe">' +
-                                        '<img class="rsNavItem" src=' + A.recPic + ' alt="">' +
-                                        ' <p>' + A.recTitle + '</p>' +
-                                        ' </div>');
+                                    console.log(A);
+                                    $(".recommend").append('<a href="../recipeDetails?id='+A.recId+'" class="col-lg-6 col-sm-6"><div class="row recommendRecipe">' +
+                                        '<img class="col-lg-3 col-md-7 col-sm-6 rsNavItem" src=' + A.recPic + ' alt="">' +
+                                        ' <p class="col-lg-6 col-sm-6">' + A.recTitle + '</p>' +
+                                        ' </div> </a>');
                                 }
                             },
                             error: function (json) {
