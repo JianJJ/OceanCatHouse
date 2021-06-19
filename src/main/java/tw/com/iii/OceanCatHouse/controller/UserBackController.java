@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserFavoritesCategoryBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
+import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
 import tw.com.iii.OceanCatHouse.repository.UserRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
 import tw.com.iii.OceanCatHouse.repository.service.UserService;
@@ -42,6 +44,9 @@ public class UserBackController {
     @Autowired
     private RecipeMainService recipeMainService;
 
+    @Autowired
+    private UserFavoritesCategoryRepository userFavoritesCategoryDao;
+
     // 到個人首頁
     @RequestMapping("/home")
     public String home(HttpSession session, HttpServletRequest request) {
@@ -62,8 +67,10 @@ public class UserBackController {
     public ModelAndView favorites(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         UserBean user = (UserBean) session.getAttribute("user");
-        List<RecipeMainBean> allByUserId = recipeMainService.findFavoritesByUserId(user.getUserid());
-        modelAndView.addObject("mainBeanList", allByUserId);
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+        modelAndView.addObject("mainBeanList", mainList);
+        modelAndView.addObject("UFCBList", UFCBList);
         modelAndView.setViewName("/views/user/favorites");
 
         return modelAndView;
