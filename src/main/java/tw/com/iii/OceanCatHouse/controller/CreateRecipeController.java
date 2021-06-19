@@ -128,7 +128,7 @@ public class CreateRecipeController {
             FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/" + main.getRecPic()));
         }
         // 刪除舊食材表
-        if(main.getRecipeMaterialBeans() != null){
+        if(isUpdate && main.getRecipeMaterialBeans() != null){
             materialRepositoryDao.deleteAllByRecId(main.getRecId());
         }
         // 食材表 儲存資料庫
@@ -143,12 +143,13 @@ public class CreateRecipeController {
         }
         // 刪除步驟資料夾的舊照片
         // 沒有圖片, 有可能是沒有更新, 保留本的檔名
-        List<RecipeStepBean> stepBeanList = main.getRecipeStepBeans();
-        if(stepBeanList != null){
+        List<RecipeStepBean> stepBeanList ;
+        if(isUpdate && main.getRecipeStepBeans() != null){
+            stepBeanList = main.getRecipeStepBeans();
             for(RecipeStepBean stepBean : stepBeanList){
                 if(stepBean != null && stepBean.getStepPic() != null) {
 //                    FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + stepBean.getStepPic()));
-                    // -----------------
+
                 }
             }
             // 刪除舊的步驟表
@@ -157,6 +158,9 @@ public class CreateRecipeController {
         // 步驟表 儲存資料庫(步驟, 步驟說明)
         RecipeStepBean recipeStepBean = null;
         String stepPicName = null;
+        // spicName=查看食譜那時候的圖片名稱
+        List<Map<String, String>> spicNameList = (List<Map<String, String>>) map.get("SPicNameArray");
+        // stepList=前端傳來要更新的資料
         List<String> stepList = (List<String>)(map.get("StepTextArray"));
         for(int i=0;i<stepList.size();i++){
             recipeStepBean = new RecipeStepBean();
@@ -171,10 +175,17 @@ public class CreateRecipeController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else{
-                recipeStepBean.setStepPic(stepBeanList.get(i).getStepPic());
-                // -----------------
+            }else {
+                // 沒有圖檔, 判斷是不是保留更新前的圖檔
+                if(spicNameList != null &&
+                        i<spicNameList.size() &&
+                        spicNameList.get(i) != null &&
+                        spicNameList.get(i).get("SPicName"+(i+1)) != null){
+                    stepPicName = spicNameList.get(i).get("SPicName"+(i+1));
+                    recipeStepBean.setStepPic(stepPicName);
+                }
             }
+            System.out.println(i);
             recipeStepBean.setRecId(recid);
             recipeStepDao.save(recipeStepBean);
         }
