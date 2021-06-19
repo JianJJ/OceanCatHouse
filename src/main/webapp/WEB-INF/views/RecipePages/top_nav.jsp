@@ -5,15 +5,7 @@
 
  <head>
      <meta charset="UTF-8">
-<%--     <meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
-<%--     <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <link rel="preconnect" href="https://fonts.gstatic.com">--%>
-<%--    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">--%>
-<%--    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">--%>
-<%--    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">--%>
-<%--    <link rel="stylesheet" href="/recipe/css/top_nav.css">--%>
-
-<%--     <title>Header</title>--%>
+ 	 <script src="/recipe/js/jquery-3.6.0.min.js"></script>
  </head>
 
  <body>
@@ -48,8 +40,10 @@
                   </form>
                   <em>|</em>
                   <div id='userConsole'>
-                    <img src="${pageContext.request.contextPath}/images/homePic/yarn-brands.svg" id="userIcon">
-                    <button id="userName">haha</button>
+                  
+                  
+                    <img src= '${pageContext.request.contextPath}/images/homePic/paw-solid.svg'   id="userIcon">
+                    <button id="userName">${sessionScope.user.username}</button>
                     <ul>
                       <li><a href="${pageContext.request.contextPath}/userBack/home">個人主頁</a></li>
                       <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
@@ -60,6 +54,13 @@
             </div>
         </div>
     </nav>
+    <script>
+    	$('#userName, #userIcon').click(function(){
+    		window.location.href='${pageContext.request.contextPath}/userBack/home';
+    		
+    	})
+    
+    </script>
 
 </body>
 

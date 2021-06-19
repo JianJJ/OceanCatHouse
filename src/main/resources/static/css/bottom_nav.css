@@ -24,6 +24,7 @@ footer {
     position: relative;
     margin-top: 50px;
     text-align: right;
+    z-index:5;
 }
 
 footer dl {

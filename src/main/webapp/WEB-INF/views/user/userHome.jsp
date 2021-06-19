@@ -9,6 +9,7 @@
     <title>✿海貓食屋✿</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css">--%>
     <!--    JavaScript; choose one of the two!-->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
@@ -45,8 +46,8 @@
             <div id="member-navLinks">
                 <div>
                     <span>${sessionScope.user.username}</span>
-                    <a href="#">食譜收藏</a>
-                    <a href="${pageContext.request.contextPath}/createRecipe/start">寫食譜</a>
+                    <a href="#"><span class='fontIcon'></span>食譜收藏</a>
+                    <a href="${pageContext.request.contextPath}/createRecipe/start"><span class='fontIcon'></span>寫食譜</a>
                 </div>
                 <ul>
                     <li class="currentLink"><a href="#">食譜</a></li>
@@ -65,14 +66,13 @@
                 <div class="container">
 
                     <c:forEach items="${recipeMainList}" var="list">
-                        <div class="row justify-content-center" style=" margin: 5px 5px">
-                            <div class="col-md-4" style="height: 200px;">
-                                <a href="${pageContext.request.contextPath}/createRecipe/select/${list.recId}">
+                    <a href="${pageContext.request.contextPath}/createRecipe/select/${list.recId}">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4" style="height: 200px;">                       
                                     <img id="${list.recId}"
                                          src="${pageContext.request.contextPath}/images/mainpic/${list.recPic}"
                                          style="width: 100%;height: 100%" class="img-thumbnail"
                                          alt="">
-                                </a>
                             </div>
                             <div class="col-md-8">
                                 <h4 class='showLines'>${list.recTitle}</h4>
@@ -82,12 +82,17 @@
                                 </p>
                             </div>
                         </div>
+                        </a>
                     </c:forEach>
 
                 </div>
             </div>
         </div>
     </div>
+    <div class="toUP">
+            <span class="fontIcon hyLink" id="toUp"></span>
+        </div>
+    
 </div>
 
 

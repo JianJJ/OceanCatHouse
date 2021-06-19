@@ -167,7 +167,7 @@ public class ShopRestController {
 	public List<RecipeMainBean> recommend(@PathVariable("categoryid") Integer categoryid) {
 		System.out.println("********************推薦食譜*********************" );
 		int rand = (int) (Math.random()*150);
-		Page<RecipeMainBean> page = recipeRepository.findAll(PageRequest.of(0, 6));
+		Page<RecipeMainBean> page = recipeRepository.findAll(PageRequest.of(rand, 6));
 		List<RecipeMainBean> result = page.getContent();
 		return result;
 	}

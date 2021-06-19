@@ -236,15 +236,15 @@
     function doSuccess(json) {
         $(".TTT").remove();
         for (var A of json) {
-            $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')">' +
-                '<td class="col-lg-1">' + A.productid + '</td>' +
-                '<td class="col-lg-1 ">' + A.productmodel + '</td>' +
-                '<td class="col-lg-2 ">' + A.productname + '</td>' +
-                '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
-                '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
-                '<td class="col-lg-1 ">' + A.stocks + '</td>' +
-                '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
-                '<td class="col-lg-1 "> 圖片 </td>' +
+            $(".table").append('<tr class="TTT" >' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
+                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                '<td  class="col-lg-1 "> 圖片 </td>' +
                 '</tr>');
         }
     }
@@ -273,11 +273,9 @@
                 $("#productspecifications").val(A.productspecifications);
                 $("#vendorid").val(A.vendorid);
                 $("#productcategoryid").val(A.productcategoryid);
-
                 $("#productstatus").val(A.productstatus);
                 $("#createdon").text("創建日期 : " + A.createdon);
                 $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
-
                 $(".form").attr("action", "/recipe/backstage/updata/" + A.productid);
             },
             error: doError
