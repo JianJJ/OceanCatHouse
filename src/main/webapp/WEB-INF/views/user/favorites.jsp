@@ -37,7 +37,9 @@
             </div>
             <ul id="FCategory">
                 <li class="current"><a href="#">全部</a></li>
-                <li><a href="#">甜點</a></li>
+                <c:forEach items="${UFCBList}" var="UFCB">
+                    <li onclick="selectCategory('${UFCB.favoriteCategoryName}')" id="${UFCB.favoriteCategoryName}"><a>${UFCB.favoriteCategoryName}</a></li>
+                </c:forEach>
             </ul>
         </section>
 
@@ -60,11 +62,11 @@
 
         <%--有收藏, 顯示收藏食譜--%>
         <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
-            <ul class="row justify-content-start">
+            <ul class="row justify-content-start" id="showMain">
                 <%--                顯示全部收藏的食譜--%>
-                <h1>親愛的${sessionScope.user.username}，您目前收藏有${mainBeanList.size()!=0?mainBeanList.size():0}篇食譜</h1>
+                <h1>親愛的${sessionScope.user.username}，您目前收藏有<span id="countMain">${mainBeanList.size()!=0?mainBeanList.size():0}</span>篇食譜</h1>
                 <c:forEach items="${mainBeanList}" var="main">
-                    <li class="col-lg-3 col-xs-6"><a
+                    <li class="col-lg-3 col-xs-6 recipe"><a
                             href="${pageContext.request.contextPath}/recipeDetails?id=${main.recId}">
                         <img src="${main.recPic}" alt="${main.recTitle}">
                         <h4 class='showLines'>"${main.recTitle}"</h4>
