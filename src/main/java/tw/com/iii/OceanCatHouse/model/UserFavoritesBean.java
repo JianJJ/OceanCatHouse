@@ -14,7 +14,7 @@ public class UserFavoritesBean {
     private Integer FavoriteId;
     private Integer userid;
     private Integer RecId;
-    private String FavoriteCategory;
+    private String FavoriteCategoryName;
 
     @Override
     public String toString() {
@@ -22,7 +22,7 @@ public class UserFavoritesBean {
                 "FavoriteId=" + FavoriteId +
                 ", userid=" + userid +
                 ", RecId=" + RecId +
-                ", FavoriteCategory='" + FavoriteCategory + '\'' +
+                ", FavoriteCategory='" + FavoriteCategoryName + '\'' +
                 ", userBean=" + userBean.getUserid() +
                 '}';
     }
@@ -65,10 +65,10 @@ public class UserFavoritesBean {
     }
 
     public String getFavoriteCategory() {
-        return FavoriteCategory;
+        return FavoriteCategoryName;
     }
 
     public void setFavoriteCategory(String favoriteCategory) {
-        FavoriteCategory = favoriteCategory;
+        FavoriteCategoryName = favoriteCategory;
     }
 }

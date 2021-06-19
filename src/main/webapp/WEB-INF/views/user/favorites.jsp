@@ -27,18 +27,17 @@
 
 <%--主體--%>
 <div class="container">
-    <div class='row justify-content-around'>
+    <div class='row justify-content-start'>
         <section class="col-xs-12 col-lg-3" id='recCategoryList'>
             <h3>食譜收藏</h3>
             <hr>
             <div>
                 <h6>收藏分類</h6>
-                <button id="btnNewCategory"><span>+</span>新增分類</button>
+                <button id="btnNewCategory" onclick="addCategory()"><span>+</span>新增分類</button>
             </div>
-            <ul>
-                <li class="current"><a href="#">未分類</a></li>
+            <ul id="FCategory">
+                <li class="current"><a href="#">全部</a></li>
                 <li><a href="#">甜點</a></li>
-                <li><a href="#">吃吃吃</a></li>
             </ul>
         </section>
 
@@ -47,7 +46,8 @@
             <h4>未分類</h4>
             <p><span id='favoriteRecs'> 0 </span>道食譜</p>
             <div class='recBlock row'>
-                <img class="col-xs-5 col-md-5" src="${pageContext.request.contextPath}/images/homePic/recipe-save-empty.png">
+                <img class="col-xs-5 col-md-5"
+                     src="${pageContext.request.contextPath}/images/homePic/recipe-save-empty.png">
                 <div class="col-xs-7 col-md-7">
                     <h6>此收藏分類目前是空的</h6>
                     <p> 這個分類目前沒有收藏哦， 快收藏喜歡的食譜， 以後就不怕找不到囉！</p>
@@ -60,35 +60,20 @@
 
         <%--有收藏, 顯示收藏食譜--%>
         <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
-            <ul class="row justify-content-around">
-                <%--預設搜尋畫面，在沒有輸入搜尋關鍵字前提下，預設使用推薦系統--%>
-                <c:if test="${searchString eq 'default'}">
-                    <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
-                        <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
-                            <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
-                            <h4 class='showLines'>"${recReccBean.get(loop.index).recTitle}"</h4>
-                            <p class='showLines'>${recReccBean.get(loop.index).recText}</p>
-                        </a></li>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${searchString ne 'default' && recipeSearchBean.size() > 0}">
-                    <%--成搜尋功能關鍵字--%>
-                    <h1>搜尋:"${searchString}"，共找到${recipeSearchBean.size()}筆結果</h1>
-                    <c:forEach varStatus="loop" begin="0" end="${recipeSearchBean.size()-1}">
-                        <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recipeSearchBean.get(loop.index).recId}">
-                            <img src="${recipeSearchBean.get(loop.index).recPic}" alt="${recipeSearchBean.get(loop.index).recTitle}">
-                            <h4 class='showLines'>"${recipeSearchBean.get(loop.index).recTitle}"</h4>
-                            <p class='showLines'>${recipeSearchBean.get(loop.index).recText}</p>
-                        </a></li>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${recipeSearchBean.size() eq 0}">
-                    <h1>搜尋:"${searchString}"，共找到${recipeSearchBean.size()}筆結果</h1>
-                </c:if>
+            <ul class="row justify-content-start">
+                <%--                顯示全部收藏的食譜--%>
+                <h1>親愛的${sessionScope.user.username}，您目前收藏有${mainBeanList.size()!=0?mainBeanList.size():0}篇食譜</h1>
+                <c:forEach items="${mainBeanList}" var="main">
+                    <li class="col-lg-3 col-xs-6"><a
+                            href="${pageContext.request.contextPath}/recipeDetails?id=${main.recId}">
+                        <img src="${main.recPic}" alt="${main.recTitle}">
+                        <h4 class='showLines'>"${main.recTitle}"</h4>
+                        <p class='showLines'>${main.recText}</p>
+                    </a></li>
+                </c:forEach>
             </ul>
 
-            <button class="btn-search" id='btnRecMore'>載入更多</button>
-
+            <%-- 分頁按鈕 --%>
         </section>
 
     </div>

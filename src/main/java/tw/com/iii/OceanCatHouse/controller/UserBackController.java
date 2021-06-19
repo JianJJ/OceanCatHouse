@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
@@ -36,7 +37,10 @@ public class UserBackController {
     private UserRepository userDao;
 
     @Autowired
-    private RecipeMainRepository recipeMainRepository;
+    private RecipeMainRepository recipeMainDao;
+
+    @Autowired
+    private RecipeMainService recipeMainService;
 
     // 到個人首頁
     @RequestMapping("/home")
@@ -45,8 +49,8 @@ public class UserBackController {
         UserBean user = byId.get();
         session.setAttribute("user", user);
             // 查看user自己的食譜數量
-        Integer recCount = recipeMainRepository.recCount(user.getUserid());
-        List<RecipeMainBean> recipeMainList = recipeMainRepository.findAllByUserid(user.getUserid());
+        Integer recCount = recipeMainDao.recCount(user.getUserid());
+        List<RecipeMainBean> recipeMainList = recipeMainDao.findAllByUserid(user.getUserid());
         request.setAttribute("recCount", recCount);
         request.setAttribute("recipeMainList", recipeMainList);
 
@@ -55,8 +59,14 @@ public class UserBackController {
 
     // 到個收藏食譜頁
     @RequestMapping("favorites")
-    public String favorites(){
-        return "/views/user/favorites";
+    public ModelAndView favorites(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> allByUserId = recipeMainService.findFavoritesByUserId(user.getUserid());
+        modelAndView.addObject("mainBeanList", allByUserId);
+        modelAndView.setViewName("/views/user/favorites");
+
+        return modelAndView;
     }
 
     // 到個人資料設定頁
@@ -134,5 +144,14 @@ public class UserBackController {
         user.setUserphone(newPhone);
         UserBean update = userService.update(user);
         return update.getUsername()+"您好～資料已儲存成功";
+    }
+
+    // 新增收藏分類
+    @GetMapping("/addFavoriteCategory/{CategoryName}")
+    @ResponseBody
+    public String addFavoriteCategory(@PathVariable("CategoryName")String cName){
+
+
+        return "新增成功";
     }
 }
