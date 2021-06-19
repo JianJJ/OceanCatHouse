@@ -1,9 +1,11 @@
 package tw.com.iii.OceanCatHouse.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // @NoArgsConstructor  無參建構
@@ -46,7 +48,7 @@ public class RecipeMainBean {
                 ", RecLiked=" + RecLiked +
                 ", RecCreated='" + RecCreated + '\'' +
                 ", RecViews=" + RecViews +
-                ", recipeCategoryBean=" + recipeCategoryBean +
+//                ", recipeCategoryBean=" + recipeCategoryBean.getCategoryId() +
                 ", recipeMaterialBeans=" + recipeMaterialBeans +
                 ", recipeStepBeans=" + recipeStepBeans +
                 '}';
@@ -157,39 +159,41 @@ public class RecipeMainBean {
     }
 
     //     配置 多對一 (Category表)
-    @ManyToOne(cascade={CascadeType.MERGE})
-    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)  // 外鍵關係設置
-    private RecipeCategoryBean recipeCategoryBean;
+//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "CategoryId", referencedColumnName = "CategoryId",insertable = false, updatable = false)
+//    private RecipeCategoryBean recipeCategoryBean;
 
     // 配置 一對多 (Material表, Step表)
-    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL,fetch=FetchType.LAZY) // 放棄外鍵維護權, 開啟級聯操作
-    private Set<RecipeMaterialBean> recipeMaterialBeans = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL)
+    private List<RecipeMaterialBean> recipeMaterialBeans ;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL,fetch=FetchType.LAZY) // 放棄外鍵維護權, 開啟級聯操作
-    private Set<RecipeStepBean> recipeStepBeans = new HashSet<>();
+    @OneToMany(mappedBy = "recipeMainBean", cascade = CascadeType.ALL)
+    private List<RecipeStepBean> recipeStepBeans ;
 
-    public RecipeCategoryBean getRecipeCategoryBean() {
-        return recipeCategoryBean;
-    }
+//    public RecipeCategoryBean getRecipeCategoryBean() {
+//        return recipeCategoryBean;
+//    }
+//
+//    public void setRecipeCategoryBean(RecipeCategoryBean recipeCategoryBean) {
+//        this.recipeCategoryBean = recipeCategoryBean;
+//    }
 
-    public void setRecipeCategoryBean(RecipeCategoryBean recipeCategoryBean) {
-        this.recipeCategoryBean = recipeCategoryBean;
-    }
-
-    public Set<RecipeMaterialBean> getRecipeMaterialBeans() {
+    public List<RecipeMaterialBean> getRecipeMaterialBeans() {
         return recipeMaterialBeans;
     }
 
-    public void setRecipeMaterialBeans(Set<RecipeMaterialBean> recipeMaterialBeans) {
+    public void setRecipeMaterialBeans(List<RecipeMaterialBean> recipeMaterialBeans) {
         this.recipeMaterialBeans = recipeMaterialBeans;
     }
 
-    public Set<RecipeStepBean> getRecipeStepBeans() {
+    public List<RecipeStepBean> getRecipeStepBeans() {
         return recipeStepBeans;
     }
 
-    public void setRecipeStepBeans(Set<RecipeStepBean> recipeStepBeans) {
+    public void setRecipeStepBeans(List<RecipeStepBean> recipeStepBeans) {
         this.recipeStepBeans = recipeStepBeans;
     }
 }

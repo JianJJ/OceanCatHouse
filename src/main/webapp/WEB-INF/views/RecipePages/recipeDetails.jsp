@@ -180,31 +180,31 @@
                         <hr class='underline'>
                         <ul class='row'>
                             <li class='col-xs-6 col-md-2'><a href="#">
-                                    <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
+                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
                                     <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
                                     <p class='showLines'>
                                         防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜
                                     </p>
                                 </a></li>
                                 <li class='col-xs-6 col-md-2'><a href="#">
-                                    <img src="./images/testPic2.jpg" alt="味噌湯">
+                                    <img src="../../../../resources/static/images/homePic/testPic2.jpg/testPic2.jpg" alt="味噌湯">
                                     <h4 class='showLines'>味噌湯</h4>
                                     <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
                                 </a></li>
                                 <li class='col-xs-6 col-md-2'><a href="#">
-                                    <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
+                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
                                     <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
                                     <p class='showLines'>
                                         防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜
                                     </p>
                                 </a></li>
                                 <li class='col-xs-6 col-md-2'><a href="#">
-                                    <img src="./images/testPic2.jpg" alt="味噌湯">
+                                    <img src="../../../../resources/static/images/homePic/testPic2.jpg/testPic2.jpg" alt="味噌湯">
                                     <h4 class='showLines'>味噌湯</h4>
                                     <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>
                                 </a></li>
                                 <li class='col-xs-6 col-md-2'><a href="#">
-                                    <img src="./images/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
+                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">
                                     <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>
                                     <p class='showLines'>
                                         防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜

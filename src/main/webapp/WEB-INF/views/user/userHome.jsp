@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.rtl.min.css">--%>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!--    JavaScript; choose one of the two!-->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -20,6 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/memberHome.css">
 
@@ -67,7 +67,7 @@
                     <c:forEach items="${recipeMainList}" var="list">
                         <div class="row justify-content-center" style=" margin: 5px 5px">
                             <div class="col-md-4" style="height: 200px;">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/createRecipe/select/${list.recId}">
                                     <img id="${list.recId}"
                                          src="${pageContext.request.contextPath}/images/mainpic/${list.recPic}"
                                          style="width: 100%;height: 100%" class="img-thumbnail"

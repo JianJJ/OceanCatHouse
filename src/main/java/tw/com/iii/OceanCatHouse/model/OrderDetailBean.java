@@ -8,7 +8,7 @@ public class OrderDetailBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer OrderDetailId;
-    private Integer OrderId;
+    private Integer orderId;
     private Integer ProductId;
     private Integer SellingPrice;
     private Integer Unit;
@@ -18,12 +18,20 @@ public class OrderDetailBean {
     public String toString() {
         return "orderDetailBean{" +
                 "OrderDetailId=" + OrderDetailId +
-                ", OrderId=" + OrderId +
+                ", OrderId=" + orderId +
                 ", ProductId=" + ProductId +
                 ", SellingPrice=" + SellingPrice +
                 ", Unit=" + Unit +
                 ", Discount=" + Discount +
                 '}';
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public Integer getOrderDetailId() {
@@ -34,13 +42,7 @@ public class OrderDetailBean {
         OrderDetailId = orderDetailId;
     }
 
-    public Integer getOrderId() {
-        return OrderId;
-    }
 
-    public void setOrderId(Integer orderId) {
-        OrderId = orderId;
-    }
 
     public Integer getProductId() {
         return ProductId;

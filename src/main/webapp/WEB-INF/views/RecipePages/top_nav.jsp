@@ -48,7 +48,7 @@
                   </form>
                   <em>|</em>
                   <div id='userConsole'>
-                    <img src="./images/yarn-brands.svg" id="userIcon">
+                    <img src="${pageContext.request.contextPath}/images/homePic/yarn-brands.svg" id="userIcon">
                     <button id="userName">haha</button>
                     <ul>
                       <li><a href="${pageContext.request.contextPath}/userBack/home">個人主頁</a></li>

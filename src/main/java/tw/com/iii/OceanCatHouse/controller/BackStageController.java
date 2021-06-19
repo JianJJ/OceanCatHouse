@@ -8,14 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tw.com.iii.OceanCatHouse.model.OrderDetailBean;
+import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import tw.com.iii.OceanCatHouse.model.ProductBean;
+import tw.com.iii.OceanCatHouse.repository.OrderDetailRepository;
+import tw.com.iii.OceanCatHouse.repository.OrdersRepository;
 import tw.com.iii.OceanCatHouse.repository.ProductRepository;
 import tw.com.iii.OceanCatHouse.repository.service.ProductService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/backstage")
@@ -25,6 +26,10 @@ public class BackStageController {
     private ProductRepository productRepository;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrdersRepository ordersRepository;
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
 
     @RequestMapping("/home")
     public String home(){
@@ -135,6 +140,52 @@ public class BackStageController {
         productService.insert(bean);
         return "/views/backstage/product";
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //讀取商品資訊 和分頁
+    @RequestMapping("/selectproduct/{name}")
+    @ResponseBody
+    public List<ProductBean> product(@PathVariable("name") String name){
+        System.out.println("*****搜索商品資訊 *****");
+
+        List<ProductBean> result = productRepository.findByProductnameLike("%"+name+"%");
+        return result;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //讀取訂單
+    @RequestMapping("/selectorder")
+    @ResponseBody
+    public List<OrdersBean> selectorder(){
+        System.out.println("*****搜索訂單資訊 *****");
+
+        List<OrdersBean> result = ordersRepository.findAll();
+        System.out.println(result);
+        return result;
+    }
+    //訂單細節
+
+
+    @RequestMapping("/orderDetail/{id}")
+    @ResponseBody
+    public List<Map<String, String>> orderDetail(@PathVariable("id") Integer orderid){
+        System.out.println("*****搜索訂單細節 *****");
+        List<OrderDetailBean> list =  orderDetailRepository.findByorderId(orderid);
+        List<Map<String, String>> result = new ArrayList<>();
+        for(OrderDetailBean odb : list){
+            Map<String, String> map =new HashMap<>();
+            map.put("orderId", odb.getOrderId()+"");
+            Optional<ProductBean> op = productRepository.findById(odb.getProductId());
+            ProductBean b = op.get();
+            map.put("productname", b.getProductname());
+            map.put("SellingPrice",b.getSellingprice()+"");
+            map.put("Unit" , odb.getUnit()+"");
+            result.add(map);
+        }
+
+        System.out.println(result);
+        return result;
+    }
+
+
 
 }
 

@@ -16,13 +16,13 @@ button {
 
 /* 跨頁 */
 #wallpaper1 {
-    background-image: url(../images/wall03.jpg);
+    background-image: url(../images/homePic/wall03.jpg);
     background-position: center;
     background-size: cover;
 }
 
 #wallpaper2 {
-    background-image: url(../images/wall02.jpg);
+    background-image: url(../images/homePic/wall02.jpg);
     background-position: top;
     background-size: cover;
    
@@ -77,13 +77,13 @@ button {
 }
 
 #block1 .contextImg {
-    background-image: url(../images/wall05.jpg);
+    background-image: url(../images/homePic/wall05.jpg);
     background-position: center;
     background-size: cover;
 }
 
 #block2 .contextImg {
-    background-image: url(../images/wall06.jpg);
+    background-image: url(../images/homePic/wall06.jpg);
     background-position: center;
     background-size: cover;
 }

@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    console.log($("#Pic377470").prop('src'));
-    console.log($("#Pic377470").prop('id'));
     // 設定 點擊照片上傳+換圖片
     upload = function (c) {
         var $c = document.querySelector(c);

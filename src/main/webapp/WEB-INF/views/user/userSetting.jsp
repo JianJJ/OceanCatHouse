@@ -73,7 +73,7 @@
                 <dt>帳號管理</dt>
                 <dd><a href="${pageContext.request.contextPath}/userBack/userSetting">基本資料</a></dd>
                 <dd class="current"><a href="${pageContext.request.contextPath}/userBack/userSetPassword">密碼修改</a></dd>
-                <dd class="current"><a href="${pageContext.request.contextPath}/userBack/home">返回個人首頁</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/userBack/home">返回個人首頁</a></dd>
             </dl>
         </section>
 

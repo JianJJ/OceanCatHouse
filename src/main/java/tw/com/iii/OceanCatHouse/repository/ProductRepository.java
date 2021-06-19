@@ -16,7 +16,8 @@ public interface ProductRepository extends JpaRepository<ProductBean, Integer>{
 	List<ProductBean> findProductcategoryid(Integer id);
 //	@Query("from ProductBean where Productcategoryid = ?1")
 //	List<ProductBean> findCategory(Integer id);
-	
+
+	List<ProductBean>  findByProductnameLike(String name);
 	List<ProductBean>  findByProductcategoryid(Integer productcategoryid);
 	Page<ProductBean>  findByProductcategoryid(Integer productcategoryid,Pageable pageable); 
 }

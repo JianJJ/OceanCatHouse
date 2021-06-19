@@ -47,25 +47,7 @@
 </head>
 <body>
 <!--頁首-->
-<header class="container-fluid mainColor">
-    <div class="title">✿海貓食屋✿</div>
-    <div class="littleNav">
-        <ul>
-            <li><a href="#" class="top">RECIPES</a></li>
-            <li><a href="#">SHOP</a></li>
-        </ul>
-    </div>
-    <div class="simpleSearch">
-        <input type="text" id="searchLine" placeholder="Search...">
-        <label for="searchLine">
-            <span class="fontIcon searchIcon"></span></label>
-    </div>
-    <div class="Login">
-        <span class="text">SIGN UP</span><em>/</em>
-        <span class="text">LOG IN</span>
-    </div>
-    <button type="button" class="userIcon"></button>
-</header>
+<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 
 <!--主體-->
 <div class="container">
@@ -99,41 +81,14 @@
             </div>
             <div class="col-md-3 showAD">
                 <h3>食譜名稱</h3>
-                <img src="${pageContext.request.contextPath}/images/wall06.jpg" width="200px" height="200px">
+                <img src="${pageContext.request.contextPath}/static/images/homePic/wall06.jpg/wall06.jpg" width="200px" height="200px">
                 <p>食譜簡介</p>
             </div>
         </div>
     </form>
 </div>
 <!--頁尾-->
-<footer class="container-fluid mainColor">
-    <dl>
-        <dt>關於我們</dt>
-        <dd><a href="#">公司資訊</a></dd>
-        <dd><a href="#">徵才訊息</a></dd>
-        <dd><a href="#">廣告合作</a></dd>
-        <dd><a href="#">市集上架</a></dd>
-        <dd><a href="#">品牌資產</a></dd>
-        <dd><a href="#">隱私權與條款</a></dd>
-    </dl>
-    <dl>
-        <dt>會員服務</dt>
-        <dd><a href="#">個人頁面</a></dd>
-        <dd><a href="#">食譜收藏</a></dd>
-        <dd><a href="#">商品訂單</a></dd>
-        <dd><a href="#">帳號設定</a></dd>
-        <dd><a href="#">忘記密碼</a></dd>
-        <dd><a href="#">VIP會員</a></dd>
-    </dl>
-    <dl>
-        <dt>逛食譜</dt>
-        <dd><a href="#">人氣食譜</a></dd>
-        <dd><a href="#">新廚上菜</a></dd>
-        <dd><a href="#">今日話題</a></dd>
-        <dd><a href="#">醉心食譜</a></dd>
-        <dd><a href="#">全部分類</a></dd>
-    </dl>
-</footer>
+<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
 
 </body>
 </html>
