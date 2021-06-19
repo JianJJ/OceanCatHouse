@@ -79,7 +79,7 @@
                             <span>${recMainBean.recNum eq 0? "": String.valueOf(recMainBean.recNum).concat(" 人份") }</span>
                         </div>
                         <div class="cal">
-                            <span class='fontIcon'></span>
+                            <span class='fontIcon'></span>
                             <span>${recMainBean.recCal}  卡路里</span>
                         </div>
                         <!--  <div class="goodPerson">
@@ -106,7 +106,7 @@
                         ${recMainBean.recText}      
                           
                     </p>
-                  <span id='viewTimes'>瀏覽人數:  ${recMainBean.recViews}  人</span><br>
+                  <span id='viewTimes'>瀏覽人次:  ${recMainBean.recViews}  人</span><br>
                  <span id='createdDate'>創建時間:  ${recMainBean.recCreated}</span>     
                 </div>
                  

@@ -75,7 +75,7 @@
                     <li class='col-xs-10 col-md-10'>
                         <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                             <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
-                            <div class="row">
+                            <div class="row col-xs-8 col-md-8">
                                 <h4 class='showLines'>${recReccBean.get(loop.index).recTitle}</h4>
                                 <span>
                         <c:forEach varStatus="loop2" begin="0" end="${recReccBean.get(loop.index).recTag.length()-1}">

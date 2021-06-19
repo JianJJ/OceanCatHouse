@@ -29,6 +29,10 @@
         var state = '${sessionScope.user.state}';
         if(state == '0'){
             $('#emailMsg').prop('hidden', false);
+            $('#floatingInputEmail').addClass('is-invalid');
+        } else {
+        	 $('#emailMsg').prop('hidden', true);
+             $('#floatingInputEmail').removeClass('is-invalid');
         }
         // 抓取要更新的資料
         var name = '${sessionScope.user.username}';
@@ -71,8 +75,8 @@
         <section class="col-xs-3 col-md-3" id='settingList'>
             <dl>
                 <dt>帳號管理</dt>
-                <dd><a href="${pageContext.request.contextPath}/userBack/userSetting">基本資料</a></dd>
-                <dd class="current"><a href="${pageContext.request.contextPath}/userBack/userSetPassword">密碼修改</a></dd>
+                <dd class="current"><a href="${pageContext.request.contextPath}/userBack/userSetting">基本資料</a></dd>
+                <dd><a href="${pageContext.request.contextPath}/userBack/userSetPassword">密碼修改</a></dd>
                 <dd><a href="${pageContext.request.contextPath}/userBack/home">返回個人首頁</a></dd>
             </dl>
         </section>
@@ -82,16 +86,29 @@
             <h3>個人資料</h3>
             <hr>
             <p>你的個人資料只用於海貓食屋相關事宜，例如：海貓食屋活動中獎的獎品寄送使用。</p>
-            <form action="#">
-                <label for="username"><h5>＊基本資料</h5></label><br/>
+            <form class="form-floating">
+                  <h5>＊基本資料</h5>
+                  
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Brad" name='userName' value="${sessionScope.user.username}">
+                    <label for="floatingInput">姓名</label>
+                  </div>
+                  
+                   <h5>＊聯絡資料</h5>
+                 
+                    <div class="form-floating mb-3">
+                      <input type="tel" class="form-control" id="floatingTel" pattern="[0-9]{10}" placeholder="手機號碼" name="userPhone" value="${sessionScope.user.userphone}">
+                      <label for="floatingInput">手機號碼</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control  is-invalid" id="floatingInputEmail" placeholder="name@example.com" name="userEmail" value="${sessionScope.user.email}">
+                      <label for="floatingInputEmail">Email</label>
+                      <span id="emailMsg" hidden style="color: red">Email驗證尚未通過</span>
+  	
+                    </div>
+                   	<input type="button" value="儲存更新" onclick="changeNPE()">
+                </form>
 
-                <span>姓名：</span><input type="text" placeholder="姓名" id='username' name='userName' value="${sessionScope.user.username}"><br/>
-                <label for="userPhone"><h5>＊聯絡資料</h5></label><br/>
-                <span>手機：</span><input type="tel" name="userPhone" id="userPhone" pattern="[0-9]{10}" placeholder="手機號碼" value="${sessionScope.user.userphone}"><br/>
-                <span>信箱：</span><input type="email" name="userEmail" id="userEmail" placeholder="E-mail" value="${sessionScope.user.email}">
-                <span id="emailMsg" hidden style="color: red">Email驗證尚未通過</span>
-                <br><br>
-                <input type="button" value="儲存更新" onclick="changeNPE()">
             </form>
         </section>
 
@@ -101,4 +118,5 @@
 <!--頁尾-->
 <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
 </body>
+
 </html>

@@ -28,12 +28,17 @@
         // 變更密碼
         changePassword = function (){
             $('#Msg0, #secMsg, #notMsg').prop('hidden', true);
+            $('#pwdNow, #pwdNew, #pwdNewAgian').removeClass('is-invalid');
+            
             if($('#pwdNow').val() == ""){
                 $('#Msg0').prop("hidden", false);
-                return;;
-            }
+                $('#pwdNow').addClass('is-invalid');
+                return;
+            } 
             if($('#pwdNew').val() != $('#pwdNewAgian').val() || $('#pwdNew').val()==""){
                 $('#secMsg').prop("hidden", false);
+                $('#pwdNew').addClass('is-invalid');
+                $('#pwdNewAgian').addClass('is-invalid');
                 return;
             }
             var list = [
@@ -77,15 +82,23 @@
 
             <h3>密碼修改</h3>
             <hr>
-            <form action="#" method="">
-                <label for="pwdNow">舊密碼</label><br/>
-                <input type="password" placeholder="目前在用的密碼" id='pwdNow' name='pwdNow' maxlength="12"><br/>
+            <form action="#" method="" class="form-floating">
+            	 <h6>舊密碼</h6>
+            	 <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id='pwdNow' name='pwdNow' maxlength="12">
+                      <label for="pwdNow">目前在用的密碼</label>
+                 </div>
+                 <h6>新密碼</h6>
+                 <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id='pwdNew' name='pwdNew' maxlength="12">
+                      <label for="'pwdNew'">點此輸入新密碼</label>
+                 </div>
+                 <h6>二次輸入新密碼</h6>
+                 <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id='pwdNewAgian' name='pwdNewAgian' maxlength="12">
+                      <label for="pwdNewAgian">點此再次輸入新密碼</label>
+                 </div>
 
-                <label for="pwdNew">新密碼</label><br/>
-                <input type="password" placeholder="點此輸入新密碼" id='pwdNew' name='pwdNew' maxlength="12"><br/>
-
-                <label for="pwdNewAgian">二次輸入新密碼</label><br/>
-                <input type="password" placeholder="點此再次輸入新密碼" id='pwdNewAgian' name='pwdNewAgian' maxlength="12"><br/>
                 <p hidden="hidden" style="color: red" id="Msg0">欄位不能空白</p>
                 <p hidden="hidden" style="color: red" id="notMsg">原始密碼不正確</p>
                 <p hidden="hidden" style="color: red" id="secMsg">二次密碼不正確</p>
