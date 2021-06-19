@@ -1,9 +1,6 @@
 package tw.com.iii.OceanCatHouse.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,13 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import tw.com.iii.OceanCatHouse.model.*;
+import tw.com.iii.OceanCatHouse.repository.OrderDetailRepository;
 import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
 import tw.com.iii.OceanCatHouse.repository.ProductRepository;
 import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
@@ -32,6 +26,8 @@ public class ShopRestController {
 	private ProductPictureJpaReposit ppr;
 	@Autowired
 	private RecipeRepository recipeRepository;
+	@Autowired
+	private OrderDetailRepository orderDetailRepository;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 主頁身體
 	@RequestMapping("/shopping")
@@ -192,5 +188,28 @@ public class ShopRestController {
 		Integer AAA =  page.getTotalPages();
 		return AAA;
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	//完成訂單
+	@RequestMapping("/completeData/{id}")
+	public List<OrderDetailBean> completeData(@PathVariable("id") Integer orderid){
+		System.out.println("*****完成訂單細節 *****");
+		List<OrderDetailBean> list =  orderDetailRepository.findByorderId(orderid);
+//		List<Map<String, String>> result = new ArrayList<>();
+//		for(OrderDetailBean odb : list){
+//			Map<String, String> map =new HashMap<>();
+//			map.put("orderId", odb.getOrderId()+"");
+//			Optional<ProductBean> op = productRepository.findById(odb.getProductId());
+//			ProductBean b = op.get();
+//			map.put("productname", b.getProductname());
+//			map.put("SellingPrice",b.getSellingprice()+"");
+//			map.put("Unit" , odb.getUnit()+"");
+//			result.add(map);
+//		}
+
+//		System.out.println(result);
+		return list;
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

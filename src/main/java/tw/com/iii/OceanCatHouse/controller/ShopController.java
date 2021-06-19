@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import tw.com.iii.OceanCatHouse.model.ProductBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
@@ -28,20 +29,20 @@ public class ShopController {
 
     @Autowired
     private OrdersService ordersService;
-
-
+    @Autowired
+    private ZeroTools zTools;
 
     @RequestMapping(path = {"/views/ShoppingMall"})
     public String ShoppingMall() {
         return "views/shop/ShoppingMall";
     }
 
-//    @RequestMapping(
-//            path = {"/address"}
-//    )
-//    public String Details() {
-//        return "/views/shop/address";
-//    }
+    @RequestMapping(
+            path = {"/complete"}
+    )
+    public String complete() {
+        return "/views/shop/complete";
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 購物車 處理
@@ -96,14 +97,12 @@ public class ShopController {
         return "views/shop/Details";
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //去輸入位置 資料轉換
     @RequestMapping("/toAddress")
     public String toAddress(HttpSession session,Model model) {
         System.out.println("**********");
-
-            UserBean bean = (UserBean) session.getAttribute("user");
-
+        UserBean bean = (UserBean) session.getAttribute("user");
         if(session.getAttribute("user") == null){
             model.addAttribute("id",0);}
         else {
@@ -117,7 +116,6 @@ public class ShopController {
         else {
             model.addAttribute("cat",  session.getAttribute("cat"));
         }
-
         if(session.getAttribute("state") == null){
             model.addAttribute("state",0);}
         else {
@@ -128,22 +126,34 @@ public class ShopController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 存訂單
     @RequestMapping("/saveOrder/{id}")
-    public String saveOrder(@PathVariable("id") Integer id, @RequestParam("address") String address,HttpSession session) {
+    public String saveOrder(@PathVariable("id") Integer userId, @RequestParam("address") String address,HttpSession session,Model model,@RequestParam("g-recaptcha-response") String token) {
         System.out.println("*****存訂單*****");
         OrdersBean bean = new OrdersBean();
-        //地址判斷
-
-        //
-
+        //儲存錯誤
+        Map<String, String> errors = new HashMap<>();
+        model.addAttribute("errors", errors);
+        // 機器人判斷
+        if (token == "" || !zTools.recaptcha(token)) {
+            System.out.println("errors.put(\"recaptcha\", \"需要驗證\");");
+            errors.put("recaptcha", "需要驗證");
+        }
+        // 地址判斷
+        if (address == null || address.length() == 0) {
+            errors.put("address", "需要輸入地址");
+        }
+            if (errors != null && !errors.isEmpty())
+                return "views/shop/address";
         //取得購物車內容
         Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
         if (cat != null){
-            ordersService.insert( id , cat);
-
+//          OrdersBean save =  ordersService.insert( userId , cat);
             System.out.println("*****存訂單成功*****");
             cat.clear();
+//            model.addAttribute("orderId", save.getOrderId());
+              session.setAttribute("orderId", 18);
+            session.setAttribute("address", "台中市南屯區公益路二段51號18樓");
         }
-
-        return "redirect:/index";
+        return "redirect:/complete";
     }
+
 }
