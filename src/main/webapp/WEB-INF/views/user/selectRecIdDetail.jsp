@@ -180,9 +180,9 @@
             <c:forEach items="${stepList}" var="step" varStatus="status">
                 <div class="row stepCol" id="divId${status.count}">
                     <div class="col-md-5">
-                        <div class="picstep">
+                        <div class="picstep checkPic">
                             <div style="width: 280px;height: 210px; margin:0 auto;">
-<%--                                // -----------------%>
+                                <input hidden type="text" id="SPicName${status.count}"  value="${step.stepPic}">
                                 <img src="${pageContext.request.contextPath}/images/stepPic/${step.stepPic!=null?step.stepPic:"uploadstep.png"}"
                                      class="img-thumbnail img-step"
                                      id="img-step${status.count}"/>

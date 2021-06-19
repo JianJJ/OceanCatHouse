@@ -8,7 +8,7 @@ $(document).ready(function () {
         // 步驟說明
         var stepText = [];
         for(var i=0;i<$('.fileStep').length;i++){
-            if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==""){
+            if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==null){
                 continue;
             }
             formData.append(`file${i}`, $(`#file-step${i+1}`)[0].files[0]);
@@ -18,12 +18,20 @@ $(document).ready(function () {
         var foods = [];
         for(var i=0;i<$('.MName').length;i++) {
             var food = {};
-            if($(`#MaterialName${i+1}`).val()=="" && $(`#UnitNum${i+1}`).val()==""){
+            if($(`#MaterialName${i+1}`).val()=="" && $(`#UnitNum${i+1}`).val()==null){
                 continue;
             }
             food['MaterialName'] = $(`#MaterialName${i+1}`).val();
             food['UnitNum'] = $(`#UnitNum${i+1}`).val();
             foods[foods.length] = food;
+        }
+        // 紀錄瀏覽食譜載入圖片的名稱
+        var SPicNameArray = [];
+        var SPicName = {};
+        for(var i=0;i<$('.checkPic').length;i++){
+            console.log($(`#SPicName${i+1}`).val());
+            SPicName[`SPicName${i+1}`] = $(`#SPicName${i+1}`).val();
+            SPicNameArray[SPicNameArray.length] = SPicName;
         }
         var recipeDetail = {
             "RecTitle" : $('#RecTitle').val(),
@@ -32,7 +40,8 @@ $(document).ready(function () {
             "RecTime"  : $('#RecTime').val(),
             "CategoryId" : $('#CategoryId').val(),
             "StepTextArray" : stepText,
-            "foodsArrayList" : foods
+            "foodsArrayList" : foods,
+            "SPicNameArray" : SPicNameArray
         }
         formData.append('recipeDetail', JSON.stringify(recipeDetail));
 
@@ -185,6 +194,9 @@ $(document).ready(function () {
             $(`#UnitNum${i}`).prop('id', `UnitNum${i - 1}`);
             $(`#DFBtn${i}`).attr('onclick', `delFood('food${i - 1}')`);
             $(`#DFBtn${i}`).prop('id', `DFBtn${i - 1}`);
+            if($(`SPicName${i}`) != null){
+                $(`SPicName${i}`).prop('id', `SPicName${i-1}`);
+            }
         }
         foodNum--;
     }
