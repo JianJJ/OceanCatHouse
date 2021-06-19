@@ -43,7 +43,7 @@
 
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 
-<div class=".container">
+<div class="container-fluid">
     <%--                <div class="row">--%>
     <%--                    <div class="col-lg-12">--%>
 
@@ -63,7 +63,7 @@
 
 
     <!-- 中間部分 -->
-    <div class="row centerA">
+    <div class="row ">
         <!-- 左邊浮動區塊 -->
         <div class="col-lg-3 barNav">
             <ul>

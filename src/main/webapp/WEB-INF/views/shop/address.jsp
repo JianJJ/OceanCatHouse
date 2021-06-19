@@ -24,8 +24,8 @@
 
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
-
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <%-- 主要的CSS、JS放在這裡--%>
     <link rel="stylesheet" href="/recipe/css/demo.css">
     <title>✿海貓食屋✿</title>
@@ -36,14 +36,14 @@
 <canvas id="canvas"></canvas>
 <%--<jsp:include page="../user/inculeLogin.jsp"></jsp:include>--%>
 <%--<div class="hazy"></div>--%>
-<div class=".container BBB">
+<div class=" BBB">
     <%--    --%>
     <div class=" row AAA">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 row cat ">
             <%--        這裡有圖--%>
         </div>
-        <div class="col-lg-2"></div>
+<%--        <div class="col-lg-2"></div>--%>
     </div>
     <%--    --%>
     <div class="row">
@@ -51,9 +51,24 @@
         <div class="col-lg-8 row ">
             <div class="col-lg-8 address">
                 <form action="/recipe/saveOrder/${id}" class="">
-                    送貨地址:
-                    <input type="text" class="form-control" name="address"><br>
-                    <button class="btn btn-primary" type="submit">完成訂單</button>
+                    送貨地址:<span class="err">${errors.address} : </span><span class="err">${errors.recaptcha}</span>
+                    <input type="text" class="form-control" name="address" style="margin: 10px 0 10px 0">
+
+                    <button class="btn btn-primary col-lg-1 sbtn" type="submit">完成訂單</button>
+                        <div class="g-recaptcha"
+                             data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
+                             data-callback='verifyCallback' data-action='ubmit'>Submit
+                        </div>
+
+                    <style>
+                        .sbtn{
+                            position: absolute;
+                            right: 0px;
+                            left: 0%;
+                            margin: auto;
+                        }
+                    </style>
+
                 </form>
             </div>
             <div class="col-lg-4 allTotal">
@@ -72,7 +87,8 @@
     <script>
         var CatProduct = [];
         var sell = [];
-        var c = [];
+        var c = [];//合計
+        //讀去cat資料
         $.ajax({
             url: "/recipe/catData",
             type: "get",
@@ -93,7 +109,7 @@
                             sell[product.productid] = product.sellingprice;
                             c[product.productid] = product.sellingprice * json[product.productid];//合計
                             $('.cat').append('<div class="catProduct col-lg-6 " id="catProduct' + product.productid + '">' +
-                                '<img src="./images/shop/' + product.productmodel + '-1.jpg" alt="">' +
+                                '<img src="/recipe/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
                                 '<div class="context"><h3>' + product.productname + '</h3><br>' +
                                 '<span>商品規格:' + product.productspecifications + '</span>' +
                                 ' </div>' +
@@ -101,7 +117,6 @@
                                 '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span>' +
                                 '</div>' +
                                 '</div>');
-
 
                         }
                         , error: function (json) {
@@ -120,11 +135,11 @@
                 console.log("err " + json);
             }
         })
-        <%--var cat = '${cat}';--%>
-        <%--if (cat == 0) {--%>
-        <%--    alert("未購買商品");--%>
-        <%--    window.location.href = "/recipe/views/ShoppingMall";--%>
-        <%--}--%>
+        var cat = '${cat}';
+        if (cat == 0) {
+            alert("未購買商品");
+            window.location.href = "/recipe/views/ShoppingMall";
+        }
         var user = '${id}';
         // if (user == 0) {
         //     alert("請先登入");
@@ -138,26 +153,13 @@
         }
         $(".PPP").text("小記 : " + m);
         var a = m + 60
-        $(".SSS").text("總價 : "+a);
-
+        $(".SSS").text("總價 : " + a);
 
 
     </script>
     <style>
-        .hazy {
-            visibility: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 50;
-
-        }
-        .main {
-            position: absolute;
-            top: 50px;
-            visibility: hidden;
-            z-index: 60;
+        .err {
+            color: red;
         }
 
         .cat {
@@ -180,7 +182,6 @@
             text-align: center;
 
         }
-
 
 
         .cat .catProduct {

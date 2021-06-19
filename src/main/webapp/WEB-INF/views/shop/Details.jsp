@@ -45,7 +45,7 @@
 <!-- <%--購物車插入--%> -->
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 <!-- 分類條 -->
-<div class=".container">
+<div class="container-fluid">
     <div class="row menu">
         <div id="home" class="col-lg-1">
             <a href="../views/ShoppingMall"><img src="../images/home.png" alt=""></a>
