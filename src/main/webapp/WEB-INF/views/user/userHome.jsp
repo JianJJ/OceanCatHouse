@@ -46,7 +46,7 @@
             <div id="member-navLinks">
                 <div>
                     <span>${sessionScope.user.username}</span>
-                    <a href="#"><span class='fontIcon'></span>食譜收藏</a>
+                    <a href="${pageContext.request.contextPath}/userBack/favorites"><span class='fontIcon'></span>食譜收藏</a>
                     <a href="${pageContext.request.contextPath}/createRecipe/start"><span class='fontIcon'></span>寫食譜</a>
                 </div>
                 <ul>
@@ -76,7 +76,6 @@
                             </div>
                             <div class="col-md-8">
                                 <h4 class='showLines'>${list.recTitle}</h4>
-                                <span>南瓜、南瓜濃湯、蟹肉棒、南瓜盅、鮮蝦、奶油蘑菇、起司絲</span>
                                 <p class='showLines'>
                                         ${list.recText}
                                 </p>

@@ -195,12 +195,15 @@ var tt = 0;
 //開關購物車  
 $('#f1').click(function() {
 	$(".hazy").css("visibility", "visible");
+	$(".cat").css("visibility", "visible");
 });
 $('.barNav').click(function() {
 	$(".hazy").css("visibility", "visible");
+	$(".cat").css("visibility", "visible");
 });
 $('.catReturn').click(function() {
 	$(".hazy").css("visibility", "hidden");
+	$(".cat").css("visibility", "hidden");
 });
 
 

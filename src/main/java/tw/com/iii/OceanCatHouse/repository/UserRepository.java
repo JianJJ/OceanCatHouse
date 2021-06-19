@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserFavoritesBean;
 
 
 public interface UserRepository extends JpaRepository<UserBean, Integer>{
@@ -21,4 +22,5 @@ public interface UserRepository extends JpaRepository<UserBean, Integer>{
 	UserBean findPasswordByUserPhone(String password,String userphone);
 	@Query( "FROM UserBean WHERE userid = ?1 and userpassword = ?2")
 	UserBean findUserByUserIdAndPassword(Integer id,String password);
+
 }

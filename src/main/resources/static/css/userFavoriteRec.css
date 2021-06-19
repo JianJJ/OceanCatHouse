@@ -1,0 +1,217 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr');
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr#iefix') format('embedded-opentype'),
+      url('../icomoon/./fonts/icomoon.ttf?6rzpr') format('truetype'),
+      url('../icomoon/./fonts/icomoon.woff?6rzpr') format('woff'),
+      url('../icomoon/./fonts/icomoon.svg?6rzpr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+/* ----------- ----------------*/
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+ul li {
+    list-style: none;
+}
+
+.recResult li {
+    padding: 0;
+    width: 255px;
+    height: 400px;
+    margin: 10px 3px;
+    border:#ddd 1px solid;
+    cursor: pointer;
+}
+
+
+.recResult li img {
+    width: 100%;
+}
+
+.showLines {
+    margin: 15px 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    color: #222;
+}
+
+.recResult li h4 {
+    height: 50px;
+    line-height: 25px;
+    -webkit-line-clamp: 2;
+    font-size: 17px;
+
+}
+
+.recResult li p {
+    height: 66px;
+    font-size: 14px;
+    line-height: 22px;
+    -webkit-line-clamp: 3;
+    color: #666;
+}
+
+.recResult li:hover {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    animation: slowUp 1s forwards;
+}
+
+@keyframes slowUp{
+    100% {
+        transform: translateY(-1px);
+    }
+}
+/*-------------- ---------------*/
+
+/* Icon 顏色設定 */
+.fontIcon {
+    font-family: 'icomoon';
+    color: #9ff5eb;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 25px;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
+}
+
+.container {
+    margin: 3% auto;
+}
+
+
+#recFavoriteList, #recCategoryList {
+    padding: 15px 25px;
+    margin: 25px 10px;
+    border: 1px solid rgba(100, 100, 100, .3);
+    border-radius: 5px;
+    background:linear-gradient(to bottom, #eee4d2 , transparent);
+}
+
+
+
+#recCategoryList hr {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+#recCategoryList > div {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#recCategoryList > div > h6 {
+    text-indent: 0.5rem;
+    line-height: 30px;
+    cursor: default;
+}
+
+#recCategoryList > div > button {
+    margin: 0;
+    padding: 0px 10px;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    border: 1px solid #aaa;
+    color: #444;
+}
+
+#recCategoryList > div > button > span {
+    font-size: 18px;
+    padding: 0 5px;
+    float: left;
+}
+
+#recCategoryList ul {
+    padding: 0;
+}
+
+#recCategoryList ul .current a {
+    color: brown;
+}
+
+#recCategoryList ul .current::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    color: brown;
+    font-family: 'icomoon';
+    font-size: 1.2rem;
+}
+
+#recCategoryList ul li {
+    list-style: none;
+    position: relative;
+    line-height: 45px;
+    padding: 0 25px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#recCategoryList ul li a {
+    color: black;  
+}
+
+
+#recCategoryList ul li:hover {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+
+#recFavoriteList > p {
+    color: #888;
+}
+
+#recFavoriteList > .recBlock {
+    margin: 50px auto;
+    width: 80%;
+}
+
+#recFavoriteList > .recBlock > div {
+    padding: 50px 15px;
+    letter-spacing:1px;
+}
+
+#recFavoriteList > .recBlock > div > h6 {
+    font-weight: 600;
+    color: #333;
+}
+
+#recFavoriteList > .recBlock > div > p {
+    font-weight: 300;
+    font-size: 14px;
+    color: #777;
+    line-height: 25px;
+}
+
+#recFavoriteList > .recBlock > div > a {
+    padding: 10px 20px;
+    font-size: 14px;
+    text-shadow: 0px 0px 2px #e95151;
+    background-color: #F15555;
+    border-radius: 5px;
+}
+
+#recFavoriteList > .recBlock > div:hover a {
+    background-color: #fa7878;
+    color: white;
+}
+

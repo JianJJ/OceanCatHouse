@@ -43,14 +43,14 @@
 
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 
-<div class=".container">
+<div class="container-fluid">
     <%--                <div class="row">--%>
     <%--                    <div class="col-lg-12">--%>
 
     <!-- 分類條 -->
     <div class="row menu">
         <div id="home" class="col-lg-1">
-            <a href="../views/ShoppingMall"><img src="../images/home.png" alt=""></a>
+            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>
         </div>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">米麵五穀</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
@@ -63,7 +63,7 @@
 
 
     <!-- 中間部分 -->
-    <div class="row centerA">
+    <div class="row ">
         <!-- 左邊浮動區塊 -->
         <div class="col-lg-3 barNav">
             <ul>

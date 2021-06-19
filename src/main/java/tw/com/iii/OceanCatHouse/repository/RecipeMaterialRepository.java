@@ -9,11 +9,16 @@ import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.model.RecipeStepBean;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBean, Integer> {
 
     @Query(value = "select * from recipe_material where RecId = ?1", nativeQuery=true)
     List<RecipeMaterialBean> findByRecId(int RecId);
+
+    @Query(value = "select * from recipe_material where MaterialName like %?1%", nativeQuery=true)
+    List<RecipeMaterialBean> findByMaterialNameContains(String keyWord);
+
 
     @Transactional
     @Modifying

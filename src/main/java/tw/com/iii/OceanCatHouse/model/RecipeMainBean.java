@@ -1,12 +1,9 @@
 package tw.com.iii.OceanCatHouse.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 // @NoArgsConstructor  無參建構
 // @AllArgsConstructor 有參建構
