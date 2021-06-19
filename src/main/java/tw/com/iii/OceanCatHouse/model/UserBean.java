@@ -1,6 +1,9 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +24,10 @@ public class UserBean {
 	private String userpassword;
 	private String state;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "userBean", cascade = CascadeType.ALL)
+	private List<UserFavoritesBean> userFavoritesBeans;
+
 
 	@Override
 	public String toString() {
@@ -34,7 +41,16 @@ public class UserBean {
 				", email='" + email + '\'' +
 				", userpassword='" + userpassword + '\'' +
 				", state='" + state + '\'' +
+				", userFavoritesBeans=" + userFavoritesBeans +
 				'}';
+	}
+
+	public List<UserFavoritesBean> getUserFavoritesBeans() {
+		return userFavoritesBeans;
+	}
+
+	public void setUserFavoritesBeans(List<UserFavoritesBean> userFavoritesBeans) {
+		this.userFavoritesBeans = userFavoritesBeans;
 	}
 
 	public Integer getUserid() {

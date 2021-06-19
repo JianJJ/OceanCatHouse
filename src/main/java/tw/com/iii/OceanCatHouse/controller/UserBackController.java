@@ -38,6 +38,7 @@ public class UserBackController {
     @Autowired
     private RecipeMainRepository recipeMainRepository;
 
+    // 到個人首頁
     @RequestMapping("/home")
     public String home(HttpSession session, HttpServletRequest request) {
         Optional<UserBean> byId = userDao.findById(21);
@@ -52,11 +53,19 @@ public class UserBackController {
         return "/views/user/userHome";
     }
 
+    // 到個收藏食譜頁
+    @RequestMapping("favorites")
+    public String favorites(){
+        return "/views/user/favorites";
+    }
+
+    // 到個人資料設定頁
     @RequestMapping("userSetting")
     public String userSetting() {
         return "/views/user/userSetting";
     }
 
+    // 到變更密碼頁
     @RequestMapping("userSetPassword")
     public String userSetPassword() {
         return "/views/user/userSetPassword";
@@ -89,7 +98,6 @@ public class UserBackController {
 
         return "update OK";
     }
-
 
     // 密碼更改
     @PutMapping("/changePassword/{oldP}/{newP}")
