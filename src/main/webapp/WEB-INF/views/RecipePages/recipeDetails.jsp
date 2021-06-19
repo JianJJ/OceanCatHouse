@@ -43,12 +43,11 @@
 
 
     <!-- 中間部分 -->
-    <div class="container">
+     <div class="container">
         <div class='row'>
             <!-- 左邊浮動區塊 -->
             <div class="barNav col-xs-1 col-lg-1 d-md-none d-lg-block">
                 <ul>
-                    <li class="fontIcon hyLink"></li>
                     <li class="fontIcon hyLink"></li>
                     <li class="fontIcon hyLink"></li>
                     <li class="fontIcon hyLink"></li>
@@ -58,7 +57,7 @@
 
 
             <!-- 網頁中間內文 -->
-            <div class="main col-xs-10 col-md-11">
+  <div class="main col-xs-10 col-md-11">
                 <!-- RecTitle -->
                 <div class='row'>
                     <h1 class='recTitle col-md-12'>${recMainBean.recTitle}</h1>
@@ -70,41 +69,47 @@
                     <img src="${recMainBean.recPic}" alt="${recMainBean.recTitle}" class="recPic  col-lg-7 col-xs-12">
 
                     <div class='recDetail col-lg-4 col-xs-10'>
+                    	
                         <div class="recTime">
                             <span class='fontIcon'></span>
-                            <span class='time'>${recMainBean.recTime}</span> 分鐘
+                            <span class='time'>${recMainBean.recTime eq 0? "": String.valueOf(recMainBean.recTime).concat(" 分鐘") }</span> 
                         </div>
                         <div class="recPerson">
                             <span class='fontIcon'></span>
-                            <span>${recMainBean.recNum}</span>人份
+                            <span>${recMainBean.recNum eq 0? "": String.valueOf(recMainBean.recNum).concat(" 人份") }</span>
                         </div>
+                        <div class="cal">
+                            <span class='fontIcon'></span>
+                            <span>${recMainBean.recCal}  卡路里</span>
+                        </div>
+                        <!--  <div class="goodPerson">
+                            <span class='fontIcon'></span>
+                            <span>${recMainBean.recLiked}  人按讚</span>
+                        </div> -->
+                       
+     
                         <div class='tags'>
                             <span class='fontIcon'></span>
-                            <span>
+                            <div>
                             <%--取出JSON元素迴圈--%>
-                            <c:forEach varStatus="loop" begin="0" end="${recTagLen}">
-                                ${recTag[loop.index]}
+                            <c:forEach varStatus="loop" begin="0" end="${recTagLen -1}">
+                                <span class="tagItem"><a href="#">${recTag[loop.index]}</a></span>
                             </c:forEach>
-                            </span>
-                        </div>
-                        <%-- 額外新增資料 待配置版面--%>
-                        <div>
-                            <br>
-                            額外資料:<br>
-                            按讚數:${recMainBean.recLiked}人<br>
-                            瀏覽人數:${recMainBean.recViews}人 <br>
-                            食譜創建時間:${recMainBean.recCreated}<br>
-                            卡路里:${recMainBean.recCal}卡路里<br>
+                            </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- RecTextContext -->
-                <div class='row'>
+                <div class='row' style='position:relative;'>
                     <p class="RecTextContext col-xs-12">
-                        ${recMainBean.recText}
+                        ${recMainBean.recText}      
+                          
                     </p>
+                  <span id='viewTimes'>瀏覽人數:  ${recMainBean.recViews}  人</span><br>
+                 <span id='createdDate'>創建時間:  ${recMainBean.recCreated}</span>     
                 </div>
+                 
 
 
                 <section class='IngreAndStep row'>
@@ -115,9 +120,9 @@
                             <hr class='underline'>
                             <%--載入食材迴圈--%>
                             <c:forEach varStatus="loop" begin="0" end="${recMatBean.size()-1}">
-                            <div class="ingredent">
-                                <span class='ingreContext'>${recMatBean.get(loop.index).materialName}</span>
-                                <span class='ingreUnit'>${recMatBean.get(loop.index).unitNum}</span>
+                            <div class="ingredent row">
+                                <span class='ingreContext col-md-6 col-xs-6'>${recMatBean.get(loop.index).materialName}</span>
+                                <span class='ingreUnit  col-md-5 col-xs-5'>${recMatBean.get(loop.index).unitNum}</span>
                             </div>
                             </c:forEach>
                         </div>

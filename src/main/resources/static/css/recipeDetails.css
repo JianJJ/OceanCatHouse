@@ -82,8 +82,11 @@ a:hover {
     display: none;
     right:5%;
     bottom: 50px;
-    font-size: 50px;
     z-index: 1;
+}
+
+#toUp {
+	font-size: 50px;
 }
 
 
@@ -119,6 +122,34 @@ a:hover {
     /* height: 460px; */
 }
 
+
+
+.RecContextBlock .recDetail .tags div {
+	display:inline-block;
+}
+
+.RecContextBlock .recDetail .tags .tagItem {
+	list-style:none;
+	display:inline;
+	padding:0 10px;
+	background: #ffecb8;
+	letter-spacing:2px;
+	border-radius: 5px;
+
+}
+
+.RecContextBlock .recDetail .tags .tagItem a {
+	color: #444;
+}
+
+.RecContextBlock .recDetail .tags .tagItem:hover  {
+	background-color:#fff7eb;
+}
+
+.RecContextBlock .recDetail .tags .tagItem:hover  a {
+		color: #ed8e77;
+}
+
 .recPic {
     float: left;
 }
@@ -137,6 +168,23 @@ a:hover {
 }
 
 
+#viewTimes {
+	position:absolute;
+	bottom:	40px;
+	width:500px;
+	left:80%;
+	color:#777;
+	font-style:italic;
+}
+
+#createdDate {
+	position:absolute;
+	bottom:10px;
+	width:500px;
+	left:80%;
+	color:#777;
+	font-style:italic;
+}
 
 .underline {
     width: 80%;
@@ -153,12 +201,25 @@ a:hover {
     margin-right: 10px;
 }
 
+.recIngre span,  .recStep p {
+	font-size:18px;
+	}
+
 .ingredent {
-    line-height: 30px;
+       line-height: 22px;
+    margin-bottom: 15px;
 }
 
 /* Step Block */
 
+.recStep a {
+	color:#111;
+}
+
+.recStep a:hover {
+	color:#aaa;
+	
+}
 
 .recStep {
     display:inline-block;
@@ -207,7 +268,8 @@ a:hover {
 }
 
 .recommendRec ul li img, .seenRec ul li img {
-    width: 100%;
+    width: 165px;
+    height:125px;
     background-color: wheat;
 }
 
