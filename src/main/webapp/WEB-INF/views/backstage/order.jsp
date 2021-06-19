@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>✿海貓食屋✿訂單管理</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <!--    JavaScript; choose one of the two!-->
@@ -60,7 +60,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 50;
+            z-index: 40;
 
         }
 
@@ -69,13 +69,15 @@
             background-color: white;
             width: 830px;
             height: 850px;
-            z-index: 25;
-            position: fixed;
+            z-index: 50;
+            position: absolute;
             left: 0%;
             right: 0%;
             margin: auto;
             top: 50px;
             border-radius: 15px;
+            visibility: hidden;
+
         }
         .cat p{
             position: relative;
@@ -116,26 +118,26 @@
 
 <%--// 訂單細節--%>
 <div class="hazy">
-    <div class="cat">
-        <button class="catReturn">X</button>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md ">
-            <button class="btn btn-primary me-md-2 " type="button">包裝完成</button>
-            <button class="btn btn-primary" type="button">已出貨</button>
-        </div>
-        <div class="row">
-            <table class="table table-striped detailTable">
-                <tr>
-                    <td>訂單編號</td>
-                    <td>商品名稱</td>
-                    <td>數量</td>
-                    <td>售價</td>
-                </tr>
-            </table>
-        </div>
-        <hr>
-        <p>小記:1000</p>
+</div>
+<div class="cat">
+    <button class="catReturn">X</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md ">
+        <button class="btn btn-primary me-md-2 package" type="button">包裝完成</button>
+        <button class="btn btn-primary Shipment" type="button">已出貨</button>
     </div>
+    <div class="row">
+        <table class="table table-striped detailTable">
+            <tr>
+                <td>訂單編號</td>
+                <td>商品名稱</td>
+                <td>數量</td>
+                <td>售價</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <p>小記:1000</p>
 </div>
 
 <%--    頁首--%>
@@ -234,6 +236,7 @@
         $(".detailTTT").remove();
         console.log(id);
         $(".hazy").css("visibility", "visible");
+        $(".cat").css("visibility", "visible");
         $.ajax({
             url: "/recipe/backstage/orderDetail/" + id,
             type: "get",
@@ -254,14 +257,21 @@
             },
             error: doError
         });
+
+
+    }
+    $(document).ready(function () {
+        $(".package").click(function (){
+            console.log("package");
+        })
         // 關閉按紐
         $('.catReturn').click(function () {
             $(".hazy").css("visibility", "hidden");
-            // $(".form").empty();
+            $(".cat").css("visibility", "hidden");
 
         });
 
-    }
+    });
 </script>
 </body>
 </html>

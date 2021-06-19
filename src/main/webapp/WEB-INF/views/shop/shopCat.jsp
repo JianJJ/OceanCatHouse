@@ -21,23 +21,21 @@
                 border: blue 1px solid;
                 background-color: white;
                 width: 830px;
-                height: 600px;
-                z-index: 25;
-                position: fixed;
+                /*height: 600px;*/
+                z-index: 60;
+                position: absolute;
                 left: 0%;
                 right: 0%;
                 margin: auto;
                 top: 100px;
                 border-radius: 15px;
-                overflow: scroll;
-                overflow-X: hidden;
-
+                visibility: hidden;
             }
 
             /* 購物車返回 */
             .catReturn {
-                top: 0px;
-                right: 0px;
+                top: -10px;
+                right: -10px;
                 position: absolute;
                 background-color: red;
                 width: 40px;
@@ -74,6 +72,7 @@
                 height: 140px;
                 margin: 15px;
                 border-radius: 15px;
+                /*visibility: hidden;*/
             }
 
             .cat .catProduct img {
@@ -111,7 +110,7 @@
                 width: 20px;
                 height: 20px;
                 right: 155px;
-                z-index: 16;
+                z-index: 61;
                 top: 60px;
             }
 
@@ -147,7 +146,7 @@
                 height: 30px;
                 border-radius: 50%;
                 position: absolute;
-                z-index: 10;
+                z-index: 61;
                 color: #000;
                 /*top: 6px;*/
                 right: -25px;
@@ -160,18 +159,18 @@
 
         <!-- 購物車 -->
         <div class="hazy">
-            <div class="cat">
-                <button class="catReturn">X</button>
-                <!-- 這裡有圖 -->
 
-                <div class="foot">
-                    <span class="PPP">總價:</span>
-                    <button class="catSubmit">確定</button>
-                </div>
-
-            </div>
         </div>
+        <div class="cat">
+            <button class="catReturn">X</button>
+            <!-- 這裡有圖 -->
 
+            <div class="foot">
+                <span class="PPP">總價:</span>
+                <button class="catSubmit">確定</button>
+            </div>
+
+        </div>
     </body>
 
     </html>

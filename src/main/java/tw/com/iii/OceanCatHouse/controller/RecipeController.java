@@ -63,16 +63,18 @@ public class RecipeController {
     @RequestMapping(
             path = {"/recipeSearch"}
     )
-    public ModelAndView recipeSearch(@RequestParam(name ="searchString",required = false,defaultValue = "default") String searchString) {
+    public ModelAndView recipeSearch(@RequestParam(name ="searchString",required = false,defaultValue = "default") String searchString,
+                                     @RequestParam(name ="searchMatString",required = false,defaultValue = "default") String searchMatString) {
     //-------------------------------
        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,9);
        List<RecipeMainBean> recipeSearchBean = service.getSearchResult(searchString);
-
-       ModelAndView mav = new ModelAndView();
+       List<Integer> searchMatResult = service.getSearchResultMat(searchMatString);
+        ModelAndView mav = new ModelAndView();
 
        mav.addObject("recReccBean",recipeRecommendBean);
        mav.addObject("recipeSearchBean",recipeSearchBean);
        mav.addObject("searchString",searchString);
+       mav.addObject("searchMatResult",searchMatResult);
 
        mav.setViewName("views/RecipePages/recipeSearch");
        return mav;
