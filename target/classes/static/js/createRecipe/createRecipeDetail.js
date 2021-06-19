@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    // 取消編輯
+    goBack = function (){
+        if(confirm("是否放棄編輯？")){
+            $.ajax({
+                url : "/recipe/createRecipe/goBack",
+                type : "GET",
+                async : false,
+                cache: false,  //不做快取
+                success : function (url) {
+                    $(location).attr("href", url)
+                },
+                error : function (returndata){
+                    alert("發生錯誤請聯繫我們")
+                }
+            })
+        }
+    }
     // 儲存食譜
     doUpload = function (){
         if($('#file-main')[0].files[0]){
@@ -46,11 +63,12 @@ $(document).ready(function () {
                 contentType : false,
                 async : false,
                 cache: false,  //不做快取
-                success : function (str){
-                    alert(str);
+                success : function (url){
+                    alert("發布成功");
+                    $(location).attr("href", url)
                 },
                 error : function (returndata){
-                    alert(returndata);
+                    alert("發布失敗請聯繫我們")
                 }
             });
         }else {
@@ -125,7 +143,7 @@ $(document).ready(function () {
         }
         $(`#${divId}`).remove();
         // 取刪除之後的元素每一個欄位-1
-        var n = parseInt(divId.charAt(divId.length - 1));
+        var n = parseInt(divId.slice(5));
         for (var i = (n + 1); i <= stepNum; i++) {
             $(`#divId${i}`).prop('id', `divId${i - 1}`);
             $(`#img-step${i}`).prop('id', `img-step${i - 1}`);
@@ -171,6 +189,9 @@ $(document).ready(function () {
         createFood();
     }
     delFood = function (delfood){
+        if(foodNum == 1){
+            return;
+        }
         $(`#${delfood}`).remove();
         foodNum--;
     }

@@ -9,13 +9,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <!--    JavaScript; choose one of the two!-->
+    <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
+    <%-- Header的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
+    <%-- footer的CSS、JS樣式放這裡    --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipe.js"></script>
     <style>
         .inner {
             border: 1px solid #bcbebf;
@@ -75,13 +80,13 @@
                         </label>
                     </div>
                     <div id="CreateNow" style="position: static">
-                        <input type="submit" class="btn btn-outline-danger" value="開始寫食譜">
+                        <input type="submit" class="btn btn-outline-danger" value="開始寫食譜" id="StartWriter" disabled>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 showAD">
                 <h3>食譜名稱</h3>
-                <img src="${pageContext.request.contextPath}/static/images/homePic/wall06.jpg/wall06.jpg" width="200px" height="200px">
+                <img src="${pageContext.request.contextPath}/images/homePic/wall06.jpg" width="200px" height="200px">
                 <p>食譜簡介</p>
             </div>
         </div>

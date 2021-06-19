@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
+import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.model.RecipeStepBean;
 
@@ -17,5 +18,5 @@ public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBe
     @Transactional
     @Modifying
     @Query(value = "delete from RecipeMaterialBean where RecId = :recId")
-    Integer deleteAllByRecId(Integer recId);
+    RecipeMainBean deleteAllByRecId(Integer recId);
 }

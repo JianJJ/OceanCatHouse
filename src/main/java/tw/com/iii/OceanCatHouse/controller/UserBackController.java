@@ -42,14 +42,10 @@ public class UserBackController {
     public String home(HttpSession session, HttpServletRequest request) {
         Optional<UserBean> byId = userDao.findById(21);
         UserBean user = byId.get();
-//            UserBean user = (UserBean) session.getAttribute("user");
         session.setAttribute("user", user);
             // 查看user自己的食譜數量
         Integer recCount = recipeMainRepository.recCount(user.getUserid());
         List<RecipeMainBean> recipeMainList = recipeMainRepository.findAllByUserid(user.getUserid());
-        for (RecipeMainBean apple :recipeMainList){
-            System.out.println(apple);
-        }
         request.setAttribute("recCount", recCount);
         request.setAttribute("recipeMainList", recipeMainList);
 

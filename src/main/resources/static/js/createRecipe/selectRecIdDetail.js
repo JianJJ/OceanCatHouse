@@ -1,4 +1,43 @@
 $(document).ready(function () {
+    // 取消編輯
+    goBack = function (){
+        if(confirm("是否放棄編輯？")){
+            $.ajax({
+                url : "/recipe/createRecipe/goBack",
+                type : "GET",
+                async : false,
+                cache: false,  //不做快取
+                success : function (url) {
+                    $(location).attr("href", url)
+                },
+                error : function (returndata){
+                    alert("發生錯誤請聯繫我們")
+                }
+            })
+        }
+    }
+
+    // 刪除食譜
+    deleteRec = function (){
+        if(confirm("是否確定刪除資料")){
+            var recid = $('#recid').val();
+            $.ajax({
+                url : '/recipe/createRecipe/delete/'+recid,
+                type : 'DELETE',
+                processData: false,
+                contentType : false,
+                async : false,
+                cache: false,  //不做快取
+                success : function (url) {
+                    alert("刪除成功, 即將跳轉頁面。");
+                    $(location).attr("href", url)
+                },
+                error : function (returndata){
+                    alert("刪除失敗請聯繫我們")
+                }
+            });
+        }
+    }
     // 儲存食譜
     doUpload = function (){
         var formData = new FormData();
@@ -30,8 +69,11 @@ $(document).ready(function () {
         var SPicName = {};
         for(var i=0;i<$('.checkPic').length;i++){
             console.log($(`#SPicName${i+1}`).val());
-            SPicName[`SPicName${i+1}`] = $(`#SPicName${i+1}`).val();
-            SPicNameArray[SPicNameArray.length] = SPicName;
+            if($(`#SPicName${i+1}`)){
+                SPicName[`SPicName${i+1}`] = $(`#SPicName${i+1}`).val();
+                SPicNameArray[SPicNameArray.length] = SPicName;
+            }
+
         }
         var recipeDetail = {
             "RecTitle" : $('#RecTitle').val(),
@@ -54,11 +96,12 @@ $(document).ready(function () {
             contentType : false,
             async : false,
             cache: false,  //不做快取
-            success : function (str){
-                alert(str);
+            success : function (url){
+                alert("發布成功");
+                $(location).attr("href", url)
             },
             error : function (returndata){
-                alert(returndata);
+                alert("發布失敗請聯繫我們")
             }
         });
     }

@@ -79,6 +79,8 @@
     <div class="row justify-content-around">
         <div class="col-md-7 Lbody" id="divStart">
             <div class="row">
+<%--                食譜Id--%>
+                <input type="text" id="recid" value="${main.recId}" hidden>
                 <%--                食譜分類 RecCategory--%>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="分類" style="font-size: 2rem"
@@ -223,10 +225,10 @@
                 <button id="insert" onclick="doUpload()" type="button" class="btn btn-outline-danger">發布</button>
             </div>
             <div class="row justify-content-start">
-                <button type="button" class="btn btn-outline-danger">取消</button>
+                <button type="button" class="btn btn-outline-danger" onclick="goBack()">取消</button>
             </div>
             <div class="row justify-content-start">
-                <button type="button" class="btn btn-outline-danger">刪除</button>
+                <button id="delete" onclick="deleteRec()" type="button" class="btn btn-outline-danger">刪除</button>
             </div>
         </div>
         <div class="col-md-2">

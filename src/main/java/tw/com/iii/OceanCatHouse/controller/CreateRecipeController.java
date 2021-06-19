@@ -98,7 +98,6 @@ public class CreateRecipeController {
         try {
             // 2. 儲存圖片到資料夾
             if(fileMap != null && fileMap.get("fileMain") != null){
-                System.out.println(fileMap.get("fileMain"));
                 fileMap.get("fileMain").transferTo(
                         new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/"+format));
                 // 3. 儲存檔案名稱到資料庫
@@ -143,23 +142,17 @@ public class CreateRecipeController {
         }
         // 刪除步驟資料夾的舊照片
         // 沒有圖片, 有可能是沒有更新, 保留本的檔名
-        List<RecipeStepBean> stepBeanList ;
         if(isUpdate && main.getRecipeStepBeans() != null){
-            stepBeanList = main.getRecipeStepBeans();
-            for(RecipeStepBean stepBean : stepBeanList){
-                if(stepBean != null && stepBean.getStepPic() != null) {
-//                    FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + stepBean.getStepPic()));
-
-                }
-            }
             // 刪除舊的步驟表
             recipeStepDao.deleteAllByRecId(main.getRecId());
         }
         // 步驟表 儲存資料庫(步驟, 步驟說明)
         RecipeStepBean recipeStepBean = null;
         String stepPicName = null;
-        // spicName=查看食譜那時候的圖片名稱
+        // spicName=點查看食譜那時候的圖片名稱
         List<Map<String, String>> spicNameList = (List<Map<String, String>>) map.get("SPicNameArray");
+        // stepBeanList = 點查看時載入的step資料
+        List<RecipeStepBean> stepBeanList;
         // stepList=前端傳來要更新的資料
         List<String> stepList = (List<String>)(map.get("StepTextArray"));
         for(int i=0;i<stepList.size();i++){
@@ -183,14 +176,27 @@ public class CreateRecipeController {
                         spicNameList.get(i).get("SPicName"+(i+1)) != null){
                     stepPicName = spicNameList.get(i).get("SPicName"+(i+1));
                     recipeStepBean.setStepPic(stepPicName);
+                    // 刪除本地資歷夾沒有保留下來的資料
+//                    if(isUpdate){
+//                        stepBeanList = main.getRecipeStepBeans();
+//                        for(RecipeStepBean stepBean : stepBeanList){
+//                            System.out.println(stepBean.getStepPic());
+//                            System.out.println(stepPicName);
+//                            if(stepBean != null &&
+//                                    stepBean.getStepPic() != null &&
+//                                    stepBean.getStepPic() != stepPicName) {
+//                                FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + stepBean.getStepPic()));
+//                                // 無法刪除對應的本地檔案
+//                            }
+//                        }
+//                    }
                 }
             }
-            System.out.println(i);
             recipeStepBean.setRecId(recid);
             recipeStepDao.save(recipeStepBean);
         }
         System.out.println("mainBean:"+mainBean);
-        return "發佈成功";
+        return "/recipe/userBack/home";
     }
 
     // 食譜的詳細頁(新增頁面)
@@ -216,5 +222,29 @@ public class CreateRecipeController {
         System.out.println(categoryList);
 
         return modelAndView;
+    }
+
+    // 刪除食譜
+    @DeleteMapping("/delete/{recId}")
+    @ResponseBody
+    public String delete(@PathVariable("recId") Integer recId,
+                         HttpSession session){
+        Integer count = recipeMainDao.deleteAllByRecId(recId);
+        RecipeMainBean main = (RecipeMainBean) session.getAttribute("main");
+        if(count ==1 ){
+            FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/" + main.getRecPic()));
+            List<RecipeStepBean> recipeStepBeans = main.getRecipeStepBeans();
+            for(RecipeStepBean step :recipeStepBeans){
+                FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + step.getStepPic()));
+            }
+        }
+        return "/recipe/userBack/home";
+    }
+
+    // 取消編輯
+    @RequestMapping("/goBack")
+    @ResponseBody
+    public String goBack(){
+        return "/recipe/userBack/home";
     }
 }

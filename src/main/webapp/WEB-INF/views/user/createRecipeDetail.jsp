@@ -159,10 +159,7 @@
                 <button id="insert" onclick="doUpload()" type="button" class="btn btn-outline-danger">發布</button>
             </div>
             <div class="row justify-content-start">
-                <button type="button" class="btn btn-outline-danger">取消</button>
-            </div>
-            <div class="row justify-content-start">
-                <button type="button" class="btn btn-outline-danger">刪除</button>
+                <button type="button" class="btn btn-outline-danger" onclick="goBack()">取消</button>
             </div>
         </div>
         <div class="col-md-2">
