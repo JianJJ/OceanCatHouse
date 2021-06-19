@@ -171,7 +171,7 @@ a:hover {
 #viewTimes {
 	position:absolute;
 	bottom:	40px;
-	width:500px;
+	width:250px;
 	left:80%;
 	color:#777;
 	font-style:italic;
@@ -180,7 +180,7 @@ a:hover {
 #createdDate {
 	position:absolute;
 	bottom:10px;
-	width:500px;
+	width:250px;
 	left:80%;
 	color:#777;
 	font-style:italic;
@@ -294,3 +294,94 @@ a:hover {
     line-height: 14px;
     -webkit-line-clamp: 3;
 }
+
+#blackMask {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, .5);
+        z-index:100;
+    }
+
+.modalSection {
+        position: relative;
+        top: 10%;
+        width: 50%;
+        margin: 0 auto;
+        padding: 25px 50px;
+        background: white;
+    }
+
+#closeMask {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        height: 40px;
+        width: 40px;
+        font-weight:600;
+        font-size: 20px;
+        vertical-align: middle;
+        border-radius: 20px;
+        color: rgb(235, 101, 101);
+        border: rgb(235, 101, 101) 3px solid;
+        background: white;
+		boxing-shadow:0px 0px 2px #444;
+ }
+ 
+#closeMask:hover {
+	background:rgb(235, 101, 101);
+	border:white;
+	color:white;
+	
+}
+ 
+.noscroll {
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+
+    
+.form-floating {
+	margin: 20px 0;
+	border: 1px #222 solid; 
+}
+
+
+.field input {
+	text-indent: 5rem;
+}
+
+.field label {
+	color: #666;
+}
+
+#btnSend {
+	display:block;
+	margin:10px auto;
+	padding:5px 10px;
+	background:#86e3bc;
+	border: 3px solid #86e39c;
+	letter-spacing:1px;
+}
+
+#btnSend:hover {
+	background:#d1ffec;
+}
+
+#mailPageLink {
+	position:relative;
+	left:500px;
+	color:#86e39c;
+	font-weight:700;
+}
+
+#mailPageLink:hover {
+	color:#d1ffec;
+}
+
+
+

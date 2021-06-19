@@ -31,16 +31,22 @@
     <%-- 主要的CSS、JS放在這裡--%>
     <script src="/recipe/js/recipeDetails.js"></script>
     <link rel="stylesheet" href="/recipe/css/recipeDetails.css">
-
+ 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <title>${recMainBean.recTitle}</title>
 </head>
 
 <body>
-
+	
  <!-- 拼接header -->
 <jsp:include page="top_nav.jsp"></jsp:include>
 
+    <div id='blackMask'>
+        <div class='modalSection'>
+            <button id='closeMask'>X</button>
+            <jsp:include page="sendMail.jsp"></jsp:include>
+        </div>
+    </div>
 
     <!-- 中間部分 -->
      <div class="container">
@@ -49,7 +55,7 @@
             <div class="barNav col-xs-1 col-lg-1 d-md-none d-lg-block">
                 <ul>
                     <li class="fontIcon hyLink"></li>
-                    <li class="fontIcon hyLink"></li>
+                    <li class="fontIcon hyLink" id='mail'></li>
                     <li class="fontIcon hyLink"></li>
                 </ul>
             </div>
@@ -92,8 +98,16 @@
                             <span class='fontIcon'></span>
                             <div>
                             <%--取出JSON元素迴圈--%>
+                            <script>
+                            var index = 0;
+                            </script>
                             <c:forEach varStatus="loop" begin="0" end="${recTagLen -1}">
                                 <span class="tagItem"><a href="#">${recTag[loop.index]}</a></span>
+                                <script>
+                            		var uri = encodeURI('${recTag[loop.index]}');
+                            		$('.tagItem > a').eq(index).attr("href", "/recipe/recipeSearch?searchString=" +uri);
+                            		index++;
+                            	</script>
                             </c:forEach>
                             </div>
                         </div>
@@ -123,6 +137,18 @@
                             <div class="ingredent row">
                                 <span class='ingreContext col-md-6 col-xs-6'>${recMatBean.get(loop.index).materialName}</span>
                                 <span class='ingreUnit  col-md-5 col-xs-5'>${recMatBean.get(loop.index).unitNum}</span>
+                                <script type="text/javascript"> 
+                                	
+                                	if(ingrearray != null){
+                                		var str = '${recMatBean.get(loop.index).materialName}' + "    " + '${recMatBean.get(loop.index).unitNum}'  +"<br/>";
+                                		ingrearray = ingrearray.concat(str);
+                                	}else {
+                                		var ingrearray = "";
+                                		var str = '${recMatBean.get(loop.index).materialName}' + "    " + '${recMatBean.get(loop.index).unitNum}' +"<br/>";
+                                    	ingrearray = ingrearray.concat(str);
+                                	}
+                                	
+                                </script>
                             </div>
                             </c:forEach>
                         </div>
@@ -223,8 +249,6 @@
             <span class="fontIcon hyLink" id="toUp"></span>
         </div>
 
-
-
     </div>
 
 
@@ -234,10 +258,5 @@
 
 </body>
 
-<script>
-
-
-
-</script>
 
 </html>
