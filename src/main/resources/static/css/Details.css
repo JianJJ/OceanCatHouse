@@ -4,13 +4,7 @@ body {
     height: 100%
 }
 
-/* header{
-    width:80%;
-    left: 250px;
-} */
 .main{
-    /* width: 80%; */
- 
     transform:translateX(0);
     z-index: 9;
     margin:0px;
@@ -22,7 +16,7 @@ footer {
 
 /* 分類條 */
  .menu {
-    height: 50px;
+    /*height: 50px;*/
     background-color: #69AE1E;
     /* width : 100vw; */
 }
@@ -33,7 +27,7 @@ footer {
      top: 10px;
      background-color: rgb(66, 108, 18);
      box-sizing:content-box;
-     padding: 16px 16px 16px 16px;
+     padding: 15px 16px 15px 16px;
 }
 .menuDetail {
     line-height: 46px;
@@ -67,18 +61,18 @@ footer {
 
 .cenBody  .rightImg form .rightButton {
     width: 25px;
-    /* height: 20px; */
     position: relative;
     right: 10px;
-    
-
 }
 .cenBody  .rightImg form .leftButton {
     width: 25px;
     /* height: 20px; */
     position: relative;
     left:  10px;
-    
+}
+.cenBody  .rightImg form .bs {
+    position: relative;
+    top: -3px;
 }
 /* 輪播圖 */
 .cenBody  .leftImg .banner {
@@ -105,7 +99,7 @@ footer {
     height: 105px;
 }
 
-
+/* 推薦食譜 */
 .cenBody .recommend{
     position: relative;
     /* background-color: #69AE1E; */
@@ -116,28 +110,30 @@ footer {
     position: relative;
 
 }
-
-/* 推薦食譜 */
-.cenBody .recommendRecipe {
-    position: relative;
-    left: 100px;
-    /* top: 300px; */
-    /* width: 45%; */
-
-    float: left;
+.cenBody .recommend a{
+    color: black;
 }
+
+.cenBody .recommendRecipe {
+    /*position: relative;*/
+    /*left: 100px;*/
+    /*float: left;*/
+}
+
 
 .cenBody .recommendRecipe img {
-    /* width: 120px; */
     height: 120px;
-    float: left;
     margin: 10px;
 }
-
 .cenBody .recommendRecipe p {
-    float: left;
+    /*float: left;*/
 
 }
+
+
+
+
+
 /* 同類商品 */
 .cenBody .SimilarProducts figure a img {
     width: 200px;
