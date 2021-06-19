@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>✿海貓食屋✿商品管理</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <!--    JavaScript; choose one of the two!-->
@@ -49,73 +49,72 @@
 <body>
 <!-- 購物車 -->
 <div class="hazy">
-    <div class="cat">
-        <button class="catReturn">X</button>
-        <form action="/recipe/backstage/updata/" class="form" method="post">
-            <button type="submit" class="">修改</button>
-            <!-- 這裡有圖 -->
-            <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
 
-            <div class="form-group"><label for="productname">名稱</label>
-                <input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname">
-            </div>
-
-            <div class="form-group"><label for="productmodel">商品號</label>
-                <input type="text" class="form-control" id="productmodel" value="'+A.productmodel+'"
-                       name="productmodel"></div>
-
-            <div class="form-group"><label for="producttext">詳細描述</label>
-                <input type="text" class="form-control" id="producttext" value="'+A.producttext+'" name="producttext">
-
-            </div>
-            <div class="form-group"><label for="purchaseprice">進價</label>
-                <input type="text" class="form-control" id="purchaseprice" value="'+A.purchaseprice+'"
-                       name="purchaseprice"></div>
-
-            <div class="form-group"><label for="sellingprice">售價</label>
-                <input type="text" class="form-control" id="sellingprice" value="'+A.sellingprice+'"
-                       name="sellingprice"></div>
-
-            <div class="form-group"><label for="stocks">庫存</label>
-                <input type="text" class="form-control" id="stocks" value="'+A.stocks+'" name="stocks"></div>
-
-            <div class="form-group"><label for="productspecifications">商品規格</label>
-                <input type="text" class="form-control" id="productspecifications" value="'+A.productspecifications+'"
-                       name="productspecifications"></div>
-
-
-            <label for="vendorid">廠商號</label>
-            <select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-
-            <label for="productcategoryid">分類號</label>
-            <select class="form-select" aria-label="Default select example" id="productcategoryid"
-                    name="productcategoryid">
-                <option value="1">1 五穀雜糧</option>
-                <option value="2">2 蔬果</option>
-                <option value="3">3 生鮮</option>
-                <option value="4">4 醬料</option>
-                <option value="5">5 油</option>
-                <option value="6">6 乾貨</option>
-            </select>
-
-            <label for="vendorid">產品狀態</label>
-            <select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">
-                <option value="1">1 銷售</option>
-                <option value="2">2 下架</option>
-            </select>
-
-            <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>
-            <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>
-
-        </form>
-    </div>
 </div>
+<div class="cat">
+    <button class="catReturn">X</button>
+    <form action="/recipe/backstage/updata/" class="form" method="post">
+
+        <!-- 這裡有圖 -->
+        <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
+
+        <div class="form-group"><label for="productname">名稱</label>
+            <input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname" >
+        </div>
+
+        <div class="form-group"><label for="productmodel">商品號</label>
+            <input type="text" class="form-control" id="productmodel" value="'+A.productmodel+'"
+                   name="productmodel"></div>
+
+        <div class="form-group"><label for="producttext">詳細描述</label>
+            <input type="text" class="form-control" id="producttext" value="'+A.producttext+'" name="producttext">
+
+        </div>
+        <div class="form-group"><label for="purchaseprice">進價</label>
+            <input type="text" class="form-control" id="purchaseprice" value="'+A.purchaseprice+'"
+                   name="purchaseprice"></div>
+
+        <div class="form-group"><label for="sellingprice">售價</label>
+            <input type="text" class="form-control" id="sellingprice" value="'+A.sellingprice+'"
+                   name="sellingprice"></div>
+
+        <div class="form-group"><label for="stocks">庫存</label>
+            <input type="text" class="form-control" id="stocks" value="'+A.stocks+'" name="stocks"></div>
+
+        <div class="form-group"><label for="productspecifications">商品規格</label>
+            <input type="text" class="form-control" id="productspecifications" value="'+A.productspecifications+'"
+                   name="productspecifications"></div>
 
 
+        <label for="vendorid">廠商號</label>
+        <select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <label for="productcategoryid">分類號</label>
+        <select class="form-select" aria-label="Default select example" id="productcategoryid"
+                name="productcategoryid">
+            <option value="1">1 五穀雜糧</option>
+            <option value="2">2 蔬果</option>
+            <option value="3">3 生鮮</option>
+            <option value="4">4 醬料</option>
+            <option value="5">5 油</option>
+            <option value="6">6 乾貨</option>
+        </select>
+
+        <label for="vendorid">產品狀態</label>
+        <select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">
+            <option value="1">1 銷售</option>
+            <option value="2">2 下架</option>
+        </select>
+
+        <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>
+        <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>
+        <button type="submit" class="">修改</button>
+    </form>
+</div>
 
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
@@ -129,7 +128,8 @@
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
         <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1'">訂單管理</button>
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product?pag=1'">商品管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product?pag=1'">商品管理
+        </button>
         <button class="list-group-item">會員管理</button>
         <button class="list-group-item">員工管理</button>
     </ul>
@@ -141,17 +141,18 @@
             <%--            抬頭--%>
             <div class="row ">
                 <div class="col-lg-1">
-                <button type="button" class="btn btn-primary ccc " id="addPoduct">新增</button>
-                </div >
+                    <button type="button" class="btn btn-primary ccc " id="addPoduct">新增</button>
+                </div>
                 <style>
-                    .ccc{
+                    .ccc {
                         position: relative;
                         top: 5px;
                     }
                 </style>
                 <div class="col-lg-3 ccc">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="名稱" aria-label="Recipient's username" aria-describedby="button-addon2" id="selectProduct">
+                        <input type="text" class="form-control" placeholder="名稱" aria-label="Recipient's username"
+                               aria-describedby="button-addon2" id="selectProduct">
                         <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>
                     </div>
                 </div><!-- /.col-lg-6 -->
@@ -179,8 +180,8 @@
                         <li class="page-item per">
                             <a class="page-link" href="" aria-label="Previous"> <span>&laquo;</span> </a>
                         </li>
-<%--                        <li class="page-item"><a class="page-link" href="">1</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link" href="" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>--%>
+                        <%--                        <li class="page-item"><a class="page-link" href="">1</a></li>--%>
+                        <%--                        <li class="page-item"><a class="page-link" href="" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>--%>
                         </li>
                     </ul>
                 </nav>
@@ -190,8 +191,9 @@
     </div>
 </div>
 <script>
+
     var p = '${param.pag}';
-    if(p == "")p=1;
+    if (p == "") p = 1;
     // 分頁管理
     $(document).ready(function () {
         var url = location.href;
@@ -199,16 +201,16 @@
             $(".per").remove();
         }
         $.ajax({
-            url: "/recipe/backstage/product/data/"+p,
+            url: "/recipe/backstage/product/data/" + p,
             type: "get",
             success: function (max) {
 
-                for(var i = 1; i<= max ; i ++ ){
+                for (var i = 1; i <= max; i++) {
 
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag='+i+'">'+i+'</a></li>');
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=' + i + '">' + i + '</a></li>');
                 }
-                if(max != '${param.pag}' )
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=${param.pag==null?2:param.pag+1}"'+
+                if (max != '${param.pag}')
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=${param.pag==null?2:param.pag+1}"' +
                         'aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>');
 
 
@@ -225,7 +227,7 @@
     <%--    商品管理--%>
 
     $.ajax({
-        url: "/recipe/backstage/product/"+p,
+        url: "/recipe/backstage/product/" + p,
         type: "post",
         async: false,
         success: doSuccess,
@@ -257,6 +259,7 @@
     function Detailed(id) {
         console.log(id);
         $(".hazy").css("visibility", "visible");
+        $(".cat").css("visibility", "visible");
         $.ajax({
             url: "/recipe/product/" + id,
             type: "get",
@@ -285,55 +288,98 @@
     }
 
     $(document).ready(function () {
-            //新增商品
-            $("#addPoduct").click(function () {
-                $(".form").empty();
-                $(".hazy").css("visibility", "visible");
-                $(".form").prepend('<button type="submit" class="">新增</button>' +
-                    '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
-                    '<div class="form-group"><label for="productname">名稱</label>' +
-                    '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>' +
-                    '<div class="form-group"><label for="productmodel">商品號</label>${errors.productmodel}' +
-                    '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>' +
-                    '<div class="form-group"><label for="producttext">詳細描述</label>${errors.producttext}' +
-                    '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext">' +
-                    '</div><div class="form-group"><label for="purchaseprice">進價</label>${errors.purchaseprice}' +
-                    '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>' +
-                    '<div class="form-group"><label for="sellingprice">售價</label>${errors.sellingprice}' +
-                    '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>' +
-                    '<div class="form-group"><label for="stocks">庫存</label>${errors.stocks}' +
-                    '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>' +
-                    '<div class="form-group"><label for="productspecifications">商品規格</label>${errors.productspecifications}' +
-                    ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>' +
-                    '<label for="vendorid">廠商號</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">' +
-                    '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>' +
-                    '<label for="productcategoryid">分類號</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">' +
-                    '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>' +
-                    '<option value="5">5 油</option><option value="6">6 乾貨</option></select>' +
-                    '<label for="vendorid">產品狀態</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
-                    '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
-                    '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                    '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'
-                )
-                ;
-            })
-            // 關閉按紐
-            $('.catReturn').click(function () {
-                $(".hazy").css("visibility", "hidden");
-                // $(".form").empty();
+        //新增商品
+        $("#addPoduct").click(function () {
+            $(".form").empty();
+            $(".hazy").css("visibility", "visible");
+            $(".cat").css("visibility", "visible");
+            $(".form").prepend(
+                '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
+                '<div class="form-group"><label for="productname">名稱</label>' +
+                '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>' +
+                '<div class="form-group"><label for="productmodel">商品號</label>${errors.productmodel}' +
+                '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>' +
+                '<div class="form-group"><label for="producttext">詳細描述</label>${errors.producttext}' +
+                '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext">' +
+                '</div><div class="form-group"><label for="purchaseprice">進價</label>${errors.purchaseprice}' +
+                '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>' +
+                '<div class="form-group"><label for="sellingprice">售價</label>${errors.sellingprice}' +
+                '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>' +
+                '<div class="form-group"><label for="stocks">庫存</label>${errors.stocks}' +
+                '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>' +
+                '<div class="form-group"><label for="productspecifications">商品規格</label>${errors.productspecifications}' +
+                ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>' +
+                '<label for="vendorid">廠商號</label>' +
+                '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">' +
+                '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>' +
+                '<label for="productcategoryid">分類號</label>' +
+                '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">' +
+                '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>' +
+                '<option value="5">5 油</option><option value="6">6 乾貨</option></select>' +
+                '<label for="vendorid">產品狀態</label>' +
+                '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
+                '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
+                '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'+
+            '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
+            );
+        })
+        // 關閉按紐
+        $('.catReturn').click(function () {
+            $(".hazy").css("visibility", "hidden");
+            $(".cat").css("visibility", "hidden");
+            // $(".form").empty();
 
-            });
+        });
+
+    //如果有錯誤
+        console.log('${productname}');
+        if ('${errors}' != "" && '${errors}' !="{}") {
+
+            console.log('${errors}');
+            $(".form").empty();
+            $(".hazy").css("visibility", "visible");
+            $(".cat").css("visibility", "visible");
+            $(".form").prepend('<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>' +
+                '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
+                '<div class="form-group"><label for="productname">名稱</label><span class="error">${errors.productname}</span>' +
+                '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname" value="${productname}"></div>' +
+                '<div class="form-group"><label for="productmodel">商品號</label><span class="error">${errors.productmodel}</span>' +
+                '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel" value="${productmodel}"></div>' +
+                '<div class="form-group"><label for="producttext">詳細描述</label><span class="error">${errors.producttext}</span>' +
+                '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext" value="${producttext}">' +
+                '</div><div class="form-group"><label for="purchaseprice">進價</label><span class="error">${errors.purchaseprice}</span>' +
+                '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice" value="${purchaseprice}"></div>' +
+                '<div class="form-group"><label for="sellingprice">售價</label><span class="error">${errors.sellingprice}</span>' +
+                '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice" value="${sellingprice}"></div>' +
+                '<div class="form-group"><label for="stocks">庫存</label><span class="error">${errors.stocks}</span>' +
+                '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks" value="${stocks}"></div>' +
+                '<div class="form-group"><label for="productspecifications">商品規格</label><span class="error">${errors.productspecifications}</span>' +
+                ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications" value="${productspecifications}"></div>' +
+                '<label for="vendorid">廠商號</label>' +
+                '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">' +
+                '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>' +
+                '<label for="productcategoryid">分類號</label>' +
+                '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">' +
+                '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>' +
+                '<option value="5">5 油</option><option value="6">6 乾貨</option></select>' +
+                '<label for="vendorid">產品狀態</label>' +
+                '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
+                '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
+                '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'
+            );
+
         }
-    );
+
+
+    });
     //搜索按鈕
-    $("#buttonaddon2").click(function (){
-        console.log("#buttonaddon2" +$("#selectProduct").val());
+    $("#buttonaddon2").click(function () {
+        console.log("#buttonaddon2" + $("#selectProduct").val());
 
         $.ajax({
-            url: "/recipe/backstage/selectproduct/"+$("#selectProduct").val(),
+            url: "/recipe/backstage/selectproduct/" + $("#selectProduct").val(),
             type: "post",
             async: false,
             success: doSuc,
@@ -358,19 +404,14 @@
         }
 
 
-
-
-
-
-
-
-
-
     })
 
 
 </script>
 <style>
+    .error{
+        color: red;
+    }
     .TTT:hover {
         background-color: #afe3d5;
     }
@@ -390,13 +431,15 @@
         background-color: white;
         width: 830px;
         height: 850px;
-        z-index: 25;
-        position: fixed;
+        z-index: 50;
+        position: absolute;
         left: 0%;
         right: 0%;
         margin: auto;
         top: 50px;
         border-radius: 15px;
+        visibility: hidden;
+
     }
 
     .cat form {
@@ -424,6 +467,7 @@
         border-radius: 50%;
         z-index: 20;
     }
+
 </style>
 </body>
 </html>

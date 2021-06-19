@@ -50,7 +50,7 @@
     <!-- 分類條 -->
     <div class="row menu">
         <div id="home" class="col-lg-1">
-            <a href="../views/ShoppingMall"><img src="../images/home.png" alt=""></a>
+            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>
         </div>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">米麵五穀</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
