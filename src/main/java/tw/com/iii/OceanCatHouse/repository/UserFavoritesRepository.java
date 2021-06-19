@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserFavoritesRepository extends JpaRepository<UserFavoritesBean, Integer> {
 
-    @Query("from UserFavoritesBean f where f.userid=:userid and f.FavoriteCategory=:fc")
+    @Query("from UserFavoritesBean f where f.userid=:userid and f.FavoriteCategoryName=:fc")
     List<UserFavoritesBean> findAllByUserIdAndCategory(Integer userid, String fc);
 
     @Query("from UserFavoritesBean f where f.userid=:userid")
