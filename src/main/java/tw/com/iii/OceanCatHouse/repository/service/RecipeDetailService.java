@@ -52,23 +52,31 @@ public class RecipeDetailService {
     }
 
     //5.搜尋系統01(以'食譜標題'搜尋)
-    public List<RecipeMainBean> getSearchResult(String searchString){
+    public List<RecipeMainBean> getSearchResultMain(String searchString){
         List<RecipeMainBean> searchBean = recipeMainDao.findByRecTitleContains(searchString);
         return searchBean;
     }
 
     //6.搜尋系統02(以'食材名稱'搜尋)
-    public List<Integer> getSearchResultMat(String searchString){
-        Set<Integer> recIdSet = new HashSet<>();
-        List<Integer> recIdlist = new ArrayList<>();
+    public List<RecipeMainBean> getSearchResultMat(String searchString){
+        Set<Integer> beans = recipeMatDao.findByMaterialNameContains(searchString);
+        List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
 
-        List<RecipeMaterialBean> beans = recipeMatDao.findByMaterialNameContains(searchString);
-        for(RecipeMaterialBean bean : beans){
-           recIdSet.add(bean.getRecId());
+        for(int recId : beans){
+            recipeMainBeans.add(getRecipeMainData(recId));
         }
-        recIdlist.addAll(recIdSet);
 
-        return recIdlist;
+        return recipeMainBeans;
     }
 
+    //7.結合關鍵字與食材查詢
+    public List<RecipeMainBean> getSearchResultKeyAndMat(String searchKeyString,String searchMatString){
+        List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
+        Set<Integer> recIdSet = recipeMainDao.findByRecTitleAndRecipeMaterialName(searchKeyString, searchMatString);
+        for(int recId : recIdSet){
+            recipeMainBeans.add(getRecipeMainData(recId));
+        }
+
+        return recipeMainBeans;
+    }
 }

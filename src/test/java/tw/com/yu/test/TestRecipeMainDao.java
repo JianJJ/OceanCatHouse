@@ -15,7 +15,10 @@ import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMaterialRepository;
+import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeDetailService;
+
+import javax.transaction.Transactional;
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)
 public class TestRecipeMainDao {
@@ -27,33 +30,23 @@ public class TestRecipeMainDao {
    @Autowired
    RecipeMaterialRepository recipeMaterialDao;
 
-   //    ID:21405
+   @Autowired
+   RecipeRepository recipeRepositoryDao;
+
+   //    ID:379674
 
 
    @Test
+   @Transactional
    void testYu() {
-       List<RecipeMaterialBean> beans = recipeMaterialDao.findByRecId(378439);
-       System.out.println(beans.size());
-       List<RecipeMaterialBean> beans2 = recipeMaterialDao.findByMaterialNameContains("水");
-       System.out.println(beans2.size());
 
-       Set<Integer> recIdSet = new HashSet<>();
-       List<Integer> list = new ArrayList<>();
+      List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
 
-       for(RecipeMaterialBean bean : beans2){
-//           System.out.printf("食材RecId:%d 食材:%s\n",bean.getRecId(),bean.getMaterialName());
-           recIdSet.add(bean.getRecId());
-       }
-
-       list.addAll(recIdSet);
-       System.out.printf("List數量:%d",list.size());
-//       for (int i :list){
-//           System.out.println(i);
-//       }
-
-
-
-
-
+      Set<Integer> beans = recipeRepositoryDao.findByRecTitleAndRecipeMaterialName("麵", "水");
+      for(int recId : beans){
+         recipeMainBeans.add(service.getRecipeMainData(recId));
+      }
+      System.out.println(recipeMainBeans.size());
+      System.out.println(recipeMainBeans.get(0));
    }
 }
