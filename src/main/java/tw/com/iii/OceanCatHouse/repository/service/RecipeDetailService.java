@@ -52,23 +52,26 @@ public class RecipeDetailService {
     }
 
     //5.搜尋系統01(以'食譜標題'搜尋)
-    public List<RecipeMainBean> getSearchResult(String searchString){
+    public List<RecipeMainBean> getSearchResultMain(String searchString){
         List<RecipeMainBean> searchBean = recipeMainDao.findByRecTitleContains(searchString);
         return searchBean;
     }
 
     //6.搜尋系統02(以'食材名稱'搜尋)
-    public List<Integer> getSearchResultMat(String searchString){
+    public List<RecipeMainBean> getSearchResultMat(String searchString){
         Set<Integer> recIdSet = new HashSet<>();
         List<Integer> recIdlist = new ArrayList<>();
+        List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
 
         List<RecipeMaterialBean> beans = recipeMatDao.findByMaterialNameContains(searchString);
         for(RecipeMaterialBean bean : beans){
            recIdSet.add(bean.getRecId());
         }
+        for(int recId : recIdSet){
+            recipeMainBeans.add(getRecipeMainData(recId));
+        }
         recIdlist.addAll(recIdSet);
-
-        return recIdlist;
+        return recipeMainBeans;
     }
 
 }
