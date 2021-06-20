@@ -1,14 +1,13 @@
 package tw.com.iii.OceanCatHouse.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "product_picture")
 
 public class ProductPictureBean {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Productpictureid;
 	private Integer Productid;
 	private String Producturl;

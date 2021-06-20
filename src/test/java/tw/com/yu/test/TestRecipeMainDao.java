@@ -39,14 +39,30 @@ public class TestRecipeMainDao {
    @Test
    @Transactional
    void testYu() {
+      String keyWord = "義大 利麵";
+      String keyWord1 = "大麵利義";
+      List<RecipeMainBean> searchResultMain = service.getSearchResultMain(keyWord);
 
-      List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
+      String[] splitWord = keyWord.split(" ");
+      String conbin = "";
 
-      Set<Integer> beans = recipeRepositoryDao.findByRecTitleAndRecipeMaterialName("麵", "水");
-      for(int recId : beans){
-         recipeMainBeans.add(service.getRecipeMainData(recId));
+      if(!keyWord.equals("")){
+         for (int i = 0; i < splitWord.length; i++) {
+            conbin = conbin + splitWord[i] + "%";
+            System.out.println(conbin);
+         }
+         conbin = conbin.substring(0,conbin.length()-1);
+         System.out.println(conbin);
+      }else {
+         System.out.println("空:" + keyWord);
       }
-      System.out.println(recipeMainBeans.size());
-      System.out.println(recipeMainBeans.get(0));
+
+
+
+
+
+
+
    }
+
 }
