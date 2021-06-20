@@ -34,7 +34,7 @@ import com.google.api.client.json.gson.GsonFactory;
 public class ZeroTools {
 //    new ModelAndView("redirect:/toList？param1="+value1+"&param2="+value2);
     //	window.location.href = "/recipe/views/phoneLogin";
-private String STMP = "";
+private String STMP = " ";
     private String secret ="";
 
     //郵件
