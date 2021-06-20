@@ -63,46 +63,45 @@ public class RecipeController {
     @RequestMapping(
             path = {"/recipeSearch"}
     )
-    public ModelAndView recipeSearch(@RequestParam(name ="searchString",required = false,defaultValue = "recommend") String searchString,
-                                     @RequestParam(name ="searchMatString",required = false,defaultValue = "recommend") String searchMatString) {
+    public ModelAndView recipeSearch(@RequestParam(name = "searchString", required = false, defaultValue = "recommend") String searchString,
+                                     @RequestParam(name = "searchMatString", required = false, defaultValue = "recommend") String searchMatString) {
 
-        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,9);
+        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0, 9);
         List<RecipeMainBean> SearchKeyWordResult = service.getSearchResultMain(searchString);
         List<RecipeMainBean> searchMatResult = service.getSearchResultMat(searchMatString);
+        List<RecipeMainBean> searchKeyAndMatResult = service.getSearchResultKeyAndMat(searchString, searchMatString);
+
         ModelAndView mav = new ModelAndView();
         String searchResultText = "";
 
-        mav.addObject("searchString",searchString);
-        mav.addObject("searchMatString",searchMatString);
+        mav.addObject("searchString", searchString);
+        mav.addObject("searchMatString", searchMatString);
 
-        //條件判斷參數決定傳入VIEW的搜尋結果(Bean)-------------------------------
-        if(searchString.equals("recommend") && searchMatString.equals("recommend")){
+        //條件判斷參數決定傳入VIEW的搜尋結果(Bean)與文字-------------------------------
+        if (searchString.equals("recommend") && searchMatString.equals("recommend")) {
             //01.關鍵字搜尋為空，依食材搜尋也為空，呈現推薦系統結果給使用者。
-            mav.addObject("recResultBean",recipeRecommendBean);
+            mav.addObject("recResultBean", recipeRecommendBean);
             searchResultText = "歡迎光臨海貓食屋，以下是為您推薦的食譜";
-            mav.addObject("searchResultText",searchResultText);
-        }
-        else if (!searchString.equals("recommend") && searchMatString.equals("recommend")){
+        } else if (!searchString.equals("recommend") && searchMatString.equals("recommend")) {
             //02.關鍵字搜尋不為空，食材搜尋也為空，呈現關鍵字搜尋結果給使用者。
-            mav.addObject("recResultBean",SearchKeyWordResult);
-            searchResultText = String.format("搜尋關鍵字:%s,共找到%d筆結果",searchString,SearchKeyWordResult.size());
-            mav.addObject("searchResultText",searchResultText);
+            mav.addObject("recResultBean", SearchKeyWordResult);
+            searchResultText = String.format("搜尋關鍵字:%s,共找到%d筆結果", searchString, SearchKeyWordResult.size());
 
-        }else if(searchString.equals("recommend") && !searchMatString.equals("recommend")){
+        } else if (searchString.equals("recommend") && !searchMatString.equals("recommend")) {
             //03.關鍵字搜尋為空，食材搜尋不為空，呈現依食材搜尋結果給使用者。
-            mav.addObject("recResultBean",searchMatResult);
-            searchResultText = String.format("搜尋食材:%s,共找到%d筆結果",searchMatString,searchMatResult.size());
-            mav.addObject("searchResultText",searchResultText);
-        }
-        else if(searchString.equals("recommend") && searchMatString.equals("recommend")){
+            mav.addObject("recResultBean", searchMatResult);
+            searchResultText = String.format("搜尋食材:%s,共找到%d筆結果", searchMatString, searchMatResult.size());
+        } else if (!searchString.equals("recommend") && !searchMatString.equals("recommend")) {
             //04.關鍵字搜尋不為空，食材搜尋不為空，呈現兩者搜尋結果給使用者。
+            mav.addObject("recResultBean", searchKeyAndMatResult);
+            searchResultText = String.format("搜尋:%s 食材:%s，共找到%d筆結果", searchString, searchMatString, searchKeyAndMatResult.size());
 
         }
+        mav.addObject("searchResultText", searchResultText);
+        //--------------------------------------
 
-    //--------------------------------------
-
-       mav.setViewName("views/RecipePages/recipeSearch");
-       return mav;
+        mav.setViewName("views/RecipePages/recipeSearch");
+        return mav;
 
     }
 
@@ -113,9 +112,9 @@ public class RecipeController {
     )
     public ModelAndView recipeHome() {
 
-        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0,5);
+        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(0, 5);
         ModelAndView mav = new ModelAndView();
-        mav.addObject("recReccBean",recipeRecommendBean);
+        mav.addObject("recReccBean", recipeRecommendBean);
 
 
         mav.setViewName("views/RecipePages/recipeHome");

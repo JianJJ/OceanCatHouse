@@ -16,8 +16,9 @@ public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBe
     @Query(value = "select * from recipe_material where RecId = ?1", nativeQuery=true)
     List<RecipeMaterialBean> findByRecId(int RecId);
 
-    @Query(value = "select * from recipe_material where MaterialName like %?1%", nativeQuery=true)
-    List<RecipeMaterialBean> findByMaterialNameContains(String keyWord);
+    @Query(value = "select RecId from recipe_material where MaterialName like %?1%", nativeQuery=true)
+    Set<Integer> findByMaterialNameContains(String keyWord);
+
 
 
     @Transactional
