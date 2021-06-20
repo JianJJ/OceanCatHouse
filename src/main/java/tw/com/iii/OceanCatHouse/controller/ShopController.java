@@ -58,9 +58,11 @@ public class ShopController {
         model.addAttribute("productspecifications", bean.getProductspecifications());
         model.addAttribute("id", id);
         System.out.println("*****cat*****" + id);
-        Map<String, Integer> cat = new HashMap<>();
+        HashMap<String, Integer> cat = new HashMap<>();
         // 取資料
-        Map<String, Integer> icat = (Map<String, Integer>) session.getAttribute("cat");
+        HashMap<String, Integer> icat = (HashMap<String, Integer>) session.getAttribute("cat");
+
+
         if (icat != null)
             cat = icat;
         Integer SSS = null;// 紀錄的數量
@@ -108,7 +110,8 @@ public class ShopController {
         else {
             model.addAttribute("id", bean.getUserid());
         }
-        Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
+        HashMap<String, Integer> cat = (HashMap<String, Integer>) session.getAttribute("cat");
+
         System.out.println(cat);
 
         if(cat == null ||cat.size() == 0){
@@ -144,14 +147,14 @@ public class ShopController {
             if (errors != null && !errors.isEmpty())
                 return "views/shop/address";
         //取得購物車內容
-        Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
+        HashMap<String, Integer> cat = (HashMap<String, Integer>) session.getAttribute("cat");
         if (cat != null){
-//          OrdersBean save =  ordersService.insert( userId , cat);
+          OrdersBean save =  ordersService.insert( userId , cat);
             System.out.println("*****存訂單成功*****");
             cat.clear();
 //            model.addAttribute("orderId", save.getOrderId());
-              session.setAttribute("orderId", 18);
-            session.setAttribute("address", "台中市南屯區公益路二段51號18樓");
+              session.setAttribute("orderId", save.getOrderId());
+            session.setAttribute("address", address);
         }
         return "redirect:/complete";
     }
