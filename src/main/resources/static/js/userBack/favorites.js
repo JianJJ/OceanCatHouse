@@ -24,6 +24,35 @@ $(document).ready(function (){
                 }
             })
         }
+    }
 
+    // 點擊分類頁面
+    selectCategory = function (name){
+        var cName = $(`#${name}`).prop('id');
+        $.ajax({
+            url : '/recipe/userBack/findCategory/'+cName,
+            type : "GET",
+            async : false,
+            cache: false,  //不做快取
+            success : function (data) {
+                if(data){
+                    $('#countMain').text(`${data.length}`)
+                    $('#showMain>li').remove();
+                    for(var i=0;i<data.length;i++){
+                        $('#showMain').append(
+                            `<li class="col-lg-3 col-xs-6 recipe"><a` +
+                                `href="/recipe/recipeDetails?id=${data[i].recId}">` +
+                                `<img src="${data[i].recPic}" alt="${data[i].recTitle}">`+
+                                    `<h4 class='showLines'>"${data[i].recTitle}"</h4>`+
+                                    `<p class='showLines'>${data[i].recText}</p>`+
+                            `</a></li>`
+                        );
+                    }
+                }
+            },
+            error : function (returndata){
+                alert("系統忙碌中請稍後再試")
+            }
+        })
     }
 })

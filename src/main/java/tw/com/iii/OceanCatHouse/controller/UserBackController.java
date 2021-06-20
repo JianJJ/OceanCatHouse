@@ -33,16 +33,13 @@ public class UserBackController {
     private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserRepository userDao;
 
     @Autowired
-    private RecipeMainRepository recipeMainDao;
+    private RecipeMainService recipeMainService;
 
     @Autowired
-    private RecipeMainService recipeMainService;
+    private RecipeMainRepository recipeMainDao;
 
     @Autowired
     private UserFavoritesCategoryRepository userFavoritesCategoryDao;
@@ -60,20 +57,6 @@ public class UserBackController {
         request.setAttribute("recipeMainList", recipeMainList);
 
         return "/views/user/userHome";
-    }
-
-    // 到個收藏食譜頁
-    @RequestMapping("favorites")
-    public ModelAndView favorites(HttpSession session){
-        ModelAndView modelAndView = new ModelAndView();
-        UserBean user = (UserBean) session.getAttribute("user");
-        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
-        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
-        modelAndView.addObject("mainBeanList", mainList);
-        modelAndView.addObject("UFCBList", UFCBList);
-        modelAndView.setViewName("/views/user/favorites");
-
-        return modelAndView;
     }
 
     // 到個人資料設定頁
@@ -123,7 +106,7 @@ public class UserBackController {
                                @PathVariable("newP") String newP,
                                HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
-        UserBean userBean = userRepository.findUserByUserIdAndPassword(user.getUserid(),oldP);
+        UserBean userBean = userDao.findUserByUserIdAndPassword(user.getUserid(),oldP);
         if(userBean != null){
             user.setUserpassword(newP);
             userService.update(user);
@@ -156,9 +139,39 @@ public class UserBackController {
     // 新增收藏分類
     @GetMapping("/addFavoriteCategory/{CategoryName}")
     @ResponseBody
-    public String addFavoriteCategory(@PathVariable("CategoryName")String cName){
-
+    public String addFavoriteCategory(@PathVariable("CategoryName")String cName,
+                                      HttpSession session){
+        UserFavoritesCategoryBean ufcBean = new UserFavoritesCategoryBean();
+        UserBean user = (UserBean) session.getAttribute("user");
+        ufcBean.setUserid(user.getUserid());
+        ufcBean.setFavoriteCategoryName(cName);
+        userFavoritesCategoryDao.save(ufcBean);
 
         return "新增成功";
+    }
+
+    // 到個收藏食譜頁
+    @RequestMapping("favorites")
+    public ModelAndView favorites(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+        modelAndView.addObject("mainBeanList", mainList);
+        modelAndView.addObject("UFCBList", UFCBList);
+        modelAndView.setViewName("/views/user/favorites");
+
+        return modelAndView;
+    }
+
+    // 收藏頁面點擊分類查詢
+    @GetMapping("/findCategory/{cName}")
+    @ResponseBody
+    public List<RecipeMainBean> findCategory(@PathVariable("cName") String cName,
+                                             HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByCategory(user.getUserid(), cName);
+
+        return mainList;
     }
 }
