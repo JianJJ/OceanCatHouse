@@ -5,15 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserFavoritesBean;
 import tw.com.iii.OceanCatHouse.model.UserFavoritesCategoryBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
 import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
+import tw.com.iii.OceanCatHouse.repository.UserFavoritesRepository;
 import tw.com.iii.OceanCatHouse.repository.UserRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
+import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesCategoryService;
+import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesService;
 import tw.com.iii.OceanCatHouse.repository.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +28,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -42,7 +48,13 @@ public class UserBackController {
     private RecipeMainRepository recipeMainDao;
 
     @Autowired
+    private UserFavoritesRepository userFavoritesDao;
+
+    @Autowired
     private UserFavoritesCategoryRepository userFavoritesCategoryDao;
+
+    @Autowired
+    private UserFavoritesCategoryService userFavoritesCategoryService;
 
     // 到個人首頁
     @RequestMapping("/home")
@@ -94,7 +106,6 @@ public class UserBackController {
             // 存到資料庫
         user.setUserpic(picName);
         UserBean update = userService.update(user);
-        System.out.println("Update:"+update);
 
         return "update OK";
     }
@@ -136,18 +147,30 @@ public class UserBackController {
         return update.getUsername()+"您好～資料已儲存成功";
     }
 
+     // 查詢user的所有分類表資訊
+    @GetMapping("/addFavoriteCategory/findAllCategory")
+    @ResponseBody
+    public List<UserFavoritesCategoryBean> findAllCategory(HttpSession session){
+        UserFavoritesCategoryBean ufcBean = new UserFavoritesCategoryBean();
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<UserFavoritesCategoryBean> ufcbList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+
+        return ufcbList;
+    }
+
     // 新增收藏分類
     @GetMapping("/addFavoriteCategory/{CategoryName}")
     @ResponseBody
-    public String addFavoriteCategory(@PathVariable("CategoryName")String cName,
+    public List<UserFavoritesCategoryBean> addFavoriteCategory(@PathVariable("CategoryName")String cName,
                                       HttpSession session){
         UserFavoritesCategoryBean ufcBean = new UserFavoritesCategoryBean();
         UserBean user = (UserBean) session.getAttribute("user");
         ufcBean.setUserid(user.getUserid());
         ufcBean.setFavoriteCategoryName(cName);
         userFavoritesCategoryDao.save(ufcBean);
+        List<UserFavoritesCategoryBean> ufcbList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
 
-        return "新增成功";
+        return ufcbList;
     }
 
     // 到個收藏食譜頁
@@ -165,9 +188,9 @@ public class UserBackController {
     }
 
     // 收藏頁面點擊分類查詢
-    @GetMapping("/findCategory/{cName}")
+    @GetMapping("/findAllMain/{cName}")
     @ResponseBody
-    public List<RecipeMainBean> findCategory(@PathVariable("cName") String cName,
+    public List<RecipeMainBean> findAllMainByCategory(@PathVariable("cName") String cName,
                                              HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
         List<RecipeMainBean> mainList = recipeMainService.findFavoritesByCategory(user.getUserid(), cName);
@@ -176,11 +199,49 @@ public class UserBackController {
     }
 
     // 收藏頁面查看全部
-    @GetMapping("/findCategory")
+    @GetMapping("/findAllMain")
     @ResponseBody
-    public List<RecipeMainBean> findAllCategory(HttpSession session){
+    public List<RecipeMainBean> findAllMain(HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
         List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
         return mainList;
+    }
+
+    // 關閉彈跳視窗, 更新編輯資料
+    @PostMapping("/addFavoriteCategory/updateAllCategory")
+    @ResponseBody
+    public String updateAllCategory (HttpSession session,
+                                     @RequestBody Map<String ,Object> map){
+        List<Map<String, String >> update = (List<Map<String, String>>) map.get("update");
+        Map<String, String > oldCname = (Map<String, String>) map.get("oldCname");
+        UserBean user = (UserBean) session.getAttribute("user");
+        UserFavoritesCategoryBean ufcBean = null;
+        for(Map<String, String> idName:update){
+            // 更新UFCB
+            ufcBean = new UserFavoritesCategoryBean();
+            if(idName != null && idName.get("FCid") != ""){
+                ufcBean.setFavoritesCategoryId(Integer.parseInt(idName.get("FCid")));
+                // 更新UFC類別名稱
+                if(oldCname !=null){
+                    String oldname = oldCname.get(idName.get("FCid"));
+                    Integer Uid = user.getUserid();
+                    String name = idName.get("FCname");
+                    // 名字有更新才做更改
+                    if(oldname != name){
+                        userFavoritesDao.updateCategoryName(name, Uid, oldname);
+                    }
+                }
+            }
+            ufcBean.setUserid(user.getUserid());
+            ufcBean.setFavoriteCategoryName(idName.get("FCname"));
+            UserFavoritesCategoryBean save = userFavoritesCategoryDao.save(ufcBean);
+        }
+        // 刪除 移除的欄位
+        List<String> delete = (List<String>) map.get("delete");
+        for (String oldCid:delete){
+            userFavoritesCategoryService.removerById(Integer.parseInt(oldCid), user.getUserid());
+        }
+
+        return "更新成功";
     }
 }

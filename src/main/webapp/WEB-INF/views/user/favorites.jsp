@@ -20,20 +20,78 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userFavoriteRec.css">
     <script src="${pageContext.request.contextPath}/js/userBack/favorites.js"></script>
+    <style>
+        /*  彈跳視窗*/
+        #jump{
+            border: 2px solid #9ff5eb;
+            margin-top: 7%;
+            border-radius: 10%;
+            width: 550px;
+            height: 650px;
+            text-align: center;
+            background-color: white;
+            overflow-y: auto;
+        }
+        #jump>div{
+            margin: 10px;
+            padding: 10px;
+        }
+        #add{
+            font-weight: bolder;
+            margin-bottom:3px ;
+        }
+        #add>input{
+            border: 0px;
+        }
+        #jump>button{
+            border: 0px;
+        }
+        #add>button{
+            border: 0px;
+        }
+        i{
+            font-size: 1.3rem;
+        }
+
+    </style>
+
 </head>
 <body>
 <!--頁首-->
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
 
+<%--    彈跳式 修改分類 --%>
+<div class="row justify-content-center fixed-top" hidden id="jumpDiv">
+    <div id="jump" class="col-md-4" style="position: relative">
+        <div class="input-group mb-3" id="add">
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
+                   placeholder="新增類別" required>
+            <button class="btn btn-outline-secondary" type="button" onclick="addRow(this)">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+        </div>
+
+        <hr/>
+        <div id="liDiv">
+<%--放類別的地方--%>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary" onclick="updateOk()">保存</button>
+            <button class="btn btn-outline-secondary" onclick="cancel()">取消</button>
+        </div>
+    </div>
+</div>
 <%--主體--%>
 <div class="container">
     <div class='row justify-content-start'>
+<%--        標籤欄--%>
         <section class="col-xs-12 col-lg-3" id='recCategoryList'>
             <h3>食譜收藏</h3>
             <hr>
             <div>
                 <h6>收藏分類</h6>
                 <button id="btnNewCategory" onclick="addCategory()"><span>+</span>新增分類</button>
+                <button id="updateBtn" onclick="updateC()">編輯分類</button>
             </div>
             <ul id="FCategory">
                 <li class="current" onclick="selectCategory()"><a>全部</a></li>
@@ -82,6 +140,9 @@
             </div>
         </section>
 
+    </div>
+    <!-- 遮罩層 -->
+    <div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
     </div>
 </div>
 <!--頁尾-->
