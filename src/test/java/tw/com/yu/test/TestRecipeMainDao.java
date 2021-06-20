@@ -15,6 +15,7 @@ import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMaterialRepository;
+import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeDetailService;
 
 import javax.transaction.Transactional;
@@ -29,18 +30,23 @@ public class TestRecipeMainDao {
    @Autowired
    RecipeMaterialRepository recipeMaterialDao;
 
+   @Autowired
+   RecipeRepository recipeRepositoryDao;
+
    //    ID:379674
 
 
    @Test
    @Transactional
    void testYu() {
-       String keyWord = "麵";
-       List<RecipeMainBean> recipeMainBeans = service.getSearchResultMat(keyWord);
-       System.out.println("搜尋到的食譜數量:" + recipeMainBeans.size());
-       for(RecipeMainBean bean : recipeMainBeans){
-           System.out.println(bean);
-       }
-       System.out.println("搜尋到的食譜數量:" + recipeMainBeans.size());
+
+      List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
+
+      Set<Integer> beans = recipeRepositoryDao.findByRecTitleAndRecipeMaterialName("麵", "水");
+      for(int recId : beans){
+         recipeMainBeans.add(service.getRecipeMainData(recId));
+      }
+      System.out.println(recipeMainBeans.size());
+      System.out.println(recipeMainBeans.get(0));
    }
 }

@@ -58,7 +58,7 @@
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
                     <c:if test="${recResultBean.size() eq 0}">
-                        <h1>沒有找到任何結果喔!</h1>
+                        <h3>沒有找到任何結果喔!</h3>
                         <img src= '${pageContext.request.contextPath}/images/homePic/wall02.jpg'>
                     </c:if>
                     <c:if test="${recResultBean.size() ne 0}">
@@ -69,6 +69,11 @@
                             <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recResultBean.get(loop.index).recId}">
                                 <img src="${recResultBean.get(loop.index).recPic}" alt="${recResultBean.get(loop.index).recTitle}">
                                 <h4 class='showLines'>"${recResultBean.get(loop.index).recTitle}"</h4>
+                                <span>
+                                <c:forEach varStatus="loop2" begin="0" end="${recResultBean.get(loop.index).recTag.length()-1}">
+                                    ${recResultBean.get(loop.index).recTag.split("、")[loop2.index]}
+                                </c:forEach>
+                                </span>
                                 <p class='showLines'>${recResultBean.get(loop.index).recText}</p>
                             </a></li>
                         </c:forEach>
