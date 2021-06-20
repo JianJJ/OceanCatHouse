@@ -174,4 +174,13 @@ public class UserBackController {
 
         return mainList;
     }
+
+    // 收藏頁面查看全部
+    @GetMapping("/findCategory")
+    @ResponseBody
+    public List<RecipeMainBean> findAllCategory(HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+        return mainList;
+    }
 }

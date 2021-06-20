@@ -1,0 +1,195 @@
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr');
+    src:  url('../icomoon/./fonts/icomoon.eot?6rzpr#iefix') format('embedded-opentype'),
+      url('../icomoon/./fonts/icomoon.ttf?6rzpr') format('truetype'),
+      url('../icomoon/./fonts/icomoon.woff?6rzpr') format('woff'),
+      url('../icomoon/./fonts/icomoon.svg?6rzpr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+/* Icon 顏色設定 */
+.fontIcon {
+    font-family: 'icomoon';
+    color: #2d6b38;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 25px;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    
+    /* 字體設定 */
+    font-family:"Noto Sans TC", 'Times New Roman', Times, serif;
+}
+
+.navbar {
+    position: sticky;
+    top:0;
+    z-index: 99;
+}
+
+.narSize {
+	height:50px;
+}
+
+#mainTitle {
+    font-size: 28px;
+    margin-left: 25px;
+}
+
+.navColor {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin-right:100px;
+    text-shadow:1px 1px 2px #444;
+   }
+
+.navLink {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+	
+}
+
+
+
+.navColor:hover {
+    color: black;
+     text-shadow:1px 1px 2px #ddd;
+}
+
+
+input:focus {
+    outline: none;
+}
+
+/* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	*/
+.mainColor {
+    background: linear-gradient(to bottom, #62A5A1, #ddf5d5);
+    background: -webkit-linear-​gradient(to bottom, #62A5A1, #ddf5d5);
+}
+
+.btn-search {
+    margin: 0px 10px;
+    padding: 0 30px;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    color: white;
+    background-color: #B54484;
+}
+
+.btn-search:hover {
+    box-shadow: 0px 0px 10px 0px #e086b9;
+}
+
+
+#userConsole {
+    position: relative;
+}
+
+#userIcon {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+}
+
+
+#userName {
+    margin-right: 15px;
+    border: none;
+    background: transparent;
+}
+
+
+#userConsole:hover ul, #userConsole ul:hover {
+    display: block;
+}
+
+#userConsole ul {
+    display: none;
+    position: absolute;
+    top:50px;
+    padding: 0;
+    margin:0;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .3);
+    box-shadow: 0px 0px 3px 1px rgba(168, 226, 251, 0.292);
+}
+
+#userConsole ul li {
+	padding: 0;
+    margin:0;
+    list-style: none;
+    width: 100px;
+    line-height: 35px;
+    text-align: center;
+    background-color: white;
+}
+
+#userConsole ul li a {
+    text-decoration: none;
+    color: #444;
+}
+
+
+#userConsole ul li:hover {
+    background: rgba(245, 222, 179, 0.353);
+}
+
+
+
+em {
+    font-style: normal;
+    margin: 0 20px;
+    font-weight: 700;
+    color: #777;
+}
+
+
+.menu {
+    position:fixed;
+    top:35px;
+    width:100vw;
+    height: 70px;
+    background-color: #ddf5d5;
+    z-index:50;
+    padding-top:20px;
+}
+
+.menu ul > li {
+    font-size: 20px;
+    margin: 0 25px;
+    text-align: center;
+}
+
+.menu form {
+	margin-left:20%;
+}
+
+
+.menu ul > li:hover a {
+	color:#2d6b38;
+}
+
+.ShopNarBar {
+	color:#444;
+}
+
+

@@ -15,6 +15,7 @@ import tw.com.iii.OceanCatHouse.OceanCatHouseApplication;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMaterialRepository;
+import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeDetailService;
 
 import javax.transaction.Transactional;
@@ -29,18 +30,39 @@ public class TestRecipeMainDao {
    @Autowired
    RecipeMaterialRepository recipeMaterialDao;
 
+   @Autowired
+   RecipeRepository recipeRepositoryDao;
+
    //    ID:379674
 
 
    @Test
    @Transactional
    void testYu() {
-       String keyWord = "麵";
-       List<RecipeMainBean> recipeMainBeans = service.getSearchResultMat(keyWord);
-       System.out.println("搜尋到的食譜數量:" + recipeMainBeans.size());
-       for(RecipeMainBean bean : recipeMainBeans){
-           System.out.println(bean);
-       }
-       System.out.println("搜尋到的食譜數量:" + recipeMainBeans.size());
+      String keyWord = "義大 利麵";
+      String keyWord1 = "大麵利義";
+      List<RecipeMainBean> searchResultMain = service.getSearchResultMain(keyWord);
+
+      String[] splitWord = keyWord.split(" ");
+      String conbin = "";
+
+      if(!keyWord.equals("")){
+         for (int i = 0; i < splitWord.length; i++) {
+            conbin = conbin + splitWord[i] + "%";
+            System.out.println(conbin);
+         }
+         conbin = conbin.substring(0,conbin.length()-1);
+         System.out.println(conbin);
+      }else {
+         System.out.println("空:" + keyWord);
+      }
+
+
+
+
+
+
+
    }
+
 }

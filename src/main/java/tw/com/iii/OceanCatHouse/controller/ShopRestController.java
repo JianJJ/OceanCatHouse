@@ -137,10 +137,10 @@ public class ShopRestController {
 	public HashMap<String, Integer> addCat(@PathVariable("id") String id,
 			@RequestBody HashMap<String, Integer> body,HttpSession session) {
 		System.out.println("********************addCat*****************************************" + id);
-		Integer AAA = body.get(id);
+		int AAA = body.get(id);
 		AAA++;
 		body.put(id, AAA);
-		session.setAttribute("cat",body);
+		session.setAttribute("cat",AAA);
 		return body;
 	}
 
@@ -150,10 +150,10 @@ public class ShopRestController {
 	public HashMap<String, Integer> cutCat(@PathVariable("id") String id,
 			@RequestBody HashMap<String, Integer> body,HttpSession session) {
 		System.out.println("********************cutCat*****************************************" + id);
-		Integer AAA = body.get(id);
+		int AAA = body.get(id);
 		AAA--;
 		body.put(id, AAA);
-		session.setAttribute("cat",body);
+		session.setAttribute("cat",AAA);
 		return body;
 	}
 

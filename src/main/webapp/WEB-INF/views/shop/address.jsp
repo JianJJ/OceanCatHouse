@@ -10,232 +10,111 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <%--            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
     <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
     <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
 
-
     <%-- jQuery放這裡 --%>
     <script src="/recipe/js/jquery-3.6.0.min.js"></script>
-    <script src="/recipe/js/jquery-3.4.1.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="/recipe/css/top_nav_forShop.css">
 
-
+	<%-- GOOGLE API 放這裡    --%>
+  	<script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+  
     <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="/recipe/css/demo.css">
+    <link rel="stylesheet" href="/recipe/css/address.css">
+    <script src="/recipe/js/shop/address.js"></script>
+    
+
     <title>✿海貓食屋✿</title>
 </head>
+
 <body>
 <!-- 拼接header -->
-<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
-<canvas id="canvas"></canvas>
+	<jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
+
 <%--<jsp:include page="../user/inculeLogin.jsp"></jsp:include>--%>
 <%--<div class="hazy"></div>--%>
-<div class=" BBB">
-    <%--    --%>
-    <div class=" row AAA">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8 row cat ">
-            <%--        這裡有圖--%>
-        </div>
-<%--        <div class="col-lg-2"></div>--%>
-    </div>
-    <%--    --%>
-    <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8 row ">
-            <div class="col-lg-8 address">
-                <form action="/recipe/saveOrder/${id}" class="">
-                    送貨地址:<span class="err">${errors.address} : </span><span class="err">${errors.recaptcha}</span>
-                    <input type="text" class="form-control" name="address" style="margin: 10px 0 10px 0">
 
-                    <button class="btn btn-primary col-lg-1 sbtn" type="submit">完成訂單</button>
-                        <div class="g-recaptcha"
+<div class="container BBB cartMain">
+	<h3 class="row col-lg-3 justify-content-center">購物清單</h3>
+
+    <div class="row AAA justify-content-center col-lg-11 ">
+        <div class="col-lg-12 justify-content-center row cat">
+        	<ul class='col-lg-12 d-none d-lg-inline-block justify-content-around  row'>
+        		<li class='col-lg-4'>訂單商品</li>
+        		<li class='col-lg-3'>商品規格</li>
+        		<li class='col-lg-3'>數量</li>
+        		<li class='col-lg-1'>總價</li>
+        	</ul>
+        	
+        </div>
+       <h6 class='PPP'></h6>
+    </div>
+    
+    
+
+    <div class="row justify-content-between col-lg-11 mainCenter">
+    
+    <div class='col-lg-4 order-sm-1 order-lg-2 col-md-12 row allTotal'>
+        	<h3>付款詳情</h3>
+                <p class="PPP">總價:100000000</p>
+                <p>運費 :$ 60</p>
+                <hr>
+                <p class="SSS">合計:100000060</p>
+
+        </div>
+    
+     <div class="col-lg-8 col-md-12 order-sm-2 order-lg-1 address">
+     <form action="/recipe/saveOrder/${id}">
+     <h3>收件人資料</h3>
+                
+                	<input type="text"  name="userName" placeholder="姓名" size="50"><br/>
+                	<input type="tel"  name="userPhone" placeholder="手機號碼" size="50"><br/>
+                	<input type="email"  name="userEmail" placeholder="Email" size="50"><br/>
+                    <input type="text"  name="address" placeholder="收件地址" size="50"><br/>
+
+                	<input type="checkbox" id='saveInfo'>
+                    <label for='saveInfo'>保存本次訂單的收件資訊</label>
+   					
+   				<h3 style="margin-top:50px;">付款方式</h3>
+   				<input type="radio"  name="payMethod" id='pay1' value='byCreditCard'>
+   				<label for='pay1'>信用卡支付</label><br/>
+   				<div id='cardPaySection' style="margin-left:45px">
+   					  持卡人姓名:
+   					  <input type="text"  name="userCardName"><br/>
+					  信用卡號碼: 
+					  <input type="text"  maxlength="4" size="2" name="cardNumberP1" class="cardNumber"> -
+					  <input type="text" maxlength="4" size="2" name="cardNumberP2"  class="cardNumber"> -
+					  <input type="text" maxlength="4" size="2" name="cardNumberP3" class="cardNumber"> -
+					  <input type="text" maxlength="4" size="2" name="cardNumberP4" class="cardNumber"><br/>
+					  到期日: 
+					  <select name="hour" id="expireMonth"></select> / <select name="hour" id="expireYear"></select><br/>
+
+					  安全驗證碼: 
+					  <input  type="text" size="2" maxlength=3  name="checkNumber" class="cardNumber">
+   				</div>
+   				<input  type="radio" name="payMethod" id='pay2' value='byCash'>
+   				<label for='pay2'>貨到付款</label><br/>
+   				
+   				<div class="g-recaptcha"
                              data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
                              data-callback='verifyCallback' data-action='ubmit'>Submit
                         </div>
 
-                    <style>
-                        .sbtn{
-                            position: absolute;
-                            right: 0px;
-                            left: 0%;
-                            margin: auto;
-                        }
-                    </style>
-
+   					<button class="btn btn-primary sbtn" type="submit">送出訂單</button>
+   					<span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>
                 </form>
             </div>
-            <div class="col-lg-4 allTotal">
-                <br>
-                <p class="PPP">總價:100000000</p>
-                <p>運費 : 60</p>
-                <hr>
-                <p class="SSS">合計:100000060</p>
-                <div class="d-grid gap-2">
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2"></div>
+  
     </div>
-    <script>
-        var CatProduct = [];
-        var sell = [];
-        var c = [];//合計
-        //讀去cat資料
-        $.ajax({
-            url: "/recipe/catData",
-            type: "get",
-            async: false,
-            // dataType: "json",
-            success: function (json) {
-                CatProduct = json;
-                var key = Object.keys(json);
 
-                for (var A in json) {
-
-                    //用id找資料
-                    $.ajax({
-                        url: "/recipe/product/" + A,
-                        type: "get",
-                        async: false,
-                        success: function (product) {
-                            sell[product.productid] = product.sellingprice;
-                            c[product.productid] = product.sellingprice * json[product.productid];//合計
-                            $('.cat').append('<div class="catProduct col-lg-6 " id="catProduct' + product.productid + '">' +
-                                '<img src="/recipe/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
-                                '<div class="context"><h3>' + product.productname + '</h3><br>' +
-                                '<span>商品規格:' + product.productspecifications + '</span>' +
-                                ' </div>' +
-                                '<div><span class="pnum">X' + json[product.productid] + '</span>' +
-                                '<span class="total" id="total' + product.productid + '">合計:' + c[product.productid] + '</span>' +
-                                '</div>' +
-                                '</div>');
-
-                        }
-                        , error: function (json) {
-                            console.log("err " + json);
-
-                            function suc(product, A) {
-
-                            }
-
-                        }
-                    })
-
-
-                }
-            }, error: function (json) {
-                console.log("err " + json);
-            }
-        })
-        var cat = '${cat}';
-        if (cat == 0) {
-            alert("未購買商品");
-            window.location.href = "/recipe/views/ShoppingMall";
-        }
-        var user = '${id}';
-        // if (user == 0) {
-        //     alert("請先登入");
-        //     window.location.href = "/recipe/views/login";
-        // }
-        //總價
-        var key = Object.keys(CatProduct);
-        var m = 0;
-        for (var k of key) {
-            m += CatProduct[k] * sell[k];
-        }
-        $(".PPP").text("小記 : " + m);
-        var a = m + 60
-        $(".SSS").text("總價 : " + a);
-
-
-    </script>
-    <style>
-        .err {
-            color: red;
-        }
-
-        .cat {
-            top: 10px;
-            border: #69AE1E 3px solid;
-            margin: 10px;
-        }
-
-        .address {
-            width: 60%;
-            top: 10px;
-            border: #69AE1E 3px solid;
-            margin: 10px;
-        }
-
-        .allTotal {
-            position: relative;
-            left: 50px;
-            margin: 10px;
-            text-align: center;
-
-        }
-
-
-        .cat .catProduct {
-            position: relative;
-            border: #69AE1E 3px solid;
-            width: 47%;
-            height: 140px;
-            margin: 15px;
-            border-radius: 15px;
-        }
-
-        .cat .catProduct img {
-            position: absolute;
-            left: 0px;
-            width: 133px;
-            height: 133px;
-            border-radius: 15px;
-        }
-
-
-        /* 文字部分 */
-        .cat .catProduct .context {
-            position: absolute;
-            right: 100px;
-            bottom: 10px;
-            left: 150px;
-
-        }
-
-        .cat .catProduct .cash {
-            position: absolute;
-            top: 60px;
-            right: 210px;
-        }
-
-
-        /* x數量  */
-        .cat .catProduct .pnum {
-            position: absolute;
-            width: 50px;
-            text-align: center;
-            right: 70px;
-            top: 60px;
-            height: 20px;
-        }
-
-
-        .cat .catProduct .total {
-            position: absolute;
-            top: 60px;
-            right: 10px;
-        }
-    </style>
 </div>
-</div>
+<%--拼接footer--%>
+<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
 </body>
 </html>
