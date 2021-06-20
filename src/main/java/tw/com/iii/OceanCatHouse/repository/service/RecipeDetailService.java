@@ -59,9 +59,15 @@ public class RecipeDetailService {
 
     //6.搜尋系統02(以'食材名稱'搜尋)
     public List<RecipeMainBean> getSearchResultMat(String searchString){
+
         Set<Integer> recIdSet = new HashSet<>();
         List<Integer> recIdlist = new ArrayList<>();
         List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
+
+
+
+
+
 
         List<RecipeMaterialBean> beans = recipeMatDao.findByMaterialNameContains(searchString);
         for(RecipeMaterialBean bean : beans){
@@ -73,5 +79,7 @@ public class RecipeDetailService {
         recIdlist.addAll(recIdSet);
         return recipeMainBeans;
     }
+
+    //7.結合關鍵字與食材查詢
 
 }

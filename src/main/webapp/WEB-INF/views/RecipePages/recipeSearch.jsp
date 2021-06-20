@@ -58,7 +58,8 @@
             <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
                 <ul class="row row justify-content-around">
                     <c:if test="${recResultBean.size() eq 0}">
-                        <h1>搜尋:"${searchString}"，沒有找到任何結果喔!</h1>
+                        <h1>沒有找到任何結果喔!</h1>
+                        <img src= '${pageContext.request.contextPath}/images/homePic/wall02.jpg'>
                     </c:if>
                     <c:if test="${recResultBean.size() ne 0}">
                         <%--顯示搜尋結果文字--%>
