@@ -53,13 +53,38 @@ public class RecipeDetailService {
 
     //5.搜尋系統01(以'食譜標題'搜尋)
     public List<RecipeMainBean> getSearchResultMain(String searchString){
-        List<RecipeMainBean> searchBean = recipeMainDao.findByRecTitleContains(searchString);
+        //關鍵字處理，拆分，合併:
+        String[] splitWord = searchString.split("");
+        String conbin = "";
+        if (!searchString.equals("")) {
+            for (int i = 0; i < splitWord.length; i++) {
+                conbin = conbin + splitWord[i] + "%";
+            }
+            conbin = conbin.substring(0, conbin.length() - 1);
+        }
+
+        List<RecipeMainBean> searchBean = recipeMainDao.findByRecTitleContains(conbin);
+
+
+
+
         return searchBean;
     }
 
     //6.搜尋系統02(以'食材名稱'搜尋)
     public List<RecipeMainBean> getSearchResultMat(String searchString){
-        Set<Integer> beans = recipeMatDao.findByMaterialNameContains(searchString);
+        //關鍵字處理，拆分，合併:
+        String[] splitWord = searchString.split(" ");
+        String conbin = "";
+        if (!searchString.equals("")) {
+            for (int i = 0; i < splitWord.length; i++) {
+                conbin = conbin + splitWord[i] + "%";
+            }
+            conbin = conbin.substring(0, conbin.length() - 1);
+        }
+
+
+        Set<Integer> beans = recipeMatDao.findByMaterialNameContains(conbin);
         List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
 
         for(int recId : beans){
@@ -71,8 +96,27 @@ public class RecipeDetailService {
 
     //7.結合關鍵字與食材查詢
     public List<RecipeMainBean> getSearchResultKeyAndMat(String searchKeyString,String searchMatString){
+        //關鍵字處理，拆分，合併(關鍵字):
+        String[] splitWord = searchKeyString.split("");
+        String conbinsearchKey = "";
+        if (!searchKeyString.equals("")) {
+            for (int i = 0; i < splitWord.length; i++) {
+                conbinsearchKey = conbinsearchKey + splitWord[i] + "%";
+            }
+            conbinsearchKey = conbinsearchKey.substring(0, conbinsearchKey.length() - 1);
+        }
+        //關鍵字處理，拆分，合併(食材):
+        String[] splitWord2 = searchMatString.split(" ");
+        String conbinsearchMat = "";
+        if (!searchMatString.equals("")) {
+            for (int i = 0; i < splitWord2.length; i++) {
+                conbinsearchMat = conbinsearchMat + splitWord2[i] + "%";
+            }
+            conbinsearchMat = conbinsearchMat.substring(0,conbinsearchMat.length()-1);
+        }
+
         List<RecipeMainBean> recipeMainBeans = new ArrayList<>();
-        Set<Integer> recIdSet = recipeMainDao.findByRecTitleAndRecipeMaterialName(searchKeyString, searchMatString);
+        Set<Integer> recIdSet = recipeMainDao.findByRecTitleAndRecipeMaterialName(conbinsearchKey, conbinsearchMat);
         for(int recId : recIdSet){
             recipeMainBeans.add(getRecipeMainData(recId));
         }

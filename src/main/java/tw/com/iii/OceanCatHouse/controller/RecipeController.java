@@ -36,22 +36,22 @@ public class RecipeController {
         RecipeMainBean recipeData = service.getRecipeMainData(id);
         List<RecipeStepBean> recipeStepBean = service.getRecipeStepData(id);
         List<RecipeMaterialBean> recipeMaterialBean = service.getRecipeMaterialData(id);
-        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(id, 5);
+        List<RecipeMainBean> recipeRecommendBean = service.getRecipeRecommend(id,5);
 
         ModelAndView mav = new ModelAndView();
 
 //Rectag切割轉成Array-----------------------------------------------------
-        String[] recTags = recipeData.getRecTag().split("、");
-        int recTagLen = recTags.length;
+      String[] recTags = recipeData.getRecTag().split("、");
+      int recTagLen = recTags.length;
 
-        mav.addObject("recTag", recTags);
-        mav.addObject("recTagLen", recTagLen);
+      mav.addObject("recTag",recTags);
+      mav.addObject("recTagLen",recTagLen);
 
 //傳入JSP，主要Bean-------------------------------------------------------
-        mav.addObject("recMainBean", recipeData);
-        mav.addObject("recStepBean", recipeStepBean);
-        mav.addObject("recMatBean", recipeMaterialBean);
-        mav.addObject("recReccBean", recipeRecommendBean);
+        mav.addObject("recMainBean",recipeData);
+        mav.addObject("recStepBean",recipeStepBean);
+        mav.addObject("recMatBean",recipeMaterialBean);
+        mav.addObject("recReccBean",recipeRecommendBean);
 
 //設定回傳試圖畫面路徑---------------------------------------------------
         mav.setViewName("views/RecipePages/recipeDetails");
