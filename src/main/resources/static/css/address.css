@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+.cartMain {
+	margin:100px auto 50px auto;
+}
+
+
+/* 購物明細框*/
+.AAA {
+            border: #a7e069 3px solid;
+            margin: 20px auto;
+            border-radius: 15px;
+            padding-bottom: 40px;
+}
+
+.AAA h6 {
+	color: #EE4D2D;
+	font-weight:600;
+	text-align:right;
+	margin-top:20px;
+}
+
+ul {
+	padding:0;
+	margin:0;
+	-webkit-flex-wrap: nowrap;  
+  	flex-wrap        : nowrap;
+}
+
+.cat ul li {
+	list-style:none;
+	display:inline-block;
+	padding:0;
+	margin:20px 0 10px 0;
+	font-size:18px;
+}
+
+.cat ul:nth-child(1) {
+	margin-left:10%;
+}
+
+
+
+/* 購物明細資料列*/
+.cat .catProduct {
+            position: relative;
+            border: #999 1px solid;
+            height: 140px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+/* 購物明細資料列 - 圖片*/
+.cat .catProduct img {
+            position: absolute;
+            left: 0px;
+            top:0px;
+            width: 138px;
+            height: 138px;
+            border-radius: 5px 0 0 5px;
+        }
+
+
+/* 購物明細資料列 - 文字*/
+.cat .catProduct .context {
+            position: absolute;
+            display:inline-block;
+            left: 150px;
+            top:50px;
+        }
+        
+.cat .catProduct .context h3, .cat .catProduct .context span {
+	display:inline-block;
+}
+
+.cat .catProduct h3 {
+	font-size:25px;
+}
+
+
+    
+/* 購物明細資料列 - 金額*/
+.cat .catProduct .standard {
+	color:gray;
+}
+
+.mainCenter {
+	margin: 35px auto;
+}
+
+  .address {
+
+            margin: 10px auto;
+        }
+        
+.address input, select {
+	line-height:30px;
+	margin-top:15px; 
+	border:#999 1px solid;
+}
+        
+.address input {
+	text-indent:0.5rem;
+	margin-left:20px; 
+}
+
+input:focus {
+	box-shadow: 0px 0px 7px 3px #bdeeff;
+	border:#999 1px solid;
+}
+
+
+       .err {
+            color: red;
+        }
+
+
+.allTotal {
+	position:relative;
+	height:200px;
+	font-size: 18px;
+	color:#fc7351;
+	border: #fc7351 1px solid;
+	margin:50px 0;
+	padding:0;
+border-radius: 5px;
+}
+.allTotal h3 {
+	background:#fc7351;
+	color:white;
+	font-size:25px;
+	line-height:35px;
+	border-radius: 5px 5px 0 0;
+}
+
+.address #cardPaySection {
+	display:none;
+	line-height:30px;
+ 
+}
+
+.address .cardNumber {
+	text-align:center;
+	text-indent:0rem;
+
+}
+
+.g-recaptcha {
+	margin:35px;
+}
+
+.sbtn {
+	margin-left:50px;
+}
