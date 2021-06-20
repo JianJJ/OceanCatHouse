@@ -26,16 +26,21 @@ $(document).ready(function (){
         }
     }
 
-    // 點擊分類頁面
+    // 觀看 收藏食譜 頁面
     selectCategory = function (name){
-        var cName = $(`#${name}`).prop('id');
+        var cName = "";
+        if(name){
+            cName = $(`#${name}`).prop('id');
+        }
         $.ajax({
             url : '/recipe/userBack/findCategory/'+cName,
             type : "GET",
             async : false,
             cache: false,  //不做快取
             success : function (data) {
-                if(data){
+                if(data.length != 0){
+                    // 隱藏"開始收藏"
+                    $('#recFavoriteList').prop('hidden', true);
                     $('#countMain').text(`${data.length}`)
                     $('#showMain>li').remove();
                     for(var i=0;i<data.length;i++){
@@ -48,6 +53,11 @@ $(document).ready(function (){
                             `</a></li>`
                         );
                     }
+                }else{
+                    $('#countMain').text(`${data.length}`)
+                    $('#showMain>li').remove();
+                    // 沒有資料, 顯示"開始收藏"
+                    $('#recFavoriteList').prop('hidden', false);
                 }
             },
             error : function (returndata){

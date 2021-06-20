@@ -36,28 +36,11 @@
                 <button id="btnNewCategory" onclick="addCategory()"><span>+</span>新增分類</button>
             </div>
             <ul id="FCategory">
-                <li class="current"><a href="#">全部</a></li>
+                <li class="current" onclick="selectCategory()"><a>全部</a></li>
                 <c:forEach items="${UFCBList}" var="UFCB">
                     <li onclick="selectCategory('${UFCB.favoriteCategoryName}')" id="${UFCB.favoriteCategoryName}"><a>${UFCB.favoriteCategoryName}</a></li>
                 </c:forEach>
             </ul>
-        </section>
-
-        <%-- 沒有收藏的畫面--%>
-        <section class="col-xs-12 col-lg-7" id='recFavoriteList' hidden>
-            <h4>未分類</h4>
-            <p><span id='favoriteRecs'> 0 </span>道食譜</p>
-            <div class='recBlock row'>
-                <img class="col-xs-5 col-md-5"
-                     src="${pageContext.request.contextPath}/images/homePic/recipe-save-empty.png">
-                <div class="col-xs-7 col-md-7">
-                    <h6>此收藏分類目前是空的</h6>
-                    <p> 這個分類目前沒有收藏哦， 快收藏喜歡的食譜， 以後就不怕找不到囉！</p>
-
-                    <a href="#">快去看看人氣食譜吧</a>
-                </div>
-            </div>
-
         </section>
 
         <%--有收藏, 顯示收藏食譜--%>
@@ -74,8 +57,29 @@
                     </a></li>
                 </c:forEach>
             </ul>
-
             <%-- 分頁按鈕 --%>
+        </section>
+        <%-- 沒有收藏的畫面--%>
+        <c:choose>
+            <c:when test="${mainBeanList.size() != 0}">
+                <section class="col-xs-12 col-lg-7" id='recFavoriteList'/>
+            </c:when>
+            <c:otherwise>
+                <section class="col-xs-12 col-lg-7" id='recFavoriteList' hidden/>
+            </c:otherwise>
+        </c:choose>
+            <h4>未分類</h4>
+            <p><span id='favoriteRecs'> 0 </span>道食譜</p>
+            <div class='recBlock row'>
+                <img class="col-xs-5 col-md-5"
+                     src="${pageContext.request.contextPath}/images/homePic/recipe-save-empty.png">
+                <div class="col-xs-7 col-md-7">
+                    <h6>此收藏分類目前是空的</h6>
+                    <p> 這個分類目前沒有收藏哦， 快收藏喜歡的食譜， 以後就不怕找不到囉！</p>
+
+                    <a href="#">快去看看人氣食譜吧</a>
+                </div>
+            </div>
         </section>
 
     </div>
