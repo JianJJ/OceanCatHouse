@@ -52,7 +52,7 @@
         <div id="home" class="col-lg-1">
             <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>
         </div>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">米麵五穀</a>
+        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">五穀</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>
         <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
