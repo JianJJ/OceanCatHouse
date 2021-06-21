@@ -12,10 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import tw.com.iii.OceanCatHouse.model.*;
-import tw.com.iii.OceanCatHouse.repository.OrderDetailRepository;
-import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
-import tw.com.iii.OceanCatHouse.repository.ProductRepository;
-import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
+import tw.com.iii.OceanCatHouse.repository.*;
 
 
 @RestController
@@ -28,6 +25,8 @@ public class ShopRestController {
 	private RecipeRepository recipeRepository;
 	@Autowired
 	private OrderDetailRepository orderDetailRepository;
+	@Autowired
+	RecipeMaterialRepository recipeMaterialRepository;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 主頁身體
 	@RequestMapping("/shopping")
@@ -159,12 +158,25 @@ public class ShopRestController {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 推薦食譜
-	@RequestMapping("/recommend/{categoryid}")
-	public List<RecipeMainBean> recommend(@PathVariable("categoryid") Integer categoryid) {
+	@RequestMapping("/recommend/{productid}")
+	public List<RecipeMainBean> recommend(@PathVariable("productid") Integer productid) {
 		System.out.println("********************推薦食譜*********************" );
-		int rand = (int) (Math.random()*150);
-		Page<RecipeMainBean> page = recipeRepository.findAll(PageRequest.of(rand, 6));
-		List<RecipeMainBean> result = page.getContent();
+		Optional<ProductBean> op = productRepository.findById(productid);
+		ProductBean productBean = op.get();
+		Page<Integer> page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(0, 6));
+		int rand = (int) (Math.random()*page.getTotalPages());
+		page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(rand, 6));
+		System.out.println(page);
+		List<Integer> set = page.getContent();
+		System.out.println(set+" set ");
+		List<RecipeMainBean> result = new ArrayList<>();
+		for(Integer i : set){
+			Optional<RecipeMainBean> recipeOP =  recipeRepository.findById(i);
+			System.out.println(recipeOP+" recipeOP ");
+			RecipeMainBean recipe = recipeOP.get();
+			System.out.println(recipe+" recipe ");
+			result.add(recipe);
+		}
 		return result;
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
