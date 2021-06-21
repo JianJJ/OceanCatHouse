@@ -12,6 +12,7 @@
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/jquery-3.6.0.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="${pageContext.request.contextPath}/bootstrap-5.0.1-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
     <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
@@ -102,14 +103,14 @@
         </section>
 
         <%--有收藏, 顯示收藏食譜--%>
-        <section class="col-xs-12 col-lg-8 recResult offset-lg-4">
+        <section class="col-xs-12 col-lg-8 recResult" hidden>
             <ul class="row justify-content-start" id="showMain">
                 <%--                顯示全部收藏的食譜--%>
                 <h1>親愛的${sessionScope.user.username}，您目前收藏有<span id="countMain">${mainBeanList.size()!=0?mainBeanList.size():0}</span>篇食譜</h1>
                 <c:forEach items="${mainBeanList}" var="main">
                     <li class="col-lg-3 col-xs-6 recipe"><a
                             href="${pageContext.request.contextPath}/recipeDetails?id=${main.recId}">
-                        <img src="${main.recPic}" alt="${main.recTitle}">
+                        <img src="${main.recPic}"  alt="${main.recTitle}">
                         <h4 class='showLines'>"${main.recTitle}"</h4>
                         <p class='showLines'>${main.recText}</p>
                     </a></li>
@@ -118,14 +119,9 @@
             <%-- 分頁按鈕 --%>
         </section>
         <%-- 沒有收藏的畫面--%>
-        <c:choose>
-            <c:when test="${mainBeanList.size() != 0}">
-                <section class="col-xs-12 col-lg-7" id='recFavoriteList'/>
-            </c:when>
-            <c:otherwise>
-                <section class="col-xs-12 col-lg-7" id='recFavoriteList' hidden/>
-            </c:otherwise>
-        </c:choose>
+
+
+                <section class="col-xs-12 col-lg-8" id='recFavoriteList' hidden>
             <h4>未分類</h4>
             <p><span id='favoriteRecs'> 0 </span>道食譜</p>
             <div class='recBlock row'>
@@ -135,7 +131,7 @@
                     <h6>此收藏分類目前是空的</h6>
                     <p> 這個分類目前沒有收藏哦， 快收藏喜歡的食譜， 以後就不怕找不到囉！</p>
 
-                    <a href="#">快去看看人氣食譜吧</a>
+                    <a href="${pageContext.request.contextPath}/recipeSearch">快去看看人氣食譜吧</a>
                 </div>
             </div>
         </section>

@@ -66,13 +66,14 @@ $(document).ready(function (){
                 if(data.length != 0){
                     // 隱藏"開始收藏"
                     $('#recFavoriteList').prop('hidden', true);
+                    $('.recResult').prop('hidden', false);         
                     $('#countMain').text(`${data.length}`)
                     $('#showMain>li').remove();
                     for(var i=0;i<data.length;i++){
                         $('#showMain').append(
                             `<li class="col-lg-3 col-xs-6 recipe"><a` +
                                 `href="/recipe/recipeDetails?id=${data[i].recId}">` +
-                                `<img src="${data[i].recPic}" alt="${data[i].recTitle}">`+
+                                `<img src="${data[i].recPic}" style="height:217px;" alt="${data[i].recTitle}">`+
                                     `<h4 class='showLines'>"${data[i].recTitle}"</h4>`+
                                     `<p class='showLines'>${data[i].recText}</p>`+
                             `</a></li>`
@@ -83,6 +84,7 @@ $(document).ready(function (){
                     $('#showMain>li').remove();
                     // 沒有資料, 顯示"開始收藏"
                     $('#recFavoriteList').prop('hidden', false);
+                    $('.recResult').prop('hidden', true); 
                 }
             },
             error : function (returndata){
@@ -234,4 +236,6 @@ $(document).ready(function (){
     //         console.log('ok');
     //     }
     // });
+    
+    selectCategory();
 })
