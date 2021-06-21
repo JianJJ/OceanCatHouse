@@ -245,27 +245,14 @@ public class BackStageController {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //刪除圖案
-    @RequestMapping("/delPic/{Productid}/{i}")
+    @RequestMapping("/delPic/{Productid}/{productpictureid}")
     @ResponseBody
-    public boolean delPic(@PathVariable("Productid") Integer Productid, @PathVariable("i") Integer i) {
+    public boolean delPic(@PathVariable("Productid") Integer Productid, @PathVariable("productpictureid") Integer productpictureid) {
         System.out.println("*****刪除圖片 *****");
-        Optional<ProductBean> op = productRepository.findById(Productid);
-        ProductBean bean = op.get();
-        String m =bean.getProductmodel();
-        ProductPictureBean pBean = productPictureJpaReposit.findProducturl(m + "-" + i);
-        productPictureJpaReposit.delete(pBean);
-        List<ProductPictureBean>  lis= productPictureJpaReposit.findPic(Productid);
-        int x = 0;
-        for(ProductPictureBean b : lis){
-            x++;
-            b.setProducturl(m + "-" + x);
-            productPictureJpaReposit.save(b);
-        }
-
+        Optional<ProductPictureBean> op = productPictureJpaReposit.findById(productpictureid);
+        ProductPictureBean bean = op.get();
+        productPictureJpaReposit.delete(bean);
         return true;
-
-
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
-

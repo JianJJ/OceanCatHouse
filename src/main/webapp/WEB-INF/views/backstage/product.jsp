@@ -51,21 +51,23 @@
 <div class=" pic">
     <button class="catReturn">X</button>
 
-        <form class="row picmain" action="/recipe/backstage/addPic" method="post" enctype= 'multipart/form-data'>
-            <div style="width: 350px;height: 280px; ">
-                <img src="/recipe/images/homePic/uploadstep.png" id="img-main1"                     class="img-thumbnail"/>
-                <input type="file" accept="image/*" id="file-main1" name="file" onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
-            </div>
-            <div style="width: 350px;height: 280px; ">
-                <img src="/recipe/images/homePic/uploadstep.png" id="img-main2"                     class="img-thumbnail"/>
-                <input type="file" accept="image/*" id="file-main2" name="file" onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
-            </div>
-            <button type="submit" class="btn btn-primary pciSubmit">提交</button>
-        </form>
+    <form class="row picmain" action="/recipe/backstage/addPic" method="post" enctype='multipart/form-data'>
+        <div style="width: 350px;height: 280px; ">
+            <img src="/recipe/images/homePic/uploadstep.png" id="img-main1" class="img-thumbnail"/>
+            <input type="file" accept="image/*" id="file-main1" name="file"
+                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
+        </div>
+        <div style="width: 350px;height: 280px; ">
+            <img src="/recipe/images/homePic/uploadstep.png" id="img-main2" class="img-thumbnail"/>
+            <input type="file" accept="image/*" id="file-main2" name="file"
+                   onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
+        </div>
+        <button type="submit" class="btn btn-primary pciSubmit">提交</button>
+    </form>
 
 </div>
 <style>
-    .pic{
+    .pic {
         border: blue 1px solid;
         background-color: white;
         width: 700px;
@@ -76,10 +78,9 @@
         margin: auto;
         top: 100px;
         border-radius: 15px;
-        visibility:hidden;
+        visibility: hidden;
     }
 </style>
-
 
 
 <!-- 購物車 -->
@@ -94,7 +95,7 @@
         <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
 
         <div class="form-group"><label for="productname">名稱</label>
-            <input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname" >
+            <input type="text" class="form-control" id="productname" value="'+A.productname+'" name="productname">
         </div>
 
         <div class="form-group"><label for="productmodel">商品號</label>
@@ -178,6 +179,9 @@
                 <div class="col-lg-1">
                     <button type="button" class="btn btn-primary ccc " id="addPoduct">新增</button>
                 </div>
+                <div class="col-lg-1">
+                    <button type="button" class="btn btn-primary ccc state">下架商品</button>
+                </div>
                 <style>
                     .ccc {
                         position: relative;
@@ -256,7 +260,7 @@
     })
 
     <%--    商品管理--%>
-   // 列印表單
+    // 列印表單
     $.ajax({
         url: "/recipe/backstage/product/" + p,
         type: "post",
@@ -264,25 +268,55 @@
         success: doSuccess,
         error: doError
     });
+
     function doSuccess(json) {
         $(".TTT").remove();
         for (var A of json) {
-            $(".table").append('<tr class="TTT" >' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
-                '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
-                '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic('+ A.productid+')">圖片 </button> </td>' +
-                '</tr>');
+            if (A.productstatus == 1)
+                $(".table").append('<tr class="TTT" >' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
+                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                    '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
+                    '</tr>');
         }
     }
 
     function doError(json) {
         console.log(json);
     }
+
+    // 下架商品
+    $(".state").click(function () {
+        console.log("AAAAAAAAAAAAAAAA");
+        $.ajax({
+            url: "/recipe/backstage/product/" + p,
+            type: "post",
+            // async: false,
+            success: function (json) {
+                $(".TTT").remove();
+                for (var A of json) {
+                    if (A.productstatus == 2)
+                        $(".table").append('<tr class="TTT" >' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
+                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                            '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
+                            '</tr>');
+                }
+            }
+            ,
+            error: doError
+        });
+    })
 
     // 顯細資料
     function Detailed(id) {
@@ -316,12 +350,13 @@
 
 
     }
+
     //圖片按鈕
-    function addPic(Productid){
+    function addPic(Productid) {
         $(".pic").css("visibility", "visible");
         $(".picmain").empty();
-        console.log("Productid : "+ Productid);
-        $(".picmain").attr("action", "/recipe/backstage/addPic/"+Productid);
+        console.log("Productid : " + Productid);
+        $(".picmain").attr("action", "/recipe/backstage/addPic/" + Productid);
         // 去讀取有多少圖片
         $.ajax({
             url: "/recipe/backstage/selectPic/" + Productid,
@@ -331,42 +366,46 @@
             success: function (json) {
                 var i = 0;
                 console.log(json);
-                for( var A of json){
+                for (var A of json) {
                     i++;
-                console.log(A.producturl);
+                    console.log(A.productpictureid);
 
-                $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d'+i+'"><img style="width: 350px;height: 280px; " src="/recipe/images/shop/'+A.producturl+'.jpg" id="img'+i+'" class="img-thumbnail"/>'+
-                    '<input type="file" accept="image/*" id="file'+i+'" name="nofile'+i+'" onchange="upload(`'+i+'`);" class="fileInput col-lg-3" value=""/>' +
-                    '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`'+Productid+'`,'+i+')">刪除</button>'+
-                    '</div>');
+                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + A.productpictureid + '"><img style="width: 350px;height: 280px; " src="/recipe/images/shop/' + A.producturl + '.jpg" id="img' + A.productpictureid + '" class="img-thumbnail"/>' +
+                        '<input type="file" accept="image/*" id="file' + A.productpictureid + '" name="nofile' + A.productpictureid + '" onchange="upload(`' + A.productpictureid + '`);" class="fileInput col-lg-3" value=""/>' +
+                        '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + A.productpictureid + ')">刪除</button>' +
+                        '</div>');
 
                 }
+                // 新圖
                 i++;
-                $(".picmain").append(' <div style="width: 350px;height: 340px;" class="col-lg-6 d'+i+'">'+
-                    '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img'+i+'" class="img-thumbnail"/>'+
-                    '<input type="file" accept="image/*" id="file'+i+'" name="nofile'+i+'" onchange="newPic(`'+i+'`);" class="fileInput col-lg-3" value=""/>'+
-                    '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`'+Productid+'`,'+i+')">刪除</button>'+
+                $(".picmain").append(' <div style="width: 350px;height: 340px;" class="col-lg-6 d' + i + '">' +
+                    '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
+                    '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
+                    '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + i + ')">刪除</button>' +
                     '</div>');
                 $(".picmain").append('<button type="submit"  class="btn btn-primary pciSubmit">提交</button>');
             },
             error: doError
         });
     }
+
     // 換圖片 .
     upload = function (i) {
-      var f =  document.querySelector("#file"+i);
-        var d =  document.querySelector("#img"+i);
-        $("#file"+i).attr("name","file"+i);
+        var f = document.querySelector("#file" + i);
+        var d = document.querySelector("#img" + i);
+        $("#file" + i).attr("name", "file" + i);
         var reader = new FileReader();
         reader.readAsDataURL(f.files[0]);
         reader.onload = function (e) {
             d.setAttribute("src", e.target.result);
         };
     };
+
+    //新
     newPic = function (i) {
-        var f =  document.querySelector("#file"+i);
-        var d =  document.querySelector("#img"+i);
-        $("#file"+i).attr("name","file"+i);
+        var f = document.querySelector("#file" + i);
+        var d = document.querySelector("#img" + i);
+        $("#file" + i).attr("name", "file" + i);
         var reader = new FileReader();
         reader.readAsDataURL(f.files[0]);
         reader.onload = function (e) {
@@ -374,32 +413,39 @@
         };
         i++;
         $(".pciSubmit").remove();
-        $(".picmain").append(' <div style="width: 350px;height: 340px;" class="d'+i+'">'+
-            '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img'+i+'" class="img-thumbnail"/>'+
-            '<input type="file" accept="image/*" id="file'+i+'" name="nofile'+i+'" onchange="newPic(`'+i+'`);" class="fileInput col-lg-3" value=""/>'+
-            '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delNewPic('+i+')">刪除</button>'+
+        $(".picmain").append(' <div style="width: 350px;height: 340px;" class="d' + i + '">' +
+            '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
+            '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
+            '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delNewPic(' + i + ')">刪除</button>' +
             '</div>');
         $(".picmain").append('<button  type="submit" class="btn btn-primary pciSubmit">提交</button>');
     };
+    //刪除圖片
+    delPic = function (Productid, productpictureid) {
 
-    delPic =function (Productid,i){
-        $(".d"+i).remove();
-        $.ajax({
-            url: "/recipe/backstage/delPic/" + Productid+"/"+i,
-            type: "get",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (json) {
+        var result = confirm("確定刪除？");
+        if (result) {
+            console.log("點了確定");
+            $(".d" + productpictureid).remove();
+            $.ajax({
+                url: "/recipe/backstage/delPic/" + Productid + "/" + productpictureid,
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (json) {
 
-            },
-            error: doError
-        });
+                },
+                error: doError
+            });
+        } else {
+            console.log("點了取消");
+        }
     }
 
 
-
-
     $(document).ready(function () {
+
+
         //新增商品
         $("#addPoduct").click(function () {
             $(".form").empty();
@@ -432,8 +478,8 @@
                 '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
                 '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
                 '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>'+
-            '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
+                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
+                '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
             );
         })
         // 關閉按紐
@@ -445,9 +491,9 @@
 
         });
 
-    //如果有錯誤
+        //如果有錯誤
         console.log('${productname}');
-        if ('${errors}' != "" && '${errors}' !="{}") {
+        if ('${errors}' != "" && '${errors}' != "{}") {
 
             console.log('${errors}');
             $(".form").empty();
@@ -523,9 +569,10 @@
 </script>
 <style>
 
-    .error{
+    .error {
         color: red;
     }
+
     .TTT:hover {
         background-color: #afe3d5;
     }

@@ -33,7 +33,7 @@ public class ShopRestController {
 	@RequestMapping("/shopping")
 	public List<ProductBean> mmmm(Model model) {
 		System.out.println("/shopping**************************************************************************");
-		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 20));
+		Page<ProductBean> page = productRepository.findByProductstatus("1",PageRequest.of(0, 20));
 //		page.getSize();每頁條數
 //		page.getNumber();當前頁
 //		page.getNumberOfElements();本頁條數
@@ -49,7 +49,7 @@ public class ShopRestController {
 	@RequestMapping("/shopping/{categoryid}")
 	public List<ProductBean> categoryid(@PathVariable("categoryid") Integer categoryid,HttpSession session) {
 		System.out.println("/categoryid*****************************************" + categoryid);
-		Page<ProductBean> page = productRepository.findByProductcategoryid(categoryid,PageRequest.of(0, 12));
+		Page<ProductBean> page = productRepository.findByProductstatusAndAndProductcategoryid("1", categoryid,PageRequest.of(0, 12));
 		session.setAttribute("maxPage", page.getTotalPages());
 		List<ProductBean> result = page.getContent();
 		return result;
@@ -62,9 +62,9 @@ public class ShopRestController {
 		System.out.println("***********/shopping/{categoryid}/{pag}****************" + categoryid);
 		Page<ProductBean> page = null;
 		if (categoryid == 0) {
-			page = productRepository.findAll(PageRequest.of(pag - 1, 12));
+			page = productRepository.findByProductstatus("1", PageRequest.of(pag - 1, 12));
 		} else {
-			page = productRepository.findByProductcategoryid(categoryid, PageRequest.of(pag - 1, 12));
+			page = productRepository.findByProductstatusAndAndProductcategoryid("1", categoryid, PageRequest.of(pag - 1, 12));
 		}
 
 		List<ProductBean> result = page.getContent();
@@ -183,7 +183,7 @@ public class ShopRestController {
 		if (categoryid == 0) {
 			page = productRepository.findAll(PageRequest.of(0, 12));
 		} else {
-			page = productRepository.findByProductcategoryid(categoryid, PageRequest.of(0, 12));
+			page = productRepository.findByProductstatusAndAndProductcategoryid("1", categoryid, PageRequest.of(0, 12));
 		}
 		Integer AAA =  page.getTotalPages();
 		return AAA;
