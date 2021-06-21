@@ -84,3 +84,7 @@
 .pagination a {
 	color:#198754;
 }
+#canvas{
+    position:fixed;
+    z-index: -1;
+}
