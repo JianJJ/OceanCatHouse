@@ -85,16 +85,16 @@ public class RecipeController {
         } else if (!searchString.equals("recommend") && searchMatString.equals("recommend")) {
             //02.關鍵字搜尋不為空，食材搜尋也為空，呈現關鍵字搜尋結果給使用者。
             mav.addObject("recResultBean", SearchKeyWordResult);
-            searchResultText = String.format("搜尋關鍵字:%s,共找到%d筆結果", searchString, SearchKeyWordResult.size());
+            searchResultText = String.format("搜尋關鍵字: %s<br>共找到%d筆結果", searchString, SearchKeyWordResult.size());
 
         } else if (searchString.equals("recommend") && !searchMatString.equals("recommend")) {
             //03.關鍵字搜尋為空，食材搜尋不為空，呈現依食材搜尋結果給使用者。
             mav.addObject("recResultBean", searchMatResult);
-            searchResultText = String.format("搜尋食材:%s,共找到%d筆結果", searchMatString, searchMatResult.size());
+            searchResultText = String.format("搜尋食材: %s<br>共找到%d筆結果", searchMatString, searchMatResult.size());
         } else if (!searchString.equals("recommend") && !searchMatString.equals("recommend")) {
             //04.關鍵字搜尋不為空，食材搜尋不為空，呈現兩者搜尋結果給使用者。
             mav.addObject("recResultBean", searchKeyAndMatResult);
-            searchResultText = String.format("搜尋:%s 食材:%s，共找到%d筆結果", searchString, searchMatString, searchKeyAndMatResult.size());
+            searchResultText = String.format("搜尋: %s &nbsp;&nbsp; 食材: %s<br>共找到%d筆結果", searchString, searchMatString, searchKeyAndMatResult.size());
 
         }
         mav.addObject("searchResultText", searchResultText);
