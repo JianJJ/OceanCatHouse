@@ -12,16 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <%--            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
     <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
     <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
 
 
     <%-- jQuery放這裡 --%>
     <script src="/recipe/js/jquery-3.6.0.min.js"></script>
-    <script src="../js/jquery-3.4.1.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="/recipe/css/top_nav_forShop.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
@@ -29,7 +27,6 @@
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="../css/demo.css">
     <link rel="stylesheet" href="../css/ShoppingMall.css">
     <title>✿海貓食屋✿</title>
 
@@ -37,47 +34,25 @@
 
 <body>
 <!-- 拼接header -->
-<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
-<canvas id="canvas"></canvas>
+<jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
 <!-- <%--購物車插入--%> -->
 
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 
-<div class="container-fluid">
-    <%--                <div class="row">--%>
-    <%--                    <div class="col-lg-12">--%>
-
-    <!-- 分類條 -->
-    <div class="row menu">
-        <div id="home" class="col-lg-1">
-            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>
-        </div>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=1">五穀</a>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>
-        <a class="col-lg-1 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>
-
-    </div>
-
-
+<div class="container">
+	
     <!-- 中間部分 -->
-    <div class="row ">
+    <div class="row">
         <!-- 左邊浮動區塊 -->
-        <div class="col-lg-3 barNav">
+        <div class="barNav d-none d-lg-inline-block">
             <ul>
                 <li class="fontIcon" id="f1"></li>
-                <li class="fontIcon"></li>
-                <li class="fontIcon"></li>
-                <li class="fontIcon"></li>
             </ul>
         </div>
 
         <!-- 網頁中間內文 -->
 
-        <div class=" main col-lg-6">
-
+        <div class="main col-lg-11">
 
             <!-- 這裡有商品 -->
             <script>
@@ -97,7 +72,7 @@
                         $(".main").append('<div class="row AAA' + x + '">');
                         for (var y = 1; y < 5; y++) {
                             if(json[i]==null)break;
-                            $(".AAA" + x).append('<div class="col-sm-6 col-lg-3 Product"><a href="/recipe/Details/' + json[i].productid + '"><figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
+                            $(".AAA" + x).append('<div class="col-sm-6 col-md-6 col-lg-3 Product"><a href="/recipe/Details/' + json[i].productid + '"><figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
                             i++;
                         }
                         $(".main").append('</div>');
@@ -112,17 +87,15 @@
             </script>
 
         </div>
-        <div class="col-lg-3">
-            <!-- 右邊至頂 -->
-            <div class="toUP">
-                <span class="fontIcon" id="toUp"></span>
-            </div>
-        </div>
+
 
     </div>
     <!-- 分頁表 -->
     <%--        //最多頁數--%>
     <script>
+    
+
+    
         $(document).ready(function () {
             var url = location.href;
             if (url.indexOf("pag") == -1 || url.indexOf("pag=1") != -1) {
@@ -171,14 +144,11 @@
     </nav>
 
 
-    <script src="../js/umbrella.js"></script>
-    <script src="../js/shoopCat.js"></script>
-    <%--                </div>--%>
-    <%--                <div class="row">--%>
 
-    <%--                </div>--%>
 </div>
 </body>
+    <script src="../js/umbrella.js"></script>
+    <script src="../js/shoopCat.js"></script>
 
 </html>
 <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>

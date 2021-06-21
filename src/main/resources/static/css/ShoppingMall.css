@@ -1,64 +1,71 @@
-body{
-    width:  100vw;
- }
-/* .clearfix::after{
-    content: "";
-    display: block;
-    clear:both;
-} */
+.barNav {
+    position: relative;
+    top: 350px;
+    width: 100px;
+    height:100vh;
+    font-size: 35px;
+    background-color: transparent;
+    text-align: center;
+    
+}
 
-/*.main{*/
-/*    background-color: #69AE1E;*/
-/*}*/
+.barNav ul {
+	list-style:none;
+    position: sticky;
+    top:200px;
+    width: 50px;
+    height:50px;
+    padding:0;
+}
+
+.barNav ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size:35px;
+    z-index: 1;
+    cursor:pointer;
+}
+
+.main {
+	margin: 7% 0;
+}
+
+.main  .Product {
+	border: 2px groove  #eee;
+	padding:0;
+	 margin:  20px 0;
+}
+
+
 
 .main  .Product a img{
-    /* height: 280px; */
-    width: 280px;
+	height:280px;
+    width: 90%;
+    margin:5% auto 0 auto;
+    display:block;
 }
 .main  .Product a h2{
-    margin: 0 0 4px 0;
     color: #564e4a;
-    width:  100%;
     font-size: 18px;
     font-weight: 700;
-    display: block;
-}
-.main  .Product a :hover{
-    color: #564e4a;
-    /* background: #e2e0db; */
-}
-.main  .Product{
-    /* float: left; */
-    margin:  20px 0;
-} 
-/* 分類條 */
-.menu {
-    
-    height: 50px;
-    background-color: #69AE1E;
+    text-align:center;
+    padding:10px 0 35px 0;
 
 }
 
- .menu #home a {
-     position: relative;
-     top: 10px;
-    background-color: rgb(66, 108, 18);
-    box-sizing:content-box;
-    padding: 16px 16px 16px 16px;
+.main  .Product:hover {
+	border: 5px ridge  #f7f0c1;
 }
-.menuDetail {
-    line-height: 46px;
-    height: 48px;
-    font-size: 25px;
-    margin: 0 10px;
-    top: 5px;
-    text-align: center;
+
+.main  .Product:hover a h2{
+    color: #8c600e;
+    text-shadow:1px 1px 2px #f0e38b;
 }
-/* 動態背景 */
-canvas {
-    position: fixed;
-    z-index: -1;
-}
+
+
 .pagination{
     position: absolute;
     left: 0%;
@@ -68,4 +75,12 @@ canvas {
 
 }
 
+.pagination {
+	margin-bottom:70px;
+	position:relative;
 
+}
+
+.pagination a {
+	color:#198754;
+}

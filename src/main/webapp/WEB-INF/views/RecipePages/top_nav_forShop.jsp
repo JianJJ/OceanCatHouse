@@ -79,7 +79,7 @@
                 </ul>
 
                 <form class="d-flex " action="" method="get">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="searchString">
+                    <input class="form-control me-2" type="search" placeholder="尋找食材..." aria-label="Search" name="searchString">
                     <button class="btn btn-search" type="submit">Search</button>
                   </form>
           </div>
