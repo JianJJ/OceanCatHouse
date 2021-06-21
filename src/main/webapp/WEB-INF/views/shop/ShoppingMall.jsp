@@ -33,10 +33,11 @@
 </head>
 
 <body>
-<!-- 拼接header -->
-<jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
 <!-- <%--購物車插入--%> -->
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
+<!-- 拼接header -->
+<jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
+
 <!-- 動態背景 -->
 <canvas id="canvas"></canvas>
 <div class="container">
@@ -46,7 +47,7 @@
         <!-- 左邊浮動區塊 -->
         <div class="barNav d-none d-lg-inline-block">
             <ul>
-                <li class="fontIcon" id="f1"></li>
+                <li class="fontIcon"><span  id="f1"></span></li>
             </ul>
         </div>
 

@@ -14,9 +14,11 @@ $.ajax({
 		CatProduct = json;
 		var key = Object.keys(json);
 		if(key.length == 0){
-			$("#f1").text("");
+			$("#f1").text("");
+			$("#f1").hide();
 		}else{
-			$("#f1").text(""+key.length);
+			$("#f1").show();
+			$("#f1").text(key.length);
 		}
 		// $('.barNav').prepend('<spean class="catNum">' + key.length + '</spean>');
 		for (var A in json) {
@@ -98,7 +100,7 @@ function addCat(A) {
 				m += json[k] * sell[k];
 			}
 
-			$(".PPP").text("總價:" + m);
+			$(".PPP").text("總價: $" + m);
 
 		},
 		error: function(json) {
@@ -109,7 +111,7 @@ function addCat(A) {
 	i++;
 	$("#pnum" + A).val(i);
 	CatProduct[A]++;
-	$("#total" + A).text("合計:" + CatProduct[A] * sell[A]);//計算合計
+	$("#total" + A).text("合計:$ " + CatProduct[A] * sell[A]);//計算合計
 
 
 }
@@ -136,7 +138,7 @@ function cutCat(A) {
 
 					m += json[k] * sell[k];
 				}
-				$(".PPP").text("總價:" + m);
+				$(".PPP").text("總價: $" + m);
 
 
 
@@ -150,7 +152,7 @@ function cutCat(A) {
 
 	}
 	$("#pnum" + A).val(i);
-	$("#total" + A).text("合計:" + CatProduct[A] * sell[A]);//計算合計
+	$("#total" + A).text("合計:$ " + CatProduct[A] * sell[A]);//計算合計
 
 }
 //購物車刪除
@@ -174,15 +176,17 @@ function delCat(id) {
 			for (var k in json) {
 				m += json[k] * sell[k];
 			}
-			$(".PPP").text("購物車刪除   總價:" + m);
+			$(".PPP").text("購物車刪除   總價: $" + m);
 
 			if (key.length == 0)
 				window.location.assign("/recipe/Details/"+id);
 			var key = Object.keys(json);
 			if(key.length == 0){
-				$("#f1").text("");
+				$("#f1").text("");
+				$("#f1").hide();
 			}else{
-				$("#f1").text(""+key.length);
+				$("#f1").text(key.length);
+				$("#f1").show();
 			}
 		},
 		error: function(json) {
@@ -213,7 +217,7 @@ var m = 0;
 for (var k of key) {
 	m += CatProduct[k] * sell[k];
 }
-$(".PPP").text("總價:" + m);
+$(".PPP").text("總價: $" + m);
 
 
 $(".catSubmit").click(function() {
