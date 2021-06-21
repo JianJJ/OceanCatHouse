@@ -36,9 +36,9 @@
 <!-- 拼接header -->
 <jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
 <!-- <%--購物車插入--%> -->
-
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
-
+<!-- 動態背景 -->
+<canvas id="canvas"></canvas>
 <div class="container">
 	
     <!-- 中間部分 -->
@@ -57,9 +57,17 @@
             <!-- 這裡有商品 -->
             <script>
 
+                if ('${param.searchString}'!= ""){
+                    console.log("param.searchString   null");
+                    var url ="/recipe/backstage/selectproduct/${param.searchString}";
+                }else{
+                    var url ="/recipe/shopping/${param.categoryid}/${param.pag}";
+                }
+
+
 
                 $.ajax({
-                    url: "/recipe/shopping/${param.categoryid}/${param.pag}",
+                    url: url,
                     type: "get",
                     success: doSuccess,
                     error: doError
@@ -93,11 +101,9 @@
     <!-- 分頁表 -->
     <%--        //最多頁數--%>
     <script>
-    
-
-    
         $(document).ready(function () {
             var url = location.href;
+            // 上一頁
             if (url.indexOf("pag") == -1 || url.indexOf("pag=1") != -1) {
                 $(".per").remove();
             }
@@ -110,11 +116,12 @@
 
                         $(".pagination").append('<li class="page-item"><a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag='+i+'">'+i+'</a></li>');
                     }
+                    //下一頁
                     if(max != '${param.pag}' )
                      $(".pagination").append('<li class="page-item"><a class="page-link" href="../views/ShoppingMall?categoryid=${param.categoryid==null?0:param.categoryid}&pag=${param.pag==null?2:param.pag+1}"'+
                     'aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>');
 
-
+                    if(max == '${param.pag}')$(".n").remove();
                 },
                 error: function (pag) {
                     console.log("error");
@@ -147,7 +154,7 @@
 
 </div>
 </body>
-    <script src="../js/umbrella.js"></script>
+<%--    <script src="../js/umbrella.js"></script>--%>
     <script src="../js/shoopCat.js"></script>
 
 </html>
