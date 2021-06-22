@@ -1,7 +1,4 @@
-var recTitle = '${recMainBean.recTitle}';
-var recipeContext = "";
-		
-var img = '${recMainBean.recPic}';	
+
 	
 
 $(function(){
@@ -37,20 +34,23 @@ $(function(){
 		            
 		        });
 			
+
 			
-			$('#mail').on('click', function(){
-				var path =  window.location.href;
-	
-				recipeContext = '<html><head> <meta charset="UTF-8"></head><body><h3> ' + recTitle +' </h3>' + 
-				'<img src="' + img + '" style="width: 309px; height: 220px;">' +
-				'<br/>材料：<br/>' + ingrearray + '<br/><a href="'+ path +'">快到✿海貓食屋✿看看'+ recTitle +'的做法吧 ε=ε=ε=ε=ε=┌(°▽°)┘</a></body></html>';
-				
-				$('#blackMask').fadeIn();
-				$('#recipeContext').val(recipeContext);
-				$("html").addClass("noscroll");
-				
-				
-			});
+			
+			$('.barNav ul>li').eq(2).on("mouseenter mouseleave", function(){
+				$('.barNav ul  ol').stop().fadeToggle("fast");});
+		
+			
+		 // + location.pathname +location.search;
+			var url = "https://www.oceancat.es/";   		
+			var fbUrl = "javascript: void(window.open('http://www.facebook.com/share.php?u=" + url +"'));";
+			$('#fbShare').attr("href",fbUrl); 
+			
+			var lineUrl = "http://line.naver.jp/R/msg/text=" + encodeURI("海貓食屋") + "/?" + url ;
+			$('#lineShare').attr("href",lineUrl); 
+			
+			var twtUrl = "https://twitter.com/share?text=" + encodeURI("海貓食屋") + "&url=" + url;
+			$('#twitterShare').attr("href",twtUrl); 
 
 })
 

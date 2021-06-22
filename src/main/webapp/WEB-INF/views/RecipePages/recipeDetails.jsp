@@ -8,7 +8,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="http://www.web.com.tw/activity/images/fbbanner.gif"/>
+
+    <meta property="og:image" content="${recMainBean.recPic}"/>
+	<meta property="og:title" content="${recMainBean.recTitle}"/>
+	<meta property="og:type" content="website" />
+	<meta name="description" content="海貓食屋"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
@@ -56,11 +61,24 @@
                 <ul>
                     <li class="fontIcon hyLink"></li>
                     <li class="fontIcon hyLink" id='mail'></li>
-                    <li class="fontIcon hyLink"></li>
+                    <li>
+                    	<span id='shareLinks' class="fontIcon hyLink"></span>
+                    	<ol>
+                    		<li class="fontIcon hyLink">
+   								 <a class="fontIcon hyLink" id="fbShare" href="#"></a>	 
+                    		</li>
+                    		<li>
+                    			<a href="#" id='lineShare' target="_blank">
+                    				<img class="fontIcon hyLink" 
+                    				src="${pageContext.request.contextPath}/images/homePic/round_default.png">
+                    			</a>
+                    		</li>
+                    		<li class="fontIcon hyLink" >
+                    		<a  class="fontIcon hyLink" id='twitterShare' href="#" target="_blank"></a></li>
+                    	</ol>
+                    </li>
                 </ul>
             </div>
-
-
 
             <!-- 網頁中間內文 -->
   <div class="main col-xs-10 col-md-11">
@@ -101,7 +119,8 @@
                             <script>
                             var index = 0;
                             </script>
-                            <c:forEach varStatus="loop" begin="0" end="${recTagLen -1}">
+                
+                            <c:forEach varStatus="loop" begin="0" end="${recTagLen-1}">
                                 <span class="tagItem"><a href="#">${recTag[loop.index]}</a></span>
                                 <script>
                             		var uri = encodeURI('${recTag[loop.index]}');
@@ -109,6 +128,7 @@
                             		index++;
                             	</script>
                             </c:forEach>
+               
                             </div>
                         </div>
                     </div>
@@ -255,7 +275,26 @@
 
    <!-- 拼接footer -->
 <jsp:include page="bottom_nav.jsp"></jsp:include>
-
+<script>
+	var recTitle = '${recMainBean.recTitle}';
+	var recipeContext = "";
+			
+	var img = '${recMainBean.recPic}';	
+	
+	$('#mail').on('click', function(){
+		var path =  window.location.href;
+	
+		recipeContext = '<html><head> <meta charset="UTF-8"></head><body><h3> ' + recTitle +' </h3>' + 
+		'<img src="' + img + '" style="width: 309px; height: 220px;">' +
+		'<br/>材料：<br/>' + ingrearray + '<br/><a href="'+ path +'">快到✿海貓食屋✿看看'+ recTitle +'的做法吧 ε=ε=ε=ε=ε=┌(°▽°)┘</a></body></html>';
+		
+		$('#blackMask').fadeIn();
+		$('#recipeContext').val(recipeContext);
+		$("html").addClass("noscroll");
+		
+		
+	});
+</script>
 </body>
 
 

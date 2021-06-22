@@ -53,7 +53,7 @@
                     Find and share everyday cooking inspiration. <br/>
                     Discover recipes, cooks, and how-tos based on the food you love and the friends you follow.
                 </p>
-                <a href="${pageContext.request.contextPath}/recipeSearch">DISCOVER RECIPES</a>
+                <a href="${pageContext.request.contextPath}/recipeHome">DISCOVER RECIPES</a>
                 
 
             </div>

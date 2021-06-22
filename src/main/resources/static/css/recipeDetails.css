@@ -14,15 +14,18 @@
 .fontIcon {
     font-family: 'icomoon';
     color: #9ff5eb;
-    padding: 5px;
     margin: 0 10px;
     font-size: 25px;
     text-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
 }
 
-.hyLink {
+.hyLink:not(span) {
     cursor: pointer;
     font-size: 30px;
+}
+
+.barNav > ul > li > span {
+	cursor: default;
 }
 
 
@@ -45,11 +48,15 @@ a:hover {
 
 
 /* 左邊浮動區塊 */
+li {
+	list-style:none;
+
+}
+
 .barNav {
     position: relative;
     top: 250px;
     font-size: 35px;
-    
     text-align: center;
     background-color: transparent;
     
@@ -60,21 +67,61 @@ a:hover {
     top:100px;
     width: 50px;
     padding: 0;
- 
+    margin:0;
 }
 
-.barNav ul li {
-    display: flex;
-    flex-direction: column;
+.barNav ul > .fontIcon:hover,
+.barNav ul  span:hover{
+	background-color: #9ff5eb;
+	color:white;
+	border-color: #9ff5eb;
+	
+}
+
+.barNav ul .fontIcon, .barNav > ul > li > span {
+	display: inline-block;
     justify-content: center;
     text-decoration: none;
-    display: inline-block;
     width: 50px;
     height: 50px;
-    border: lightgray 1px solid;
+    line-height:50px;
+    padding:0;
+    margin:0;
+    border: #62A5A1 1px solid;
+    border-radius:50%;
     z-index: 1;
 }
 
+.barNav ul ol {
+	position:relative;
+	padding:0;
+	margin:-50px 0 0 40px;
+	padding-left:20px;
+	display:none;
+}
+
+.barNav ul ol li {
+	padding-bottom:8px;
+}
+
+.barNav ul ol .hyLink {
+	font-size:35px;
+	border:none;
+}
+
+.barNav ul ol li:hover {
+	
+	border-radius:50%;
+	opacity:.5;
+}
+
+.barNav ul ol #fbShare {
+	color:#4867AA;
+}
+
+.barNav ul ol #twitterShare {
+	color:skyblue;
+}
 
 
 .toUP {

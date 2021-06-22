@@ -25,8 +25,12 @@
     display: none;
     right:5%;
     bottom: 50px;
-    font-size: 50px;
-} 
+    z-index: 1;
+}
+
+#toUp {
+	font-size: 50px;
+}
 
 * {
     padding: 0;
