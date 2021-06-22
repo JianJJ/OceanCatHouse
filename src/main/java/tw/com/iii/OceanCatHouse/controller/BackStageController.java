@@ -5,21 +5,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import tw.com.iii.OceanCatHouse.model.*;
-import tw.com.iii.OceanCatHouse.repository.OrderDetailRepository;
-import tw.com.iii.OceanCatHouse.repository.OrdersRepository;
-import tw.com.iii.OceanCatHouse.repository.ProductPictureJpaReposit;
-import tw.com.iii.OceanCatHouse.repository.ProductRepository;
+import tw.com.iii.OceanCatHouse.repository.*;
 import tw.com.iii.OceanCatHouse.repository.service.ProductService;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -36,6 +34,8 @@ public class BackStageController {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private ProductPictureJpaReposit productPictureJpaReposit;
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/home")
     public String home() {
@@ -142,7 +142,7 @@ public class BackStageController {
         if (bean.getStocks() == null || bean.getStocks() == 0) {
             errors.put("productstatus", "需要狀態");
         }
-        if( productRepository.existsByProductmodel(bean.getProductmodel())){
+        if (productRepository.existsByProductmodel(bean.getProductmodel())) {
             errors.put("productmodel", "商品號重複");
         }
 
@@ -170,14 +170,29 @@ public class BackStageController {
     //讀取訂單
     @RequestMapping("/selectorder")
     @ResponseBody
-    public List<OrdersBean> selectorder() {
+    public List<Map<String, String>> selectorder(@RequestParam("state") Integer state) {
         System.out.println("*****搜索訂單資訊 *****");
+        List<OrdersBean> lis = ordersRepository.findAll();
+        List<Map<String, String>> result = new ArrayList<>();
 
-        List<OrdersBean> result = ordersRepository.findAll();
-        System.out.println(result);
+        for (OrdersBean bean : lis) {
+            if (state == bean.getOrderStatusId()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH E");
+                String CreateOn = sdf.format(bean.getOrderCreateOn());
+                Map<String, String> map = new HashMap<>();
+                map.put("orderId", bean.getOrderId() + "");
+                map.put("orderCreateOn", CreateOn);
+                map.put("userId", bean.getUserId() + "");
+                Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserId());
+                UserBean userBean = optionalUserBean.get();
+                map.put("userName", userBean.getUsername());
+                map.put("orderStatusId", bean.getOrderStatusId() + "");
+                map.put("address", bean.getAddress());
+                result.add(map);
+            }
+        }
         return result;
     }
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //訂單細節
@@ -248,7 +263,7 @@ public class BackStageController {
         return result;
     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //刪除圖案
     @RequestMapping("/delPic/{Productid}/{productpictureid}")
     @ResponseBody
@@ -258,6 +273,17 @@ public class BackStageController {
         ProductPictureBean bean = op.get();
         productPictureJpaReposit.delete(bean);
         return true;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//刪除圖案
+    @RequestMapping("/state/{orderId}")
+    public String state(@PathVariable("orderId") Integer orderId, @RequestParam("orderStatus") Integer orderStatus) {
+      Optional<OrdersBean> op = ordersRepository.findById(orderId);
+        OrdersBean bean = op.get();
+        bean.setOrderStatusId(orderStatus);
+        ordersRepository.save(bean);
+        return "redirect:/backstage/order?pag=1&state=1";
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

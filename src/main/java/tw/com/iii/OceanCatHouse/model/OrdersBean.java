@@ -64,4 +64,6 @@ public class OrdersBean {
     public void setOrderStatusId(Integer orderStatusId) {
         OrderStatusId = orderStatusId;
     }
+
+
 }
