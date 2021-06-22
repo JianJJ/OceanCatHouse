@@ -40,9 +40,9 @@
         var phone = '${sessionScope.user.userphone}';
         var email = '${sessionScope.user.email}';
         changeNPE = function (){
-            var newName = $('#username').val();
-            var newPhone = $('#userPhone').val();
-            var newEmail = $('#userEmail').val();
+            var newName = $('#floatingInput').val();
+            var newPhone = $('#floatingTel').val();
+            var newEmail = $('#floatingInputEmail').val();
             if(name != newName || phone != newPhone || email != newEmail){
                 $.ajax({
                     url : "/recipe/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail,
