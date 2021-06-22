@@ -1,4 +1,4 @@
-package tw.com.iii.OceanCatHouse.config;
+package tw.com.iii.OceanCatHouse.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
