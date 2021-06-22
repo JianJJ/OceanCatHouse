@@ -155,7 +155,6 @@
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
-
     <button class="userIcon"></button>
 </header>
 
@@ -163,7 +162,7 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1'">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1&state=1'">訂單管理</button>
         <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product?pag=1'">商品管理
         </button>
         <button class="list-group-item">會員管理</button>
@@ -176,12 +175,13 @@
         <div class="col-md-10">
             <%--            抬頭--%>
             <div class="row ">
-                <div class="col-lg-1">
-                    <button type="button" class="btn btn-primary ccc " id="addPoduct"> 新增 </button>
+                <div class="col-lg-3 btn-grou ccc">
+                    <a href="#" class="btn btn-primary active" aria-current="page" id="addPoduct">新增商品</a>
+                    <a href="/recipe/backstage/product?pag=1" class="btn btn-primary active" aria-current="page" id="addPoduct">一般商品</a>
+                    <a href="#" class=" state btn btn-primary ">下架商品</a>
                 </div>
-                <div class="col-lg-1">
-                    <button type="button" class="btn btn-primary ccc state">下架商品</button>
-                </div>
+
+
                 <style>
                     .ccc {
                         position: relative;

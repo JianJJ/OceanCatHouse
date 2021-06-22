@@ -10,9 +10,9 @@ public class JianInterceptor implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/userPic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/userPic/");
-        registry.addResourceHandler("/images/mainpic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/");
-        registry.addResourceHandler("/images/stepPic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/");
+//        registry.addResourceHandler("/images/userPic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/userPic/");
+//        registry.addResourceHandler("/images/mainpic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/");
+//        registry.addResourceHandler("/images/stepPic/**").addResourceLocations("file:/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/");
     }
 }
 

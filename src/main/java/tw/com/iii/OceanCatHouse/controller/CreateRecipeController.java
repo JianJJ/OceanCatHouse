@@ -59,7 +59,6 @@ public class CreateRecipeController {
         modelAndView.addObject("stepList", bean.getRecipeStepBeans());
         modelAndView.addObject("materialList", bean.getRecipeMaterialBeans());
         modelAndView.setViewName("views/user/selectRecIdDetail");
-
         return modelAndView;
     }
 

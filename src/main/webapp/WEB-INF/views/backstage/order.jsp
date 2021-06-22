@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,12 +16,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
-        .table{
+        .table {
             position: relative;
             width: 95%;
             left: 20px;
             top: 10px;
         }
+
         .headtop {
             position: sticky;
             top: 0px;
@@ -79,7 +79,8 @@
             visibility: hidden;
 
         }
-        .cat p{
+
+        .cat p {
             position: relative;
             text-align: right;
             right: 100px;
@@ -110,10 +111,12 @@
             border-radius: 50%;
             z-index: 20;
         }
+        .pciSubmit{
+            width: 95%;
+        }
     </style>
 </head>
 <body>
-
 
 
 <%--// 訂單細節--%>
@@ -122,10 +125,6 @@
 </div>
 <div class="cat">
     <button class="catReturn">X</button>
-    <div class="d-grid gap-2 d-md-flex justify-content-md ">
-        <button class="btn btn-primary me-md-2 package" type="button">包裝完成</button>
-        <button class="btn btn-primary Shipment" type="button">已出貨</button>
-    </div>
     <div class="row">
         <table class="table table-striped detailTable">
             <tr>
@@ -137,7 +136,17 @@
         </table>
     </div>
     <hr>
-    <p>小記:1000</p>
+    <span class="address">地址</span><br>
+    <span class="name">名稱</span>
+    <p>小記:1000</p><br>
+    <form action="/recipe/backstage/state" class="form" method="post">
+        <select class="form-select" aria-label="Default select example" id="orderStatus" name="orderStatus">
+            <option value="1">1 新訂單</option>
+            <option value="2">2 包裝完成</option>
+            <option value="3">3 出貨</option>
+        </select><br>
+        <button type="submit" class="btn btn-primary pciSubmit ">完成</button>
+    </form>
 </div>
 
 <%--    頁首--%>
@@ -150,7 +159,9 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1'">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1&state=1'">
+            訂單管理
+        </button>
         <button class="list-group-item" onclick="javascript:location.href='../backstage/product?pag=1'">商品管理
         </button>
         <label class="list-group-item">會員管理</label>
@@ -162,17 +173,29 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
-            <div class="row"> 第1層</div>
+
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="sta(1)">
+                    <label class="btn btn-outline-primary state1" for="btncheck1">新訂單</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary state2" for="btncheck2" onclick="sta(2)">已包裝</label>
+
+                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck3" onclick="sta(3)">歷史訂單</label>
+                </div>
+            </div>
 
 
             <div class="row">
                 <table class="Table table-striped orderTable">
                     <tr>
                         <td>訂單編號</td>
-                        <td>顧客ID</td>
+                        <td>顧客</td>
                         <td>日期</td>
                         <td>狀態</td>
-
+                        <td>細節</td>
                     </tr>
                 </table>
             </div>
@@ -184,8 +207,9 @@
 
 
 <script>
+    console.log("/recipe/backstage/selectorder?state=${param.state}");
     $.ajax({
-        url: "/recipe/backstage/selectorder",
+        url: "/recipe/backstage/selectorder?state=${param.state}",
         type: "post",
         async: false,
         success: doSuccess,
@@ -195,44 +219,44 @@
     //取得列表
     function doSuccess(json) {
         var state;
-
-
         $(".TTT").remove();
         for (var A of json) {
             var StatusId = A.orderStatusId;
             switch (StatusId) {
-                case 0 :
+                case "0" :
                     state = "刪除";
                     break;
-                case 1 :
+                case "1" :
                     state = "訂單成立,未包裝";
                     break;
-                case 2 :
+                case "2" :
                     state = "訂單成立,未出貨";
                     break;
-                case 3 :
-                    state = "已出貨,運送中";
+                case "3" :
+                    state = "已出貨";
                     break;
-                case 4 :
+                case "4" :
                     state = "已完成";
                     break;
             }
-
-            console.log(A);
-            $(".orderTable").append('<tr class="TTT" onclick="Detailed(' + A.orderId + ')">' +
+            $(".orderTable").append('<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
                 '<td class="col-lg-1">' + A.orderId + '</td>' +
-                '<td class="col-lg-1 ">' + A.userId + '</td>' +
+                '<td class="col-lg-1 ">' + A.userName + '</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
                 '<td class="col-lg-1 ">' + state + '</td>' +
+                '<td class="col-lg-1 ">細節</td>' +
                 '</tr>');
+            console.log(A.address);
+
         }
     }
 
     function doError(json) {
         console.log("error ajax");
     }
-// 訂單細節
-    function Detailed(id) {
+
+    // 訂單細節
+    function Detailed(id, address, name) {
         $(".detailTTT").remove();
         console.log(id);
         $(".hazy").css("visibility", "visible");
@@ -242,36 +266,41 @@
             type: "get",
             success: function (J) {
                 console.log(J);
-                var sell = 0 ;
-               for(var A of J){
-                   sell  += A.Unit*A.SellingPrice;
-                   $(".detailTable").append('<tr class="detailTTT" ">' +
-                       '<td class="col-lg-1">' + A.orderId + '</td>' +
-                       '<td class="col-lg-2 ">' + A.productname + '</td>' +
-                       '<td class="col-lg-1 ">' + A.Unit + '</td>' +
-                       '<td class="col-lg-1 ">' + A.SellingPrice + '</td>' +
-                       '</tr>');
-                   $("p").text("總價 : "+sell);
-               }
-
+                var sell = 0;
+                for (var A of J) {
+                    sell += A.Unit * A.SellingPrice;
+                    $(".detailTable").append('<tr class="detailTTT" ">' +
+                        '<td class="col-lg-1">' + A.orderId + '</td>' +
+                        '<td class="col-lg-2 ">' + A.productname + '</td>' +
+                        '<td class="col-lg-1 ">' + A.Unit + '</td>' +
+                        '<td class="col-lg-1 ">' + A.SellingPrice + '</td>' +
+                        '</tr>');
+                    $("p").text("總價 : " + sell);
+                    $(".address").text("地址 : " + address);
+                    $(".name").text("顧客 : " + name);
+                    $(".form").attr("action", "/recipe/backstage/state/" + A.orderId);
+                }
             },
             error: doError
         });
-
-
     }
+
     $(document).ready(function () {
-        $(".package").click(function (){
+        $(".package").click(function () {
             console.log("package");
         })
         // 關閉按紐
         $('.catReturn').click(function () {
             $(".hazy").css("visibility", "hidden");
             $(".cat").css("visibility", "hidden");
-
         });
-
     });
+
+    function sta(state) {
+        console.log("ddddddddddd" + state);
+        window.location.href = "/recipe/backstage/order?pag=1&state=" + state;
+    }
+
 </script>
 </body>
 </html>
