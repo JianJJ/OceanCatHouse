@@ -21,41 +21,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userFavoriteRec.css">
     <script src="${pageContext.request.contextPath}/js/userBack/favorites.js"></script>
-    <style>
-        /*  彈跳視窗*/
-        #jump{
-            border: 2px solid #9ff5eb;
-            margin-top: 7%;
-            border-radius: 10%;
-            width: 550px;
-            height: 650px;
-            text-align: center;
-            background-color: white;
-            overflow-y: auto;
-        }
-        #jump>div{
-            margin: 10px;
-            padding: 10px;
-        }
-        #add{
-            font-weight: bolder;
-            margin-bottom:3px ;
-        }
-        #add>input{
-            border: 0px;
-        }
-        #jump>button{
-            border: 0px;
-        }
-        #add>button{
-            border: 0px;
-        }
-        i{
-            font-size: 1.3rem;
-        }
-
-    </style>
-
 </head>
 <body>
 <!--頁首-->

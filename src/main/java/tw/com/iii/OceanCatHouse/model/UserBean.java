@@ -18,8 +18,25 @@ public class UserBean {
 	private String username;
 	private String userpic;
 	private String userphone;
-	
-//	@Id
+	private Integer LastPay;
+	private String DeliveryAddress;
+
+	public Integer getLastPay() {
+		return LastPay;
+	}
+
+	public void setLastPay(Integer lastPay) {
+		LastPay = lastPay;
+	}
+
+	public String getDeliveryAddress() {
+		return DeliveryAddress;
+	}
+
+	public void setDeliveryAddress(String deliveryAddress) {
+		DeliveryAddress = deliveryAddress;
+	}
+
 	private String email;
 	private String userpassword;
 	private String state;
@@ -28,6 +45,17 @@ public class UserBean {
 	@OneToMany(mappedBy = "userBean", cascade = CascadeType.ALL)
 	private List<UserFavoritesBean> userFavoritesBeans;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "userBean", cascade = CascadeType.ALL)
+	private List<UserCreditCardBean> userCreditCardBeans;
+
+	public List<UserFavoritesBean> getUserFavoritesBeans() {
+		return userFavoritesBeans;
+	}
+
+	public void setUserFavoritesBeans(List<UserFavoritesBean> userFavoritesBeans) {
+		this.userFavoritesBeans = userFavoritesBeans;
+	}
 
 	@Override
 	public String toString() {
@@ -38,19 +66,22 @@ public class UserBean {
 				", username='" + username + '\'' +
 				", userpic='" + userpic + '\'' +
 				", userphone='" + userphone + '\'' +
+				", LastPay=" + LastPay +
+				", DeliveryAddress='" + DeliveryAddress + '\'' +
 				", email='" + email + '\'' +
 				", userpassword='" + userpassword + '\'' +
 				", state='" + state + '\'' +
 				", userFavoritesBeans=" + userFavoritesBeans +
+				", userCreditCardBeans=" + userCreditCardBeans +
 				'}';
 	}
 
-	public List<UserFavoritesBean> getUserFavoritesBeans() {
-		return userFavoritesBeans;
+	public List<UserCreditCardBean> getUserCreditCardBeans() {
+		return userCreditCardBeans;
 	}
 
-	public void setUserFavoritesBeans(List<UserFavoritesBean> userFavoritesBeans) {
-		this.userFavoritesBeans = userFavoritesBeans;
+	public void setUserCreditCardBeans(List<UserCreditCardBean> userCreditCardBeans) {
+		this.userCreditCardBeans = userCreditCardBeans;
 	}
 
 	public Integer getUserid() {

@@ -14,6 +14,7 @@ import tw.com.iii.OceanCatHouse.repository.RecipeStepRepository;
 import java.util.List;
 
 @SpringBootTest(classes = OceanCatHouseApplication.class)
+@Transactional
 public class jinaTest01 {
 
     @Autowired
