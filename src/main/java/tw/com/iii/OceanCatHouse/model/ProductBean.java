@@ -19,6 +19,17 @@ public class ProductBean {
 	private String productspecifications;
 	private java.util.Date createdon;
 	private java.util.Date lastupdatedon;
+	private Integer productcategoryid;
+	private String productstatus;
+	private  String productkey;
+
+	public String getProductkey() {
+		return productkey;
+	}
+
+	public void setProductkey(String productkey) {
+		this.productkey = productkey;
+	}
 	@Override
 	public String toString() {
 		return "ProductBean [productmodel=" + productmodel + ", productname=" + productname + ", sellingprice="
@@ -103,8 +114,4 @@ public class ProductBean {
 	public void setProductstatus(String productstatus) {
 		this.productstatus = productstatus;
 	}
-	private Integer productcategoryid;
-	private String productstatus;
-
-
 }

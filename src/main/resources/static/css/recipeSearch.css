@@ -19,6 +19,7 @@
     font-size: 35px;
 }
 
+
 .toUP {
     position: fixed;
     display: none;
@@ -54,7 +55,11 @@ a:hover {
 .recFilter {
     position: fixed;
     width: 350px;
+    height:430px;
+    padding:10px 15px;
     top:100px; 
+    background:rgba(237, 217, 173,.5);
+    border-radius: 7px;
 }
 
 .recFilter input::-webkit-input-placeholder {
@@ -62,7 +67,7 @@ a:hover {
 }
 
 .recFilter > h3 > input {
-    border: orange 1px solid;
+    border: #ed8e4a 1px solid;
     background-color: white;
     padding: 5px 12px;
     border-radius: 7px;
@@ -71,18 +76,23 @@ a:hover {
     float: right;
 }
 
+.recFilter > h3 > input:hover {
+	background:rgba(252, 169, 88,.3);
+	border-color:#ddd;
+}
+
 .recFilter .textSize {
-    width: 90%;
-    margin-bottom: 10px;
+	display:block;
+    width: 85%;
+    margin:0 5px 20px auto;
 }
 
 
-
-
 .underline {
-    margin: 15px 0;
-    border: 2px solid black;
-    background-color: black;
+    margin: 25px auto;
+    border: 1px solid black;
+    background: rgba(0,0,0,.3);
+    width:85%;
 }
 
 .littleTitle {
@@ -105,11 +115,17 @@ a:hover {
 #btnRecResult, #btnRecMore {
     display: block;
     margin: 25px auto;
-    background-color: rgb(238, 209, 214);
-    border-color: tomato;
-    color: black;
-
+    background-color: #e8c099;
+    border-color: #ebba8a;
+    color: #222;
 }
+
+#btnRecResult:hover , #btnRecMore:hover {
+	 background-color: #e0a870;
+	 border-color: #666;
+	 box-shadow:none;
+}
+
 
 .btn-search {
     margin: 0px 10px;
@@ -125,7 +141,7 @@ a:hover {
 }
 
 .btn-search:hover {
-    box-shadow: 0px 0px 10px 0px #e086b9;
+    box-shadow: 0px 0px 10px 3px #ddd;
 }
 
 
@@ -134,6 +150,11 @@ a:hover {
 
 ul li {
     list-style: none;
+}
+
+.recResult h3 {
+	color:#222;
+	font-size:22px;
 }
 
 .recResult li {
@@ -148,6 +169,7 @@ ul li {
 
 .recResult li img {
     width: 100%;
+    height:190px;
 }
 
 .showLines {
@@ -176,7 +198,7 @@ ul li {
 }
 
 .recResult li:hover {
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
     animation: slowUp 1s forwards;
 }
 

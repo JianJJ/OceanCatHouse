@@ -142,17 +142,21 @@ public class BackStageController {
         if (bean.getStocks() == null || bean.getStocks() == 0) {
             errors.put("productstatus", "需要狀態");
         }
+        if( productRepository.existsByProductmodel(bean.getProductmodel())){
+            errors.put("productmodel", "商品號重複");
+        }
+
 
         if (errors != null && !errors.isEmpty()) return "/views/backstage/product";
 
 
         System.out.println(bean);
         productService.insert(bean);
-        return "/views/backstage/product";
+        return "redirect:/backstage/product";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //讀取商品資訊 和分頁
+    //搜索商品資訊 和分頁
     @RequestMapping("/selectproduct/{name}")
     @ResponseBody
     public List<ProductBean> product(@PathVariable("name") String name) {
@@ -173,9 +177,10 @@ public class BackStageController {
         System.out.println(result);
         return result;
     }
-    //訂單細節
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //訂單細節
     @RequestMapping("/orderDetail/{id}")
     @ResponseBody
     public List<Map<String, String>> orderDetail(@PathVariable("id") Integer orderid) {

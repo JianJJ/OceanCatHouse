@@ -59,28 +59,28 @@
                         <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall" id="home" ><span class='fontIcon'></span></a>
                     </li>
                     <li class="nav-item">
-                    	 <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=1">米麵五穀</a>
+                    	 <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=1&pad=1">米麵五穀</a>
                     </li>
                     <li class="nav-item">
-                    	<a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=5">油</a>
+                    	<a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=5&pad=1">油</a>
                     </li>
                     <li class="nav-item">
-                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=4">醬料</a>
+                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=4&pad=1">醬料</a>
                     </li>
                     <li class="nav-item">
-                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=2">蔬果</a>
+                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=2&pad=1">蔬果</a>
                     </li>
                     <li class="nav-item">
-                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=3">生鮮</a>
+                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=3&pad=1">生鮮</a>
                     </li>
                     <li class="nav-item">
-                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=6">乾貨</a>
+                        <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=6&pad=1">乾貨</a>
                     </li>
                 </ul>
 
-                <form class="d-flex " action="" method="get">
+                <form class="d-flex " action="${pageContext.request.contextPath}/views/ShoppingMall" method="get">
                     <input class="form-control me-2" type="search" placeholder="尋找食材..." aria-label="Search" name="searchString">
-                    <button class="btn btn-search" type="submit">Search</button>
+                    <button class="btn btn-search selectProduct" type="submit">Search</button>
                   </form>
           </div>
         </div>

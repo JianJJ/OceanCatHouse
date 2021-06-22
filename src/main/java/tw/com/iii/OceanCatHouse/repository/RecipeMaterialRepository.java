@@ -1,5 +1,7 @@
 package tw.com.iii.OceanCatHouse.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +21,11 @@ public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBe
     @Query(value = "select RecId from recipe_material where MaterialName like %?1%", nativeQuery=true)
     Set<Integer> findByMaterialNameContains(String keyWord);
 
+//    @Query(value ="select DISTINCT RecId from recipe_material where MaterialName like %?1%", nativeQuery=true )
+//    Set<Integer> findRecId(String MaterialName );
 
+    @Query(value ="select DISTINCT RecId from RecipeMaterialBean where MaterialName like %?1%", nativeQuery=false )
+    Page<Integer> findRecId(String MaterialName , Pageable pageable);
 
     @Transactional
     @Modifying
