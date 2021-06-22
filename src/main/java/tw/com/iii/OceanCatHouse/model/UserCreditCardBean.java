@@ -1,5 +1,7 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,25 +11,19 @@ public class UserCreditCardBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer CardId;
+    private Integer userid;
     private Integer CardNumberP1;
     private Integer CardNumberP2;
     private Integer CardNumberP3;
     private Integer CardNumberP4;
     private String EffectiveDate;
     private Integer VerificationCode;
+    private Integer UseCard;
 
-    @Override
-    public String toString() {
-        return "UserCreditCardBean{" +
-                "CardId=" + CardId +
-                ", CardNumberP1=" + CardNumberP1 +
-                ", CardNumberP2=" + CardNumberP2 +
-                ", CardNumberP3=" + CardNumberP3 +
-                ", CardNumberP4=" + CardNumberP4 +
-                ", EffectiveDate='" + EffectiveDate + '\'' +
-                ", VerificationCode=" + VerificationCode +
-                '}';
-    }
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "userid", referencedColumnName = "userid", insertable = false, updatable = false)
+    private UserBean userBean;
 
     public Integer getCardId() {
         return CardId;
@@ -35,6 +31,14 @@ public class UserCreditCardBean {
 
     public void setCardId(Integer cardId) {
         CardId = cardId;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public Integer getCardNumberP1() {
@@ -83,5 +87,37 @@ public class UserCreditCardBean {
 
     public void setVerificationCode(Integer verificationCode) {
         VerificationCode = verificationCode;
+    }
+
+    @Override
+    public String toString() {
+        return "UserCreditCardBean{" +
+                "CardId=" + CardId +
+                ", userid=" + userid +
+                ", CardNumberP1=" + CardNumberP1 +
+                ", CardNumberP2=" + CardNumberP2 +
+                ", CardNumberP3=" + CardNumberP3 +
+                ", CardNumberP4=" + CardNumberP4 +
+                ", EffectiveDate='" + EffectiveDate + '\'' +
+                ", VerificationCode=" + VerificationCode +
+                ", UseCard=" + UseCard +
+                ", userBean=" + userBean.getUserid() +
+                '}';
+    }
+
+    public Integer getUseCard() {
+        return UseCard;
+    }
+
+    public void setUseCard(Integer useCard) {
+        UseCard = useCard;
+    }
+
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 }

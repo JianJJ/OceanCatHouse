@@ -1,8 +1,8 @@
 package tw.com.iii.OceanCatHouse.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_payment_method")

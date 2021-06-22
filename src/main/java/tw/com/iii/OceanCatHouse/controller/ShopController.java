@@ -1,6 +1,7 @@
 package tw.com.iii.OceanCatHouse.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,12 +18,17 @@ import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import tw.com.iii.OceanCatHouse.model.ProductBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserCreditCardBean;
 import tw.com.iii.OceanCatHouse.repository.ProductRepository;
+import tw.com.iii.OceanCatHouse.repository.UserPaymentMethodRepository;
 import tw.com.iii.OceanCatHouse.repository.service.OrdersService;
 
 
 @Controller
 public class ShopController {
+
+    @Autowired
+    private UserPaymentMethodRepository userPaymentMethodDao;
 
     @Autowired
     private ProductRepository productRepository;
@@ -120,6 +126,20 @@ public class ShopController {
             model.addAttribute("state",0);}
         else {
             model.addAttribute("state",session.getAttribute("state"));
+        }
+        // Jian新增, 付款方式呈現
+        System.out.println(bean);
+        List<UserCreditCardBean> userCreditCardBeans = bean.getUserCreditCardBeans();
+        System.out.println(userCreditCardBeans);
+        if(userCreditCardBeans != null){
+            for (UserCreditCardBean uccb : userCreditCardBeans){
+                // UseCard 等於1代表上次結帳用這張
+                if(uccb.getUseCard() == 1){
+                    model.addAttribute("uccb", uccb);
+                    System.out.println(uccb);
+                    break;
+                }
+            }
         }
         return "/views/shop/address";
     }
