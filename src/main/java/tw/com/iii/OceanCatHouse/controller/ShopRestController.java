@@ -139,7 +139,7 @@ public class ShopRestController {
 		int AAA = body.get(id);
 		AAA++;
 		body.put(id, AAA);
-		session.setAttribute("cat",AAA);
+		session.setAttribute("cat",body);
 		return body;
 	}
 
@@ -152,7 +152,7 @@ public class ShopRestController {
 		int AAA = body.get(id);
 		AAA--;
 		body.put(id, AAA);
-		session.setAttribute("cat",AAA);
+		session.setAttribute("cat",body);
 		return body;
 	}
 
