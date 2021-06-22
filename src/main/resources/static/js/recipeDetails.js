@@ -42,7 +42,7 @@ $(function(){
 		
 			
 		 // + location.pathname +location.search;
-			var url = "https://www.oceancat.es/";   		
+			var url = "https://marinecat.booth.pm/";   		
 			var fbUrl = "javascript: void(window.open('http://www.facebook.com/share.php?u=" + url +"'));";
 			$('#fbShare').attr("href",fbUrl); 
 			

@@ -34,7 +34,7 @@
     <%-- 主要的CSS、JS放在這裡--%>
    <link rel="stylesheet" href="/recipe/css/homePage.css">
 	
-    <title>食譜主頁</title>
+    <title>✿海貓食屋✿</title>
 </head>
 
 <body>
@@ -48,29 +48,29 @@
         <div class="contextBlock" id="block1">
             <div class="context">
                 <hr>
-                <h2>Cook Happy</h2>
+                <h2>快樂下廚</h2>
                 <p>
-                    Find and share everyday cooking inspiration. <br/>
-                    Discover recipes, cooks, and how-tos based on the food you love and the friends you follow.
+                    尋找並分享日常烹飪靈感。 <br/>
+                    根據您喜歡的食物和您關注的朋友發現食譜、<br>廚師和操作方法。
                 </p>
-                <a href="${pageContext.request.contextPath}/recipeHome">DISCOVER RECIPES</a>
+                <a href="${pageContext.request.contextPath}/recipeHome">探索食譜</a>
                 
 
             </div>
             <div class="contextImg"> </div>
         </div>
 
-        <div class="wallpaper" id="wallpaper2"><span><em>Ingredients for cooks</em></span></div>
+        <div class="wallpaper" id="wallpaper2"><span><em>Ingredients for Cook</em></span></div>
 
         <div class="contextBlock" id="block2">
             <div class="contextImg"></div>
             <div class="context">
                 <hr>
-                <h2>Cook Healthy</h2>
+                <h2>健康料理</h2>
                 <p>
-                    Shop for ingredients online and stock your pantry with everything from miso to paneer to prosciutto.
+                    在線購買食材，並在您的冰庫中備有從味噌到起司再到意大利火腿的所有食材。
                 </p>
-                <a href="/recipe/views/ShoppingMall">GO FOR SHOP</a>
+                <a href="/recipe/views/ShoppingMall">前往商城</a>
                 
 
             </div>

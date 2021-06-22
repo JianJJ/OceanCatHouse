@@ -96,6 +96,7 @@ input:focus {
     display: none;
     position: absolute;
     top:50px;
+    right:5px;
     padding: 0;
     margin:0;
     background-color: white;
