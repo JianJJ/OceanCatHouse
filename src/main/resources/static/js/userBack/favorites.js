@@ -72,7 +72,7 @@ $(document).ready(function (){
                     for(var i=0;i<data.length;i++){
                         $('#showMain').append(
                             `<li class="col-lg-3 col-xs-6 recipe"><a` +
-                                `href="/recipe/recipeDetails?id=${data[i].recId}">` +
+                                ` href="/recipe/recipeDetails?id=${data[i].recId}">` +
                                 `<img src="${data[i].recPic}" style="height:217px;" alt="${data[i].recTitle}">`+
                                     `<h4 class='showLines'>"${data[i].recTitle}"</h4>`+
                                     `<p class='showLines'>${data[i].recText}</p>`+

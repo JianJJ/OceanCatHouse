@@ -18,16 +18,8 @@ public class UserBean {
 	private String username;
 	private String userpic;
 	private String userphone;
-	
-//	@Id
-	private String email;
-	private String userpassword;
-	private String state;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "userBean", cascade = CascadeType.ALL)
-	private List<UserFavoritesBean> userFavoritesBeans;
-
+	private Integer LastPay;
+	private String DeliveryAddress;
 
 	@Override
 	public String toString() {
@@ -38,12 +30,40 @@ public class UserBean {
 				", username='" + username + '\'' +
 				", userpic='" + userpic + '\'' +
 				", userphone='" + userphone + '\'' +
+				", LastPay=" + LastPay +
+				", DeliveryAddress='" + DeliveryAddress + '\'' +
 				", email='" + email + '\'' +
 				", userpassword='" + userpassword + '\'' +
 				", state='" + state + '\'' +
 				", userFavoritesBeans=" + userFavoritesBeans +
 				'}';
 	}
+
+	public Integer getLastPay() {
+		return LastPay;
+	}
+
+	public void setLastPay(Integer lastPay) {
+		LastPay = lastPay;
+	}
+
+	public String getDeliveryAddress() {
+		return DeliveryAddress;
+	}
+
+	public void setDeliveryAddress(String deliveryAddress) {
+		DeliveryAddress = deliveryAddress;
+	}
+
+	//	@Id
+	private String email;
+	private String userpassword;
+	private String state;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "userBean", cascade = CascadeType.ALL)
+	private List<UserFavoritesBean> userFavoritesBeans;
+
 
 	public List<UserFavoritesBean> getUserFavoritesBeans() {
 		return userFavoritesBeans;
