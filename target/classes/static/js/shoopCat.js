@@ -221,7 +221,7 @@ $(".PPP").text("總價: $" + m);
 
 $(".catSubmit").click(function() {
 	console.log("總價 " + m);
-	window.location.href = "${pageContext.request.contextPath}/toAddress";
+	window.location.href = "/OceanCatHouse/toAddress";
 	// window.location.assign("${pageContext.request.contextPath}/Details/${id}");
 })
 
