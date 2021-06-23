@@ -13,9 +13,9 @@ $(document).ready(function (){
     loadC = function(result) {
         var u = "";
         if(result){
-            u = '/recipe/userBack/addFavoriteCategory/'+ result ;
+            u = '/OceanCatHouse/userBack/addFavoriteCategory/'+ result ;
         }else{
-            u = '/recipe/userBack/addFavoriteCategory/findAllCategory';
+            u = '/OceanCatHouse/userBack/addFavoriteCategory/findAllCategory';
         }
         $.ajax({
             url :  u,
@@ -58,7 +58,7 @@ $(document).ready(function (){
             cName = $(`#${name}`).prop('id');
         }
         $.ajax({
-            url : '/recipe/userBack/findAllMain/'+cName,
+            url : '/OceanCatHouse/userBack/findAllMain/'+cName,
             type : "GET",
             async : false,
             cache: false,  //不做快取
@@ -66,19 +66,31 @@ $(document).ready(function (){
                 if(data.length != 0){
                     // 隱藏"開始收藏"
                     $('#recFavoriteList').prop('hidden', true);
-                    $('.recResult').prop('hidden', false);         
+                    $('#RecMainList').prop('hidden', false);
                     $('#countMain').text(`${data.length}`)
-                    $('#showMain>li').remove();
+                    $('#showMain').empty();
+                    var h = "";
+                    var img = "";
+                    var title = "";
                     for(var i=0;i<data.length;i++){
+                        if(data[i].recStatus != 0){
+                            h = `/OceanCatHouse/recipeDetails?id=${data[i].recId}`;
+                            img = `${data[i].recPic}`;
+                            title = `${data[i].recTitle}`;
+                        }else {
+                            h = "javascript:void(0);";
+                            img = "/OceanCatHouse/images/homePic/status00.jpg";
+                            title = `食譜已被下架...  ${data[i].recTitle}`;
+                        }
                         $('#showMain').append(
                             `<li class="col-lg-3 col-xs-6 recipe"><a` +
-                                ` href="/recipe/recipeDetails?id=${data[i].recId}">` +
-                                `<img src="${data[i].recPic}" style="height:217px;" alt="${data[i].recTitle}">`+
-                                    `<h4 class='showLines'>"${data[i].recTitle}"</h4>`+
+                                ` href="${h}">` +
+                                `<img src="${img}" style="height:217px;" alt="${data[i].recTitle}">`+
+                                    `<h4 class='showLines'>${title}</h4>`+
                                     `<p class='showLines'>${data[i].recText}</p>`+
                             `</a></li>`
                         );
-                    }
+                    };
                 }else{
                     $('#countMain').text(`${data.length}`)
                     $('#showMain>li').remove();
@@ -98,7 +110,7 @@ $(document).ready(function (){
         $('#cover').css('display','block'); //顯示遮罩層
         $('#cover').css('height',document.body.clientHeight); //設定遮罩層的高度為當前頁面高度
         $.ajax({
-            url :  '/recipe/userBack/addFavoriteCategory/findAllCategory',
+            url :  '/OceanCatHouse/userBack/addFavoriteCategory/findAllCategory',
             type : "GET",
             async : false,
             cache: false,  //不做快取
@@ -165,7 +177,7 @@ $(document).ready(function (){
             "oldCname" : oldCname
         };
         $.ajax({
-            url :  '/recipe/userBack/addFavoriteCategory/updateAllCategory',
+            url :  '/OceanCatHouse/userBack/addFavoriteCategory/updateAllCategory',
             type : "POST",
             data : JSON.stringify(JsonObj),
             contentType : "application/json;charset=utf-8",

@@ -189,8 +189,8 @@
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" onclick="delFood('food${status.count}')" id="DFBtn${status.count}">
-                            <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
+                        <button type="button" class="iBtn" onclick="delFood('food${status.count}')" id="DFBtn${status.count}">
+                            <i class="bi bi-trash"></i>
                         </button>
                     </div>
                 </div>
@@ -223,13 +223,13 @@
                             <div class="col-md-1"><span style="font-size: 32px" id="step${status.count}">${status.count}</span></div>
                             <div class="col-md-8"></div>
                             <div class="col-md-1">
-                                <button type="button" onclick="createStep()">
-                                    <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
+                                <button type="button" onclick="createStep()" class="iBtn">
+                                    <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" onclick="delStep('divId${status.count}')" id="delbtn${status.count}">
-                                    <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
+                                <button type="button" class="iBtn" onclick="delStep('divId${status.count}')" id="delbtn${status.count}">
+                                    <i class="bi bi-trash"></i>
                                 </button>
                             </div>
                         </div>
@@ -252,7 +252,7 @@
                 <button type="button" class="btn btn-outline-danger" onclick="goBack()">取消</button>
             </div>
             <div class="row justify-content-start">
-                <button id="delete" onclick="deleteRec()" type="button" class="btn btn-outline-danger">刪除</button>
+                <button id="delete" onclick="deleteRec()" type="button" class="btn btn-outline-danger">下架</button>
             </div>
         </div>
         <div class="col-md-2">

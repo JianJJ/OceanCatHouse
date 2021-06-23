@@ -91,7 +91,7 @@
                  <h6>新密碼</h6>
                  <div class="form-floating mb-3">
                       <input type="password" class="form-control" id='pwdNew' name='pwdNew' maxlength="12">
-                      <label for="'pwdNew'">點此輸入新密碼</label>
+                      <label for="pwdNew">點此輸入新密碼</label>
                  </div>
                  <h6>二次輸入新密碼</h6>
                  <div class="form-floating mb-3">

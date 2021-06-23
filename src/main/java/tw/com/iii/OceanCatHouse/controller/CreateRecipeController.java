@@ -93,6 +93,7 @@ public class CreateRecipeController {
         recipeMainBean.setRecTag((String) map.get("RecTag"));
         recipeMainBean.setRecCreated(recCreated);
         recipeMainBean.setUserId(user.getUserid());
+        recipeMainBean.setRecStatus(1);
 
         // 圖片儲存
         // 1. 改名
@@ -198,7 +199,7 @@ public class CreateRecipeController {
             recipeStepDao.save(recipeStepBean);
         }
         System.out.println("mainBean:"+mainBean);
-        return "/recipe/userBack/home";
+        return "/OceanCatHouse/userBack/home";
     }
 
     // 食譜的詳細頁(新增頁面)
@@ -209,7 +210,6 @@ public class CreateRecipeController {
         modelAndView.addObject("CategoryId", CategoryId);
         modelAndView.addObject("RecTitle", RecTitle);
         modelAndView.setViewName("views/user/createRecipeDetail");
-        System.out.println(CategoryId);
 
         return modelAndView;
     }
@@ -221,26 +221,26 @@ public class CreateRecipeController {
         List<RecipeCategoryBean> categoryList = recipeCategoryService.list();
         modelAndView.addObject("categoryList", categoryList);
         modelAndView.setViewName("/views/user/createRecipe");
-        System.out.println(categoryList);
 
         return modelAndView;
     }
 
-    // 刪除食譜
+    // 下架食譜
     @DeleteMapping("/delete/{recId}")
     @ResponseBody
     public String delete(@PathVariable("recId") Integer recId,
                          HttpSession session){
-//        Integer count = recipeMainDao.deleteAllByRecId(recId);
         RecipeMainBean main = (RecipeMainBean) session.getAttribute("main");
+        main.setRecStatus(0);
+        recipeMainDao.save(main);
 
-        return "/recipe/userBack/home";
+        return "/OceanCatHouse/userBack/home";
     }
 
     // 取消編輯
     @RequestMapping("/goBack")
     @ResponseBody
     public String goBack(){
-        return "/recipe/userBack/home";
+        return "/OceanCatHouse/userBack/home";
     }
 }

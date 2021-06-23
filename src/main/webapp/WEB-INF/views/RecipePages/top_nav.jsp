@@ -5,7 +5,7 @@
 
  <head>
      <meta charset="UTF-8">
- 	 <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+ 	 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
  </head>
 
  <body>

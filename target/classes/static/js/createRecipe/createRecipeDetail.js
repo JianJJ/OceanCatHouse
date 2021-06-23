@@ -3,7 +3,7 @@ $(document).ready(function () {
     goBack = function (){
         if(confirm("是否放棄編輯？")){
             $.ajax({
-                url : "/recipe/createRecipe/goBack",
+                url : "/OceanCatHouse/createRecipe/goBack",
                 type : "GET",
                 async : false,
                 cache: false,  //不做快取
@@ -57,7 +57,7 @@ $(document).ready(function () {
             formData.append('recipeDetail', JSON.stringify(recipeDetail));
 
             $.ajax({
-                url : '/recipe/createRecipe/save',
+                url : '/OceanCatHouse/createRecipe/save',
                 type : 'POST',
                 data : formData,
                 enctype: 'multipart/form-data',
@@ -99,7 +99,7 @@ $(document).ready(function () {
                 <div class="col-md-5">
                     <div class="picstep">
                         <div style="width: 280px;height: 210px; margin:0 auto;">
-                            <img src="/recipe/images/homePic/uploadstep.png"
+                            <img src="/OceanCatHouse/images/homePic/uploadstep.png"
                                  class="img-thumbnail img-step"
                                  id="img-step${i}"/>
                             <input type="file" accept="image/*" id="file-step${i}" name="file"
