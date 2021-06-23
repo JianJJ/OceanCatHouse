@@ -68,12 +68,7 @@
                         <c:forEach varStatus="loop" begin="0" end="${recResultBean.size()-1}">
                             <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recResultBean.get(loop.index).recId}">
                                 <img src="${recResultBean.get(loop.index).recPic}" alt="${recResultBean.get(loop.index).recTitle}">
-                                <h4 class='showLines'>"${recResultBean.get(loop.index).recTitle}"</h4>
-<%--                                <span>--%>
-<%--                                <c:forEach varStatus="loop2" begin="0" end="${recResultBean.get(loop.index).recTag.length()-1}">--%>
-<%--                                    ${recResultBean.get(loop.index).recTag.split("、")[loop2.index]}--%>
-<%--                                </c:forEach>--%>
-<%--                                </span>--%>
+                                <h4 class='showLines'>${recResultBean.get(loop.index).recTitle}</h4>
                                 <p class='showLines'>${recResultBean.get(loop.index).recText}</p>
                             </a></li>
                         </c:forEach>

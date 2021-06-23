@@ -21,15 +21,15 @@ public class OrdersService {
     public OrdersBean insert(Integer id ,Map<String, Integer> cat){
 
         OrdersBean ordersBean = new OrdersBean();
-        ordersBean.setUserId(id);
-        ordersBean.setOrderStatusId(1);
+        ordersBean.setUserid(id);
+        ordersBean.setOrderstatusid(1);
         OrdersBean save = ordersRepository.save(ordersBean);
-        System.out.println("orderid = "+save.getOrderId());
+        System.out.println("orderid = "+save.getOrderid());
 
         for (String key : cat.keySet()){
             OrderDetailBean detailBean = new OrderDetailBean();
-            detailBean.setOrderId(save.getOrderId());
-            detailBean.setProductId(Integer.valueOf(key));
+            detailBean.setOrderid(save.getOrderid());
+            detailBean.setProductid(Integer.valueOf(key));
             detailBean.setUnit(cat.get(key));
             detailBean.setDiscount(1);
             orderDetailRepository.save(detailBean);

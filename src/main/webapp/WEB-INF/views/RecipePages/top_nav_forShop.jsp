@@ -5,7 +5,7 @@
 
  <head>
      <meta charset="UTF-8">
- 	 <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+<%-- 	 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>--%>
  </head>
 
  <body>
@@ -30,7 +30,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="navLink navColor" href="/recipe/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
+                        <a class="navLink navColor" href="${pageContext.request.contextPath}/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
                     </li>
                 </ul>
 
@@ -53,8 +53,8 @@
     
      <nav class="navbar navbar-expand-lg navbar-light menu">
         <div class="container-fluid">
-         <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav  my-lg-0" style="--bs-scroll-height: 100px;">
+         <div class="collapse navbar-collapse row" id="navbarScroll">
+                <ul class="navbar-nav  my-lg-0 col-lg-8" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
                         <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall" id="home" ><span class='fontIcon'></span></a>
                     </li>
@@ -78,7 +78,7 @@
                     </li>
                 </ul>
 
-                <form class="d-flex " action="${pageContext.request.contextPath}/views/ShoppingMall" method="get">
+                <form class="d-flex col-lg-3" action="${pageContext.request.contextPath}/views/ShoppingMall" method="get">
                     <input class="form-control me-2" type="search" placeholder="尋找食材..." aria-label="Search" name="searchString">
                     <button class="btn btn-search selectProduct" type="submit">Search</button>
                   </form>

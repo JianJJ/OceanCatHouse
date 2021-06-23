@@ -7,72 +7,70 @@ import javax.persistence.*;
 public class OrderDetailBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer OrderDetailId;
-    private Integer orderId;
-    private Integer ProductId;
-    private Integer SellingPrice;
-    private Integer Unit;
-    private Integer Discount;
+    private Integer orderdetailid;
+    private Integer orderid;
+    private Integer productid;
+    private Integer sellingprice;
+    private Integer unit;
+    private Integer discount;
 
     @Override
     public String toString() {
-        return "orderDetailBean{" +
-                "OrderDetailId=" + OrderDetailId +
-                ", OrderId=" + orderId +
-                ", ProductId=" + ProductId +
-                ", SellingPrice=" + SellingPrice +
-                ", Unit=" + Unit +
-                ", Discount=" + Discount +
+        return "OrderDetailBean{" +
+                "orderdetailid=" + orderdetailid +
+                ", orderid=" + orderid +
+                ", productid=" + productid +
+                ", sellingprice=" + sellingprice +
+                ", unit=" + unit +
+                ", discount=" + discount +
                 '}';
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getOrderdetailid() {
+        return orderdetailid;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderdetailid(Integer orderdetailid) {
+        this.orderdetailid = orderdetailid;
     }
 
-    public Integer getOrderDetailId() {
-        return OrderDetailId;
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public void setOrderDetailId(Integer orderDetailId) {
-        OrderDetailId = orderDetailId;
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 
-
-
-    public Integer getProductId() {
-        return ProductId;
+    public Integer getProductid() {
+        return productid;
     }
 
-    public void setProductId(Integer productId) {
-        ProductId = productId;
+    public void setProductid(Integer productid) {
+        this.productid = productid;
     }
 
-    public Integer getSellingPrice() {
-        return SellingPrice;
+    public Integer getSellingprice() {
+        return sellingprice;
     }
 
-    public void setSellingPrice(Integer sellingPrice) {
-        SellingPrice = sellingPrice;
+    public void setSellingprice(Integer sellingprice) {
+        this.sellingprice = sellingprice;
     }
 
     public Integer getUnit() {
-        return Unit;
+        return unit;
     }
 
     public void setUnit(Integer unit) {
-        Unit = unit;
+        this.unit = unit;
     }
 
     public Integer getDiscount() {
-        return Discount;
+        return discount;
     }
 
     public void setDiscount(Integer discount) {
-        Discount = discount;
+        this.discount = discount;
     }
 }

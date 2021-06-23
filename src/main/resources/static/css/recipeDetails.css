@@ -1,3 +1,7 @@
+* {
+	letter-spacing:1px;
+}
+
 @font-face {
     font-family: 'icomoon';
     src:  url('../icomoon/./fonts/icomoon.eot?6rzpr');

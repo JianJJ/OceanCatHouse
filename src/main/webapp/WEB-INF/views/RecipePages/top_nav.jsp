@@ -35,7 +35,7 @@
                 </ul>
 
                 <form class="d-flex" action="/recipe/recipeSearch" method="get">
-                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="searchString">
+                    <input class="form-control me-2" type="search" placeholder="搜尋食譜..." aria-label="Search" name="searchString">
                     <button class="btn btn-search" type="submit">Search</button>
                   </form>
                   <em>|</em>

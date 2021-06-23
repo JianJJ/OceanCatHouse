@@ -17,38 +17,38 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
-        body{
-            background-color: #222;
-        }
-        .headtop{
+
+        .headtop {
             position: sticky;
             top: 0px;
             z-index: 5;
         }
-        .navfix{
+
+        .navfix {
             position: fixed;
-            top:80px;
+            top: 80px;
             height: 100vh;
         }
-        .navfix li{
+
+        .navfix li {
             border: none;
             cursor: pointer;
         }
-        .navfix li:hover{
+
+        .navfix li:hover {
             background-color: #afe3d5;
             color: #0c4128;
         }
-        .list-group-item{
+
+        .list-group-item {
             background-color: transparent;
             color: white;
         }
-        #timeCenter {
-            color: #ffffff;
-            position: relative;
-            top : 350px;
-            margin:  auto;
-            width: 40px;
+
+        .TTT:hover {
+            background-color: #afe3d5;
         }
+
     </style>
 </head>
 <body>
@@ -63,9 +63,14 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">訂單管理</button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
+            訂單管理
+        </button>
         <button class="list-group-item" onclick="javascript:location.href='../backstage/product?pag=1'">商品管理</button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理</button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理
+        </button>
         <label class="list-group-item">員工管理</label>
     </ul>
 </div>
@@ -76,7 +81,32 @@
             <%--            抬頭--%>
 
             <div class="row">
+                <table class="Table table-striped orderTable">
+                    <tr>
+                        <td>ID</td>
+                        <td>姓名</td>
+                        <td>電話</td>
+                        <td>狀態</td>
+                        <td>訂單</td>
+                    </tr>
 
+                    <c:forEach varStatus="loop" begin="0" end="${user.size()-1}" items="${user}" var="s">
+                        <tr class="TTT" onclick="order('${s.userid}')">
+                            <td>${s.userid}</td>
+                            <td>${s.username}</td>
+                            <td>${s.userphone}</td>
+                            <td>${s.state == 1?"正常":"壞掉的"}</td>
+                            <td>訂單</td>
+                        </tr>
+                    </c:forEach>
+
+
+                </table>
+            </div>
+
+            <div class="row">
+
+                <%--                底層--%>
             </div>
             <%--                分頁--%>
             <nav>
@@ -99,13 +129,37 @@
                 </ul>
             </nav>
             <div class="row">
-                <div id="timeCenter">Error</div>
-                <script src="${pageContext.request.contextPath}/js/time.js"></script>
+
                 <%--                中間之後要放的內容--%>
-                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function order(userId) {
+        console.log("userID :" + userId);
+        $.ajax({
+            url: "${pageContext.request.contextPath}/backstage/userOrder/"+userId,
+            type: "post",
+            async: false,
+            success: doSuccess,
+            error: doError
+        });
+
+        //取得列表
+        function doSuccess(json) {
+        }
+
+        function doError(json) {
+            console.log("error ajax : " + json);
+        }
+
+
+    }
+
+</script>
+
 
 </body>
 </html>
