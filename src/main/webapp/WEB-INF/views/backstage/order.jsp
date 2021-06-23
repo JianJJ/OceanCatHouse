@@ -164,7 +164,7 @@
         </button>
         <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理</button>
 
         <label class="list-group-item">員工管理</label>
     </ul>
@@ -198,6 +198,17 @@
                         <td>狀態</td>
                         <td>細節</td>
                     </tr>
+
+
+<%--                    <c:forEach varStatus="loop" begin="0" end="${order.size()-1}" items="${order}" var="s">--%>
+<%--                        <tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">--%>
+<%--                        <td class="col-lg-1">${order}s.orderId + '</td>--%>
+<%--                        <td class="col-lg-1 ">${s.}s.userName + '('+A.userId+')</td>--%>
+<%--                        <td class="col-lg-1 ">${s.ordercreateon} s.orderCreateOn + '</td>--%>
+<%--                        <td class="col-lg-1 ">${s.orderstatusid} state + '</td>--%>
+<%--                        <td class="col-lg-1 ">細節</td>--%>
+<%--                        </tr>--%>
+<%--                    </c:forEach>--%>
                 </table>
             </div>
 
@@ -211,8 +222,18 @@
 
 
 <script>
+    var url
+    var userId = '${param.userId}';
+    if(userId == ""){
+        console.log(userId +" == ");
+        url ="${pageContext.request.contextPath}/backstage/selectorder?state=${param.state}";
+    }else{
+        url ='${pageContext.request.contextPath}/backstage/userOrder/' +userId;
+    }
+
+    console.log(url);
     $.ajax({
-        url: "${pageContext.request.contextPath}/backstage/selectorder?state=${param.state}",
+        url: url,
         type: "post",
         async: false,
         success: doSuccess,
@@ -241,7 +262,8 @@
                     state = "已完成";
                     break;
             }
-            $(".orderTable").append('<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
+            $(".orderTable").append('' +
+                '<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
                 '<td class="col-lg-1">' + A.orderId + '</td>' +
                 '<td class="col-lg-1 ">' + A.userName + '('+A.userId+')</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +

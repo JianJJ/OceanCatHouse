@@ -7,6 +7,6 @@ import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
-//    List<OrdersBean> findByUserId(Integer userId);
+    List<OrdersBean> findByUserid(Integer userId);
 
 }

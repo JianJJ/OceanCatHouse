@@ -173,7 +173,7 @@
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
         <button class="list-group-item"
-                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
 
         <button class="list-group-item">員工管理</button>
@@ -205,8 +205,8 @@
                                aria-describedby="button-addon2" id="selectProduct">
                         <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>
                     </div>
-                </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
+                </div>
+            </div>
 
             <div class="row">
                 <table class="table table-striped">
@@ -303,7 +303,10 @@
 
     // 下架商品
     $(".state").click(function () {
-        console.log("AAAAAAAAAAAAAAAA");
+
+
+    $(".lll").remove();
+
         $.ajax({
             url: "${pageContext.request.contextPath}/backstage/product/" + p,
             type: "post",
@@ -614,8 +617,6 @@
                     '</tr>');
             }
         }
-
-
     })
 
 
