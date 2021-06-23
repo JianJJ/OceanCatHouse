@@ -149,8 +149,8 @@
             <option value="2">2 下架</option>
         </select>
 
-        <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>
-        <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>
+<%--        <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>--%>
+<%--        <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>--%>
         <button type="submit" class="">修改</button>
     </form>
 </div>
@@ -176,7 +176,7 @@
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
 
-        <button class="list-group-item">員工管理</button>
+<%--        <button class="list-group-item">員工管理</button>--%>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -212,12 +212,12 @@
                 <table class="table table-striped">
                     <tr>
                         <td>ID</td>
-                        <td>model</td>
+                        <td>商品號</td>
                         <td>名稱</td>
-                        <td>進價</td>
+<%--                        <td>進價</td>--%>
                         <td>售價</td>
                         <td>庫存</td>
-                        <td>規格</td>
+<%--                        <td>規格</td>--%>
                         <td>圖片</td>
                     </tr>
                 </table>
@@ -273,7 +273,7 @@
     <%--    商品管理--%>
     // 列印表單
     $.ajax({
-        url: "${pageContext.request.contextPath}/backstage/product/" + p,
+        url: "${pageContext.request.contextPath}/backstage/product/" + p+"/1",
         type: "post",
         async: false,
         success: doSuccess,
@@ -288,10 +288,10 @@
                     '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
                     '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
                     '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                    // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
                     '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
                     '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                    // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
                     '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
                     '</tr>');
         }
@@ -308,7 +308,7 @@
     $(".lll").remove();
 
         $.ajax({
-            url: "${pageContext.request.contextPath}/backstage/product/" + p,
+            url: "${pageContext.request.contextPath}/backstage/product/" + p+"/2",
             type: "post",
             // async: false,
             success: function (json) {
@@ -319,10 +319,10 @@
                             '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
                             '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
                             '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                            // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
                             '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
                             '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                            // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
                             '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
                             '</tr>');
                 }
@@ -373,8 +373,8 @@
                     '<label for="vendorid">產品狀態</label>' +
                     '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
                     '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
-                    '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                    '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
+                    // '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                    // '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
                     '<button type="submit" class="">修改</button>'
                 );
 
@@ -389,8 +389,8 @@
                 $("#vendorid").val(A.vendorid);
                 $("#productcategoryid").val(A.productcategoryid);
                 $("#productstatus").val(A.productstatus);
-                $("#createdon").text("創建日期 : " + A.createdon);
-                $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
+                // $("#createdon").text("創建日期 : " + A.createdon);
+                // $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
                 $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);
             },
             error: doError
@@ -534,8 +534,8 @@
                 '<label for="vendorid">產品狀態</label>' +
                 '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
                 '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
-                '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
+                // '<div class="form-group"><label id="createdon">創建日期</label></div>' +
+                // '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
                 '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
             );
             $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);

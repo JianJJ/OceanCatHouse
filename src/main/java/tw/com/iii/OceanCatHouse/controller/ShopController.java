@@ -108,7 +108,7 @@ public class ShopController {
     //去輸入位置 資料轉換
     @RequestMapping("/toAddress")
     public String toAddress(HttpSession session,Model model) {
-        System.out.println("**********");
+        System.out.println("*****toAddress*****");
         UserBean bean = (UserBean) session.getAttribute("user");
         if(session.getAttribute("user") == null){
             model.addAttribute("id",0);}

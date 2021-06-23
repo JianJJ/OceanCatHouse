@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
     <%-- jQuery放這裡 --%>
-    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>--%>
     <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
 
     <%-- Header的CSS、JS樣式放這裡    --%>
@@ -112,7 +112,7 @@
             y[s] = window.innerHeight * Math.random();
             d[s] = Math.random() * 3 + 1;
             size[s]=Math.floor( Math.random() * 3+1);
-            console.log(size[s]);
+
         }
 
         setInterval(() => {

@@ -128,11 +128,11 @@
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
             訂單管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='../backstage/product?pag=1'">商品管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理</button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-        <label class="list-group-item">員工管理</label>
+<%--        <label class="list-group-item">員工管理</label>--%>
     </ul>
 </div>
 <%--    中間主體--%>

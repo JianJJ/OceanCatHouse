@@ -61,11 +61,11 @@ public class BackStageController {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //讀取商品資訊 和分頁
-    @RequestMapping("/product/{pag}")
+    @RequestMapping("/product/{pag}/{state}")
     @ResponseBody
-    public List<ProductBean> product(@PathVariable("pag") Integer p) {
+    public List<ProductBean> product(@PathVariable("pag") Integer p,@PathVariable("state") String state) {
         System.out.println("*****讀取商品資訊 *****");
-        Page<ProductBean> page = productRepository.findAll(PageRequest.of(p - 1, 20));
+        Page<ProductBean> page = productRepository.findByProductstatus(state,PageRequest.of(p - 1, 20));
         List<ProductBean> result = page.getContent();
         return result;
     }
@@ -75,7 +75,7 @@ public class BackStageController {
     @ResponseBody
     public Integer page(@PathVariable("page") Integer p) {
         System.out.println("*****讀取最多頁數 *****");
-        Page<ProductBean> page = productRepository.findAll(PageRequest.of(p - 1, 20));
+        Page<ProductBean> page = productRepository.findByProductstatus("1",PageRequest.of(p - 1, 20));
         Integer result = page.getTotalPages();
         return result;
     }
