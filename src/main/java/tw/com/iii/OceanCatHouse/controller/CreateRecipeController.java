@@ -88,6 +88,9 @@ public class CreateRecipeController {
         recipeMainBean.setRecText((String)map.get("RecText"));
         recipeMainBean.setRecTime((String)map.get("RecTime"));
         recipeMainBean.setRecNum((String)map.get("RecNum"));
+        String cal = (String)map.get("RecCal") != ""?(String) map.get("RecCal"):"0";
+        recipeMainBean.setRecCal(Integer.parseInt(cal));
+        recipeMainBean.setRecTag((String) map.get("RecTag"));
         recipeMainBean.setRecCreated(recCreated);
         recipeMainBean.setUserId(user.getUserid());
 
@@ -228,15 +231,9 @@ public class CreateRecipeController {
     @ResponseBody
     public String delete(@PathVariable("recId") Integer recId,
                          HttpSession session){
-        Integer count = recipeMainDao.deleteAllByRecId(recId);
+//        Integer count = recipeMainDao.deleteAllByRecId(recId);
         RecipeMainBean main = (RecipeMainBean) session.getAttribute("main");
-        if(count ==1 ){
-            FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/mainpic/" + main.getRecPic()));
-            List<RecipeStepBean> recipeStepBeans = main.getRecipeStepBeans();
-            for(RecipeStepBean step :recipeStepBeans){
-                FileSystemUtils.deleteRecursively(new File("/Users/louisjian/大專/OceanCatHouse/src/main/resources/static/images/stepPic/" + step.getStepPic()));
-            }
-        }
+
         return "/recipe/userBack/home";
     }
 

@@ -39,13 +39,15 @@
         var name = '${sessionScope.user.username}';
         var phone = '${sessionScope.user.userphone}';
         var email = '${sessionScope.user.email}';
+        var ad = '${sessionScope.user.deliveryAddress}';
         changeNPE = function (){
             var newName = $('#floatingInput').val();
             var newPhone = $('#floatingTel').val();
             var newEmail = $('#floatingInputEmail').val();
-            if(name != newName || phone != newPhone || email != newEmail){
+            var newAd = $('#floatingInputAd').val();
+            if(name != newName || phone != newPhone || email != newEmail || ad != newAd){
                 $.ajax({
-                    url : "/recipe/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail,
+                    url : "/recipe/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail+"/"+newAd,
                     type : 'PUT',
                     data : "",
                     async : false,
@@ -86,7 +88,6 @@
 
             <h3>個人資料</h3>
             <hr>
-            <p>你的個人資料只用於海貓食屋相關事宜，例如：海貓食屋活動中獎的獎品寄送使用。</p>
             <form>
                   <h5>＊基本資料</h5>
                   
@@ -105,7 +106,10 @@
                       <input type="email" class="form-control  is-invalid" id="floatingInputEmail" placeholder="name@example.com" name="userEmail" value="${sessionScope.user.email}">
                       <label for="floatingInputEmail">Email</label>
                       <span id="emailMsg" hidden style="color: red">Email驗證尚未通過</span>
-  	
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="floatingInputAd" placeholder="送貨地址" name="userAddress" value="${sessionScope.user.deliveryAddress}">
+                        <label for="floatingInputAd">送貨地址</label>
                     </div>
                    	<input type="button" value="儲存更新" onclick="changeNPE()">
                 </form>

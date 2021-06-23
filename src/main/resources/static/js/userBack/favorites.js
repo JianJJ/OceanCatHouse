@@ -116,14 +116,14 @@ $(document).ready(function (){
                             `<div class="input-group mb-3 parent">`+
                                 `<input type="text" class="form-control inputCname" aria-label="Recipient's username" aria-describedby="button-addon2"`+
                                         `value="${data[i].favoriteCategoryName}" name="${data[i].favoritesCategoryId}" readonly id="nameC${i+1}">`+
-                                `<button class="btn btn-outline-secondary" type="button" id="saveC${i+1}" onclick="saveC(this)" hidden>`+
+                                `<button class="btn btn-outline-secondary iBtn" type="button" id="saveC${i+1}" onclick="saveC(this)" hidden>`+
                                     `<i class="bi bi-check-lg"></i>`+
                                 `</button>`+
-                                `<button class="btn btn-outline-secondary" type="button" id="openC${i+1}" onclick="openC(this)">`+
+                                `<button class="btn btn-outline-secondary iBtn" type="button" id="openC${i+1}" onclick="openC(this)">`+
                                     `<i class="bi bi-brush"></i>`+
                                 `</button>`+
-                                `<button class="btn btn-outline-secondary" type="button" id="deleteC${i+1}" onclick="deleteRow(this)">`+
-                                    `<i class="bi bi-x-lg"></i>`+
+                                `<button class="btn btn-outline-secondary iBtn" type="button" id="deleteC${i+1}" onclick="deleteRow(this)">`+
+                                    `<i class="bi bi-trash"></i>`+
                                 `</button>`+
                             `</div>`
                         );
@@ -192,7 +192,7 @@ $(document).ready(function (){
         $(sBtn).siblings('input').prop('readOnly', true);
         $(sBtn).prop('hidden', true);
         $(sBtn).next('button').prop('hidden', false);
-        var CName =  $(`#${id}`).val();
+        // var CName =  $(sBtn).siblings('input').val();
     }
 
     // 新增一行類別input

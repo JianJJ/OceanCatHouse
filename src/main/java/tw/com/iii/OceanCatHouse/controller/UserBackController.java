@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
-import tw.com.iii.OceanCatHouse.model.UserFavoritesBean;
 import tw.com.iii.OceanCatHouse.model.UserFavoritesCategoryBean;
 import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
 import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
@@ -18,7 +16,6 @@ import tw.com.iii.OceanCatHouse.repository.UserFavoritesRepository;
 import tw.com.iii.OceanCatHouse.repository.UserRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
 import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesCategoryService;
-import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesService;
 import tw.com.iii.OceanCatHouse.repository.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,10 +56,10 @@ public class UserBackController {
     // 到個人首頁
     @RequestMapping("/home")
     public String home(HttpSession session, HttpServletRequest request) {
-//        Optional<UserBean> byId = userDao.findById(21);
-//        UserBean user = byId.get();
-//        session.setAttribute("user", user);
-        UserBean user = (UserBean) session.getAttribute("user");
+        Optional<UserBean> byId = userDao.findById(21);
+        UserBean user = byId.get();
+        session.setAttribute("user", user);
+//        UserBean user = (UserBean) session.getAttribute("user");
         // 查看user自己的食譜數量
         Integer recCount = recipeMainDao.recCount(user.getUserid());
         List<RecipeMainBean> recipeMainList = recipeMainDao.findAllByUserid(user.getUserid());
@@ -76,7 +73,7 @@ public class UserBackController {
     @RequestMapping("/userLogout")
     public String userLogout(HttpSession session){
         session.removeAttribute("user");
-        return "/index";
+        return "index2";
     }
 
     // 到個人資料設定頁
@@ -135,11 +132,12 @@ public class UserBackController {
     }
 
     // 基本資料(姓名, 手機, 信箱)更改
-    @PutMapping("/changeNPE/{newName}/{newPhone}/{newEmail}")
+    @PutMapping("/changeNPE/{newName}/{newPhone}/{newEmail}/{newAd}")
     @ResponseBody
     public String changeNPE(@PathVariable("newName")String newName,
                             @PathVariable("newPhone")String newPhone,
                             @PathVariable("newEmail")String newEmail,
+                            @PathVariable("newAd")String newAd,
                             HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
         // 如果信箱有更改, 要重新寄驗證信, 狀態改為0
@@ -151,6 +149,7 @@ public class UserBackController {
         }
         user.setUsername(newName);
         user.setUserphone(newPhone);
+        user.setDeliveryAddress(newAd);
         UserBean update = userService.update(user);
         return update.getUsername()+"您好～資料已儲存成功";
     }

@@ -32,7 +32,7 @@
         <div class="input-group mb-3" id="add">
             <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"
                    placeholder="新增類別" required>
-            <button class="btn btn-outline-secondary" type="button" onclick="addRow(this)">
+            <button class="btn btn-outline-secondary iBtn" type="button" onclick="addRow(this)">
                 <i class="bi bi-plus-lg"></i>
             </button>
         </div>
@@ -56,7 +56,9 @@
             <hr>
             <div>
                 <h6>收藏分類</h6>
-                <button id="btnNewCategory" onclick="addCategory()"><span>+</span>新增分類</button>
+                <button id="btnNewCategory" class="iBtn" onclick="addCategory()">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
                 <button id="updateBtn" onclick="updateC()">編輯分類</button>
             </div>
             <ul id="FCategory">
@@ -76,7 +78,7 @@
                     <li class="col-lg-3 col-xs-6 recipe"><a
                             href="${pageContext.request.contextPath}/recipeDetails?id=${main.recId}">
                         <img src="${main.recPic}"  alt="${main.recTitle}">
-                        <h4 class='showLines'>"${main.recTitle}"</h4>
+                        <h4 class='showLines'>${main.recTitle}</h4>
                         <p class='showLines'>${main.recText}</p>
                     </a></li>
                 </c:forEach>

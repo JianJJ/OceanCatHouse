@@ -49,6 +49,8 @@ $(document).ready(function () {
                 "RecNum"   : $('#RecNum').val(),
                 "RecTime"  : $('#RecTime').val(),
                 "CategoryId" : $('#CategoryId').val(),
+                "RecTag" : $('#RecTag').val(),
+                "RecCal" : $('#RecCal').val(),
                 "StepTextArray" : stepText,
                 "foodsArrayList" : foods
             }
@@ -111,13 +113,14 @@ $(document).ready(function () {
                         <div class="col-md-1"><span style="font-size: 32px" id="step${i}">${i}</span></div>
                         <div class="col-md-8"></div>
                         <div class="col-md-1">
-                            <button type="button" onclick="createStep()">
-                                <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
+                            <button type="button" class="iBtn" onclick="createStep()">
+                                <i class="bi bi-plus-lg""></i>
                             </button>
                         </div>
                         <div class="col-md-1">
-                            <button type="button" onclick="delStep('divId${i}')" id="delbtn${i}">
-                                <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
+                            <button type="button" class="iBtn" onclick="delStep('divId${i}')" id="delbtn${i}">
+                                <i class="bi bi-trash""></i>
+                                 
                             </button>
                         </div>
                     </div>
@@ -157,42 +160,58 @@ $(document).ready(function () {
         }
         stepNum--;
     }
-
-    // 新增食材欄位, 刪除食材欄位
     var foodNum = 0;
     createFood = function () {
-        var i = foodNum + 1;
-        var food =
-            `<div class="row justify-content-between" style="margin-top: 2px" id="food${i}">
-            <div class="col-md-7">
-                <div class="input-group">
-                    <input type="text" class="form-control MName" placeholder="食材" 
-                            name="MaterialName" id="MaterialName${i}">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" class="form-control MNum" placeholder="份量"
-                            name="UnitNum" id="UnitNum${i}">
-                </div>
-            </div>
-            <div class="col-md-1">
-                <button type="button" onclick="delFood('food${i}')">
-                    <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
-                </button>
-            </div>
-        </div>`;
-        foodNum == 0?$('#foodStart').after(food):$(`#food${foodNum}`).after(food);
         foodNum++;
+        var foodRow =
+            `<div class="row justify-content-between MName" style="margin-top: 2px" id="food${foodNum}">
+                <div class="col-md-7">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="食材" 
+                                name="MaterialName" id="MaterialName${foodNum}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="份量"
+                                name="UnitNum" id="UnitNum${foodNum}">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="iBtn" onclick="delFood('food${foodNum}')" id="DFBtn${foodNum}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>`;
+        // 第一次 增加欄位的位置不同
+        foodNum == 1?$('#foodStart').after(foodRow):$(`#food${foodNum-1}`).after(foodRow);
+
     }
-    for (var i = 0; i < 2; i++) {
-        createFood();
-    }
+
+
+    // 刪除食材欄位
     delFood = function (delfood){
         if(foodNum == 1){
             return;
         }
         $(`#${delfood}`).remove();
+        // 取刪除之後的元素每一個欄位-1
+        var n = parseInt(delfood.slice(4));
+        console.log(n);
+        console.log(foodNum);
+        for (var i = (n + 1); i <= foodNum; i++) {
+            $(`#food${i}`).prop('id', `food${i - 1}`);
+            $(`#MaterialName${i}`).prop('id', `MaterialName${i -1}`);
+            $(`#UnitNum${i}`).prop('id', `UnitNum${i - 1}`);
+            $(`#DFBtn${i}`).attr('onclick', `delFood('food${i - 1}')`);
+            $(`#DFBtn${i}`).prop('id', `DFBtn${i - 1}`);
+            if($(`SPicName${i}`) != null){
+                $(`SPicName${i}`).prop('id', `SPicName${i-1}`);
+            }
+        }
         foodNum--;
+    }
+    for (var i = 0; i < 2; i++) {
+        createFood();
     }
 })

@@ -27,29 +27,8 @@ public class RecipeMainBean {
     private Integer RecLiked;
     private String RecCreated;
     private Integer RecViews;
+    private Integer RecStatus;
 
-
-    @Override
-    public String toString() {
-        return "RecipeMainBean{" +
-                "RecId=" + RecId +
-                ", CategoryId=" + CategoryId +
-                ", RecTitle='" + RecTitle + '\'' +
-                ", RecPic='" + RecPic + '\'' +
-                ", RecText='" + RecText + '\'' +
-                ", RecTime=" + RecTime +
-                ", RecNum=" + RecNum +
-                ", RecCal=" + RecCal +
-                ", RecTag='" + RecTag + '\'' +
-                ", UserId=" + UserId +
-                ", RecLiked=" + RecLiked +
-                ", RecCreated='" + RecCreated + '\'' +
-                ", RecViews=" + RecViews +
-//                ", recipeCategoryBean=" + recipeCategoryBean.getCategoryId() +
-                ", recipeMaterialBeans=" + recipeMaterialBeans +
-                ", recipeStepBeans=" + recipeStepBeans +
-                '}';
-    }
 
     public Integer getRecId() {
         return RecId;
@@ -155,6 +134,35 @@ public class RecipeMainBean {
         RecViews = recViews;
     }
 
+    @Override
+    public String toString() {
+        return "RecipeMainBean{" +
+                "RecId=" + RecId +
+                ", CategoryId=" + CategoryId +
+                ", RecTitle='" + RecTitle + '\'' +
+                ", RecPic='" + RecPic + '\'' +
+                ", RecText='" + RecText + '\'' +
+                ", RecTime='" + RecTime + '\'' +
+                ", RecNum='" + RecNum + '\'' +
+                ", RecCal=" + RecCal +
+                ", RecTag='" + RecTag + '\'' +
+                ", UserId=" + UserId +
+                ", RecLiked=" + RecLiked +
+                ", RecCreated='" + RecCreated + '\'' +
+                ", RecViews=" + RecViews +
+                ", RecStatus=" + RecStatus +
+                ", recipeMaterialBeans=" + recipeMaterialBeans +
+                ", recipeStepBeans=" + recipeStepBeans +
+                '}';
+    }
+
+    public Integer getRecStatus() {
+        return RecStatus;
+    }
+
+    public void setRecStatus(Integer recStatus) {
+        RecStatus = recStatus;
+    }
     //     配置 多對一 (Category表)
 //    @JsonIgnore
 //    @ManyToOne

@@ -31,6 +31,9 @@
             border: 1px solid #bcbebf;
             text-align: center;
         }
+        #pic{
+            margin: 4px;
+        }
 
         #RecTitle {
             border-color: #dc3545;
@@ -58,7 +61,7 @@
 <div class="container">
     <form action="${pageContext.request.contextPath}/createRecipe/add" method="get">
         <div class="row justify-content-around onTop">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="row">
                     <label for="CategoryName">選擇食譜的分類</label>
                     <select class="form-control inner" id="CategoryName" name="CategoryId">
@@ -70,7 +73,7 @@
                 <div class="row">
                     <label for="RecTitle">請輸入食譜名稱</label>
                     <div class="input-group inner">
-                        <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle">
+                        <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle" required>
                     </div>
                     <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
                     <div class="form-check smallInner">
@@ -85,9 +88,9 @@
                 </div>
             </div>
             <div class="col-md-3 showAD">
-                <h3>食譜名稱</h3>
-                <img src="${pageContext.request.contextPath}/images/homePic/wall06.jpg" width="200px" height="200px">
-                <p>食譜簡介</p>
+                <div class="row" id="pic"><img src="https://tokyo-kitchen.icook.network/uploads/recipe/cover/379611/c9be9889992d1b90.jpg"></div>
+                <div class="row"><h4>十六穀米蔬菜鹹粥</h4></div>
+                <div class="row">翻出冰箱的剩菜剩飯清一清，煮成鹹粥，想加什麼都可以～顏色繽紛又營養的一餐</div>
             </div>
         </div>
     </form>

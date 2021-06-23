@@ -10,7 +10,7 @@ public class PublicController {
 			path = {"/", "/index"}
 	)
 	public String index() {
-		return "/index";
+		return "index2";
 	}
 	
 	@GetMapping(

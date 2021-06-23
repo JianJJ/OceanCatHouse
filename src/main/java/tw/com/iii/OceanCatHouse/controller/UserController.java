@@ -66,7 +66,7 @@ public class UserController {
 
         bean.setEmail("wiz710329@gmail.com");
         zTools.mail(bean.getEmail(), text);
-        return "/index";
+        return "index2";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ public class UserController {
                     bean = userRepository.findByemail(bean.getEmail());
                     session.setAttribute("state", bean.getState());
                     session.setAttribute("user", bean);
-                    return "/index";
+                    return "index2";
                 } else {
                     System.out.println("密碼錯誤");
                     errors.put("userpassword", "密碼錯誤");
@@ -195,9 +195,9 @@ public class UserController {
 
         // 成功後去向
         if (action.equals("login")) {
-            return "/index";
+            return "index2";
         } else {
-            return "/index";
+            return "index2";
         }
 
     }

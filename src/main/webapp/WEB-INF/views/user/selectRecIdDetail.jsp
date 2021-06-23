@@ -67,6 +67,13 @@
             background-color: #ffffff;
             padding: 20px;
         }
+        i{
+            font-size: 1.3rem;
+        }
+        .iBtn{
+            border-width: 0px;
+            background-color: white;
+        }
     </style>
 
 </head>
@@ -110,7 +117,24 @@
                     <textarea class="form-control" id="RecText" rows="3">${main.recText}</textarea>
                 </div>
             </div>
-            <%--                    --%>
+            <%--                標籤 RecTag --%>
+            <div class="row">
+                <div class="form-group">
+                    <label for="RecTag">設定關鍵字標籤</label>
+                    <textarea class="form-control" id="RecTag" rows="3" placeholder="雞蛋、玉米、海苔...">${main.recTag}</textarea>
+                </div>
+            </div>
+            <%--                熱量 RecCal--%>
+            <div class="row justify-content-start">
+                <label for="RecCal">熱量</label>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="800" required oninput="value=value.replace(/[^\d]/g,'')"
+                               id="RecCal" value="${main.recCal}">
+                    </div>
+                </div>
+                <div class="col-md-6">大卡（千卡，kcal）</div>
+            </div>
             <div class="row justify-content-between">
                 <%--                 份量 RecNum--%>
                 <div class="form-group col-md-6">
@@ -220,7 +244,7 @@
             </c:forEach>
         </div>
         <%--            增刪修--%>
-        <div class="col-md-1 sticky-top">
+        <div class="col-md-1">
             <div class="row justify-content-start">
                 <button id="insert" onclick="doUpload()" type="button" class="btn btn-outline-danger">發布</button>
             </div>

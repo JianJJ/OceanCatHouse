@@ -47,7 +47,7 @@ $(document).ready(function () {
         // 步驟說明
         var stepText = [];
         for(var i=0;i<$('.fileStep').length;i++){
-            if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==null){
+            if ($(`#file-step${i+1}`)[0].files[0]==null &&  $(`#stepText${i+1}`).val()==""){
                 continue;
             }
             formData.append(`file${i}`, $(`#file-step${i+1}`)[0].files[0]);
@@ -81,6 +81,8 @@ $(document).ready(function () {
             "RecNum"   : $('#RecNum').val(),
             "RecTime"  : $('#RecTime').val(),
             "CategoryId" : $('#CategoryId').val(),
+            "RecTag" : $('#RecTag').val(),
+            "RecCal" : $('#RecCal').val(),
             "StepTextArray" : stepText,
             "foodsArrayList" : foods,
             "SPicNameArray" : SPicNameArray
@@ -140,13 +142,13 @@ $(document).ready(function () {
                         <div class="col-md-1"><span style="font-size: 32px" id="step${i}">${i}</span></div>
                         <div class="col-md-8"></div>
                         <div class="col-md-1">
-                            <button type="button" onclick="createStep()">
-                                <i class="bi bi-plus-lg" style="font-size: 1.5rem; color: #6c6c71"></i>
+                            <button type="button" class="iBtn" onclick="createStep()">
+                                <i class="bi bi-plus-lg"></i>
                             </button>
                         </div>
                         <div class="col-md-1">
-                            <button type="button" onclick="delStep('divId${i}')" id="delbtn${i}">
-                                <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
+                            <button type="button" class="iBtn" onclick="delStep('divId${i}')" id="delbtn${i}">
+                                <i class="bi bi-trash"></i>
                             </button>
                         </div>
                     </div>
@@ -206,8 +208,8 @@ $(document).ready(function () {
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <button type="button" onclick="delFood('food${foodNum}')" id="DFBtn${foodNum}">
-                        <i class="bi bi-trash" style="font-size: 1.5rem; color: #6c6c71"></i>
+                    <button type="button" class="iBtn" onclick="delFood('food${foodNum}')" id="DFBtn${foodNum}">
+                        <i class="bi bi-trash"></i>
                     </button>
                 </div>
             </div>`;
@@ -216,10 +218,6 @@ $(document).ready(function () {
 
     }
 
-    // 會先依照載入的食譜欄位數量, 設定目前欄位數量
-    for (var i = 0; i < $('.MName').length; i++) {
-        foodNum++;
-    }
 
     // 刪除食材欄位
     delFood = function (delfood){
@@ -242,5 +240,9 @@ $(document).ready(function () {
             }
         }
         foodNum--;
+    }
+    // 會先依照載入的食譜欄位數量, 設定目前欄位數量
+    for (var i = 0; i < $('.MName').length; i++) {
+        foodNum++;
     }
 })
