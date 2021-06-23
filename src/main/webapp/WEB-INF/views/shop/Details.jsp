@@ -12,51 +12,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
-    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
-
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">--%>
+    <link rel="stylesheet" href="../css/Details.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav_forShop.css">
 
     <%-- footer的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
     <link rel="stylesheet" href="../css/demo.css">
-    <link rel="stylesheet" href="../css/Details.css">
+
     <script type="text/javascript">
         var id = "${id}";
         console.log("id : " + id);
     </script>
+    <style>
+        footer {
+            margin:-42px;
+            z-index: 10;
+        }
+        .cenBody{
+            position: relative;
+            top: 30px;
+        }
+    </style>
 
     <title>✿海貓食屋✿</title>
 </head>
 
 <body>
 <!-- 拼接header -->
-<jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
+<jsp:include page="../RecipePages/top_nav_forShop.jsp"></jsp:include>
 <!-- 動態背景 -->
 <canvas id="canvas"></canvas>
 <!-- <%--購物車插入--%> -->
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 <!-- 分類條 -->
 <div class="container-fluid">
-    <div class="row menu">
-        <div id="home" class="col-lg-1">
-            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>
-        </div>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=1">五穀</a>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>
-        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>
-    </div>
+<%--    <div class="row menu">--%>
+<%--        <div id="home" class="col-lg-1">--%>
+<%--            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>--%>
+<%--        </div>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=1">五穀</a>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>--%>
+<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>--%>
+<%--    </div>--%>
 
 
     <!-- 中間部分 -->
@@ -121,7 +132,7 @@
                     <div class="sellingprice">售價 ${sellingprice}</div>
                     <div>
 
-                        <form action="/recipe/cat/${id}">
+                        <form action="${pageContext.request.contextPath}/cat/${id}">
                             <button class="leftButton" type="button" onclick="leftButton()">-</button>
                             <input type="text" name="num" value="1" class="num">
                             <button class="rightButton" type="button" onclick="rightButton()">+</button>
@@ -139,7 +150,7 @@
                 <p>推薦食譜</p>
                 <script>
                     $.ajax({
-                        url: "/recipe/recommend/${id}",
+                        url: "${pageContext.request.contextPath}/recommend/${id}",
                         type: "get",
                         success: function (json) {
                             for (var A of json) {
@@ -163,7 +174,7 @@
 
                 <script>
                     $.ajax({
-                        url: "/recipe/category/" + id,
+                        url: "${pageContext.request.contextPath}/category/" + id,
                         type: "get",
                         success: function (json) {
                             var arr = Object.keys(json);
@@ -175,7 +186,7 @@
                             }
 
                             for (var i = 0; i < a; i++)
-                                $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="/recipe/Details/' + json[i].productid + '"><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
+                                $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '"><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
                         },
                         error: function (json) {
                             console.log("errr");
@@ -205,7 +216,7 @@
 <script>
     // 商品資料
     $.ajax({
-        url: "/recipe/pic/" + id,
+        url: "${pageContext.request.contextPath}/pic/" + id,
         type: "get",
         async: false,
         success: function (pic) {

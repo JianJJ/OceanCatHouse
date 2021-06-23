@@ -5,7 +5,7 @@
 
  <head>
      <meta charset="UTF-8">
- 	 <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+<%-- 	 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>--%>
  </head>
 
  <body>
@@ -30,7 +30,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="navLink navColor" href="/recipe/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
+                        <a class="navLink navColor" href="${pageContext.request.contextPath}/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
                     </li>
                 </ul>
 

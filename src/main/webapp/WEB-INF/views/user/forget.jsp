@@ -13,23 +13,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
-    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
 
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <script src="/recipe/js/recipeDetails.js"></script>
+    <script src="${pageContext.request.contextPath}/js/recipeDetails.js"></script>
 
     <meta charset="UTF-8">
     <%--    google--%>
@@ -37,8 +37,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeXNhobAAAAALNu0-Dr6ALnwTk8WLYsEsS8NNam"async defer></script> -->
     <script src="https://www.google.com/recaptcha/enterprise.js"async defer></script>
-    <link rel="stylesheet" href="../css/demo.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
     <title>✿海貓食屋✿</title> 
 </head>
 
@@ -72,9 +72,9 @@
             <div class="grid-row">
                 <div class="loginTitle">✿海貓食屋✿</div>
                 <p>寄發密碼重設驗證信</p>
-                <button class="loginReturn" onclick=window.location.href="/recipe">X</button>
+                <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button>
                 <p>__________________________________________________</p>
-                <form action="/recipe/forget/controller">
+                <form action="/OceanCatHouse/forget/controller">
                     <input class="formCSS" type="email" placeholder="Email" name="email" value="${email}"><br>
                     <span class="error">${errors.email}</span><br>
                                     <div class="g-recaptcha"
@@ -84,7 +84,7 @@
                     <br><input class="formSubmit" type="submit"><br>
                 </form>
 
-                <a href="/recipe/views/login">  返回登入</a>
+                <a href="/OceanCatHouse/views/login">  返回登入</a>
             </div>
         </div>
 

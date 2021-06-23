@@ -12,22 +12,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
 
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav_forShop.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav_forShop.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="../css/ShoppingMall.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ShoppingMall.css">
     <title>✿海貓食屋✿</title>
 
 </head>
@@ -60,9 +60,9 @@
 
                 if ('${param.searchString}'!= ""){
                     console.log("param.searchString   null");
-                    var url ="/recipe/backstage/selectproduct/${param.searchString}";
+                    var url ="${pageContext.request.contextPath}/backstage/selectproduct/${param.searchString}";
                 }else{
-                    var url ="/recipe/shopping/${param.categoryid}/${param.pag}";
+                    var url ="${pageContext.request.contextPath}/shopping/${param.categoryid}/${param.pag}";
                 }
 
 
@@ -81,7 +81,7 @@
                         $(".main").append('<div class="row AAA' + x + '">');
                         for (var y = 1; y < 5; y++) {
                             if(json[i]==null)break;
-                            $(".AAA" + x).append('<div class="col-sm-6 col-md-6 col-lg-3 Product"><a href="/recipe/Details/' + json[i].productid + '"><figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
+                            $(".AAA" + x).append('<div class="col-sm-6 col-md-6 col-lg-3 Product"><a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '"><figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
                             i++;
                         }
                         $(".main").append('</div>');
@@ -109,7 +109,7 @@
                 $(".per").remove();
             }
             $.ajax({
-                url: "/recipe/pag/${param.categoryid}",
+                url: "${pageContext.request.contextPath}/pag/${param.categoryid}",
                 type: "get",
                 success: function (max) {
 

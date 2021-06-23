@@ -51,14 +51,14 @@
 <div class=" pic">
     <button class="catReturn">X</button>
 
-    <form class="row picmain" action="/recipe/backstage/addPic" method="post" enctype='multipart/form-data'>
+    <form class="row picmain" action="${pageContext.request.contextPath}/backstage/addPic" method="post" enctype='multipart/form-data'>
         <div style="width: 350px;height: 280px; ">
-            <img src="/recipe/images/homePic/uploadstep.png" id="img-main1" class="img-thumbnail"/>
+            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main1" class="img-thumbnail"/>
             <input type="file" accept="image/*" id="file-main1" name="file"
                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
         </div>
         <div style="width: 350px;height: 280px; ">
-            <img src="/recipe/images/homePic/uploadstep.png" id="img-main2" class="img-thumbnail"/>
+            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main2" class="img-thumbnail"/>
             <input type="file" accept="image/*" id="file-main2" name="file"
                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
         </div>
@@ -89,7 +89,7 @@
 </div>
 <div class="cat">
     <button class="catReturn">X</button>
-    <form action="/recipe/backstage/updata/" class="form" method="post">
+    <form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">
 
         <!-- 這裡有圖 -->
         <div class="form-group"><label id="productid">商品ID : '+A.productid+'</label></div>
@@ -162,8 +162,8 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1&state=1'">訂單管理</button>
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/product?pag=1'">商品管理
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">訂單管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
         <button class="list-group-item">會員管理</button>
         <button class="list-group-item">員工管理</button>
@@ -177,7 +177,7 @@
             <div class="row ">
                 <div class="col-lg-3 btn-grou ccc">
                     <a href="#" class="btn btn-primary active" aria-current="page" id="addPoduct">新增商品</a>
-                    <a href="/recipe/backstage/product?pag=1" class="btn btn-primary active" aria-current="page" id="addPoduct">一般商品</a>
+                    <a href="${pageContext.request.contextPath}/backstage/product?pag=1" class="btn btn-primary active" aria-current="page" id="Poduct">一般商品</a>
                     <a href="#" class=" state btn btn-primary ">下架商品</a>
                 </div>
 
@@ -201,7 +201,7 @@
                 <table class="table table-striped">
                     <tr>
                         <td>id</td>
-                        <td>modela</td>
+                        <td>model</td>
                         <td>名稱</td>
                         <td>進價</td>
                         <td>售價</td>
@@ -230,7 +230,7 @@
     </div>
 </div>
 <script>
-
+    var pid ;//紀錄id 刪除圖片用
     var p = '${param.pag}';
     if (p == "") p = 1;
 
@@ -242,15 +242,15 @@
 
         // 分頁管理
         $.ajax({
-            url: "/recipe/backstage/product/data/" + p,
+            url: "${pageContext.request.contextPath}/backstage/product/data/" + p,
             type: "get",
             success: function (max) {
                 for (var i = 1; i <= max; i++) {
 
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=' + i + '">' + i + '</a></li>');
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=' + i + '">' + i + '</a></li>');
                 }
                 if (max != '${param.pag}')
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="/recipe/backstage/product?pag=${param.pag==null?2:param.pag+1}"' +
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=${param.pag==null?2:param.pag+1}"' +
                         'aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>');
             },
             error: function (pag) {
@@ -262,7 +262,7 @@
     <%--    商品管理--%>
     // 列印表單
     $.ajax({
-        url: "/recipe/backstage/product/" + p,
+        url: "${pageContext.request.contextPath}/backstage/product/" + p,
         type: "post",
         async: false,
         success: doSuccess,
@@ -294,7 +294,7 @@
     $(".state").click(function () {
         console.log("AAAAAAAAAAAAAAAA");
         $.ajax({
-            url: "/recipe/backstage/product/" + p,
+            url: "${pageContext.request.contextPath}/backstage/product/" + p,
             type: "post",
             // async: false,
             success: function (json) {
@@ -325,13 +325,13 @@
         $(".cat").css("visibility", "visible");
 
         $.ajax({
-            url: "/recipe/product/" + id,
+            url: "${pageContext.request.contextPath}/product/" + id,
             type: "get",
             contentType: "application/json",
             dataType: "json",
             success: function (A) {
                 $(".form").remove();
-                $(".cat").append('<form action="/recipe/backstage/updata/" class="form" method="post">');
+                $(".cat").append('<form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">');
 
                 $(".form").prepend(
                     '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
@@ -365,11 +365,6 @@
 
                 );
 
-
-
-
-
-
                 $("#productid").text("商品ID : " + A.productid);
                 $("#productname").val(A.productname);
                 $("#productmodel").val(A.productmodel);
@@ -383,23 +378,23 @@
                 $("#productstatus").val(A.productstatus);
                 $("#createdon").text("創建日期 : " + A.createdon);
                 $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
-                $(".form").attr("action", "/recipe/backstage/updata/" + A.productid);
+                $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);
             },
             error: doError
         });
 
 
     }
-
+///////////////////////////////////////////////////
     //圖片按鈕
     function addPic(Productid) {
         $(".pic").css("visibility", "visible");
         $(".picmain").empty();
         console.log("Productid : " + Productid);
-        $(".picmain").attr("action", "/recipe/backstage/addPic/" + Productid);
+        $(".picmain").attr("action", "${pageContext.request.contextPath}/backstage/addPic/" + Productid);
         // 去讀取有多少圖片
         $.ajax({
-            url: "/recipe/backstage/selectPic/" + Productid,
+            url: "${pageContext.request.contextPath}/backstage/selectPic/" + Productid,
             type: "get",
             contentType: "application/json",
             dataType: "json",
@@ -410,7 +405,7 @@
                     i++;
                     console.log(A.productpictureid);
 
-                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + A.productpictureid + '"><img style="width: 350px;height: 280px; " src="/recipe/images/shop/' + A.producturl + '.jpg" id="img' + A.productpictureid + '" class="img-thumbnail"/>' +
+                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + A.productpictureid + '"><img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/shop/' + A.producturl + '.jpg" id="img' + A.productpictureid + '" class="img-thumbnail"/>' +
                         '<input type="file" accept="image/*" id="file' + A.productpictureid + '" name="nofile' + A.productpictureid + '" onchange="upload(`' + A.productpictureid + '`);" class="fileInput col-lg-3" value=""/>' +
                         '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + A.productpictureid + ')">刪除</button>' +
                         '</div>');
@@ -419,11 +414,12 @@
                 // 新圖
                 i++;
                 $(".picmain").append(' <div style="width: 350px;height: 340px;" class="col-lg-6 d' + i + '">' +
-                    '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
+                    '<img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
                     '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
                     '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + i + ')">刪除</button>' +
                     '</div>');
                 $(".picmain").append('<button type="submit"  class="btn btn-primary pciSubmit">提交</button>');
+                pid=Productid;
             },
             error: doError
         });
@@ -454,7 +450,7 @@
         i++;
         $(".pciSubmit").remove();
         $(".picmain").append(' <div style="width: 350px;height: 340px;" class="d' + i + '">' +
-            '<img style="width: 350px;height: 280px; " src="/recipe/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
+            '<img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
             '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
             '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delNewPic(' + i + ')">刪除</button>' +
             '</div>');
@@ -462,13 +458,12 @@
     };
     //刪除圖片
     delPic = function (Productid, productpictureid) {
-
         var result = confirm("確定刪除？");
         if (result) {
             console.log("點了確定");
             $(".d" + productpictureid).remove();
             $.ajax({
-                url: "/recipe/backstage/delPic/" + Productid + "/" + productpictureid,
+                url: "${pageContext.request.contextPath}/backstage/delPic/" + Productid + "/" + productpictureid,
                 type: "get",
                 contentType: "application/json",
                 dataType: "json",
@@ -482,6 +477,14 @@
         }
     }
 
+    delNewPic = function ( productpictureid) {
+        var result = confirm("確定刪除？");
+        $(".d" + productpictureid).remove();
+    }
+
+
+
+
 
     $(document).ready(function () {
 
@@ -492,8 +495,8 @@
             $(".hazy").css("visibility", "visible");
             $(".cat").css("visibility", "visible");
             $(".form").remove();
-            $(".cat").append('<form action="/recipe/backstage/updata/" class="form" method="post">');
-            // <form action="/recipe/backstage/updata/" class="form" method="post">
+            $(".cat").append('<form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">');
+            // <form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">
             $(".form").prepend(
                 '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
                 '<div class="form-group"><label for="productname">名稱</label>' +
@@ -524,7 +527,7 @@
                 '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
                 '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
             );
-            $(".form").attr("action", "/recipe/backstage/updata/" + A.productid);
+            $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);
 
         })
         // 關閉按紐
@@ -580,7 +583,7 @@
         console.log("#buttonaddon2" + $("#selectProduct").val());
 
         $.ajax({
-            url: "/recipe/backstage/selectproduct/" + $("#selectProduct").val(),
+            url: "${pageContext.request.contextPath}/backstage/selectproduct/" + $("#selectProduct").val(),
             type: "post",
             async: false,
             success: doSuc,
@@ -599,7 +602,7 @@
                     '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
                     '<td class="col-lg-1 ">' + A.stocks + '</td>' +
                     '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
-                    '<td class="col-lg-1 "> 圖片 </td>' +
+                    '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
                     '</tr>');
             }
         }

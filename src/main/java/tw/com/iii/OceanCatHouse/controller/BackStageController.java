@@ -177,7 +177,7 @@ public class BackStageController {
 
         for (OrdersBean bean : lis) {
             if (state == bean.getOrderStatusId()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH E");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
                 String CreateOn = sdf.format(bean.getOrderCreateOn());
                 Map<String, String> map = new HashMap<>();
                 map.put("orderId", bean.getOrderId() + "");

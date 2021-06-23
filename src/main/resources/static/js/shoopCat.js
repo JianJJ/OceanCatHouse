@@ -4,9 +4,8 @@ var c = [];//合計
 var sell = [];//售價
 
 //購物車資料
-
 $.ajax({
-	url: "/recipe/catData",
+	url: "/OceanCatHouse/catData",
 	type: "get",
 	async: false,
 	// dataType: "json",
@@ -25,7 +24,7 @@ $.ajax({
 
 			//用id找資料
 			$.ajax({
-				url: "/recipe/product/" + A,
+				url: "/OceanCatHouse/product/" + A,
 				type: "get",
 				async: false,
 				success: function(product) {
@@ -85,7 +84,7 @@ function addCat(A) {
 	var AAA = JSON.stringify(CatProduct);
 
 	$.ajax({
-		url: "/recipe/addCat/" + A,
+		url: "/OceanCatHouse/addCat/" + A,
 		type: "post",
 		contentType: "application/json",
 		dataType: "json",
@@ -125,7 +124,7 @@ function cutCat(A) {
 	} else {
 		var AAA = JSON.stringify(CatProduct);
 		$.ajax({
-			url: "/recipe/cutCat/" + A,
+			url: "/OceanCatHouse/cutCat/" + A,
 			type: "post",
 			contentType: "application/json",
 			dataType: "json",
@@ -160,7 +159,7 @@ function cutCat(A) {
 function delCat(id) {
 	var AAA = JSON.stringify(CatProduct);
 	$.ajax({
-		url: "/recipe/delCat/"+id ,
+		url: "/OceanCatHouse/delCat/"+id ,
 		type: "post",
 		contentType: "application/json",
 		dataType: "json",
@@ -179,7 +178,7 @@ function delCat(id) {
 			$(".PPP").text("購物車刪除   總價: $" + m);
 
 			if (key.length == 0)
-				window.location.assign("/recipe/Details/"+id);
+				window.location.assign("${pageContext.request.contextPath}/Details/"+id);
 			var key = Object.keys(json);
 			if(key.length == 0){
 				$("#f1").text("");
@@ -222,7 +221,7 @@ $(".PPP").text("總價: $" + m);
 
 $(".catSubmit").click(function() {
 	console.log("總價 " + m);
-	window.location.href = "/recipe/toAddress";
-	// window.location.assign("/recipe/Details/${id}");
+	window.location.href = "${pageContext.request.contextPath}/toAddress";
+	// window.location.assign("${pageContext.request.contextPath}/Details/${id}");
 })
 

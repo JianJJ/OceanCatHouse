@@ -139,7 +139,7 @@
     <span class="address">地址</span><br>
     <span class="name">名稱</span>
     <p>小記:1000</p><br>
-    <form action="/recipe/backstage/state" class="form" method="post">
+    <form action="${pageContext.request.contextPath}/backstage/state" class="form" method="post">
         <select class="form-select" aria-label="Default select example" id="orderStatus" name="orderStatus">
             <option value="1">1 新訂單</option>
             <option value="2">2 包裝完成</option>
@@ -159,10 +159,10 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='/recipe/backstage/order?pag=1&state=1'">
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
             訂單管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='../backstage/product?pag=1'">商品管理
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
         <label class="list-group-item">會員管理</label>
         <label class="list-group-item">員工管理</label>
@@ -200,16 +200,18 @@
                 </table>
             </div>
 
-            <div class="row"> 底層</div>
+            <div class="row">
+
+<%--                底層--%>
+            </div>
         </div>
     </div>
 </div>
 
 
 <script>
-    console.log("/recipe/backstage/selectorder?state=${param.state}");
     $.ajax({
-        url: "/recipe/backstage/selectorder?state=${param.state}",
+        url: "${pageContext.request.contextPath}/backstage/selectorder?state=${param.state}",
         type: "post",
         async: false,
         success: doSuccess,
@@ -241,12 +243,12 @@
             }
             $(".orderTable").append('<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
                 '<td class="col-lg-1">' + A.orderId + '</td>' +
-                '<td class="col-lg-1 ">' + A.userName + '</td>' +
+                '<td class="col-lg-1 ">' + A.userName + '('+A.userId+')</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
                 '<td class="col-lg-1 ">' + state + '</td>' +
                 '<td class="col-lg-1 ">細節</td>' +
                 '</tr>');
-            console.log(A.address);
+
 
         }
     }
@@ -258,15 +260,13 @@
     // 訂單細節
     function Detailed(id, address, name) {
         $(".detailTTT").remove();
-        console.log(id);
         $(".hazy").css("visibility", "visible");
         $(".cat").css("visibility", "visible");
         $.ajax({
-            url: "/recipe/backstage/orderDetail/" + id,
+            url: "${pageContext.request.contextPath}/backstage/orderDetail/" + id,
             type: "get",
             success: function (J) {
-                console.log(J);
-                var sell = 0;
+                               var sell = 0;
                 for (var A of J) {
                     sell += A.Unit * A.SellingPrice;
                     $(".detailTable").append('<tr class="detailTTT" ">' +
@@ -278,7 +278,7 @@
                     $("p").text("總價 : " + sell);
                     $(".address").text("地址 : " + address);
                     $(".name").text("顧客 : " + name);
-                    $(".form").attr("action", "/recipe/backstage/state/" + A.orderId);
+                    $(".form").attr("action", "${pageContext.request.contextPath}/backstage/state/" + A.orderId);
                 }
             },
             error: doError
@@ -297,8 +297,7 @@
     });
 
     function sta(state) {
-        console.log("ddddddddddd" + state);
-        window.location.href = "/recipe/backstage/order?pag=1&state=" + state;
+        window.location.href = "${pageContext.request.contextPath}/backstage/order?pag=1&state=" + state;
     }
 
 </script>

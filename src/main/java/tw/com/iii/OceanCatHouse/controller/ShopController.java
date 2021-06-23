@@ -56,6 +56,7 @@ public class ShopController {
     @RequestMapping("/cat/{id}")
     public String cat(@PathVariable("id") Integer id, @RequestParam("num") Integer num, HttpSession session,
                       Model model) {
+        System.out.println("*****cat*****" + id);
         Optional<ProductBean> op = productRepository.findById(id);
         ProductBean bean = op.get();
         model.addAttribute("productname", bean.getProductname());
@@ -63,7 +64,7 @@ public class ShopController {
         model.addAttribute("sellingprice", bean.getSellingprice());
         model.addAttribute("productspecifications", bean.getProductspecifications());
         model.addAttribute("id", id);
-        System.out.println("*****cat*****" + id);
+
         Map<String, Integer> cat = new HashMap<>();
         // 取資料
         Map<String, Integer> icat = (Map<String, Integer>) session.getAttribute("cat");
@@ -74,7 +75,7 @@ public class ShopController {
         try {
             // 判斷有沒有當筆資料
             SSS = (Integer) icat.get(Integer.toString(id));
-            System.out.println("SSS" + SSS);
+//            System.out.println("SSS" + SSS);
             num = SSS + num;
         } catch (Exception e) {
 //			沒資料 把數量加入

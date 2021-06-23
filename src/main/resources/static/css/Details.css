@@ -78,7 +78,7 @@ footer {
 
 .cenBody  .leftImg .banner .list {
     position: relative;
-    width: 2600px;
+    width: 3600px;
 }
 .cenBody  .leftImg .banner .list .rsimg {
     height: 500px;
@@ -126,10 +126,6 @@ footer {
 
 }
 
-
-
-
-
 /* 同類商品 */
 .cenBody .SimilarProducts figure a img {
     width: 200px;
@@ -152,8 +148,6 @@ canvas {
     position: fixed;
     z-index: -1;
 }
-
-
 /* 左邊浮動區塊 */
 .barNav li{
    background-color: white;
