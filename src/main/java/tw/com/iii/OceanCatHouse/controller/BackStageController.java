@@ -286,22 +286,57 @@ public class BackStageController {
         return "redirect:/backstage/order?pag=1&state=1";
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//修改商品
-@RequestMapping("/user")
-public String user( Model model) {
+//會員資料
+@RequestMapping("/user/{userId}")
+public String user( Model model,@PathVariable("userId") Integer userId) {
     System.out.println("*****會員資料 *****");
-       List<UserBean> user = userRepository.findAll();
+    List<UserBean> user = new ArrayList<>();
+    if(userId == 0) {
+         user = userRepository.findAll();
+    }else{
+        Optional<UserBean> op = userRepository.findById(userId);
+        System.out.println(op);
+        UserBean ub = new UserBean();
+        if(op.isPresent()){
+             ub = op.get();
+            user.add(ub);
+        }else{
+            ub.setUserid(userId);
+            ub.setUsername("未找到");
+            ub.setUserphone("未找到");
+            user.add(ub);
+        }
+
+    }
         model.addAttribute("user",user);
     return "/views/backstage/user";
 }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //讀取會員定單
     @RequestMapping("/userOrder/{userId}")
-    public List<OrdersBean> state(@PathVariable("userId") Integer userId) {
-        System.out.println("*****讀取會員定單*****");
-        List<OrdersBean> op = null;
+    @ResponseBody
+    public List<Map<String, String>> userOrder(@PathVariable("userId") Integer userId)  {
+        System.out.println("*****讀取會員定單*****"+userId);
+        List<OrdersBean> lis = ordersRepository.findByUserid(userId);
+        List<Map<String, String>> result = new ArrayList<>();
+        for (OrdersBean bean : lis) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
+                String CreateOn = sdf.format(bean.getOrdercreateon());
+                Map<String, String> map = new HashMap<>();
+                map.put("orderId", bean.getOrderid() + "");
+                map.put("orderCreateOn", CreateOn);
+                map.put("userId", bean.getUserid() + "");
+                Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserid());
+                UserBean userBean = optionalUserBean.get();
+                map.put("userName", userBean.getUsername());
+                map.put("orderStatusId", bean.getOrderstatusid() + "");
+                map.put("address", bean.getAddress());
+                result.add(map);
 
-        return op;
+        }
+
+        return result;
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
