@@ -9,11 +9,22 @@ import java.util.Date;
 public class OrdersBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer OrderId;
-    private Integer UserId;
-    private Date OrderCreateOn;
-    private Integer OrderStatusId;
+    private Integer orderid;
+    private Integer userid;
+    private Date ordercreateon;
+    private Integer orderstatusid;
     private  String address;
+
+    @Override
+    public String toString() {
+        return "OrdersBean{" +
+                "orderid=" + orderid +
+                ", userid=" + userid +
+                ", ordercreateon=" + ordercreateon +
+                ", orderstatusid=" + orderstatusid +
+                ", address='" + address + '\'' +
+                '}';
+    }
 
     public String getAddress() {
         return address;
@@ -23,47 +34,35 @@ public class OrdersBean {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "ordersBean{" +
-                "OrderId=" + OrderId +
-                ", UserId=" + UserId +
-                ", OrderCreateOn=" + OrderCreateOn +
-                ", OrderStatusId=" + OrderStatusId +
-                '}';
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public Integer getOrderId() {
-        return OrderId;
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 
-    public void setOrderId(Integer orderId) {
-        OrderId = orderId;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public Integer getUserId() {
-        return UserId;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public void setUserId(Integer userId) {
-        UserId = userId;
+    public Date getOrdercreateon() {
+        return ordercreateon;
     }
 
-    public Date getOrderCreateOn() {
-        return OrderCreateOn;
+    public void setOrdercreateon(Date ordercreateon) {
+        this.ordercreateon = ordercreateon;
     }
 
-    public void setOrderCreateOn(Date orderCreateOn) {
-        OrderCreateOn = orderCreateOn;
+    public Integer getOrderstatusid() {
+        return orderstatusid;
     }
 
-    public Integer getOrderStatusId() {
-        return OrderStatusId;
+    public void setOrderstatusid(Integer orderstatusid) {
+        this.orderstatusid = orderstatusid;
     }
-
-    public void setOrderStatusId(Integer orderStatusId) {
-        OrderStatusId = orderStatusId;
-    }
-
-
 }

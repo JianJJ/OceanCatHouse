@@ -176,17 +176,17 @@ public class BackStageController {
         List<Map<String, String>> result = new ArrayList<>();
 
         for (OrdersBean bean : lis) {
-            if (state == bean.getOrderStatusId()) {
+            if (state == bean.getOrderstatusid()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
-                String CreateOn = sdf.format(bean.getOrderCreateOn());
+                String CreateOn = sdf.format(bean.getOrdercreateon());
                 Map<String, String> map = new HashMap<>();
-                map.put("orderId", bean.getOrderId() + "");
+                map.put("orderId", bean.getOrderid() + "");
                 map.put("orderCreateOn", CreateOn);
-                map.put("userId", bean.getUserId() + "");
-                Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserId());
+                map.put("userId", bean.getUserid() + "");
+                Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserid());
                 UserBean userBean = optionalUserBean.get();
                 map.put("userName", userBean.getUsername());
-                map.put("orderStatusId", bean.getOrderStatusId() + "");
+                map.put("orderStatusId", bean.getOrderstatusid() + "");
                 map.put("address", bean.getAddress());
                 result.add(map);
             }
@@ -204,8 +204,8 @@ public class BackStageController {
         List<Map<String, String>> result = new ArrayList<>();
         for (OrderDetailBean odb : list) {
             Map<String, String> map = new HashMap<>();
-            map.put("orderId", odb.getOrderId() + "");
-            Optional<ProductBean> op = productRepository.findById(odb.getProductId());
+            map.put("orderId", odb.getOrderid() + "");
+            Optional<ProductBean> op = productRepository.findById(odb.getProductid());
             ProductBean b = op.get();
             map.put("productname", b.getProductname());
             map.put("SellingPrice", b.getSellingprice() + "");
@@ -281,9 +281,27 @@ public class BackStageController {
     public String state(@PathVariable("orderId") Integer orderId, @RequestParam("orderStatus") Integer orderStatus) {
       Optional<OrdersBean> op = ordersRepository.findById(orderId);
         OrdersBean bean = op.get();
-        bean.setOrderStatusId(orderStatus);
+        bean.setOrderstatusid(orderStatus);
         ordersRepository.save(bean);
         return "redirect:/backstage/order?pag=1&state=1";
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//修改商品
+@RequestMapping("/user")
+public String user( Model model) {
+    System.out.println("*****會員資料 *****");
+       List<UserBean> user = userRepository.findAll();
+        model.addAttribute("user",user);
+    return "/views/backstage/user";
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //讀取會員定單
+    @RequestMapping("/userOrder/{userId}")
+    public List<OrdersBean> state(@PathVariable("userId") Integer userId) {
+        System.out.println("*****讀取會員定單*****");
+        List<OrdersBean> op = ordersRepository.findByUserId(userId);
+
+        return op;
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

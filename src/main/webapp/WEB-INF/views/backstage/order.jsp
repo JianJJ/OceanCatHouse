@@ -164,7 +164,8 @@
         </button>
         <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
-        <label class="list-group-item">會員管理</label>
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理</button>
+
         <label class="list-group-item">員工管理</label>
     </ul>
 </div>
@@ -217,7 +218,6 @@
         success: doSuccess,
         error: doError
     });
-
     //取得列表
     function doSuccess(json) {
         var state;

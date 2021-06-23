@@ -51,14 +51,17 @@
 <div class=" pic">
     <button class="catReturn">X</button>
 
-    <form class="row picmain" action="${pageContext.request.contextPath}/backstage/addPic" method="post" enctype='multipart/form-data'>
+    <form class="row picmain" action="${pageContext.request.contextPath}/backstage/addPic" method="post"
+          enctype='multipart/form-data'>
         <div style="width: 350px;height: 280px; ">
-            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main1" class="img-thumbnail"/>
+            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main1"
+                 class="img-thumbnail"/>
             <input type="file" accept="image/*" id="file-main1" name="file"
                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
         </div>
         <div style="width: 350px;height: 280px; ">
-            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main2" class="img-thumbnail"/>
+            <img src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img-main2"
+                 class="img-thumbnail"/>
             <input type="file" accept="image/*" id="file-main2" name="file"
                    onchange="upload('#file-main', '#img-main');" class="fileInput" value=""/>
         </div>
@@ -162,10 +165,17 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">訂單管理</button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
+            訂單管理
         </button>
-        <button class="list-group-item">會員管理</button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
+        </button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user'">會員管理
+        </button>
+
         <button class="list-group-item">員工管理</button>
     </ul>
 </div>
@@ -177,7 +187,8 @@
             <div class="row ">
                 <div class="col-lg-3 btn-grou ccc">
                     <a href="#" class="btn btn-primary active" aria-current="page" id="addPoduct">新增商品</a>
-                    <a href="${pageContext.request.contextPath}/backstage/product?pag=1" class="btn btn-primary active" aria-current="page" id="Poduct">一般商品</a>
+                    <a href="${pageContext.request.contextPath}/backstage/product?pag=1" class="btn btn-primary active"
+                       aria-current="page" id="Poduct">一般商品</a>
                     <a href="#" class=" state btn btn-primary ">下架商品</a>
                 </div>
 
@@ -200,7 +211,7 @@
             <div class="row">
                 <table class="table table-striped">
                     <tr>
-                        <td>id</td>
+                        <td>ID</td>
                         <td>model</td>
                         <td>名稱</td>
                         <td>進價</td>
@@ -230,7 +241,7 @@
     </div>
 </div>
 <script>
-    var pid ;//紀錄id 刪除圖片用
+    var pid;//紀錄id 刪除圖片用
     var p = '${param.pag}';
     if (p == "") p = 1;
 
@@ -317,7 +328,7 @@
             error: doError
         });
     })
-//////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
     // 顯細資料
     function Detailed(id) {
         console.log(id);
@@ -362,7 +373,6 @@
                     '<div class="form-group"><label id="createdon">創建日期</label></div>' +
                     '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
                     '<button type="submit" class="">修改</button>'
-
                 );
 
                 $("#productid").text("商品ID : " + A.productid);
@@ -385,7 +395,8 @@
 
 
     }
-///////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////
     //圖片按鈕
     function addPic(Productid) {
         $(".pic").css("visibility", "visible");
@@ -419,7 +430,7 @@
                     '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + i + ')">刪除</button>' +
                     '</div>');
                 $(".picmain").append('<button type="submit"  class="btn btn-primary pciSubmit">提交</button>');
-                pid=Productid;
+                pid = Productid;
             },
             error: doError
         });
@@ -477,13 +488,10 @@
         }
     }
 
-    delNewPic = function ( productpictureid) {
+    delNewPic = function (productpictureid) {
         var result = confirm("確定刪除？");
         $(".d" + productpictureid).remove();
     }
-
-
-
 
 
     $(document).ready(function () {
