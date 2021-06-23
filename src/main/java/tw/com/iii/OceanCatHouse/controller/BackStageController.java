@@ -200,7 +200,7 @@ public class BackStageController {
     @ResponseBody
     public List<Map<String, String>> orderDetail(@PathVariable("id") Integer orderid) {
         System.out.println("*****搜索訂單細節 *****");
-        List<OrderDetailBean> list = orderDetailRepository.findByorderId(orderid);
+        List<OrderDetailBean> list = orderDetailRepository.findByorderid(orderid);
         List<Map<String, String>> result = new ArrayList<>();
         for (OrderDetailBean odb : list) {
             Map<String, String> map = new HashMap<>();
@@ -299,7 +299,7 @@ public String user( Model model) {
     @RequestMapping("/userOrder/{userId}")
     public List<OrdersBean> state(@PathVariable("userId") Integer userId) {
         System.out.println("*****讀取會員定單*****");
-        List<OrdersBean> op = ordersRepository.findByUserId(userId);
+        List<OrdersBean> op = null;
 
         return op;
     }

@@ -206,7 +206,7 @@ public class ShopRestController {
 	@RequestMapping("/completeData/{id}")
 	public List<OrderDetailBean> completeData(@PathVariable("id") Integer orderid){
 		System.out.println("*****完成訂單細節 *****");
-		List<OrderDetailBean> list =  orderDetailRepository.findByorderId(orderid);
+		List<OrderDetailBean> list =  orderDetailRepository.findByorderid(orderid);
 //		List<Map<String, String>> result = new ArrayList<>();
 //		for(OrderDetailBean odb : list){
 //			Map<String, String> map =new HashMap<>();
