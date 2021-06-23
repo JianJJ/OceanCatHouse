@@ -60,29 +60,19 @@
 
     <div class="row justify-content-center">
         <div class="col-xs-10 col-md-10 memberBlock">
-            <h2>目前已經撰寫了<span style="font-weight: bolder">${requestScope.recCount}</span>篇食譜</h2>
+<%--            <h2>目前已經撰寫了<span style="font-weight: bolder">${requestScope.recCount}</span>篇食譜</h2>--%>
+            <div class="container">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" >
+                    <input type="radio" class="btn-check statusBtn" name="RecStatusRadio" id="RecStatus1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="RecStatus1">正在發布 <span class="badge bg-secondary">${recCountStatus1}</span></label>
+
+                    <input type="radio" class="btn-check statusBtn" name="RecStatusRadio" id="RecStatus0" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="RecStatus0">未發布 <span class="badge bg-secondary">${recCountStatus0}</span></label>
+                </div>
+            </div>
 
             <div class="col-md-11 justify-content-center recipeSimpleContext">
-                <div class="container">
-
-                    <c:forEach items="${recipeMainList}" var="list">
-                    <a href="${pageContext.request.contextPath}/createRecipe/select/${list.recId}">
-                        <div class="row justify-content-center">
-                            <div class="col-md-4" style="height: 200px;">                       
-                                    <img id="${list.recId}"
-                                         src="${pageContext.request.contextPath}/images/mainpic/${list.recPic}"
-                                         style="width: 100%;height: 100%" class="img-thumbnail"
-                                         alt="">
-                            </div>
-                            <div class="col-md-8">
-                                <h4 class='showLines'>${list.recTitle}</h4>
-                                <p class='showLines'>
-                                        ${list.recText}
-                                </p>
-                            </div>
-                        </div>
-                        </a>
-                    </c:forEach>
+                <div class="container showRecMain">
 
                 </div>
             </div>

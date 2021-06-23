@@ -61,12 +61,23 @@ public class UserBackController {
         session.setAttribute("user", user);
 //        UserBean user = (UserBean) session.getAttribute("user");
         // 查看user自己的食譜數量
-        Integer recCount = recipeMainDao.recCount(user.getUserid());
+        Integer recCountStatus1 = recipeMainDao.recCountStatus1(user.getUserid());
+        Integer recCountStatus0 = recipeMainDao.recCountStatus0(user.getUserid());
         List<RecipeMainBean> recipeMainList = recipeMainDao.findAllByUserid(user.getUserid());
-        request.setAttribute("recCount", recCount);
+        request.setAttribute("recCountStatus1", recCountStatus1);
+        request.setAttribute("recCountStatus0", recCountStatus0);
         request.setAttribute("recipeMainList", recipeMainList);
 
         return "/views/user/userHome";
+    }
+
+    @RequestMapping("/selectRecMain")
+    @ResponseBody
+    public List<RecipeMainBean>  selectRecMain(HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> recipeMainList = recipeMainDao.findAllByUserid(user.getUserid());
+
+        return recipeMainList;
     }
 
     // user登出

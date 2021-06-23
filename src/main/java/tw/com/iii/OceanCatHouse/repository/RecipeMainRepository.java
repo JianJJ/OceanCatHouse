@@ -11,8 +11,6 @@ import java.util.List;
 
 public interface RecipeMainRepository extends JpaRepository<RecipeMainBean, Integer> {
 
-    @Query("select count(m) from RecipeMainBean m where m.UserId = :userId")
-    Integer recCount(@Param("userId") Integer userId);
 
     @Query("from RecipeMainBean where UserId = :userId")
     List<RecipeMainBean> findAllByUserid(@Param("userId") Integer userid);
@@ -22,4 +20,9 @@ public interface RecipeMainRepository extends JpaRepository<RecipeMainBean, Inte
     @Query(value = "delete from RecipeMainBean where RecId = :recId")
     Integer deleteAllByRecId(Integer recId);
 
+    @Query("select count(m) from RecipeMainBean m where m.UserId = :userId and m.RecStatus = 1")
+    Integer recCountStatus1(@Param("userId") Integer userid);
+
+    @Query("select count(m) from RecipeMainBean m where m.UserId = :userId and m.RecStatus = 0")
+    Integer recCountStatus0(@Param("userId") Integer userId);
 }

@@ -70,25 +70,16 @@
         </section>
 
         <%--有收藏, 顯示收藏食譜--%>
-        <section class="col-xs-12 col-lg-8 recResult" hidden>
+        <section class="col-xs-12 col-lg-8 recResult" id="RecMainList" hidden>
+            <h1>親愛的${sessionScope.user.username}，您目前收藏有<span id="countMain">${mainBeanList.size()!=0?mainBeanList.size():0}</span>篇食譜</h1>
             <ul class="row justify-content-start" id="showMain">
-                <%--                顯示全部收藏的食譜--%>
-                <h1>親愛的${sessionScope.user.username}，您目前收藏有<span id="countMain">${mainBeanList.size()!=0?mainBeanList.size():0}</span>篇食譜</h1>
-                <c:forEach items="${mainBeanList}" var="main">
-                    <li class="col-lg-3 col-xs-6 recipe"><a
-                            href="${pageContext.request.contextPath}/recipeDetails?id=${main.recId}">
-                        <img src="${main.recPic}"  alt="${main.recTitle}">
-                        <h4 class='showLines'>${main.recTitle}</h4>
-                        <p class='showLines'>${main.recText}</p>
-                    </a></li>
-                </c:forEach>
+<%--                --%>
             </ul>
-            <%-- 分頁按鈕 --%>
         </section>
         <%-- 沒有收藏的畫面--%>
 
 
-                <section class="col-xs-12 col-lg-8" id='recFavoriteList' hidden>
+        <section class="col-xs-12 col-lg-8" id='recFavoriteList' hidden>
             <h4>未分類</h4>
             <p><span id='favoriteRecs'> 0 </span>道食譜</p>
             <div class='recBlock row'>

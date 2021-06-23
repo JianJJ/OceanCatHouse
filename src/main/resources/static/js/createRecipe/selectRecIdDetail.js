@@ -3,7 +3,7 @@ $(document).ready(function () {
     goBack = function (){
         if(confirm("是否放棄編輯？")){
             $.ajax({
-                url : "/recipe/createRecipe/goBack",
+                url : "/OceanCatHouse/createRecipe/goBack",
                 type : "GET",
                 async : false,
                 cache: false,  //不做快取
@@ -19,21 +19,21 @@ $(document).ready(function () {
 
     // 刪除食譜
     deleteRec = function (){
-        if(confirm("是否確定刪除資料")){
+        if(confirm("是否確定下架呢？")){
             var recid = $('#recid').val();
             $.ajax({
-                url : '/recipe/createRecipe/delete/'+recid,
+                url : '/OceanCatHouse/createRecipe/delete/'+recid,
                 type : 'DELETE',
                 processData: false,
                 contentType : false,
                 async : false,
                 cache: false,  //不做快取
                 success : function (url) {
-                    alert("刪除成功, 即將跳轉頁面。");
+                    alert("已下架食譜, 即將跳轉頁面。");
                     $(location).attr("href", url)
                 },
                 error : function (returndata){
-                    alert("刪除失敗請聯繫我們")
+                    alert("操作失敗請聯繫我們")
                 }
             });
         }
@@ -90,7 +90,7 @@ $(document).ready(function () {
         formData.append('recipeDetail', JSON.stringify(recipeDetail));
 
         $.ajax({
-            url : '/recipe/createRecipe/save',
+            url : '/OceanCatHouse/createRecipe/save',
             type : 'POST',
             data : formData,
             enctype: 'multipart/form-data',
@@ -128,7 +128,7 @@ $(document).ready(function () {
                 <div class="col-md-5">
                     <div class="picstep">
                         <div style="width: 280px;height: 210px; margin:0 auto;">
-                            <img src="/recipe/images/homePic/uploadstep.png"
+                            <img src="/OceanCatHouse/images/homePic/uploadstep.png"
                                  class="img-thumbnail img-step"
                                  id="img-step${i}"/>
                             <input type="file" accept="image/*" id="file-step${i}" name="file"
