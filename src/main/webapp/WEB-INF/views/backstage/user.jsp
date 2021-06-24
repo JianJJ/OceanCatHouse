@@ -58,57 +58,35 @@
             z-index: 40;
 
         }
+        .accordion-item{
+            text-align: center;
+            background-color: #62A5A1;
+            color: #0c4128;
+        }
+        .AAA{
+            padding-left: 38%;
+            text-align: center;
+            background-color: #62A5A1;
+            color: white;
+        }
+        .accordion-button {
+            text-align: center;
+        }
 
-        /*.cat {*/
-        /*    border: blue 1px solid;*/
-        /*    background-color: white;*/
-        /*    width: 830px;*/
-        /*    height: 850px;*/
-        /*    z-index: 50;*/
-        /*    position: absolute;*/
-        /*    left: 0%;*/
-        /*    right: 0%;*/
-        /*    margin: auto;*/
-        /*    top: 50px;*/
-        /*    border-radius: 15px;*/
-        /*    visibility: visible;*/
-
-        /*}*/
-
-        /*.cat p {*/
-        /*    position: relative;*/
-        /*    text-align: right;*/
-        /*    right: 100px;*/
-        /*}*/
-
-        /*.cat form {*/
-        /*    top: 10px;*/
-        /*    position: relative;*/
-        /*    left: 20px;*/
-        /*}*/
-
-        /*.cat input {*/
-        /*    width: 95%;*/
-        /*}*/
-
-        /*.cat select {*/
-        /*    width: 95%;*/
-        /*}*/
-
-        /*!* 購物車返回 *!*/
-        /*.catReturn {*/
-        /*    top: -10px;*/
-        /*    right: -10px;*/
-        /*    position: absolute;*/
-        /*    background-color: red;*/
-        /*    width: 40px;*/
-        /*    height: 40px;*/
-        /*    border-radius: 50%;*/
-        /*    z-index: 20;*/
-        /*}*/
-        /*.pciSubmit{*/
-        /*    width: 95%;*/
-        /*}*/
+        .accordion-button:focus{
+            text-align: center;
+            background-color: #62A5A1;
+            color:white;
+        }
+        .accordion-button:not(.collapsed) {
+            text-align: center;
+            background-color: #62A5A1;
+            color:white;
+        }
+        .list-group-item {
+            background-color: transparent;
+            color: white;
+        }
 
     </style>
 </head>
@@ -135,6 +113,39 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
         </button>
+        <%--        手風琴--%>
+        <div class="accordion-item text-center">
+            <h2 class="accordion-header BBB text-center" id="headingOne">
+                <button class="accordion-button collapsed AAA text-center" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <%--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                    銷售圖表
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">米麵五穀
+                    </div>
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">植物油
+                    </div>
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">醬料
+                    </div>
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">蔬果
+                    </div>
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">生鮮
+                    </div>
+                    <div class="list-group-item"
+                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">乾貨
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </ul>
 </div>
 <%--    中間主體--%>
