@@ -282,4 +282,14 @@ public class UserBackController {
 
         return uccbList;
     }
+
+    // 找到單張卡片的資料
+    @PostMapping("/findCard/{cardId}")
+    @ResponseBody
+    public UserCreditCardBean findCard(@PathVariable("cardId") Integer cardId){
+        Optional<UserCreditCardBean> byId = userCreditCardDao.findById(cardId);
+        UserCreditCardBean userCreditCardBean = byId.get();
+
+        return userCreditCardBean;
+    }
 }

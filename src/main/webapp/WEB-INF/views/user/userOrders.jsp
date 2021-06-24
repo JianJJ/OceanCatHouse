@@ -56,17 +56,17 @@
             <h2>新增付款方式</h2>
             <div id='cardPaySection'>
                 持卡人姓名:
-                <input type="text" name="userCardName" size='30'><br/>
+                <input type="text" id="userCardName" size='30'><br/>
                 信用卡號碼:
-                <input type="text" maxlength="4" size="2" name="cardNumberP1" class="cardNumber"> -
-                <input type="text" maxlength="4" size="2" name="cardNumberP2" class="cardNumber"> -
-                <input type="text" maxlength="4" size="2" name="cardNumberP3" class="cardNumber"> -
-                <input type="text" maxlength="4" size="2" name="cardNumberP4" class="cardNumber"><br/>
+                <input type="text" maxlength="4" size="2" id="cardNumberP1" class="cardNumber"> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP2" class="cardNumber"> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP3" class="cardNumber"> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP4" class="cardNumber"><br/>
                 到期日:
                 <select name="hour" id="expireMonth" ></select> / <select name="hour" id="expireYear"></select><br/>
 
                 安全驗證碼:
-                <input type="text" size="2" maxlength=3 name="checkNumber" class="cardNumber">
+                <input type="text" size="2" maxlength=3 id="checkNumber" class="cardNumber">
                 <input type="submit" id='btnSave' value="儲存付款方式"></input>
             </div>
         </form>

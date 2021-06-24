@@ -16,7 +16,7 @@ $(document).ready(function (){
     var expireMonthStr = "";
     for(i = 1;i <=12; i++) {
         var strI = i < 10  ? "0"+ i:i;
-        expireMonthStr = expireMonthStr +" <option value='" + i +"'>" + strI + "</option>";
+        expireMonthStr = expireMonthStr +" <option value='" + strI +"'>" + strI + "</option>";
     }
     $('#expireMonth').html(expireMonthStr);
 
@@ -75,8 +75,33 @@ $(document).ready(function (){
     })
 
     // 點擊顯示單張卡片, 或是新增卡片
-    findCard = function (){
+    findCard = function (CardId){
         $('.mask').show();
+        if(CardId != null){
+            $.ajax({
+                url  : "/OceanCatHouse/userBack/findCard/"+CardId,
+                type : 'POST',
+                async : false,
+                cache: false,  //不做快取
+                success : function (uccb){
+                    if(uccb != null){
+                        $('#userCardName').val(`${uccb.cardName}`);
+                        $('#cardNumberP1').val(`${uccb.cardNumberP1}`);
+                        $('#cardNumberP2').val(`${uccb.cardNumberP2}`);
+                        $('#cardNumberP3').val(`${uccb.cardNumberP3}`);
+                        $('#cardNumberP4').val(`${uccb.cardNumberP4}`);
+                        $('#expireMonth').val(`${uccb.expireMonth}`);
+                        $('#expireYear').val(`${uccb.expireYear}`);
+                        $('#checkNumber').val(`${uccb.verificationCode}`);
+                    }
+                },
+                error : function (returndata){
+                    alert("系統忙碌中, 稍後再試")
+                }
+            })
+
+        }
+
     }
 
     // 刪除卡片

@@ -12,6 +12,7 @@ public class UserCreditCardBean {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer CardId;
     private Integer userid;
+    private String CardName;
     private String CardNumberP1;
     private String CardNumberP2;
     private String CardNumberP3;
@@ -25,23 +26,6 @@ public class UserCreditCardBean {
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "userid", insertable = false, updatable = false)
     private UserBean userBean;
-
-    @Override
-    public String toString() {
-        return "UserCreditCardBean{" +
-                "CardId=" + CardId +
-                ", userid=" + userid +
-                ", CardNumberP1='" + CardNumberP1 + '\'' +
-                ", CardNumberP2='" + CardNumberP2 + '\'' +
-                ", CardNumberP3='" + CardNumberP3 + '\'' +
-                ", CardNumberP4='" + CardNumberP4 + '\'' +
-                ", ExpireMonth='" + ExpireMonth + '\'' +
-                ", ExpireYear='" + ExpireYear + '\'' +
-                ", VerificationCode='" + VerificationCode + '\'' +
-                ", UseCard=" + UseCard +
-                ", userBean=" + userBean.getUserid() +
-                '}';
-    }
 
     public Integer getCardId() {
         return CardId;
@@ -57,6 +41,32 @@ public class UserCreditCardBean {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    @Override
+    public String toString() {
+        return "UserCreditCardBean{" +
+                "CardId=" + CardId +
+                ", userid=" + userid +
+                ", CardName='" + CardName + '\'' +
+                ", CardNumberP1='" + CardNumberP1 + '\'' +
+                ", CardNumberP2='" + CardNumberP2 + '\'' +
+                ", CardNumberP3='" + CardNumberP3 + '\'' +
+                ", CardNumberP4='" + CardNumberP4 + '\'' +
+                ", ExpireMonth='" + ExpireMonth + '\'' +
+                ", ExpireYear='" + ExpireYear + '\'' +
+                ", VerificationCode='" + VerificationCode + '\'' +
+                ", UseCard=" + UseCard +
+                ", userBean=" + userBean +
+                '}';
+    }
+
+    public String getCardName() {
+        return CardName;
+    }
+
+    public void setCardName(String cardName) {
+        CardName = cardName;
     }
 
     public String getCardNumberP1() {
