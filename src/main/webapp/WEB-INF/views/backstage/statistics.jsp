@@ -117,7 +117,6 @@
             for (var i in J) {
                 data.push(J[i]);
             }
-
         },
         error: doError
     });
