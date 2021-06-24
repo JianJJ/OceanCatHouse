@@ -1,0 +1,133 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.contain {
+    margin: 75px 125px;
+    padding: 35px 50px;
+    background:linear-gradient(to bottom, #eee4d2 , transparent);
+    background:-webkit-linear-gradient(to bottom, #eee4d2 , transparent);
+    border-radius: 10px;
+    min-width:500px;
+}
+
+.contain h3 {
+    display: block;
+}
+
+.contain a {
+    display: inline-block;
+    margin: 20px;
+    padding: 5px 10px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: seagreen 1px solid;
+    color: white;
+    background-color: teal;
+}
+
+.contain a:hover {
+    background-color: seagreen;
+}
+
+.contain a span {
+    padding-right:10px;
+    font-weight: 600;
+}
+
+.contain  > ul {
+    height: 44px;
+    width: 95%;  
+    margin:15px 25px;
+    border-bottom: 1px solid #aaa;
+    padding: 0;
+}
+
+.contain  > ul > li {
+    list-style: none;
+    display: inline-block;
+    padding: 0px 20px;
+    height: 45px;
+    line-height: 45px;
+}
+
+.contain  > ul > li > a {
+    color: #2d5739;
+    font-weight: 400;
+}
+
+.contain  > ul > .current {
+    background-color: #fbfbfb;
+    border: 1px solid #aaa;
+    border-bottom-color: #fbfbfb;
+}
+
+.contain  > ul > .current a {
+    color:black;
+}
+
+.contain table {
+    margin-left: 25px;
+    width:95%;
+    text-align: left;
+    border-collapse: collapse;
+    
+}
+
+
+.contain table tr > th {
+    padding: 5px;
+    padding-left: 20px;
+    margin: 0;
+    line-height: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: rgba(215, 215, 215, .5);
+    color: #333;
+
+}
+
+.contain table tr td:first-child {
+    min-width: 150px;
+    font-size: 17px;
+}
+
+.contain table tr td {
+    padding-left: 25px;
+    line-height: 45px;
+    position: relative;
+    color: #777;
+    font-size: 15px;
+}
+
+.contain table tr td .productPrice {
+    font-size: 16px;
+}
+
+.contain .customer {
+    width: 96%;
+    margin: 40px auto;
+}
+
+.contain .customer h4 {
+    
+    line-height: 35px;
+    font-size: 17px;
+    padding: 5px 0 5px 20px;
+    color: #333;
+    background-color: rgba(215, 215, 215, .5);
+}
+
+.contain .customer div {
+    padding-left: 25px;
+    margin-top: 15px;
+    font-weight: 500;
+    line-height: 40px;
+    color: #666;
+}

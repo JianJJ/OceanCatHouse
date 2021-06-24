@@ -21,7 +21,10 @@
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
+<%--    訂單--%>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orders.css">
+<%--信用卡--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderPayment.css">
 
     <script src="${pageContext.request.contextPath}/js/userBack/userOrders.js"></script>
@@ -39,7 +42,31 @@
     </ul>
 
     <div class="showOrders">
-        訂單
+        <section>
+            <table>
+                <tr>
+                    <th>商品</th>
+                    <th>時間</th>
+                    <th>總計</th>
+                    <th>付款方式</th>
+                    <th>訂單狀態</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="${pageContext.request.contextPath}/images/" class='productImg'>
+                        <h5 class='productName' >東西東西</h5>
+                        <a href="#">檢視訂單明細</a>
+                    </td>
+                    <td class='orderDate'>2021-06-22</td>
+                    <td>NT$ <span class='OrderPrice'>275</span></td>
+                    <td class='payment'>貨到付款</td>
+                    <td>
+                        <span class='orderStatus'>未付款</span>
+                    </td>
+                </tr>
+
+            </table>
+        </section>
     </div>
 
     <%--顯示卡片--%>
@@ -48,7 +75,6 @@
             <p>加入付款方式</p>
         </div>
     </section>
-
 
         <%--新增卡片--%>
     <div class="mask">

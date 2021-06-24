@@ -1,0 +1,137 @@
+/* userProfile.css  #settingInfoBlock   */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*.showOrders {*/
+/*    margin: 75px 125px;*/
+/*    padding: 35px 50px;*/
+/*    background:linear-gradient(to bottom, #eee4d2 , transparent);*/
+/*    background:-webkit-linear-gradient(to bottom, #eee4d2 , transparent);*/
+/*    border-radius: 10px;*/
+/*    min-width:500px;*/
+/*}*/
+
+.showOrders h3 {
+    display: inline-block;
+}
+
+.showOrders  > ul {
+    height: 44px;
+    width: 95%;  
+    margin:15px 25px;
+    border-bottom: 1px solid #aaa;
+    padding: 0;
+}
+
+.showOrders  > ul > li {
+    list-style: none;
+    display: inline-block;
+    padding: 0px 20px;
+    height: 45px;
+    line-height: 45px;
+}
+
+.showOrders  > ul > li > a {
+    color: #2d5739;
+    font-weight: 400;
+}
+
+.showOrders  > ul > .current {
+    background-color: #fbfbfb;
+    border: 1px solid #aaa;
+    border-bottom-color: #fbfbfb;
+}
+
+.showOrders  > ul > .current a {
+    color:black;
+}
+
+.showOrders table {
+    margin-left: 25px;
+    width:95%;
+    text-align: left;
+    border-collapse: collapse;
+    
+}
+
+
+.showOrders table tr > th {
+    padding: 10px 0 10px 25px;
+    margin: 0;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: rgba(215, 215, 215, .5);
+    color: #555;
+
+}
+
+.showOrders table tr td {
+    padding-left: 25px;
+    position: relative;
+}
+
+.showOrders table tr td:first-child {
+    min-width: 400px;
+}
+
+.showOrders table tr .productImg {
+    width: 160px;
+    height: 120px;
+    margin: 18px 18px 18px 0;
+    float: left;
+}
+
+.showOrders table tr .productName {
+    display: inline-block;
+    line-height: 120px;
+    margin: 18px 0;
+    font-size: 20px;
+}
+
+.showOrders table tr .orderDate,
+.showOrders table tr .payment  {
+    color: #666;
+    font-size: 15px;
+}
+
+.showOrders table tr td:nth-child(3){
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.showOrders table tr .orderStatus {
+    color: #bf4102;
+}
+
+
+
+.showOrders table tr a {
+    position: absolute;
+    right: 0px;
+    top:60px;
+    line-height: 36px;
+    padding: 0 12px;
+    margin-left: 55px;
+    font-size: 14px;
+    font-weight: 600;
+    
+    border: 1px solid #666;
+    border-radius: 5px;
+    color: #666;
+    
+}
+
+.showOrders table tr a:hover {
+    background-color: #ee8446;
+    border-color: #fff;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+}
+
