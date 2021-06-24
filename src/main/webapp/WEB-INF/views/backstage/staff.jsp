@@ -69,7 +69,7 @@
             margin: auto;
             top: 50px;
             border-radius: 15px;
-            visibility: visible;
+            visibility: hidden;
 
         }
 
@@ -111,6 +111,7 @@
     </style>
 </head>
 <body>
+<div class="hazy"></div>
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <div class="title">廠商後台</div>
@@ -194,11 +195,11 @@
     </div>
 </div>
 <%--// 細節--%>
-<div class="hazy"></div>
+
 <div class="cat">
     <button class="catReturn">X</button>
     <div class="row">
-        <form action="${pageContext.request.contextPath}/backstage/state" class="form" method="post">
+        <form action="${pageContext.request.contextPath}/backstage/changStaff" class="form" method="get">
             <div class="form-group"><label for="name">名稱</label>
                 <input type="text" class="form-control" id="name" value="'+A.name+'" name="name"></div>
             <div class="form-group"><label for="email">Emaill</label>
@@ -227,7 +228,6 @@
         $('.catReturn').click(function () {
             $(".hazy").css("visibility", "hidden");
             $(".cat").css("visibility", "hidden");
-            // $(".pic").css("visibility", "hidden");
 
         });
 
@@ -236,29 +236,22 @@
         console.log(staffId);
         $(".hazy").css("visibility", "visible");
         $(".cat").css("visibility", "visible");
+        console.log("${pageContext.request.contextPath}/staffDetail/" +staffId);
         $.ajax({
-            url: "${pageContext.request.contextPath}/staffDetail/" +staffId,
+            url: "${pageContext.request.contextPath}/backstage/staffDetail/" +staffId,
             type: "get",
             contentType: "application/json",
             dataType: "json",
             success: function (A) {
-                // $(".form").remove();
-                <%--$(".cat").append('<form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">');--%>
 
-                <%--$("#productid").text("商品ID : " + A.productid);--%>
                 $("#name").val(A.name);
                 $("#email").val(A.email);
                 $("#password").val(A.password);
                 $("#position").val(A.position);
                 $("#phone").val(A.phone);
                 $("#address").val(A.address);
-                <%--$("#productspecifications").val(A.productspecifications);--%>
-                <%--$("#vendorid").val(A.vendorid);--%>
-                <%--$("#productcategoryid").val(A.productcategoryid);--%>
-                <%--$("#productstatus").val(A.productstatus);--%>
-                <%--// $("#createdon").text("創建日期 : " + A.createdon);--%>
-                <%--// $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);--%>
-                <%--$(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);--%>
+                $("#state").val(A.state);
+                $("form").attr("action","${pageContext.request.contextPath}/backstage/changStaff/"+A.id);
             },
             error: doError
         });

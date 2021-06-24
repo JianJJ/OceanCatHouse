@@ -307,6 +307,8 @@ public class BackStageController {
                 ub.setUserid(userId);
                 ub.setUsername("未找到");
                 ub.setUserphone("未找到");
+                ub.setEmail("未找到");
+                ub.setDeliveryAddress("未找到");
                 user.add(ub);
             }
 
@@ -343,10 +345,10 @@ public class BackStageController {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//會員資料
+//員工資料
     @RequestMapping("/staff")
     public String staff(Model model) {
-        System.out.println("*****會員資料 *****");
+        System.out.println("*****員工資料 *****");
         List<StaffBean> lis = staffRepository.findAll();
         model.addAttribute("staff", lis);
 
@@ -354,15 +356,27 @@ public class BackStageController {
         return "/views/backstage/staff";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //會員詳細
+    //員工詳細
     @RequestMapping("/staffDetail/{staffId}")
     @ResponseBody
     public StaffBean staffDetail(@PathVariable("staffId") Integer staffId) {
-        System.out.println("*****會員詳細 *****");
+        System.out.println("*****員工詳細 *****");
         Optional<StaffBean> op = staffRepository.findById(staffId);
         StaffBean bean = op.get();
 
         return bean;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //修改員工資料
+    @RequestMapping("/changStaff/{staffId}")
+    public String changStaff(StaffBean bean,Model model,@PathVariable("staffId") Integer staffId) {
+        System.out.println("*****修改員工資料 *****");
+        bean.setId(staffId);
+        System.out.println(bean);
+        staffRepository.save(bean);
+        List<StaffBean> lis = staffRepository.findAll();
+        model.addAttribute("staff", lis);
+        return "/views/backstage/staff";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

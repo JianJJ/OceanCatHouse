@@ -276,7 +276,7 @@
     // 列印表單
     $.ajax({
         url: "${pageContext.request.contextPath}/backstage/product/" + p+"/1",
-        type: "post",
+        type: "get",
         async: false,
         success: doSuccess,
         error: doError
@@ -303,10 +303,7 @@
 
     // 下架商品
     $(".state").click(function () {
-
-
     $(".lll").remove();
-
         $.ajax({
             url: "${pageContext.request.contextPath}/backstage/product/" + p+"/2",
             type: "post",
@@ -404,7 +401,6 @@
     function addPic(Productid) {
         $(".pic").css("visibility", "visible");
         $(".picmain").empty();
-        console.log("Productid : " + Productid);
         $(".picmain").attr("action", "${pageContext.request.contextPath}/backstage/addPic/" + Productid);
         // 去讀取有多少圖片
         $.ajax({
@@ -550,9 +546,9 @@
         });
 
         //如果有錯誤
-        console.log('${productname}');
+
         if ('${errors}' != "" && '${errors}' != "{}") {
-            console.log('${errors}');
+
             $(".form").empty();
             $(".hazy").css("visibility", "visible");
             $(".cat").css("visibility", "visible");
@@ -617,8 +613,11 @@
                     '</tr>');
             }
         }
-    })
 
+    })
+    function doError(json) {
+        console.log(json);
+    }
 
 </script>
 <style>
