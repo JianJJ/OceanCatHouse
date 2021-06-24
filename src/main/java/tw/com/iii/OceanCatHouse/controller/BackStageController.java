@@ -53,6 +53,11 @@ public class BackStageController {
         return "views/backstage/order";
     }
 
+    @RequestMapping("/statistics")
+    public String statistics() {
+        return "views/backstage/statistics";
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //讀取商品資訊 和分頁
@@ -376,6 +381,34 @@ public class BackStageController {
         List<StaffBean> lis = staffRepository.findAll();
         model.addAttribute("staff", lis);
         return "/views/backstage/staff";
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //統計圖表
+    @RequestMapping("/orderStatistics")
+    @ResponseBody
+    public Map<String,Integer> orderStatistics() {
+        System.out.println("*****統計圖表 *****");
+        List<OrderDetailBean> lis= orderDetailRepository.findAll();
+
+        Map<Integer,Integer> count = new HashMap<>();
+        for(OrderDetailBean ODbean: lis){
+            Integer i = ODbean.getUnit() ;
+            if(count.get(ODbean.getProductid()) == null){
+                count.put(ODbean.getProductid(),i);
+            }else{
+                i=count.get(ODbean.getProductid())+ODbean.getUnit();
+                count.put(ODbean.getProductid(),i);
+            }
+        }
+        Map<String,Integer> result = new HashMap<>();
+        for(Integer x : count.keySet()){
+//            System.out.println(x+" : "+count.get(x));
+             ProductBean pBean= productRepository.getById(x);
+            System.out.println(pBean.getProductname());
+            result.put(pBean.getProductname(),count.get(x));
+        }
+        System.out.println(result);
+        return result;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
