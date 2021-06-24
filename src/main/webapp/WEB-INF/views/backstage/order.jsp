@@ -163,7 +163,8 @@
             訂單管理
         </button>
         <button class="list-group-item"
-                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">商品管理
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">
+            商品管理
         </button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
