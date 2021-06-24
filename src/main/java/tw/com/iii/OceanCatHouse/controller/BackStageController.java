@@ -208,7 +208,7 @@ public class BackStageController {
             ProductBean b = op.get();
             map.put("productname", b.getProductname());
             map.put("SellingPrice", b.getSellingprice() + "");
-            map.put("Unit", odb.getUnit() + "");
+            map.put("Unit", odb.getQuantity() + "");
             result.add(map);
         }
 
@@ -387,11 +387,11 @@ public class BackStageController {
 
         Map<Integer,Integer> count = new HashMap<>();
         for(OrderDetailBean ODbean: lis){
-            Integer i = ODbean.getUnit() ;
+            Integer i = ODbean.getQuantity() ;
             if(count.get(ODbean.getProductid()) == null){
                 count.put(ODbean.getProductid(),i);
             }else{
-                i=count.get(ODbean.getProductid())+ODbean.getUnit();
+                i=count.get(ODbean.getProductid())+ODbean.getQuantity();
                 count.put(ODbean.getProductid(),i);
             }
         }

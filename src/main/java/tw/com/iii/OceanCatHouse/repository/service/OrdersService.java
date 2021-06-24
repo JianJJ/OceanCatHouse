@@ -30,7 +30,7 @@ public class OrdersService {
             OrderDetailBean detailBean = new OrderDetailBean();
             detailBean.setOrderid(save.getOrderid());
             detailBean.setProductid(Integer.valueOf(key));
-            detailBean.setUnit(cat.get(key));
+            detailBean.setQuantity(cat.get(key));
             detailBean.setDiscount(1);
             orderDetailRepository.save(detailBean);
         }
