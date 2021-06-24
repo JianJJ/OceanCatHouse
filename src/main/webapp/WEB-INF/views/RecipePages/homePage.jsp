@@ -17,22 +17,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 	<%-- bootstrap的CSS、JS樣式放這裡 --%>
-	<link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
     
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
- 	<link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-   <link rel="stylesheet" href="/recipe/css/homePage.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
 	
     <title>✿海貓食屋✿</title>
 </head>
@@ -70,7 +70,7 @@
                 <p>
                     在線購買食材，並在您的冰庫中備有從味噌到起司再到意大利火腿的所有食材。
                 </p>
-                <a href="/recipe/views/ShoppingMall">前往商城</a>
+                <a href="${pageContext.request.contextPath}/views/ShoppingMall">前往商城</a>
                 
 
             </div>

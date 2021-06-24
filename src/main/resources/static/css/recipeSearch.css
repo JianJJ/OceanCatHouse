@@ -30,6 +30,7 @@
     right:5%;
     bottom: 50px;
     z-index: 1;
+    cursor:pointer;
 }
 
 #toUp {
@@ -72,6 +73,7 @@ a:hover {
 
 .recFilter input::-webkit-input-placeholder {
     font-size: 14px;
+    letter-spacing:0;
 }
 
 .recFilter > h3 > input {

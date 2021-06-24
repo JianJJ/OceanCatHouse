@@ -30,11 +30,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="navLink navColor" href="/recipe/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
+                        <a class="navLink navColor" href="${pageContext.request.contextPath}/views/ShoppingMall" tabindex="-1" aria-disabled="true">商城</a>
                     </li>
                 </ul>
 
-                <form class="d-flex" action="/recipe/recipeSearch" method="get">
+                <form class="d-flex" action="${pageContext.request.contextPath}/recipeSearch" method="get">
                     <input class="form-control me-2" type="search" placeholder="搜尋食譜..." aria-label="Search" name="searchString">
                     <button class="btn btn-search" type="submit">Search</button>
                   </form>

@@ -38,7 +38,7 @@
 </head>
 
 <body>
-<jsp:include page="top_nav.jsp"></jsp:include>
+
 
     <!-- 中間部分 -->
     <div class="center">
@@ -81,4 +81,3 @@
 </html>
 
 <%--拼接footer--%>
-<jsp:include page="bottom_nav.jsp"></jsp:include>

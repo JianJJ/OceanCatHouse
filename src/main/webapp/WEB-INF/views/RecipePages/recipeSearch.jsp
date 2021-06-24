@@ -16,23 +16,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 	<%-- bootstrap的CSS、JS樣式放這裡 --%>
-	<link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
     
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
- 	<link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <script src="/recipe/js/recipeDetails.js"></script>
-    <link rel="stylesheet" href="/recipe/css/recipeSearch.css">
+    <script src="${pageContext.request.contextPath}/js/recipeDetails.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/recipeSearch.css">
 
     <title>食譜搜尋頁面</title>
 
@@ -43,14 +43,13 @@
 <jsp:include page="top_nav.jsp"></jsp:include>
     <div class="container">
         <div class="row justify-content-between">
-            <form class="col-lg-3 d-none d-md-none d-lg-block recFilter" action="/recipe/recipeSearch">
+            <form class="col-lg-3 d-none d-md-none d-lg-block recFilter" action="${pageContext.request.contextPath}/recipeSearch">
                 <h3 class="littleTitle"><span>詳細搜尋</span><input type="reset" value="清除"></input></h3>
                 <hr class='underline'>
-                <h5>食譜名搜尋</h5>
-                <input class="form-control me-2 textSize" type="search" placeholder="關鍵字" aria-label="Search" id='searchName' name='searchString'>
+                <h5>關鍵字搜尋</h5>
+                <input class="form-control me-2 textSize" type="search" placeholder="食譜搜尋" aria-label="Search" id='searchName' name='searchString'>
                 <hr class='underline'>
                 <h5>材料搜尋</h5>
-                <label for="searchIngre">包含材料</label>
                 <input class="form-control me-2 textSize" type="search" placeholder="搜尋材料，以空格分開 ex.排骨 玉米" aria-label="Search" id='searchIngre' name='searchMatString'>
                 <input type="submit" value="搜尋" class="btn-search" id='btnRecResult'></input>
             </form>
@@ -66,7 +65,7 @@
                         <h3>${searchResultText}</h3>
                         <%--預設搜尋畫面，在沒有輸入搜尋關鍵字前提下，預設使用推薦系統--%>
                         <c:forEach varStatus="loop" begin="0" end="${recResultBean.size()-1}">
-                            <li class="col-lg-3 col-xs-6"><a href="http://localhost:8080/recipe/recipeDetails?id=${recResultBean.get(loop.index).recId}">
+                            <li class="col-lg-3 col-xs-6"><a href="${pageContext.request.contextPath}/recipeDetails?id=${recResultBean.get(loop.index).recId}">
                                 <img src="${recResultBean.get(loop.index).recPic}" alt="${recResultBean.get(loop.index).recTitle}">
                                 <h4 class='showLines'>${recResultBean.get(loop.index).recTitle}</h4>
                                 <p class='showLines'>${recResultBean.get(loop.index).recText}</p>

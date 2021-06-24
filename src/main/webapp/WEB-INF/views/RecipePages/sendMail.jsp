@@ -12,9 +12,14 @@
 <script type="text/javascript">
     emailjs.init('user_bIfDwaLRbFfQmf0h2jZsH')
 </script>
+<style>
+	a {
+		
+	}
+</style>
 
 <body>
-	<h3 id='mailPageTitle'>將食譜所需的食材寄送到信箱</h3>
+	<h3 id='mailPageTitle'>將食譜寄送到信箱</h3>
 		<a id='mailPageLink' href='${pageContext.request.contextPath}/views/ShoppingMall'>或者到我們的商城逛逛</a>
 	 <form id="form">
         <div class="field form-floating mb-3">
