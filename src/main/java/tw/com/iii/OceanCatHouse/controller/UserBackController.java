@@ -18,10 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/userBack")
@@ -317,11 +314,20 @@ public class UserBackController {
     // user查看全部訂單
     @GetMapping("/selectOrders")
     @ResponseBody
-    public List<OrdersBean> selectOrders(HttpSession session){
+    public Map<String, List> selectOrders(HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
+        Map<String, List> jsonMap = new HashMap<>();
         List<OrdersBean> ordersList = ordersDao.findByUserid(user.getUserid());
-
-        return ordersList;
+        List orderDetailList = new LinkedList();
+        List orderStatusBean = new LinkedList();
+        for(OrdersBean order : ordersList){
+            orderDetailList.add(order.getOrderDetailBeanList());
+            orderStatusBean.add(order.getOrderStatusBean());
+        }
+        jsonMap.put("ordersList", ordersList);
+        jsonMap.put("orderDetailList", orderDetailList);
+        jsonMap.put("orderStatusBean", orderStatusBean);
+        return jsonMap;
     }
 
 }

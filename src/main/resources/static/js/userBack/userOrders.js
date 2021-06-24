@@ -177,7 +177,10 @@ $(document).ready(function (){
             url: "/OceanCatHouse/userBack/selectOrders",
             async: false,
             cache: false,  //不做快取
-            success: function (ordersList) {
+            success: function (jsonMap) {
+                var ordersList = jsonMap.ordersList;
+                var orderDetailList = jsonMap.orderDetailList;
+                var orderStatusBean = jsonMap.orderStatusBean;
                 if(ordersList!=null){
                     $('#Otable tr:not(:first-child)').remove();
                     for (var i=0;i<ordersList.length;i++){
@@ -185,26 +188,31 @@ $(document).ready(function (){
                         var sum = 0;
                         var price = 0;
                         var quantity = 0;
-                        for(var j=0;j<ordersList[i].orderDetailBeanList.length;j++){
-                            price = parseInt(`${ordersList[i].orderDetailBeanList[j].sellingprice}`);
-                            quantity = parseInt(`${ordersList[i].orderDetailBeanList[j].quantity}`);
-                            sum += price * quantity;
-                        }
-                        $('#Otable').append(
-                            `<tr>`+
-                                `<td>`+
-                                    `<img src="/OceanCatHouse/images/shop/${ordersList[i].orderDetailBeanList[0].productBean.productmodel}.jpg" class='productImg'>`+
-                                    `<h5 class='productName'>${ordersList[i].orderDetailBeanList[0].productBean.productname}</h5>`+
-                                    `<p class='productName'>以及另外${ordersList[i].orderDetailBeanList.length-1}</p>`+
-                                    `<a href="#">檢視訂單明細</a>`+
-                                `</td>`+
-                                `<td class='orderDate'>${createDate}</td>`+
-                                `<td>NT$ <span class='OrderPrice'>${sum}</span></td>`+
-                                `<td class='payment'>貨到付款</td>`+
-                                `<td>`+
-                                    `<span class='orderStatus'>${ordersList[i].orderStatusBean.statusname}</span>`+
-                                `</td></tr>`
-                        )
+                        console.log(ordersList[i]);
+                        console.log(orderDetailList[i]);
+                        console.log(orderStatusBean[i]);
+                        // console.log((ordersList[i].orderDetailBeanList).length);
+                        // for(var j=0;j<(ordersList[i].orderDetailBeanList).length;j++){
+                        //     price = parseInt(`${(ordersList[i].orderDetailBeanList[j]).sellingprice}`);
+                        //     quantity = parseInt(`${(ordersList[i].orderDetailBeanList[j]).quantity}`);
+                        //     sum += price * quantity;
+                        // }
+                        // console.log((sum));
+                        // $('#Otable').append(
+                        //     `<tr>`+
+                        //         `<td>`+
+                        //             `<img src="/OceanCatHouse/images/shop/${(ordersList[i].orderDetailBeanList[0]).productBean.productmodel}.jpg" class='productImg'>`+
+                        //             `<h5 class='productName'>${(ordersList[i].orderDetailBeanList[0]).productBean.productname}</h5>`+
+                        //             `<p class='productName'>以及另外${(ordersList[i].orderDetailBeanList).length-1}</p>`+
+                        //             `<a href="#">檢視訂單明細</a>`+
+                        //         `</td>`+
+                        //         `<td class='orderDate'>${createDate}</td>`+
+                        //         `<td>NT$ <span class='OrderPrice'>${sum}</span></td>`+
+                        //         `<td class='payment'>貨到付款</td>`+
+                        //         `<td>`+
+                        //             `<span class='orderStatus'>${(ordersList[i].orderStatusBean).statusname}</span>`+
+                        //         `</td></tr>`
+                        // )
                     }
                 }
             },
