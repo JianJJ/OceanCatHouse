@@ -9,11 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
+import tw.com.iii.OceanCatHouse.model.UserCreditCardBean;
 import tw.com.iii.OceanCatHouse.model.UserFavoritesCategoryBean;
-import tw.com.iii.OceanCatHouse.repository.RecipeMainRepository;
-import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
-import tw.com.iii.OceanCatHouse.repository.UserFavoritesRepository;
-import tw.com.iii.OceanCatHouse.repository.UserRepository;
+import tw.com.iii.OceanCatHouse.repository.*;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
 import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesCategoryService;
 import tw.com.iii.OceanCatHouse.repository.service.UserService;
@@ -52,6 +50,9 @@ public class UserBackController {
 
     @Autowired
     private UserFavoritesCategoryService userFavoritesCategoryService;
+
+    @Autowired
+    private UserCreditCardRepository userCreditCardDao;
 
     // 到個人首頁
     @RequestMapping("/home")
@@ -261,5 +262,24 @@ public class UserBackController {
         }
 
         return "更新成功";
+    }
+
+    // user訂單管理
+    @RequestMapping("/userOrders")
+    public ModelAndView userOrders(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("views/user/userOrders");
+
+        return modelAndView;
+    }
+
+    // 查詢user的全部信用卡
+    @PostMapping("/selectCard")
+    @ResponseBody
+    public List<UserCreditCardBean> selectCard(HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<UserCreditCardBean> uccbList = userCreditCardDao.findAllByUserid(user.getUserid());
+
+        return uccbList;
     }
 }

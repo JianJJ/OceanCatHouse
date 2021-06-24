@@ -52,6 +52,7 @@
                 <ul>
                     <li class="currentLink"><a href="#">食譜</a></li>
                     <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
+                    <li><a href="${pageContext.request.contextPath}/userBack/userOrders">訂單管理</a></li>
                 </ul>
             </div>
         </div>
