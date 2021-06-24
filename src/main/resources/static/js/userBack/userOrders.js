@@ -1,8 +1,4 @@
 $(document).ready(function (){
-    $('.mask').click(function(){
-        $(this).hide();
-    })
-
     $('#editConsole').click(function(e){
         e.stopPropagation();
     });
@@ -53,13 +49,14 @@ $(document).ready(function (){
                     $('.showCard div:not(:first-child)').remove();
                     var use = "";
                     for(var i=0;i<uccbList.length;i++){
+                        use = "";
                         if(uccbList[i].useCard == 1){
                             use = "最近一次使用這張卡片";
                         }
                         $('.showCard').append(
-                            `<div class="created used" id="${uccbList[i].cardId}" onclick="findCard('${uccbList[i].cardId}')">`+
+                            `<div class="created used cardDetail" id="${uccbList[i].cardId}">`+
                                 `<img src="/OceanCatHouse/images/homePic/VISA.jpg">`+
-                                `<button class='btnDel' onclick="delCard('${uccbList[i].cardId}')">刪除</button>`+
+                                `<button class='btnDel'>刪除</button>`+
                                 `<h5>Visa <span>****</span> <span id='cardLastFour'>${uccbList[i].cardNumberP4}</span></h5>`+
                                 `<p>過期時間 <span id='expiredDate'>${uccbList[i].expireMonth}/20${uccbList[i].expireYear}</span></p>`+
                                 `<p>${use}</p>`+
@@ -75,9 +72,10 @@ $(document).ready(function (){
     })
 
     // 點擊顯示單張卡片, 或是新增卡片
-    findCard = function (CardId){
+    $('.showCard').on('click','div', function (){
+        var CardId= $(this).prop('id');
         $('.mask').show();
-        if(CardId != null){
+        if(CardId != "" && CardId != null){
             $.ajax({
                 url  : "/OceanCatHouse/userBack/findCard/"+CardId,
                 type : 'POST',
@@ -85,6 +83,7 @@ $(document).ready(function (){
                 cache: false,  //不做快取
                 success : function (uccb){
                     if(uccb != null){
+                        $('#checkCardId').val(`${uccb.cardId}`);
                         $('#userCardName').val(`${uccb.cardName}`);
                         $('#cardNumberP1').val(`${uccb.cardNumberP1}`);
                         $('#cardNumberP2').val(`${uccb.cardNumberP2}`);
@@ -99,13 +98,75 @@ $(document).ready(function (){
                     alert("系統忙碌中, 稍後再試")
                 }
             })
-
         }
+    })
 
-    }
+    // 關閉卡片瀏覽
+    $('.mask').click(function(){
+        $(this).hide();
+        $('#checkCardId').val("");
+        $('#userCardName').val("");
+        $('#cardNumberP1').val("");
+        $('#cardNumberP2').val("");
+        $('#cardNumberP3').val("");
+        $('#cardNumberP4').val("");
+        $('#expireMonth').val("");
+        $('#expireYear').val("");
+        $('#checkNumber').val("");
+    })
 
     // 刪除卡片
-    delCard = function (CId){
-        console.log("delCardId"+CId);
-    }
+    $('.showCard').on('click', 'button', function (e){
+        var cardid = $(this).parent('div').prop('id');
+        if(confirm("是否要刪除這張卡片呢?")){
+            $.ajax({
+                url  : "/OceanCatHouse/userBack/delCard/"+cardid,
+                type : 'DELETE',
+                async : false,
+                cache: false,  //不做快取
+                success : function (msg){
+                    console.log(msg);
+                    $('#showCardBtn').click();
+                },
+                error : function (returndata){
+                    alert("系統忙碌中, 稍後再試")
+                }
+            })
+        }
+        e.stopPropagation();
+    })
+
+    // 新增/更新 卡片
+    $('#btnSave').on('click', function (){
+        var uccb = {
+            "cardName" : $('#userCardName').val(),
+            "cardNumberP1" : $('#cardNumberP1').val(),
+            "cardNumberP2" : $('#cardNumberP2').val(),
+            "cardNumberP3" : $('#cardNumberP3').val(),
+            "cardNumberP4" : $('#cardNumberP4').val(),
+            "expireMonth" : $('#expireMonth').val(),
+            "expireYear" : $('#expireYear').val(),
+            "verificationCode" : $('#checkNumber').val(),
+        };
+        if($('#checkCardId').val() != "" && $('#checkCardId').val() != null){
+            uccb["cardId"] = $('#checkCardId').val();
+        }
+        $.ajax({
+            type: "POST",
+            url: "/OceanCatHouse/userBack/insertCard",
+            data: JSON.stringify(uccb),
+            contentType : "application/json;charset=utf-8",
+            datatype:"json",
+            async: false,
+            cache: false,  //不做快取
+            success : function (msg){
+                console.log(msg);
+                $('#showCardBtn').click();
+                $('.mask').click();
+            },
+            error : function (returndata){
+                alert("系統忙碌中, 稍後再試")
+            }
+        })
+    })
 })

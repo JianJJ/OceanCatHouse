@@ -292,4 +292,26 @@ public class UserBackController {
 
         return userCreditCardBean;
     }
+
+    // 刪除卡片資料
+    @DeleteMapping("/delCard/{cardid}")
+    @ResponseBody
+    public String delCard(@PathVariable("cardid") Integer cardid){
+        userCreditCardDao.deleteById(cardid);
+
+        return "卡片已刪除";
+    }
+
+    // 新增信用卡
+    @PostMapping("/insertCard")
+    @ResponseBody
+    public String insertCard(@RequestBody UserCreditCardBean userCreditCardBean,
+                                         HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        userCreditCardBean.setUserid(user.getUserid());
+        userCreditCardDao.save(userCreditCardBean);
+
+        return "新增/更新成功";
+    }
+
 }
