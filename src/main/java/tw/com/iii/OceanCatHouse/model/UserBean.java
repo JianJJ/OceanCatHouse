@@ -141,4 +141,5 @@ public class UserBean {
 	public void setState(String state) {
 		this.state = state;
 	}
+
 }

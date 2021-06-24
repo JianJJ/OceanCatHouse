@@ -128,7 +128,7 @@
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
             訂單管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理</button>
+        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">商品管理</button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
@@ -157,6 +157,7 @@
                         <td>ID</td>
                         <td>姓名</td>
                         <td>電話</td>
+                        <td>地址</td>
                         <td>Email</td>
                         <td>狀態</td>
                         <td>訂單</td>
@@ -167,6 +168,7 @@
                             <td>${s.userid}</td>
                             <td>${s.username}</td>
                             <td>${s.userphone}</td>
+                            <td>${s.deliveryAddress}</td>
                             <td>${s.email}</td>
                             <td>${s.state == 1?"正常":"壞掉的"}</td>
                             <td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="order('${s.userid}')">訂單 </button> </td>

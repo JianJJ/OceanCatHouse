@@ -23,7 +23,7 @@
     text-shadow: 0px 0px 1px rgba(0, 0, 0, .3);
 }
 
-.hyLink:not(span) {
+.hyLink {
     cursor: pointer;
     font-size: 30px;
 }
@@ -82,7 +82,7 @@ li {
 	
 }
 
-.barNav ul .fontIcon, .barNav > ul > li > span {
+.barNav ul .fontIcon {
 	display: inline-block;
     justify-content: center;
     text-decoration: none;
@@ -96,34 +96,60 @@ li {
     z-index: 1;
 }
 
-.barNav ul ol {
+#sectionTwo ul {
 	position:relative;
+	height:75px;
+padding:0;
+	margin:0;
+	letter-spacing:0;
+	border-collapse:collapse;
+}
+
+#sectionTwo ul li {
+	display:inline-block;
+	width:75px;
+	height:75px;
 	padding:0;
-	margin:-50px 0 0 40px;
-	padding-left:20px;
-	display:none;
+	margin-right:35px;
+	font-size: 45px;
 }
 
-.barNav ul ol li {
-	padding-bottom:8px;
+#sectionTwo ul li p {
+	font-size:14px;
+	line-height:25px;
+	color:#111;
+	text-align:center;
 }
 
-.barNav ul ol .hyLink {
-	font-size:35px;
-	border:none;
+#sectionTwo ul > li >.font {
+	margin-top:15px;
 }
 
-.barNav ul ol li:hover {
-	
-	border-radius:50%;
-	opacity:.5;
+#sectionTwo ul .hyLink a {
+	display:inline-block;
+	font-size: 45px;
+	line-height:75px;
+	height:75px;
+
 }
 
-.barNav ul ol #fbShare {
+#sectionTwo ul li img {
+	display:inline-block;
+	width:75px;
+	height:75px;
+	vertical-align:middle;
+	padding:12px;
+
+}
+
+
+
+
+#sectionTwo ul #fbShare {
 	color:#4867AA;
 }
 
-.barNav ul ol #twitterShare {
+#sectionTwo ul #twitterShare {
 	color:skyblue;
 }
 
@@ -346,7 +372,7 @@ li {
     -webkit-line-clamp: 3;
 }
 
-#blackMask {
+.mask {
         display: none;
         width: 100vw;
         height: 100vh;
@@ -358,15 +384,56 @@ li {
     }
 
 .modalSection {
-        position: relative;
-        top: 10%;
-        width: 50%;
-        margin: 0 auto;
+	position: relative;
+	margin: 0 auto;
         padding: 25px 50px;
         background: white;
-    }
+}
 
-#closeMask {
+#sectionOne {
+        top: 10%;
+        width: 50%;
+        
+    }
+    
+ #sectionTwo {
+        top: 25%;
+        width: 35%;
+        height:350px;
+        padding: 25px 50px;
+        
+ }
+
+ #sectionTwo  #copyConsole {
+ margin: 75px 25px 25px 25px;
+ height:150px;
+ position:relative;
+ }
+
+ #sectionTwo  textarea {
+ height:75px;
+ width:400px;
+ display:inline-block;
+ resize:none;
+ }
+ 
+ #sectionTwo .copy_url_a {
+ position:absolute;
+ right:15px;
+ top:25px;
+ color:black;
+ cursor:pointer;
+background:#86e3bc;
+	border: 3px solid #86e39c;
+	border-radius:3px;
+	padding:3px 7px;
+ }
+ 
+  #sectionTwo .copy_url_a:hover {
+  background:#d1ffec;
+  }
+
+.closeMask {
         position: absolute;
         top: -10px;
         right: -10px;
@@ -382,7 +449,7 @@ li {
 		boxing-shadow:0px 0px 2px #444;
  }
  
-#closeMask:hover {
+.closeMask:hover {
 	background:rgb(235, 101, 101);
 	border:white;
 	color:white;
@@ -434,5 +501,9 @@ li {
 	color:#d1ffec;
 }
 
-
+.mask #sectionThree {
+	width:50vw;
+	height:70vh;
+	top:20%;
+}
 

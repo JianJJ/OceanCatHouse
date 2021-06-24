@@ -48,13 +48,6 @@ public class BackStageController {
     public String tiem() {
         return "views/backstage/time";
     }
-
-
-    @RequestMapping("/product")
-    public String prod() {
-        return "views/backstage/product";
-    }
-
     @RequestMapping("/order")
     public String order() {
         return "views/backstage/order";
@@ -63,13 +56,13 @@ public class BackStageController {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //讀取商品資訊 和分頁
-    @RequestMapping("/product/{pag}/{state}")
-    @ResponseBody
-    public List<ProductBean> product(@PathVariable("pag") Integer p, @PathVariable("state") String state) {
+    @RequestMapping("/product")
+    public String prod(Model model ,@RequestParam("pag") Integer p,@RequestParam("state") String state) {
         System.out.println("*****讀取商品資訊 *****");
         Page<ProductBean> page = productRepository.findByProductstatus(state, PageRequest.of(p - 1, 20));
         List<ProductBean> result = page.getContent();
-        return result;
+        model.addAttribute("product",result);
+        return "views/backstage/product";
     }
 
     //讀取最多頁數
@@ -90,15 +83,14 @@ public class BackStageController {
         System.out.println(bean);
         bean.setProductid(productid);
         productService.insert(bean);
-        model.addAttribute("pag", 1);
-        return "/views/backstage/product";
+        return "redirect:/backstage/product?pag=1&state=1";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //新增商品
     @RequestMapping("/updata/")
     public String updata(ProductBean bean, Model model) {
-        System.out.println("*****修改商品 *****");
+        System.out.println("*****新增商品 *****");
         //使有輸入的資料能返回
         model.addAttribute("productmodel", bean.getProductmodel());
         model.addAttribute("productname", bean.getProductname());
@@ -110,6 +102,9 @@ public class BackStageController {
         model.addAttribute("vendorid", bean.getVendorid());
         model.addAttribute("productcategoryid", bean.getProductcategoryid());
         model.addAttribute("productstatus", bean.getStocks());
+        Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
+        List<ProductBean> result = page.getContent();
+        model.addAttribute("product",result);
         // 判斷欄位輸入
         Map<String, String> errors = new HashMap<>();
         model.addAttribute("errors", errors);
@@ -154,7 +149,7 @@ public class BackStageController {
 
         System.out.println(bean);
         productService.insert(bean);
-        return "redirect:/backstage/product";
+        return "redirect:/backstage/product?pag=1&state=1";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +174,7 @@ public class BackStageController {
 
         for (OrdersBean bean : lis) {
             if (state == bean.getOrderstatusid()) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E");
                 String CreateOn = sdf.format(bean.getOrdercreateon());
                 Map<String, String> map = new HashMap<>();
                 map.put("orderId", bean.getOrderid() + "");
@@ -222,13 +217,13 @@ public class BackStageController {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //上傳圖片
     @RequestMapping("/addPic/{Productid}")
-    public String pic(MultipartHttpServletRequest multipartRequest, @PathVariable("Productid") Integer Productid) {
+    public String pic(MultipartHttpServletRequest multipartRequest, @PathVariable("Productid") Integer Productid,Model model) {
         System.out.println("*****上傳圖片 *****");
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         System.out.println(fileMap);
         Optional<ProductBean> op = productRepository.findById(Productid);
         ProductBean bean = op.get();
-        String model = bean.getProductmodel();
+        String Productmodel = bean.getProductmodel();
         // 圖片儲存
 
         try {
@@ -237,20 +232,24 @@ public class BackStageController {
                 if (fileMap != null && fileMap.get("file" + i) != null) {
                     System.out.println("AAA" + i);
                     //  改名+存檔
-                    fileMap.get("file" + i).transferTo(new File("C:\\JavaFramework0524\\JavaFramework\\OceanCatHouse\\src\\main\\resources\\static\\images/shop/" + model + "-" + i + ".jpg"));
+                    fileMap.get("file" + i).transferTo(new File("C:\\JavaFramework0524\\JavaFramework\\OceanCatHouse\\src\\main\\resources\\static\\images/shop/" + Productmodel + "-" + i + ".jpg"));
                     // 3. 儲存檔案名稱到資料庫
-                    ProductPictureBean pBean = productPictureJpaReposit.findProducturl(model + "-" + i);
+                    ProductPictureBean pBean = productPictureJpaReposit.findProducturl(Productmodel + "-" + i);
                     if (pBean == null) {
                         pBean = new ProductPictureBean();
                     }
-                    pBean.setProducturl(model + "-" + i);
+                    pBean.setProducturl(Productmodel + "-" + i);
                     pBean.setProductid(Productid);
                     productPictureJpaReposit.save(pBean);
                 }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:/backstage/product";
+
+        Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
+        List<ProductBean> result = page.getContent();
+        model.addAttribute("product",result);
+        return "/views/backstage/product";
 
     }
 
@@ -307,6 +306,8 @@ public class BackStageController {
                 ub.setUserid(userId);
                 ub.setUsername("未找到");
                 ub.setUserphone("未找到");
+                ub.setEmail("未找到");
+                ub.setDeliveryAddress("未找到");
                 user.add(ub);
             }
 
@@ -343,10 +344,10 @@ public class BackStageController {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//會員資料
+//員工資料
     @RequestMapping("/staff")
     public String staff(Model model) {
-        System.out.println("*****會員資料 *****");
+        System.out.println("*****員工資料 *****");
         List<StaffBean> lis = staffRepository.findAll();
         model.addAttribute("staff", lis);
 
@@ -354,15 +355,27 @@ public class BackStageController {
         return "/views/backstage/staff";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //會員詳細
+    //員工詳細
     @RequestMapping("/staffDetail/{staffId}")
     @ResponseBody
     public StaffBean staffDetail(@PathVariable("staffId") Integer staffId) {
-        System.out.println("*****會員詳細 *****");
+        System.out.println("*****員工詳細 *****");
         Optional<StaffBean> op = staffRepository.findById(staffId);
         StaffBean bean = op.get();
 
         return bean;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //修改員工資料
+    @RequestMapping("/changStaff/{staffId}")
+    public String changStaff(StaffBean bean,Model model,@PathVariable("staffId") Integer staffId) {
+        System.out.println("*****修改員工資料 *****");
+        bean.setId(staffId);
+        System.out.println(bean);
+        staffRepository.save(bean);
+        List<StaffBean> lis = staffRepository.findAll();
+        model.addAttribute("staff", lis);
+        return "/views/backstage/staff";
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

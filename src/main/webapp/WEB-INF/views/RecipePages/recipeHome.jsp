@@ -16,23 +16,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">
 
 
     <%-- footer的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <script src="/recipe/js/recipeHome.js"></script>
-    <link rel="stylesheet" href="/recipe/css/recipeHome.css">
+    <script src="${pageContext.request.contextPath}/js/recipeHome.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/recipeHome.css">
 
 
     <title>食譜主頁</title>
@@ -51,7 +51,7 @@
             <%--推薦食譜輪播圖迴圈--%>
 <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
     <li>
-        <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+        <a href="${pageContext.request.contextPath}/recipeDetails?id=${recReccBean.get(loop.index).recId}">
             <h2>${recReccBean.get(loop.index).recTitle}</h2>
             <img src="${recReccBean.get(loop.index).recPic}" alt="">
         </a>
@@ -73,7 +73,7 @@
                     <%--推薦食譜迴圈--%>
                     <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                     <li class='col-xs-10 col-md-10'>
-                        <a href="http://localhost:8080/recipe/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+                        <a href="${pageContext.request.contextPath}/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                             <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
                             <div class="row col-xs-8 col-md-8">
                                 <h4 class='showLines'>${recReccBean.get(loop.index).recTitle}</h4>
