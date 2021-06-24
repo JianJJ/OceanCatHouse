@@ -121,9 +121,7 @@
 
 
 <%--// 訂單細節--%>
-<div class="hazy">
-
-</div>
+<div class="hazy"></div>
 <div class="cat">
     <button class="catReturn">X</button>
     <div class="row">
@@ -170,8 +168,9 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-
-        <%--        <label class="list-group-item">員工管理</label>--%>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
+        </button>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -192,13 +191,13 @@
                     <label class="btn btn-outline-primary" for="btncheck3" onclick="sta(3)">歷史訂單</label>
                 </div>
             </div>
-<%--            <div class="col-lg-3 ccc">--%>
-<%--                <div class="input-group mb-3">--%>
-<%--                    <input type="text" class="form-control" placeholder="訂單編號" aria-label="Recipient's username"--%>
-<%--                           aria-describedby="button-addon2" id="selectProduct">--%>
-<%--                    <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <%--            <div class="col-lg-3 ccc">--%>
+            <%--                <div class="input-group mb-3">--%>
+            <%--                    <input type="text" class="form-control" placeholder="訂單編號" aria-label="Recipient's username"--%>
+            <%--                           aria-describedby="button-addon2" id="selectProduct">--%>
+            <%--                    <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
 
             <div class="row">
                 <table class="Table table-striped orderTable">
@@ -250,6 +249,7 @@
         success: doSuccess,
         error: doError
     });
+
     function doSuccess(json) {
         var state;
         $(".TTT").remove();

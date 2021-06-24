@@ -132,7 +132,9 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-<%--        <label class="list-group-item">員工管理</label>--%>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
+        </button>
     </ul>
 </div>
 <%--    中間主體--%>

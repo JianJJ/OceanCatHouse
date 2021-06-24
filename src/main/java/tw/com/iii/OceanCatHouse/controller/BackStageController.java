@@ -36,6 +36,8 @@ public class BackStageController {
     private ProductPictureJpaReposit productPictureJpaReposit;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private StaffRepository staffRepository;
 
     @RequestMapping("/home")
     public String home() {
@@ -63,9 +65,9 @@ public class BackStageController {
 //讀取商品資訊 和分頁
     @RequestMapping("/product/{pag}/{state}")
     @ResponseBody
-    public List<ProductBean> product(@PathVariable("pag") Integer p,@PathVariable("state") String state) {
+    public List<ProductBean> product(@PathVariable("pag") Integer p, @PathVariable("state") String state) {
         System.out.println("*****讀取商品資訊 *****");
-        Page<ProductBean> page = productRepository.findByProductstatus(state,PageRequest.of(p - 1, 20));
+        Page<ProductBean> page = productRepository.findByProductstatus(state, PageRequest.of(p - 1, 20));
         List<ProductBean> result = page.getContent();
         return result;
     }
@@ -75,7 +77,7 @@ public class BackStageController {
     @ResponseBody
     public Integer page(@PathVariable("page") Integer p) {
         System.out.println("*****讀取最多頁數 *****");
-        Page<ProductBean> page = productRepository.findByProductstatus("1",PageRequest.of(p - 1, 20));
+        Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(p - 1, 20));
         Integer result = page.getTotalPages();
         return result;
     }
@@ -279,64 +281,88 @@ public class BackStageController {
 //刪除圖案
     @RequestMapping("/state/{orderId}")
     public String state(@PathVariable("orderId") Integer orderId, @RequestParam("orderStatus") Integer orderStatus) {
-      Optional<OrdersBean> op = ordersRepository.findById(orderId);
+        Optional<OrdersBean> op = ordersRepository.findById(orderId);
         OrdersBean bean = op.get();
         bean.setOrderstatusid(orderStatus);
         ordersRepository.save(bean);
         return "redirect:/backstage/order?pag=1&state=1";
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //會員資料
-@RequestMapping("/user/{userId}")
-public String user( Model model,@PathVariable("userId") Integer userId) {
-    System.out.println("*****會員資料 *****");
-    List<UserBean> user = new ArrayList<>();
-    if(userId == 0) {
-         user = userRepository.findAll();
-    }else{
-        Optional<UserBean> op = userRepository.findById(userId);
-        System.out.println(op);
-        UserBean ub = new UserBean();
-        if(op.isPresent()){
-             ub = op.get();
-            user.add(ub);
-        }else{
-            ub.setUserid(userId);
-            ub.setUsername("未找到");
-            ub.setUserphone("未找到");
-            user.add(ub);
+    @RequestMapping("/user/{userId}")
+    public String user(Model model, @PathVariable("userId") Integer userId) {
+        System.out.println("*****會員資料 *****");
+        List<UserBean> user = new ArrayList<>();
+        if (userId == 0) {
+            user = userRepository.findAll();
+        } else {
+            Optional<UserBean> op = userRepository.findById(userId);
+            System.out.println(op);
+            UserBean ub = new UserBean();
+            if (op.isPresent()) {
+                ub = op.get();
+                user.add(ub);
+            } else {
+                ub.setUserid(userId);
+                ub.setUsername("未找到");
+                ub.setUserphone("未找到");
+                user.add(ub);
+            }
+
         }
-
+        model.addAttribute("user", user);
+        return "/views/backstage/user";
     }
-        model.addAttribute("user",user);
-    return "/views/backstage/user";
-}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //讀取會員定單
     @RequestMapping("/userOrder/{userId}")
     @ResponseBody
-    public List<Map<String, String>> userOrder(@PathVariable("userId") Integer userId)  {
-        System.out.println("*****讀取會員定單*****"+userId);
+    public List<Map<String, String>> userOrder(@PathVariable("userId") Integer userId) {
+        System.out.println("*****讀取會員定單*****" + userId);
         List<OrdersBean> lis = ordersRepository.findByUserid(userId);
         List<Map<String, String>> result = new ArrayList<>();
         for (OrdersBean bean : lis) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
-                String CreateOn = sdf.format(bean.getOrdercreateon());
-                Map<String, String> map = new HashMap<>();
-                map.put("orderId", bean.getOrderid() + "");
-                map.put("orderCreateOn", CreateOn);
-                map.put("userId", bean.getUserid() + "");
-                Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserid());
-                UserBean userBean = optionalUserBean.get();
-                map.put("userName", userBean.getUsername());
-                map.put("orderStatusId", bean.getOrderstatusid() + "");
-                map.put("address", bean.getAddress());
-                result.add(map);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH E");
+            String CreateOn = sdf.format(bean.getOrdercreateon());
+            Map<String, String> map = new HashMap<>();
+            map.put("orderId", bean.getOrderid() + "");
+            map.put("orderCreateOn", CreateOn);
+            map.put("userId", bean.getUserid() + "");
+            Optional<UserBean> optionalUserBean = userRepository.findById(bean.getUserid());
+            UserBean userBean = optionalUserBean.get();
+            map.put("userName", userBean.getUsername());
+            map.put("orderStatusId", bean.getOrderstatusid() + "");
+            map.put("address", bean.getAddress());
+            result.add(map);
 
         }
 
         return result;
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//會員資料
+    @RequestMapping("/staff")
+    public String staff(Model model) {
+        System.out.println("*****會員資料 *****");
+        List<StaffBean> lis = staffRepository.findAll();
+        model.addAttribute("staff", lis);
+
+
+        return "/views/backstage/staff";
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //會員詳細
+    @RequestMapping("/staffDetail/{staffId}")
+    @ResponseBody
+    public StaffBean staffDetail(@PathVariable("staffId") Integer staffId) {
+        System.out.println("*****會員詳細 *****");
+        Optional<StaffBean> op = staffRepository.findById(staffId);
+        StaffBean bean = op.get();
+
+        return bean;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
