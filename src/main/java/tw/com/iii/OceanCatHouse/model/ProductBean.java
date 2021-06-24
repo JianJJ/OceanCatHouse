@@ -1,12 +1,16 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
 @Table(name = "product")
 
-public class ProductBean {
+public class ProductBean{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productid;
@@ -23,6 +27,39 @@ public class ProductBean {
 	private String productstatus;
 	private  String productkey;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "productBean", cascade = CascadeType.ALL)
+	private List<OrderDetailBean> orderDetailBeans;
+
+	@Override
+	public String toString() {
+		return "ProductBean{" +
+				"productid=" + productid +
+				", productmodel='" + productmodel + '\'' +
+				", productname='" + productname + '\'' +
+				", producttext='" + producttext + '\'' +
+				", purchaseprice=" + purchaseprice +
+				", sellingprice=" + sellingprice +
+				", stocks=" + stocks +
+				", productspecifications='" + productspecifications + '\'' +
+				", createdon=" + createdon +
+				", lastupdatedon=" + lastupdatedon +
+				", productcategoryid=" + productcategoryid +
+				", productstatus='" + productstatus + '\'' +
+				", productkey='" + productkey + '\'' +
+				", orderDetailBeans=" + orderDetailBeans +
+				", vendorid=" + vendorid +
+				'}';
+	}
+
+	public List<OrderDetailBean> getOrderDetailBeans() {
+		return orderDetailBeans;
+	}
+
+	public void setOrderDetailBeans(List<OrderDetailBean> orderDetailBeans) {
+		this.orderDetailBeans = orderDetailBeans;
+	}
+
 	public String getProductkey() {
 		return productkey;
 	}
@@ -30,11 +67,7 @@ public class ProductBean {
 	public void setProductkey(String productkey) {
 		this.productkey = productkey;
 	}
-	@Override
-	public String toString() {
-		return "ProductBean [productmodel=" + productmodel + ", productname=" + productname + ", sellingprice="
-				+ sellingprice + "]";
-	}
+
 	private Integer  vendorid;
 	public Integer getProductid() {
 		return productid;

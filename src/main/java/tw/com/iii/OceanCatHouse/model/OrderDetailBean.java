@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order_detail")
-public class OrderDetailBean {
+public class OrderDetailBean{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderdetailid;
@@ -20,6 +20,11 @@ public class OrderDetailBean {
     @ManyToOne
     @JoinColumn(name = "orderid", referencedColumnName = "orderid",insertable = false, updatable = false)
     private OrdersBean ordersBean;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "productid", referencedColumnName = "productid", insertable = false, updatable = false)
+    private ProductBean productBean;
 
     public Integer getOrderdetailid() {
         return orderdetailid;
@@ -69,6 +74,14 @@ public class OrderDetailBean {
         this.discount = discount;
     }
 
+    public OrdersBean getOrdersBean() {
+        return ordersBean;
+    }
+
+    public void setOrdersBean(OrdersBean ordersBean) {
+        this.ordersBean = ordersBean;
+    }
+
     @Override
     public String toString() {
         return "OrderDetailBean{" +
@@ -79,14 +92,15 @@ public class OrderDetailBean {
                 ", unit=" + unit +
                 ", discount=" + discount +
                 ", ordersBean=" + ordersBean.getOrderid() +
+                ", productBean=" + productBean.getProductid() +
                 '}';
     }
 
-    public OrdersBean getOrdersBean() {
-        return ordersBean;
+    public ProductBean getProductBean() {
+        return productBean;
     }
 
-    public void setOrdersBean(OrdersBean ordersBean) {
-        this.ordersBean = ordersBean;
+    public void setProductBean(ProductBean productBean) {
+        this.productBean = productBean;
     }
 }
