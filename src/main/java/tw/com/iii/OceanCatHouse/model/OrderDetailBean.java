@@ -1,5 +1,7 @@
 package tw.com.iii.OceanCatHouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,17 +16,10 @@ public class OrderDetailBean {
     private Integer unit;
     private Integer discount;
 
-    @Override
-    public String toString() {
-        return "OrderDetailBean{" +
-                "orderdetailid=" + orderdetailid +
-                ", orderid=" + orderid +
-                ", productid=" + productid +
-                ", sellingprice=" + sellingprice +
-                ", unit=" + unit +
-                ", discount=" + discount +
-                '}';
-    }
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid",insertable = false, updatable = false)
+    private OrdersBean ordersBean;
 
     public Integer getOrderdetailid() {
         return orderdetailid;
@@ -72,5 +67,26 @@ public class OrderDetailBean {
 
     public void setDiscount(Integer discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetailBean{" +
+                "orderdetailid=" + orderdetailid +
+                ", orderid=" + orderid +
+                ", productid=" + productid +
+                ", sellingprice=" + sellingprice +
+                ", unit=" + unit +
+                ", discount=" + discount +
+                ", ordersBean=" + ordersBean.getOrderid() +
+                '}';
+    }
+
+    public OrdersBean getOrdersBean() {
+        return ordersBean;
+    }
+
+    public void setOrdersBean(OrdersBean ordersBean) {
+        this.ordersBean = ordersBean;
     }
 }

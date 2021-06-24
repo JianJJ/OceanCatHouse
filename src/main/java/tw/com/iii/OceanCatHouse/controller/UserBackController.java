@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
-import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
-import tw.com.iii.OceanCatHouse.model.UserBean;
-import tw.com.iii.OceanCatHouse.model.UserCreditCardBean;
-import tw.com.iii.OceanCatHouse.model.UserFavoritesCategoryBean;
+import tw.com.iii.OceanCatHouse.model.*;
 import tw.com.iii.OceanCatHouse.repository.*;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
 import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesCategoryService;
@@ -53,6 +50,9 @@ public class UserBackController {
 
     @Autowired
     private UserCreditCardRepository userCreditCardDao;
+
+    @Autowired
+    private OrdersRepository ordersDao;
 
     // 到個人首頁
     @RequestMapping("/home")
@@ -312,6 +312,16 @@ public class UserBackController {
         userCreditCardDao.save(userCreditCardBean);
 
         return "新增/更新成功";
+    }
+
+    // user查看全部訂單
+    @GetMapping("/selectOrders")
+    @ResponseBody
+    public List<OrdersBean> selectOrders(HttpSession session){
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<OrdersBean> ordersList = ordersDao.findByUserid(user.getUserid());
+
+        return ordersList;
     }
 
 }

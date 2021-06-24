@@ -26,13 +26,6 @@ $(document).ready(function (){
         $(this).addClass("used");
     });
 
-    // 點擊顯示訂單頁
-    $('#showOrdersBtn').click(function (){
-        $(this).addClass('current').siblings().removeClass('current');
-        $('.showOrders').prop('hidden', false);
-        $('.showCard').prop('hidden', true);
-    }).click();
-
     // 點擊顯示全部卡片
     $('#showCardBtn').click(function () {
         $(this).addClass('current').siblings().removeClass('current');
@@ -169,4 +162,29 @@ $(document).ready(function (){
             }
         })
     })
+
+
+    //------------------------ 下面是訂單js------------------------------
+
+    // 點擊顯示訂單頁
+    $('#showOrdersBtn').click(function (){
+        $(this).addClass('current').siblings().removeClass('current');
+        $('.showOrders').prop('hidden', false);
+        $('.showCard').prop('hidden', true);
+
+        $.ajax({
+            type: "GET",
+            url: "/OceanCatHouse/userBack/selectOrders",
+            async: false,
+            cache: false,  //不做快取
+            success: function (ordersList) {
+
+
+            },
+            error: function (returndata) {
+                alert("系統忙碌中, 稍後再試")
+            }
+        })
+    }).click();
+
 })

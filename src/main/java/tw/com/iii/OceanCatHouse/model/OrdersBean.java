@@ -1,8 +1,11 @@
 package tw.com.iii.OceanCatHouse.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -15,16 +18,14 @@ public class OrdersBean {
     private Integer orderstatusid;
     private  String address;
 
-    @Override
-    public String toString() {
-        return "OrdersBean{" +
-                "orderid=" + orderid +
-                ", userid=" + userid +
-                ", ordercreateon=" + ordercreateon +
-                ", orderstatusid=" + orderstatusid +
-                ", address='" + address + '\'' +
-                '}';
-    }
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "orderstatusid", referencedColumnName = "orderstatusid",insertable = false, updatable = false)
+    private OrderStatusBean orderStatusBean;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ordersBean", cascade = CascadeType.ALL)
+    private List<OrderDetailBean> orderDetailBeanList;
 
     public String getAddress() {
         return address;
@@ -64,5 +65,34 @@ public class OrdersBean {
 
     public void setOrderstatusid(Integer orderstatusid) {
         this.orderstatusid = orderstatusid;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersBean{" +
+                "orderid=" + orderid +
+                ", userid=" + userid +
+                ", ordercreateon=" + ordercreateon +
+                ", orderstatusid=" + orderstatusid +
+                ", address='" + address + '\'' +
+                ", orderStatusBean=" + orderStatusBean.getOrderstatusid() +
+                ", orderDetailBeanList=" + orderDetailBeanList +
+                '}';
+    }
+
+    public OrderStatusBean getOrderStatusBean() {
+        return orderStatusBean;
+    }
+
+    public void setOrderStatusBean(OrderStatusBean orderStatusBean) {
+        this.orderStatusBean = orderStatusBean;
+    }
+
+    public List<OrderDetailBean> getOrderDetailBeanList() {
+        return orderDetailBeanList;
+    }
+
+    public void setOrderDetailBeanList(List<OrderDetailBean> orderDetailBeanList) {
+        this.orderDetailBeanList = orderDetailBeanList;
     }
 }
