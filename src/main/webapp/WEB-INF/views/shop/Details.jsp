@@ -12,38 +12,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    
 
     <%-- jQuery放這裡 --%>
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
+    
     <%-- Header的CSS、JS樣式放這裡    --%>
-<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav.css">--%>
-    <link rel="stylesheet" href="../css/Details.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav_forShop.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Details.css">
 
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
-    <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="../css/demo.css">
+
 
     <script type="text/javascript">
         var id = "${id}";
         console.log("id : " + id);
     </script>
-    <style>
-        footer {
-            margin:-42px;
-            z-index: 10;
-        }
-        .cenBody{
-            position: relative;
-            top: 30px;
-        }
-    </style>
+    
 
     <title>✿海貓食屋✿</title>
 </head>
@@ -56,48 +46,18 @@
 <!-- <%--購物車插入--%> -->
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
 <!-- 分類條 -->
-<div class="container-fluid">
-<%--    <div class="row menu">--%>
-<%--        <div id="home" class="col-lg-1">--%>
-<%--            <a href="../views/ShoppingMall"><img src="../images/homepic/home.png" alt=""></a>--%>
-<%--        </div>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=1">五穀</a>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=5">油</a>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=4">醬料</a>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=2">蔬果</a>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=3">生鮮</a>--%>
-<%--        <a class="col-lg-1 col-md-2 menuDetail" href="../views/ShoppingMall?categoryid=6">乾貨</a>--%>
-<%--    </div>--%>
-
-
+<div class="container">
     <!-- 中間部分 -->
-
-    <div class="row ">
+    <div class="row">
         <!-- 左邊浮動區塊 -->
-        <div class="col-lg-2 ">
-            <div class="barNav">
-
-                <ul>
-                    <li class="fontIcon" id="f1"></li>
-                    <li class="fontIcon"></li>
-                    <li class="fontIcon"></li>
-                    <li class="fontIcon"></li>
-                </ul>
-            </div>
+        <div class="barNav d-none d-lg-inline-block">
+            <ul>
+                <li class="fontIcon"><span id="f1"></span></li>
+            </ul>
         </div>
-        <style>
-            .cenBody .SimilarProducts figure {
-                width: 200px;
-                height: 300px;
-                z-index: 5;
-                margin: 18px;
-            }
-
-        </style>
-
-
+      
         <!-- 網頁中間內文 -->
-        <div class="col-lg-8 ">
+        <div class="col-lg-11">
             <div class="cenBody">
                 <!-- 輪播圖  -->
                 <div class="cenDetail row">
@@ -112,24 +72,24 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-1"></div>
+                   
                     <div class="col-lg-5 col-md-12 rightImg ">
-                    <br>
+                    
                     <h2 class="productname"> ${productname}</h2>
 
                     <hr>
-                    <br>
+                   
                     <div class="producttext">${producttext}</div>
 
-                    <br>
-                    <div class="productspecifications">商品規格:${productspecifications}</div>
-                    <br>
-                    <div>付款方式 : 貨到付款
-                        <br> 運送方式
-                        宅配 ($30)
+                    
+                    <div class="productspecifications">商品規格 : ${productspecifications}</div>
+                   
+                    <div class='productPayment'>付款方式 : 貨到付款
+                        <br> 運送方式 : 
+                        宅配 ($80)
                     </div>
                     <hr>
-                    <div class="sellingprice">售價 ${sellingprice}</div>
+                    <div class="sellingprice">售價 $${sellingprice}</div>
                     <div>
 
                         <form action="${pageContext.request.contextPath}/cat/${id}">
@@ -145,10 +105,39 @@
 
                 </div>
             </div>
+            
+            <hr class='divLine'>
+            
             <!-- 推薦食譜 -->
             <div class="recommend row">
                 <p>推薦食譜</p>
-                <script>
+                
+            </div>
+            <hr class='divLine'>
+            <!-- 同類商品 -->
+            <div class="SimilarProducts row">
+                
+                <p>同類商品</p>
+
+               
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 右邊至頂 -->
+
+    <div class="toUP">
+        <span class="fontIcon" id="toUp"></span>
+    </div>
+</div>
+</div>
+
+</body>
+
+ 
+
+<script>
                     $.ajax({
                         url: "${pageContext.request.contextPath}/recommend/${id}",
                         type: "get",
@@ -166,12 +155,7 @@
                         }
                     });
                 </script>
-            </div>
-            <!-- 同類商品 -->
-            <div class="SimilarProducts row">
-                <hr>
-                <p>同類商品</p>
-
+                
                 <script>
                     $.ajax({
                         url: "${pageContext.request.contextPath}/category/" + id,
@@ -198,22 +182,24 @@
 
                 </script>
 
-            </div>
-        </div>
-    </div>
-
-    <!-- 右邊至頂 -->
-
-    <div class="toUP">
-        <span class="fontIcon" id="toUp"></span>
-    </div>
-</div>
-</div>
-<script src="../js/umbrella.js"></script>
-<script src="../js/shoopCat.js"></script>
-</body>
-
 <script>
+
+$('.toUP').click(function(){
+    $('html, body').stop().animate( {
+        scrollTop: 0
+        }, 100)
+});
+
+$(window).scroll(function(){
+    if($(document).scrollTop() >= 450){
+        $('.toUP').fadeIn(300);
+    }
+
+    if($(document).scrollTop() < 450){
+        $('.toUP').fadeOut(300);
+    }
+});
+
     // 商品資料
     $.ajax({
         url: "${pageContext.request.contextPath}/pic/" + id,
@@ -231,6 +217,6 @@
         }
     })
 </script>
-
+<script src="../js/shoopCat.js"></script>
 </html>
 <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>

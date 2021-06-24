@@ -1,74 +1,146 @@
 body {
-    background-image: url("../images/homePic/retina_wood.png");
-    z-index: 1;
-    height: 100%
+	background:#eee;
 }
 
-.main{
-    transform:translateX(0);
-    z-index: 9;
-    margin:0px;
-}
-footer {
-    margin:-42px;
-    z-index: 10;
-}
 
-/* 分類條 */
- .menu {
-      background-color: #69AE1E;
-  }
- .menu #home a {
-     position: relative;
-     top: 10px;
-     background-color: rgb(66, 108, 18);
-     box-sizing:content-box;
-     padding: 15px 16px 15px 16px;
-}
-.menuDetail {
-    line-height: 46px;
-    height: 48px;
-    font-size: 25px;
-    margin: 0 10px;
-    top: 5px;
+.barNav {
+    position: relative;
+    top: 350px;
+    width: 100px;
+    height:100vh;
+    font-size: 35px;
+    background-color: transparent;
     text-align: center;
+    
 }
 
-/* 中間身體 */
+.barNav ul {
+	list-style:none;
+    position: sticky;
+    top:200px;
+    width: 50px;
+    height:50px;
+    padding:0;
+}
+
+.barNav ul li {
+	color:#E9C573;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size:40px;
+    z-index: 1;
+    cursor:pointer;
+    text-shadow:1px 1px 1px #222;
+    
+}
+
+.barNav ul li:hover {
+	color:#e3985f;
+}
+
+#f1 {
+	position:absolute;
+	right:-20px;
+	top:-10px;
+	font-size:16px;
+	font-weight:400;
+	color:#222;
+	border:2px solid #eee;
+	box-shadow:0px 0px 2px #DDF5D5;
+	border-radius:15px;
+	width:25px;
+	height:25px;
+	line-height:20px;
+	background:tomato;
+}
+
+
+.toUP {
+    position: fixed;
+    display: none;
+    right:5%;
+    bottom: 50px;
+    z-index: 1;
+}
+
+#toUp {
+	font-size: 50px;
+}
+
+
 .cenBody {
     background-color:white;
-    z-index: 7;
     font-size: 25px;
-}
-.cenBody  .leftImg {
-    position: relative;
-    left: 50px;
+    padding-top:5%;
+    margin-top:30px;
 }
 
-/*.cenBody  .rightImg {*/
-/*     position: relative;*/
-/*     right: 50px;*/
-/*}*/
+.producttext {
+	font-size:20px;
+	font-weight:400;
+	margin-bottom:25px;
+}
+
+.productspecifications,
+.productPayment,
+.sellingprice {
+	font-size:20px;
+	line-height: 40px;
+}
+
+
+
+/* 中間身體 */
+
+.cenBody  .leftImg {
+    position: relative;
+	margin-left:50px;
+}
+
+.productname {
+	margin-top:15px;
+	font-size:34px;
+}
+
+.cenBody  .rightImg form {
+	margin-top:10px;
+}
+
 /* 數量按鈕 */
 .cenBody  .rightImg form .num{
     text-align:center;
     width: 50px;
+    font-size:22px;
+    border: 1px solid #6DACA6;
 }
 
 .cenBody  .rightImg form .rightButton {
-    width: 25px;
-    position: relative;
     right: 10px;
 }
 .cenBody  .rightImg form .leftButton {
-    width: 25px;
-    /* height: 20px; */
-    position: relative;
     left:  10px;
 }
+
+.cenBody  .rightImg form .leftButton,
+.cenBody  .rightImg form .rightButton {
+	background: #C6E6CB;
+	border: 1px solid #6DACA6;
+	font-size:22px;
+	width: 25px;
+	position: relative;
+}
+
+.cenBody  .rightImg form .leftButton:hover,
+.cenBody  .rightImg form .rightButton:hover {
+	background: #6DACA6;
+}
+
 .cenBody  .rightImg form .bs {
     position: relative;
-    top: -3px;
+    left:25px;
 }
 /* 輪播圖 */
 .cenBody  .leftImg .banner {
@@ -96,12 +168,25 @@ footer {
 }
 
 /* 推薦食譜 */
-.cenBody .recommend{
+
+.divLine {
+	width:90%;
+	margin:75px auto 25px auto;
+}
+
+.rsNavItem {
+	cursor:pointer;
+}
+
+.cenBody .recommend,
+.cenBody .SimilarProducts{
+	margin:0 35px;
     position: relative;
     /* background-color: #69AE1E; */
 }
-.cenBody .recommend p{
-    /* top: 1000px; */
+.cenBody .recommend > p,
+.cenBody .SimilarProducts > p{
+	font-size:26px;
     left: 20px;
     position: relative;
 
@@ -110,20 +195,19 @@ footer {
     color: black;
 }
 
-.cenBody .recommendRecipe {
-    /*position: relative;*/
-    /*left: 100px;*/
-    /*float: left;*/
-}
-
 
 .cenBody .recommendRecipe img {
     height: 120px;
     margin: 10px;
 }
 .cenBody .recommendRecipe p {
-    /*float: left;*/
+	font-size:20px;
+	display:flex;
+	align-items:center;
+}
 
+.cenBody .recommendRecipe:hover {
+	box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
 }
 
 /* 同類商品 */
@@ -132,6 +216,15 @@ footer {
     object-fit:contain;
     height: 200px;
 
+}
+
+.cenBody .SimilarProducts figure a {
+	width: 200px;
+    height: 200px;
+	color:black;
+	font-size:20px;
+	display:block;
+	text-align:center;
 }
 .cenBody .SimilarProducts p{
     position: relative;
@@ -143,12 +236,23 @@ footer {
     z-index: 5;
     margin: 18px;
 }
+
 /* 動態背景 */
 canvas {
     position: fixed;
     z-index: -1;
 }
-/* 左邊浮動區塊 */
-.barNav li{
-   background-color: white;
-}
+
+
+ footer {
+            margin:-42px;
+            z-index: 10;
+        }
+       
+.cenBody .SimilarProducts figure {
+                width: 200px;
+                height: 300px;
+                z-index: 5;
+                margin: 18px;
+            }
+            
