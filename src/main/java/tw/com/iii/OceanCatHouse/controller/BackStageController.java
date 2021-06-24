@@ -76,14 +76,13 @@ public class BackStageController {
     public Integer page(@PathVariable("page") Integer p) {
         System.out.println("*****讀取最多頁數 *****");
         Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(p - 1, 20));
-        Integer result = page.getTotalPages();
-        return result;
+         return page.getTotalPages();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //修改商品
     @RequestMapping("/updata/{productid}")
-    public String updata(ProductBean bean, @PathVariable("productid") Integer productid, Model model) {
+    public String updata(ProductBean bean, @PathVariable("productid") Integer productid) {
         System.out.println("*****修改商品 *****");
         System.out.println(bean);
         bean.setProductid(productid);
@@ -163,9 +162,7 @@ public class BackStageController {
     @ResponseBody
     public List<ProductBean> product(@PathVariable("name") String name) {
         System.out.println("*****搜索商品資訊 *****");
-
-        List<ProductBean> result = productRepository.findByProductnameLike("%" + name + "%");
-        return result;
+        return productRepository.findByProductnameLike("%" + name + "%");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,8 +262,7 @@ public class BackStageController {
     @ResponseBody
     public List<ProductPictureBean> findPic(@PathVariable("Productid") Integer Productid) {
         System.out.println("*****搜索圖片 *****");
-        List<ProductPictureBean> result = productPictureJpaReposit.findPic(Productid);
-        return result;
+        return productPictureJpaReposit.findPic(Productid);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -366,9 +362,8 @@ public class BackStageController {
     public StaffBean staffDetail(@PathVariable("staffId") Integer staffId) {
         System.out.println("*****員工詳細 *****");
         Optional<StaffBean> op = staffRepository.findById(staffId);
-        StaffBean bean = op.get();
 
-        return bean;
+        return op.get();
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //修改員工資料
@@ -402,12 +397,9 @@ public class BackStageController {
         }
         Map<String,Integer> result = new HashMap<>();
         for(Integer x : count.keySet()){
-//            System.out.println(x+" : "+count.get(x));
              ProductBean pBean= productRepository.getById(x);
-            System.out.println(pBean.getProductname());
             result.put(pBean.getProductname(),count.get(x));
         }
-        System.out.println(result);
         return result;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
