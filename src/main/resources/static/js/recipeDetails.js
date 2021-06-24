@@ -1,6 +1,3 @@
-
-	
-
 $(function(){
     $('.toUP').click(function(){
         $('html, body').stop().animate( {
@@ -18,9 +15,13 @@ $(function(){
 		$('#blackMask').fadeIn();
 		$('#recipeContext').val(recipeContext);
 		$("html").addClass("noscroll");
-		
-		
+
 	});
+    
+    $('#shareLinks').click(function(){
+    	$('#blackMaskTwo').fadeIn();
+    });
+    
     
     $(window).scroll(function(){
         if($(document).scrollTop() >= 450){
@@ -32,8 +33,8 @@ $(function(){
         }
     });
     
-     $('#blackMask').on('click', function (event) {
-		            $('#blackMask').fadeOut();
+     $('.mask').on('click', function (event) {
+		            $(this).fadeOut();
 		            $("html").removeClass("noscroll");
 
 		        });
@@ -42,21 +43,18 @@ $(function(){
 					e.stopPropagation();
 				});	
 
-		        $('#closeMask').on('click', function () {
-		            $('#blackMask').fadeOut();
+		        $('.closeMask').on('click', function () {
+		            $('.mask').fadeOut();
 		            $("html").removeClass("noscroll");
 		            
 		        });
-			
 
-			
-			
 			$('.barNav ul>li').eq(2).on("mouseenter mouseleave", function(){
 				$('.barNav ul  ol').stop().fadeToggle("fast");});
 		
 			
 		 // + location.pathname +location.search;
-			var url = "https://marinecat.booth.pm/";   		
+			var url = window.location.href; 		
 			var fbUrl = "javascript: void(window.open('http://www.facebook.com/share.php?u=" + url +"'));";
 			$('#fbShare').attr("href",fbUrl); 
 			
@@ -65,6 +63,32 @@ $(function(){
 			
 			var twtUrl = "https://twitter.com/share?text=" + encodeURI("海貓食屋") + "&url=" + url;
 			$('#twitterShare').attr("href",twtUrl); 
+			
+			
+			
+$('.copy_url_a').click(function(){
+	var textarea_url = $(this).siblings('.copy_url_input').get(0);
+	
+	console.log(textarea_url);
+	
+	var currentFocus = document.activeElement;
+	
+	textarea_url.select();
+	
+	document.execCommand("copy")
+	
+	currentFocus.focus();
+	
+	alert("連結已經複製好了。");
 
-})
+});
+
+
+
+$('#addFavorite').click(function(){
+	$('#blackMaskThree').show();
+});
+
+
+});
 

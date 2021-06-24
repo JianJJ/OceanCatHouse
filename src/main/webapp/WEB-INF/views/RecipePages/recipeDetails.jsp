@@ -46,18 +46,52 @@
  <!-- 拼接header -->
 <jsp:include page="top_nav.jsp"></jsp:include>
 
-    <div id='blackMask'>
-        <div class='modalSection'>
+    <div id='blackMask' class='mask'>
+        <div class='modalSection' id='sectionOne'>
         <script>
 			var recTitle = '${recMainBean.recTitle}';
 			var recipeContext = "";
 			var img = '${recMainBean.recPic}';	
 			
 		</script>
-            <button id='closeMask'>X</button>
+            <button class='closeMask'>X</button>
             <jsp:include page="sendMail.jsp"></jsp:include>
         </div>
     </div>
+    
+    <div id='blackMaskTwo' class='mask'>
+     
+        <div class='modalSection' id='sectionTwo'>
+        <button class='closeMask'>X</button>
+        <h4>分享</h4>
+        <ul>
+        <li class="fontIcon hyLink">
+                 			<a href="#" id='lineShare' target="_blank">
+                 				<img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
+                 				<p>Line</p>
+                 			</a>
+                 		</li>
+                 		<li class="fontIcon hyLink font">
+								 <a class="fontIcon hyLink" id="fbShare" href="#">
+								 <p>FB</p></a>	 
+                 		</li>
+                 		
+                 		<li class="fontIcon hyLink font" >
+                 		<a  class="fontIcon hyLink" id='twitterShare' href="#" target="_blank">
+                 		<p>Twitter</p></a></li>
+                 	</ul>
+                 	<div id='copyConsole'>
+                 	<textarea readonly class="copy_url_input">${pageContext.request.requestURL}</textarea>
+                 	<a class="copy_url_a">複製連結</a>
+</div>
+        </div>
+    </div>
+  
+  <div id='blackMaskThree' class='mask'>
+  <div class='modalSection' id='sectionThree'>
+   <button class='closeMask'>X</button>
+  </div>
+  </div>
 
     <!-- 中間部分 -->
      <div class="container">
@@ -65,24 +99,9 @@
             <!-- 左邊浮動區塊 -->
             <div class="barNav col-xs-1 col-lg-1 d-md-none d-lg-block">
                 <ul>
-                    <li class="fontIcon hyLink"></li>
+                    <li class="fontIcon hyLink" id='addFavorite'></li>
                     <li class="fontIcon hyLink" id='mail'></li>
-                    <li>
-                    	<span id='shareLinks' class="fontIcon hyLink"></span>
-                    	<ol>
-                    		<li class="fontIcon hyLink">
-   								 <a class="fontIcon hyLink" id="fbShare" href="#"></a>	 
-                    		</li>
-                    		<li>
-                    			<a href="#" id='lineShare' target="_blank">
-                    				<img class="fontIcon hyLink" 
-                    				src="${pageContext.request.contextPath}/images/homePic/round_default.png">
-                    			</a>
-                    		</li>
-                    		<li class="fontIcon hyLink" >
-                    		<a  class="fontIcon hyLink" id='twitterShare' href="#" target="_blank"></a></li>
-                    	</ol>
-                    </li>
+                    <li id='shareLinks' class="fontIcon hyLink">  </li>
                 </ul>
             </div>
 
