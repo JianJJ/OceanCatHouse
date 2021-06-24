@@ -202,7 +202,7 @@ $(document).ready(function (){
                                 `<td>NT$ <span class='OrderPrice'>${sum}</span></td>`+
                                 `<td class='payment'>貨到付款</td>`+
                                 `<td>`+
-                                    `<span class='orderStatus'>未付款</span>`+
+                                    `<span class='orderStatus'>${ordersList[i].orderStatusBean.statusname}</span>`+
                                 `</td></tr>`
                         )
                     }
