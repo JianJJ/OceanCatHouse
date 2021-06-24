@@ -149,8 +149,8 @@
             <option value="2">2 下架</option>
         </select>
 
-<%--        <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>--%>
-<%--        <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>--%>
+        <%--        <div class="form-group"><label id="createdon">創建日期 : '+A.createdon+'</label></div>--%>
+        <%--        <div class="form-group"><label id="lastupdatedon">上次修改日期 : '+A.lastupdatedon+'</label></div>--%>
         <button type="submit" class="">修改</button>
     </form>
 </div>
@@ -170,7 +170,7 @@
             訂單管理
         </button>
         <button class="list-group-item"
-                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">商品管理
         </button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
@@ -189,7 +189,7 @@
             <div class="row ">
                 <div class="col-lg-3 btn-grou ccc">
                     <a href="#" class="btn btn-primary active" aria-current="page" id="addPoduct">新增商品</a>
-                    <a href="${pageContext.request.contextPath}/backstage/product?pag=1" class="btn btn-primary active"
+                    <a href="${pageContext.request.contextPath}/backstage/product?pag=1&state=1" class="btn btn-primary active"
                        aria-current="page" id="Poduct">一般商品</a>
                     <a href="#" class=" state btn btn-primary ">下架商品</a>
                 </div>
@@ -216,12 +216,23 @@
                         <td>ID</td>
                         <td>商品號</td>
                         <td>名稱</td>
-<%--                        <td>進價</td>--%>
                         <td>售價</td>
                         <td>庫存</td>
-<%--                        <td>規格</td>--%>
                         <td>圖片</td>
                     </tr>
+                    <c:forEach varStatus="loop" begin="0" end="${product.size()-1}" items="${product}" var="s">
+                        <tr class="TTT">
+                            <td onclick="Detailed(${s.productid})" class="col-lg-1">${s.productid}</td>
+                            <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.productmodel}</td>
+                            <td onclick="Detailed(${s.productid})" class="col-lg-2 ">${s.productname}</td>
+                            <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.sellingprice}</td>
+                            <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.stocks}</td>
+                            <td class="col-lg-1 ">
+                                <button type="button" class="btn btn-primary" onclick="addPic(${s.productid})">圖片
+                                </button>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
             <%--       分頁表--%>
@@ -272,61 +283,11 @@
         })
     })
 
-    <%--    商品管理--%>
-    // 列印表單
-    $.ajax({
-        url: "${pageContext.request.contextPath}/backstage/product/" + p+"/1",
-        type: "get",
-        async: false,
-        success: doSuccess,
-        error: doError
-    });
-
-    function doSuccess(json) {
-        $(".TTT").remove();
-        for (var A of json) {
-            if (A.productstatus == 1)
-                $(".table").append('<tr class="TTT" >' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
-                    // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
-                    '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
-                    // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
-                    '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
-                    '</tr>');
-        }
-    }
-
-
 
     // 下架商品
     $(".state").click(function () {
-    $(".lll").remove();
-        $.ajax({
-            url: "${pageContext.request.contextPath}/backstage/product/" + p+"/2",
-            type: "post",
-            // async: false,
-            success: function (json) {
-                $(".TTT").remove();
-                for (var A of json) {
-                    if (A.productstatus == 2)
-                        $(".table").append('<tr class="TTT" >' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1">' + A.productid + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productmodel + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-2 ">' + A.productname + '</td>' +
-                            // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.purchaseprice + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.sellingprice + '</td>' +
-                            '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.stocks + '</td>' +
-                            // '<td onclick="Detailed(' + A.productid + ')" class="col-lg-1 ">' + A.productspecifications + '</td>' +
-                            '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
-                            '</tr>');
-                }
-            }
-            ,
-            error: doError
-        });
+        window.location.href = "${pageContext.request.contextPath}/backstage/product?pag=1&state=2";
+
     })
     //////////////////////////////////////////////////////////////////////////////////////////
     // 顯細資料
@@ -334,47 +295,12 @@
         console.log(id);
         $(".hazy").css("visibility", "visible");
         $(".cat").css("visibility", "visible");
-
         $.ajax({
             url: "${pageContext.request.contextPath}/product/" + id,
             type: "get",
             contentType: "application/json",
             dataType: "json",
             success: function (A) {
-                $(".form").remove();
-                $(".cat").append('<form action="${pageContext.request.contextPath}/backstage/updata/" class="form" method="post">');
-
-                $(".form").prepend(
-                    '  <div class="form-group"><label id="productid">商品ID : </label></div>' +
-                    '<div class="form-group"><label for="productname">名稱</label>' +
-                    '<input type="text" class="form-control" id="productname" placeholder="productname" name="productname"></div>' +
-                    '<div class="form-group"><label for="productmodel">商品號</label>' +
-                    '<input type="text" class="form-control" id="productmodel" placeholder="productmodel" name="productmodel"></div>' +
-                    '<div class="form-group"><label for="producttext">詳細描述</label>' +
-                    '<input type="text" class="form-control" id="producttext" placeholder="producttext" name="producttext">' +
-                    '</div><div class="form-group"><label for="purchaseprice">進價</label>' +
-                    '<input type="text" class="form-control" id="purchaseprice" placeholder="purchaseprice" name="purchaseprice"></div>' +
-                    '<div class="form-group"><label for="sellingprice">售價</label>' +
-                    '<input type="text" class="form-control" id="sellingprice" placeholder="sellingprice" name="sellingprice"></div>' +
-                    '<div class="form-group"><label for="stocks">庫存</label>' +
-                    '<input type="text" class="form-control" id="stocks" placeholder="stocks" name="stocks"></div>' +
-                    '<div class="form-group"><label for="productspecifications">商品規格</label>' +
-                    ' <input type="text" class="form-control" id="productspecifications" placeholder="productspecifications" name="productspecifications"></div>' +
-                    '<label for="vendorid">廠商號</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="vendorid" name="vendorid">' +
-                    '<option value="1">1</option> <option value="2">2</option><option value="3">3</option></select>' +
-                    '<label for="productcategoryid">分類號</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="productcategoryid" name="productcategoryid">' +
-                    '<option value="1">1 五穀雜糧</option><option value="2">2 蔬果</option><option value="3">3 生鮮</option><option value="4">4 醬料</option>' +
-                    '<option value="5">5 油</option><option value="6">6 乾貨</option></select>' +
-                    '<label for="vendorid">產品狀態</label>' +
-                    '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
-                    '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
-                    // '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                    // '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
-                    '<button type="submit" class="">修改</button>'
-                );
-
                 $("#productid").text("商品ID : " + A.productid);
                 $("#productname").val(A.productname);
                 $("#productmodel").val(A.productmodel);
@@ -386,8 +312,6 @@
                 $("#vendorid").val(A.vendorid);
                 $("#productcategoryid").val(A.productcategoryid);
                 $("#productstatus").val(A.productstatus);
-                // $("#createdon").text("創建日期 : " + A.createdon);
-                // $("#lastupdatedon").text("上次修改日期 : " + A.lastupdatedon);
                 $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);
             },
             error: doError
@@ -492,10 +416,7 @@
         $(".d" + productpictureid).remove();
     }
 
-
     $(document).ready(function () {
-
-
         //新增商品
         $("#addPoduct").click(function () {
 
@@ -530,19 +451,17 @@
                 '<label for="vendorid">產品狀態</label>' +
                 '<select class="form-select" aria-label="Default select example" id="productstatus" name="productstatus">' +
                 '<option value="1">1 銷售</option><option value="2">2 下架</option></select>' +
-                // '<div class="form-group"><label id="createdon">創建日期</label></div>' +
-                // '<div class="form-group"><label id="lastupdatedon">上次修改日期</label></div>' +
                 '<button type="submit" class="btn btn-primary ccc " id="newPoduct">新增</button>'
             );
-            $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/" + A.productid);
+            $(".form").attr("action", "${pageContext.request.contextPath}/backstage/updata/");
 
         })
         // 關閉按紐
         $('.catReturn').click(function () {
-            $(".hazy").css("visibility", "hidden");
-            $(".cat").css("visibility", "hidden");
-            $(".pic").css("visibility", "hidden");
-
+            window.location.href = "${pageContext.request.contextPath}/backstage/product?pag=1&state=1";
+            // $(".hazy").css("visibility", "hidden");
+            // $(".cat").css("visibility", "hidden");
+            // $(".pic").css("visibility", "hidden");
         });
 
         //如果有錯誤
@@ -588,7 +507,6 @@
     //搜索按鈕
     $("#buttonaddon2").click(function () {
         console.log("#buttonaddon2" + $("#selectProduct").val());
-
         $.ajax({
             url: "${pageContext.request.contextPath}/backstage/selectproduct/" + $("#selectProduct").val(),
             type: "post",
@@ -615,6 +533,7 @@
         }
 
     })
+
     function doError(json) {
         console.log(json);
     }
