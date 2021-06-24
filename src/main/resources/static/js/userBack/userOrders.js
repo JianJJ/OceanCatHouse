@@ -178,8 +178,35 @@ $(document).ready(function (){
             async: false,
             cache: false,  //不做快取
             success: function (ordersList) {
-
-
+                if(ordersList!=null){
+                    $('#Otable tr:not(:first-child)').remove();
+                    for (var i=0;i<ordersList.length;i++){
+                        var createDate = `${ordersList[i].ordercreateon}`.slice(0,10);
+                        var sum = 0;
+                        var price = 0;
+                        var quantity = 0;
+                        for(var j=0;j<ordersList[i].orderDetailBeanList.length;j++){
+                            price = parseInt(`${ordersList[i].orderDetailBeanList[j].sellingprice}`);
+                            quantity = parseInt(`${ordersList[i].orderDetailBeanList[j].quantity}`);
+                            sum += price * quantity;
+                        }
+                        $('#Otable').append(
+                            `<tr>`+
+                                `<td>`+
+                                    `<img src="/OceanCatHouse/images/shop/${ordersList[i].orderDetailBeanList[0].productBean.productmodel}.jpg" class='productImg'>`+
+                                    `<h5 class='productName'>${ordersList[i].orderDetailBeanList[0].productBean.productname}</h5>`+
+                                    `<p class='productName'>以及另外${ordersList[i].orderDetailBeanList.length-1}</p>`+
+                                    `<a href="#">檢視訂單明細</a>`+
+                                `</td>`+
+                                `<td class='orderDate'>${createDate}</td>`+
+                                `<td>NT$ <span class='OrderPrice'>${sum}</span></td>`+
+                                `<td class='payment'>貨到付款</td>`+
+                                `<td>`+
+                                    `<span class='orderStatus'>未付款</span>`+
+                                `</td></tr>`
+                        )
+                    }
+                }
             },
             error: function (returndata) {
                 alert("系統忙碌中, 稍後再試")

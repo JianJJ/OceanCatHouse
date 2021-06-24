@@ -43,7 +43,7 @@
 
     <div class="showOrders">
         <section>
-            <table>
+            <table id="Otable">
                 <tr>
                     <th>商品</th>
                     <th>時間</th>

@@ -13,7 +13,7 @@ public class OrderDetailBean{
     private Integer orderid;
     private Integer productid;
     private Integer sellingprice;
-    private Integer unit;
+    private Integer quantity;
     private Integer discount;
 
     @JsonIgnore
@@ -58,12 +58,26 @@ public class OrderDetailBean{
         this.sellingprice = sellingprice;
     }
 
-    public Integer getUnit() {
-        return unit;
+    @Override
+    public String toString() {
+        return "OrderDetailBean{" +
+                "orderdetailid=" + orderdetailid +
+                ", orderid=" + orderid +
+                ", productid=" + productid +
+                ", sellingprice=" + sellingprice +
+                ", quantity=" + quantity +
+                ", discount=" + discount +
+                ", ordersBean=" + ordersBean.getOrderid() +
+                ", productBean=" + productBean.getProductid() +
+                '}';
     }
 
-    public void setUnit(Integer unit) {
-        this.unit = unit;
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getDiscount() {
@@ -80,20 +94,6 @@ public class OrderDetailBean{
 
     public void setOrdersBean(OrdersBean ordersBean) {
         this.ordersBean = ordersBean;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderDetailBean{" +
-                "orderdetailid=" + orderdetailid +
-                ", orderid=" + orderid +
-                ", productid=" + productid +
-                ", sellingprice=" + sellingprice +
-                ", unit=" + unit +
-                ", discount=" + discount +
-                ", ordersBean=" + ordersBean.getOrderid() +
-                ", productBean=" + productBean.getProductid() +
-                '}';
     }
 
     public ProductBean getProductBean() {
