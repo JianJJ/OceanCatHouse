@@ -175,8 +175,10 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
+        </button>
 
-<%--        <button class="list-group-item">員工管理</button>--%>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -297,9 +299,7 @@
         }
     }
 
-    function doError(json) {
-        console.log(json);
-    }
+
 
     // 下架商品
     $(".state").click(function () {
@@ -645,7 +645,6 @@
         border: blue 1px solid;
         background-color: white;
         width: 830px;
-
         z-index: 50;
         position: absolute;
         left: 0%;

@@ -132,7 +132,9 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-<%--        <label class="list-group-item">員工管理</label>--%>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
+        </button>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -155,15 +157,17 @@
                         <td>ID</td>
                         <td>姓名</td>
                         <td>電話</td>
+                        <td>Email</td>
                         <td>狀態</td>
                         <td>訂單</td>
                     </tr>
 
                     <c:forEach varStatus="loop" begin="0" end="${user.size()-1}" items="${user}" var="s">
-                        <tr class="TTT" ">
+                        <tr class="TTT" >
                             <td>${s.userid}</td>
                             <td>${s.username}</td>
                             <td>${s.userphone}</td>
+                            <td>${s.email}</td>
                             <td>${s.state == 1?"正常":"壞掉的"}</td>
                             <td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="order('${s.userid}')">訂單 </button> </td>
                         </tr>

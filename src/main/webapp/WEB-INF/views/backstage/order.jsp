@@ -111,7 +111,8 @@
             border-radius: 50%;
             z-index: 20;
         }
-        .pciSubmit{
+
+        .pciSubmit {
             width: 95%;
         }
     </style>
@@ -120,9 +121,7 @@
 
 
 <%--// 訂單細節--%>
-<div class="hazy">
-
-</div>
+<div class="hazy"></div>
 <div class="cat">
     <button class="catReturn">X</button>
     <div class="row">
@@ -159,14 +158,19 @@
 <%--    側邊欄--%>
 <div class="col-md-2 navfix mainColor">
     <ul class="list-group">
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
             訂單管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1'">商品管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理</button>
-
-<%--        <label class="list-group-item">員工管理</label>--%>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
+        </button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
+        </button>
     </ul>
 </div>
 <%--    中間主體--%>
@@ -187,7 +191,13 @@
                     <label class="btn btn-outline-primary" for="btncheck3" onclick="sta(3)">歷史訂單</label>
                 </div>
             </div>
-
+            <%--            <div class="col-lg-3 ccc">--%>
+            <%--                <div class="input-group mb-3">--%>
+            <%--                    <input type="text" class="form-control" placeholder="訂單編號" aria-label="Recipient's username"--%>
+            <%--                           aria-describedby="button-addon2" id="selectProduct">--%>
+            <%--                    <button class="btn btn-outline-secondary" type="button" id="buttonaddon2">搜索</button>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
 
             <div class="row">
                 <table class="Table table-striped orderTable">
@@ -200,21 +210,21 @@
                     </tr>
 
 
-<%--                    <c:forEach varStatus="loop" begin="0" end="${order.size()-1}" items="${order}" var="s">--%>
-<%--                        <tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">--%>
-<%--                        <td class="col-lg-1">${order}s.orderId + '</td>--%>
-<%--                        <td class="col-lg-1 ">${s.}s.userName + '('+A.userId+')</td>--%>
-<%--                        <td class="col-lg-1 ">${s.ordercreateon} s.orderCreateOn + '</td>--%>
-<%--                        <td class="col-lg-1 ">${s.orderstatusid} state + '</td>--%>
-<%--                        <td class="col-lg-1 ">細節</td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
+                    <%--                    <c:forEach varStatus="loop" begin="0" end="${order.size()-1}" items="${order}" var="s">--%>
+                    <%--                        <tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">--%>
+                    <%--                        <td class="col-lg-1">${order}s.orderId + '</td>--%>
+                    <%--                        <td class="col-lg-1 ">${s.}s.userName + '('+A.userId+')</td>--%>
+                    <%--                        <td class="col-lg-1 ">${s.ordercreateon} s.orderCreateOn + '</td>--%>
+                    <%--                        <td class="col-lg-1 ">${s.orderstatusid} state + '</td>--%>
+                    <%--                        <td class="col-lg-1 ">細節</td>--%>
+                    <%--                        </tr>--%>
+                    <%--                    </c:forEach>--%>
                 </table>
             </div>
 
             <div class="row">
 
-<%--                底層--%>
+                <%--                底層--%>
             </div>
         </div>
     </div>
@@ -222,15 +232,15 @@
 
 
 <script>
+    //取得列表
     var url
     var userId = '${param.userId}';
-    if(userId == ""){
-        console.log(userId +" == ");
-        url ="${pageContext.request.contextPath}/backstage/selectorder?state=${param.state}";
-    }else{
-        url ='${pageContext.request.contextPath}/backstage/userOrder/' +userId;
+    if (userId == "") {
+        console.log(userId + " == ");
+        url = "${pageContext.request.contextPath}/backstage/selectorder?state=${param.state}";
+    } else {
+        url = '${pageContext.request.contextPath}/backstage/userOrder/' + userId;
     }
-
     console.log(url);
     $.ajax({
         url: url,
@@ -239,7 +249,7 @@
         success: doSuccess,
         error: doError
     });
-    //取得列表
+
     function doSuccess(json) {
         var state;
         $(".TTT").remove();
@@ -265,13 +275,11 @@
             $(".orderTable").append('' +
                 '<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
                 '<td class="col-lg-1">' + A.orderId + '</td>' +
-                '<td class="col-lg-1 ">' + A.userName + '('+A.userId+')</td>' +
+                '<td class="col-lg-1 ">' + A.userName + '(' + A.userId + ')</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
                 '<td class="col-lg-1 ">' + state + '</td>' +
                 '<td class="col-lg-1 ">細節</td>' +
                 '</tr>');
-
-
         }
     }
 
@@ -288,7 +296,7 @@
             url: "${pageContext.request.contextPath}/backstage/orderDetail/" + id,
             type: "get",
             success: function (J) {
-                               var sell = 0;
+                var sell = 0;
                 for (var A of J) {
                     sell += A.Unit * A.SellingPrice;
                     $(".detailTable").append('<tr class="detailTTT" ">' +
@@ -322,6 +330,11 @@
         window.location.href = "${pageContext.request.contextPath}/backstage/order?pag=1&state=" + state;
     }
 
+    <%--//搜索按鈕--%>
+    <%--$("#buttonaddon2").click(function () {--%>
+    <%--    console.log("#buttonaddon2" + $("#selectProduct").val());--%>
+    <%--    window.location.href = "${pageContext.request.contextPath}/backstage/order?orderId=" + $("#selectProduct").val();--%>
+    <%--})--%>
 </script>
 </body>
 </html>

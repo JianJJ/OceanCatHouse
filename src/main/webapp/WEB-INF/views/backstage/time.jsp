@@ -29,8 +29,8 @@
 <div id="timeCenter">Error</div>
 <script src="${pageContext.request.contextPath}/js/time.js"></script>
 <form action="../backstage/home" method="post">
-  <input type="text" placeholder="帳號" name="userName"><br>
-  <input type="password" placeholder="密碼"name="userPassword"><br>
+  <input type="text" placeholder="帳號" name="userName" value="AAA@AAA.com"><br>
+  <input type="password" placeholder="密碼"name="userPassword" value="AA"><br>
   <input type="submit" value="登入">
 
 </form>

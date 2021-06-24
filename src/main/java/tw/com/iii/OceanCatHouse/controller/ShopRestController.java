@@ -88,8 +88,6 @@ public class ShopRestController {
 	@GetMapping("/category/{id}")
 	public ResponseEntity<List<ProductBean>> category(@PathVariable("id") Integer id) {
 		System.out.println("category******************************************************************" + id);
-
-
 		List<ProductBean> result = productRepository.findProductcategoryid(id);
 
 		if (result != null) {
@@ -184,7 +182,7 @@ public class ShopRestController {
 	@RequestMapping("/pag/")
 	public Integer pag() {
 		System.out.println("/categoryid*****************************************" );
-		Page<ProductBean> page = productRepository.findAll(PageRequest.of(0, 12));
+		Page<ProductBean> page = productRepository.findByProductstatus("1",PageRequest.of(0, 12));
 		Integer AAA =  page.getTotalPages();
 		return AAA;
 	}
@@ -193,7 +191,7 @@ public class ShopRestController {
 		System.out.println("/categoryid*****************************************" + categoryid);
 		Page<ProductBean> page = null;
 		if (categoryid == 0) {
-			page = productRepository.findAll(PageRequest.of(0, 12));
+			page = productRepository.findByProductstatus("1",PageRequest.of(0, 12));
 		} else {
 			page = productRepository.findByProductstatusAndAndProductcategoryid("1", categoryid, PageRequest.of(0, 12));
 		}
@@ -207,19 +205,6 @@ public class ShopRestController {
 	public List<OrderDetailBean> completeData(@PathVariable("id") Integer orderid){
 		System.out.println("*****完成訂單細節 *****");
 		List<OrderDetailBean> list =  orderDetailRepository.findByorderid(orderid);
-//		List<Map<String, String>> result = new ArrayList<>();
-//		for(OrderDetailBean odb : list){
-//			Map<String, String> map =new HashMap<>();
-//			map.put("orderId", odb.getOrderId()+"");
-//			Optional<ProductBean> op = productRepository.findById(odb.getProductId());
-//			ProductBean b = op.get();
-//			map.put("productname", b.getProductname());
-//			map.put("SellingPrice",b.getSellingprice()+"");
-//			map.put("Unit" , odb.getUnit()+"");
-//			result.add(map);
-//		}
-
-//		System.out.println(result);
 		return list;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
