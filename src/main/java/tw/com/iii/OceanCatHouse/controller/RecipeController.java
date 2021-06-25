@@ -11,11 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
-import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
-import tw.com.iii.OceanCatHouse.model.RecipeStepBean;
+import tw.com.iii.OceanCatHouse.model.*;
+import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
+import tw.com.iii.OceanCatHouse.repository.UserFavoritesRepository;
 import tw.com.iii.OceanCatHouse.repository.service.RecipeDetailService;
+import tw.com.iii.OceanCatHouse.repository.service.RecipeMainService;
+import tw.com.iii.OceanCatHouse.repository.service.UserFavoritesCategoryService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -25,12 +28,25 @@ public class RecipeController {
     @Autowired
     RecipeDetailService service;
 
+    @Autowired
+    private RecipeMainService recipeMainService;
+
+    @Autowired
+    private UserFavoritesRepository userFavoritesDao;
+
+    @Autowired
+    private UserFavoritesCategoryRepository userFavoritesCategoryDao;
+
+    @Autowired
+    private UserFavoritesCategoryService userFavoritesCategoryService;
+
+
     //1.食譜詳細頁面
     @RequestMapping(
             path = {"/recipeDetails"}
 
     )
-    public ModelAndView recipeDetails(@RequestParam int id) {
+    public ModelAndView recipeDetails(@RequestParam int id, HttpSession session) {
         //設定食譜ID--------------------------------------------------------------------
 //        int id = 374855;
         RecipeMainBean recipeData = service.getRecipeMainData(id);
@@ -46,12 +62,22 @@ public class RecipeController {
 
       mav.addObject("recTag",recTags);
       mav.addObject("recTagLen",recTagLen);
+//食譜收藏功能相關----------------------------------------------------------
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+        mav.addObject("mainBeanList", mainList);
+        mav.addObject("UFCBList", UFCBList);
+
+
+
 
 //傳入JSP，主要Bean-------------------------------------------------------
         mav.addObject("recMainBean",recipeData);
         mav.addObject("recStepBean",recipeStepBean);
         mav.addObject("recMatBean",recipeMaterialBean);
         mav.addObject("recReccBean",recipeRecommendBean);
+
 
 //設定回傳試圖畫面路徑---------------------------------------------------
         mav.setViewName("views/RecipePages/recipeDetails");

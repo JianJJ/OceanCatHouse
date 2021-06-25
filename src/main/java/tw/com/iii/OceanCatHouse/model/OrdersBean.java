@@ -1,7 +1,9 @@
 package tw.com.iii.OceanCatHouse.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +17,8 @@ public class OrdersBean {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderid;
     private Integer userid;
+//    @JsonProperty("ordercreateon")
+//    @JsonFormat(pattern = "E dd-MM-yyyy")
     private Date ordercreateon;
     private Integer orderstatusid;
     private  String address;

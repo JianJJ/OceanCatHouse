@@ -64,6 +64,7 @@ $(function(){
 			var twtUrl = "https://twitter.com/share?text=" + encodeURI("海貓食屋") + "&url=" + url;
 			$('#twitterShare').attr("href",twtUrl); 
 			
+			$('.modalSection textarea').text(url);
 			
 			
 $('.copy_url_a').click(function(){

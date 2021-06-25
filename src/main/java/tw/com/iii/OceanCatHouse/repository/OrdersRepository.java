@@ -9,11 +9,10 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
 
-//    @Query(" FROM OrdersBean WHERE YEARWEEK(date_format(ordercreateon,'%Y-%m-%d')) = YEARWEEK(now())-1")
-//    List<OrdersBean> selectWeek();
-//
-//
-//    List<OrdersBean> findAllByOrdercreateonEquals
+    @Query(" FROM OrdersBean WHERE YEARWEEK(date_format(ordercreateon,'%Y-%m-%d')) = YEARWEEK(now())-1")
+    List<OrdersBean> selectWeek();
+    @Query(" FROM OrdersBean WHERE MONTH(date_format(ordercreateon,'%Y-%m-%d')) = MONTH(now())")
+    List<OrdersBean> selectMonth();
 
     List<OrdersBean> findByUserid(Integer userId);
 

@@ -179,7 +179,7 @@
 
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
-    <div class="title">廠商後台</div>
+    <a href="<c:url value="/backstage/home" />" class="title">廠商後台</a>
     <button class="userIcon"></button>
 </header>
 
@@ -198,38 +198,45 @@
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-        <button class="list-group-item"
+        <button class="list-group-item "
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
         </button>
-        <div class="accordion-item text-center">
-            <h2 class="accordion-header BBB text-center" id="headingOne">
-                <button class="accordion-button collapsed AAA text-center" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <%--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
-                    銷售圖表
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">米麵五穀
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">植物油
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">醬料
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">蔬果
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">生鮮
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">乾貨
-                    </div>
+        <%--        <button class="list-group-item"--%>
+        <%--                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">統計--%>
+        <%--        </button>--%>
+        <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion-item ">
+                <h2 class="accordion-header BBB text-center" id="headingOne">
+                    <button class="accordion-button  AAA " type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <%--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                        銷售圖表
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
 
+                    <div class="accordion-body">
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1'">米麵五穀
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2'">植物油
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3'">醬料
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4'">蔬果
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5'">生鮮
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6'">乾貨
+                        </a><br>
+
+                    </div>
                 </div>
             </div>
         </div>
