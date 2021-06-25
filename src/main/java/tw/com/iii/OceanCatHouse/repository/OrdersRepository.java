@@ -9,6 +9,12 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
 
+//    @Query(" FROM OrdersBean WHERE YEARWEEK(date_format(ordercreateon,'%Y-%m-%d')) = YEARWEEK(now())-1")
+//    List<OrdersBean> selectWeek();
+//
+//
+//    List<OrdersBean> findAllByOrdercreateonEquals
+
     List<OrdersBean> findByUserid(Integer userId);
 
     @Query("from OrdersBean where userid=?1 order by ordercreateon DESC")

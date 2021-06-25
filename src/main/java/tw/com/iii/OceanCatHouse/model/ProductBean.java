@@ -3,13 +3,11 @@ package tw.com.iii.OceanCatHouse.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
 @Table(name = "product")
-
 public class ProductBean{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
