@@ -381,7 +381,7 @@ public class BackStageController {
     //統計圖表
     @RequestMapping("/orderStatistics")
     @ResponseBody
-    public Map<String,Integer> orderStatistics() {
+    public Map<String,Integer> orderStatistics(@RequestParam("category")Integer category) {
         System.out.println("*****統計圖表 *****");
         List<OrderDetailBean> lis= orderDetailRepository.findAll();
 
@@ -397,8 +397,10 @@ public class BackStageController {
         }
         Map<String,Integer> result = new HashMap<>();
         for(Integer x : count.keySet()){
-             ProductBean pBean= productRepository.getById(x);
-            result.put(pBean.getProductname(),count.get(x));
+            System.out.println(x);
+             ProductBean pBean= productRepository.findByProductidAndProductcategoryid(x,category);
+            System.out.println(pBean);
+            if(pBean != null)result.put(pBean.getProductname(),count.get(x));
         }
         return result;
     }

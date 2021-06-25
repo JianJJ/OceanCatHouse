@@ -19,6 +19,9 @@ public interface ProductRepository extends JpaRepository<ProductBean, Integer>{
 	Page<ProductBean>  findByProductcategoryid(Integer productcategoryid,Pageable pageable);
 	Page<ProductBean> findByProductstatusAndAndProductcategoryid(String state,Integer productcategoryid,Pageable pageable);
 	Page<ProductBean> findByProductstatus(String state,Pageable pageable);
+	ProductBean findByProductidAndProductcategoryid(Integer Productid,Integer Productcategoryid);
+
+
 
 
 	boolean existsByProductmodel(String Productmodel);
