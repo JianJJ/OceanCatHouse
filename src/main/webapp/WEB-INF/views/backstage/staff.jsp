@@ -211,30 +211,11 @@
     <div class="row justify-content-end">
         <div class="col-md-10">
             <%--            抬頭--%>
-
-            <div class="row">
-
-            </div>
-            <%--                分頁--%>
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                 <div class="row ">
+                    <div class="col-lg-3 btn-grou ccc">
+                        <a href="#" class="btn btn-primary active" aria-current="page" id="addStaff">新增員工</a>
+                    </div>
+                </div>
             <div class="row">
                 <div>
                     <table class="table table-striped">
@@ -270,7 +251,7 @@
 <div class="cat">
     <button class="catReturn">X</button>
     <div class="row">
-        <form action="${pageContext.request.contextPath}/backstage/changStaff" class="form" method="get">
+        <form action="${pageContext.request.contextPath}/backstage/changStaff" class="form" method="post">
             <div class="form-group"><label for="name">名稱</label>
                 <input type="text" class="form-control" id="name" value="'+A.name+'" name="name"></div>
             <div class="form-group"><label for="email">Emaill</label>
@@ -301,6 +282,18 @@
             $(".cat").css("visibility", "hidden");
 
         });
+        //新增會員
+        $("#addStaff").click(function (){
+            $(".hazy").css("visibility", "visible");
+            $(".cat").css("visibility", "visible");
+            $("#name").val(null);
+            $("#email").val(null);
+            $("#password").val(null);
+            $("#position").val(null);
+            $("#phone").val(null);
+            $("#address").val(null);
+            $("form").attr("action","${pageContext.request.contextPath}/backstage/addStaff/");
+        })
 
     });
     function detail(staffId) {

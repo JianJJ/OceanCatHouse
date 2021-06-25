@@ -17,63 +17,74 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <style>
-        body{
+        body {
             background-color: #222;
         }
-        .headtop{
+
+        .headtop {
             position: sticky;
             top: 0px;
             z-index: 5;
         }
-        .navfix{
+
+        .navfix {
             position: fixed;
-            top:80px;
+            top: 80px;
             height: 100vh;
         }
-        .navfix li{
+
+        .navfix li {
             border: none;
             cursor: pointer;
         }
-        .navfix li:hover{
+
+        .navfix li:hover {
             background-color: #afe3d5;
             color: #0c4128;
         }
-        .list-group-item{
+
+        .list-group-item {
             background-color: transparent;
             color: white;
         }
+
         #timeCenter {
             color: #ffffff;
             position: relative;
-            top : 350px;
-            margin:  auto;
+            top: 350px;
+            margin: auto;
             width: 40px;
         }
-        .accordion-item{
+
+        .accordion-item {
             text-align: center;
             background-color: #62A5A1;
             color: #0c4128;
         }
-        .AAA{
+
+        .AAA {
             padding-left: 38%;
             text-align: center;
             background-color: #62A5A1;
             color: white;
         }
+
         .accordion-button {
             text-align: center;
         }
 
-        .accordion-button:focus{
+        .accordion-button:focus {
             text-align: center;
             background-color: #62A5A1;
-            color:white;
+            color: white;
         }
+
         .accordion-button:not(.collapsed) {
             text-align: center;
             background-color: #62A5A1;
-            color:white;
+            color: white;
         }
+
         .list-group-item {
             background-color: transparent;
             color: white;
@@ -84,7 +95,6 @@
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
     <a href="<c:url value="/backstage/home" />" class="title">廠商後台</a>
-
     <button class="userIcon"></button>
 </header>
 
@@ -106,9 +116,6 @@
         <button class="list-group-item "
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
         </button>
-        <%--        <button class="list-group-item"--%>
-        <%--                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">統計--%>
-        <%--        </button>--%>
         <div class="accordion accordion-flush" id="accordionExample">
             <div class="accordion-item ">
                 <h2 class="accordion-header BBB text-center" id="headingOne">
@@ -180,7 +187,7 @@
                 <div id="timeCenter">Error</div>
                 <script src="${pageContext.request.contextPath}/js/time.js"></script>
                 <%--                中間之後要放的內容--%>
-                </div>
+            </div>
         </div>
     </div>
 </div>

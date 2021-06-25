@@ -70,7 +70,7 @@
                 <p>
                     Shop for ingredients online and stock your pantry with everything from miso to paneer to prosciutto.
                 </p>
-                <a href="/recipe/views/ShoppingMall">GO FOR SHOP</a>
+                <a href="${pageContext.request.contextPath}/views/ShoppingMall">GO FOR SHOP</a>
                 
 
             </div>
