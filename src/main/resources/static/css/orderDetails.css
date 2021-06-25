@@ -94,7 +94,7 @@ a {
 }
 
 .contain table tr td:first-child {
-    min-width: 150px;
+    min-width: 180px;
     font-size: 17px;
 }
 

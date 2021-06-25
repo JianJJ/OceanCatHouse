@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetailBean, Integer> {
 
-    List<OrderDetailBean> findByorderid( Integer orderid);
+    List<OrderDetailBean> findByorderid(Integer orderid);
 
 }

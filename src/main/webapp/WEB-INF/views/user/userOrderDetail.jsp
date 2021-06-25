@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <%--    詳細訂單--%>
-    <link rel="stylesheet" href="./css/orderDetails.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/orderDetails.css">
 
     <script src="${pageContext.request.contextPath}/js/userBack/userOrderDetail.js"></script>
 </head>
@@ -35,41 +35,30 @@
     <h3>訂單管理</h3>
 
 
-    <a href="#"><span>&lt;</span>返回訂單記錄</a>
+    <a href="${pageContext.request.contextPath}/userBack/userOrders"><span>&lt;</span>返回訂單記錄</a>
     <section>
         <table>
             <tr>
                 <th>商品</th>
                 <th>數量</th>
                 <th>金額</th>
-                <th>貨品</th>
+                <th>小記</th>
             </tr>
-            <tr>
-                <td class="productName">東新幹線</td>
-                <td class="productNum">1</td>
-                <td class="productPrice">
-                    NT$ <span class="productPrice">195</span>
-                </td>
-                <td class="productStatus">未出貨</td>
-            </tr>
-
-            <tr>
-                <td class="productName">東新幹線</td>
-                <td class="productNum">1</td>
-                <td class="productPrice">
-                    NT$ <span class="productPrice">195</span>
-                </td>
-                <td class="productStatus">未出貨</td>
-            </tr>
-
-
+            <c:forEach items="${ordersBean.orderDetailBeanList}" var="orderDetail">
+                <tr>
+                    <td class="productName">${orderDetail.productBean.productname}</td>
+                    <td class="productNum">${orderDetail.quantity}</td>
+                    <td class="productPrice">${orderDetail.sellingprice}</td>
+                    <td class="productStatus">
+                        NT$ <span class="productPrice">${orderDetail.sellingprice * orderDetail.quantity}</span>
+                    </td>
+                </tr>
+            </c:forEach>
             <tr>
                 <td class="shipmentTitle">宅配到府運費</td>
                 <td></td>
-                <td>
-                    NT$ <span class="productPrice">80</span>
-                </td>
                 <td></td>
+                <td>    NT$ <span class="productPrice">80</span></td>
             </tr>
         </table>
 
@@ -79,10 +68,10 @@
     <section class="customer">
         <h4>收件人資訊</h4>
         <div>
-            <p>姓名：<span class="customerName">123</span></p>
-            <p>地址：<span class="customerAddress">台中</span></p>
-            <p>手機：<span class="customerPhone">0912345678</span></p>
-            <p>Email：<span class="customerEmail">AAA@AAA.com</span></p>
+            <p>姓名：<span class="customerName">${sessionScope.user.username}</span></p>
+            <p>地址：<span class="customerAddress">${ordersBean.address}</span></p>
+            <p>手機：<span class="customerPhone">${sessionScope.user.userphone}</span></p>
+            <p>Email：<span class="customerEmail">${sessionScope.user.email}</span></p>
 
         </div>
     </section>

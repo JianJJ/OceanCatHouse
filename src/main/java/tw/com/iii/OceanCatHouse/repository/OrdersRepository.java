@@ -17,4 +17,6 @@ public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
 
     List<OrdersBean> findByUserid(Integer userId);
 
+    @Query("from OrdersBean where userid=?1 order by ordercreateon DESC")
+    List<OrdersBean> findByUseridOrderByOrdercreateonDesc(Integer userid);
 }

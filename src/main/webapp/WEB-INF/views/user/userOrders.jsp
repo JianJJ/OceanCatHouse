@@ -51,20 +51,6 @@
                     <th>付款方式</th>
                     <th>訂單狀態</th>
                 </tr>
-                <tr>
-                    <td>
-                        <img src="${pageContext.request.contextPath}/images/" class='productImg'>
-                        <h5 class='productName' >東西東西</h5>
-                        <a href="#">檢視訂單明細</a>
-                    </td>
-                    <td class='orderDate'>2021-06-22</td>
-                    <td>NT$ <span class='OrderPrice'>275</span></td>
-                    <td class='payment'>貨到付款</td>
-                    <td>
-                        <span class='orderStatus'>未付款</span>
-                    </td>
-                </tr>
-
             </table>
         </section>
     </div>
