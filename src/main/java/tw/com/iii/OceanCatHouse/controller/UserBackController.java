@@ -317,17 +317,35 @@ public class UserBackController {
     public Map<String, List> selectOrders(HttpSession session){
         UserBean user = (UserBean) session.getAttribute("user");
         Map<String, List> jsonMap = new HashMap<>();
-        List<OrdersBean> ordersList = ordersDao.findByUserid(user.getUserid());
+        List<OrdersBean> ordersList = ordersDao.findByUseridOrderByOrdercreateonDesc(user.getUserid());
         List orderDetailList = new LinkedList();
+        List productList = new LinkedList();
         List orderStatusBean = new LinkedList();
         for(OrdersBean order : ordersList){
-            orderDetailList.add(order.getOrderDetailBeanList());
             orderStatusBean.add(order.getOrderStatusBean());
+            orderDetailList.add(order.getOrderDetailBeanList());
+            List product = new LinkedList();
+            for(OrderDetailBean odb : order.getOrderDetailBeanList()){
+                product.add(odb.getProductBean());
+            }
+            productList.add(product);
         }
         jsonMap.put("ordersList", ordersList);
         jsonMap.put("orderDetailList", orderDetailList);
         jsonMap.put("orderStatusBean", orderStatusBean);
+        jsonMap.put("productList", productList);
         return jsonMap;
     }
 
+    // user查看詳細訂單
+    @GetMapping("/showDetail/{orderId}")
+    public ModelAndView selectDetail(@PathVariable("orderId") Integer orderId){
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<OrdersBean> optional = ordersDao.findById(orderId);
+        OrdersBean ordersBean = optional.get();
+        modelAndView.addObject("ordersBean", ordersBean);
+        modelAndView.setViewName("views/user/userOrderDetail");
+
+        return modelAndView;
+    }
 }
