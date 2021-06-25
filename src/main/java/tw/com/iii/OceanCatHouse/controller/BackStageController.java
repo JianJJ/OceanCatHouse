@@ -319,6 +319,51 @@ public class BackStageController {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //新增會員
+    @RequestMapping("/addStaff/")
+    public String addStaff(StaffBean bean, Model model) {
+        System.out.println("*****新增會員 *****");
+        //使有輸入的資料能返回
+        model.addAttribute("name", bean.getName());
+        model.addAttribute("email", bean.getEmail());
+        model.addAttribute("password", bean.getPassword());
+        model.addAttribute("position", bean.getPosition());
+        model.addAttribute("phone", bean.getPhone());
+        model.addAttribute("address", bean.getAddress());
+        model.addAttribute("state", bean.getState());
+
+//        Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
+//        List<ProductBean> result = page.getContent();
+//        model.addAttribute("product", result);
+        // 判斷欄位輸入
+        Map<String, String> errors = new HashMap<>();
+        model.addAttribute("errors", errors);
+
+        if (bean.getName() == null || bean.getName().length() == 0) {
+            errors.put("productmodel", "需要商品號");
+        }
+        if (bean.getEmail() == null || bean.getEmail().length() == 0) {
+            errors.put("productname", "需要名稱");
+        }
+        if (bean.getPassword() == null || bean.getPassword().length() == 0) {
+            errors.put("producttext", "需要詳細描述");
+        }
+        if (bean.getPosition() == null || bean.getPosition().length() == 0) {
+            errors.put("purchaseprice", "需要進價");
+        }
+        if (bean.getPhone() == null || bean.getPhone().length() == 0) {
+            errors.put("sellingprice", "需要售價");
+        }
+        if (bean.getAddress() == null || bean.getAddress().length() == 0) {
+            errors.put("stocks", "需要庫存量");
+        }
+        if (errors != null && !errors.isEmpty()) return "/views/backstage/staff";
+        System.out.println(bean);
+        staffRepository.save(bean);
+        return "redirect:/backstage/staff";
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //讀取會員定單
     @RequestMapping("/userOrder/{userId}")
     @ResponseBody
@@ -352,8 +397,6 @@ public class BackStageController {
         System.out.println("*****員工資料 *****");
         List<StaffBean> lis = staffRepository.findAll();
         model.addAttribute("staff", lis);
-
-
         return "/views/backstage/staff";
     }
 

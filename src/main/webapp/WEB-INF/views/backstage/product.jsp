@@ -44,6 +44,7 @@
         #canvas{
             position: fixed;
             z-index: 50;
+            visibility: hidden;
         }
     </style>
 </head>
