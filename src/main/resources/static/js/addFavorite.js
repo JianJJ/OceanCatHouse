@@ -1,10 +1,11 @@
 $(function(){
     $('#addFavorite').click(function(){
-        $('.maskForFavorite').show();
+        $('.maskForFavorite').fadeIn();
     });
 
     $('#cancel').click(function () {
-        $('.maskForFavorite').hide();
+        $('.maskForFavorite').fadeOut();
+        $('.mask').fadeOut();
     });
 
     $('#editConsole input[type="checkbox"]').click(function () {
@@ -12,11 +13,13 @@ $(function(){
     });
 
     $('#cancel').click(function () {
-        $('.maskForFavorite').hide();
+        $('.maskForFavorite').fadeOut();
+        $('.mask').fadeOut();
     });
 
     $('.maskForFavorite').click(function () {
-        $(this).hide();
+        $(this).fadeOut();
+        $('.mask').fadeOut();
     })
 
     $('#editConsole').click(function (e) {
@@ -24,6 +27,6 @@ $(function(){
     });
 
     $('#addFavorite').click(function(){
-        $('.maskForFavorite').show();
+        $('.maskForFavorite').fadeIn();
     });
 });

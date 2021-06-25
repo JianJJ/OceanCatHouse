@@ -4,6 +4,16 @@
     letter-spacing:1px; 
 }
 
+body {
+	background:#eee;
+}
+
+.container {
+	background:white;
+	padding:30px 0 50px 0;
+	min-width:1020px;
+}
+
 .carou li, .blank li {
     list-style: none;
     display: inline-block;
@@ -13,31 +23,41 @@
 .carou h2 {
     position: absolute;
     top: 25px;
-    font-size: 26px;
+    font-size: 38px;
     line-height: 70px;
     background: linear-gradient(to right, #222, transparent);
     color: #eee;
     text-shadow: 1px 1px 1px black;
     text-indent: 2em;
-    /* opacity: .8; */
+    border-radius:5px 0 0 5px;
 }
 
 /* Carousel */
 .focusBlock {
     position: relative;
-    width: 720px;
-    height: 455px;
+    width: 980px;
+    height: 575px;
     overflow: hidden;
     text-align: center;
-
-
-    margin: 30px auto;
+border-radius:5px;
+    margin: 0px auto;
+   
 }
 
 .focusBlock .carou li img {
-    width: 720px;
-    height: 455px;
+    width: 920px;
+    height: 575px;
+    border-radius:5px;
+    
 }
+
+.focusBlock .carou li {
+    float: left;
+    width: 980px;
+    height: 575px;
+    
+}
+
 
 
 .focusBlock .carou {
@@ -48,20 +68,16 @@
     padding: 0;
 }
 
-.focusBlock .carou li {
-    float: left;
-    width: 720px;
-    height: 455px;
-}
 
 .arrow-lef, .arrow-r {
     display: none;
     position: absolute;
-    
+    font-size:40px;
+  	font-weght:700;
     top:50%;
     margin-top: -20px;
-    width: 24px;
-    height: 40px;
+    width: 30px;
+    height: 50px;
     background: rgba(0, 0, 0, .7);
     border:none;
     text-align: center;
@@ -71,14 +87,13 @@
     z-index: 5;
     opacity: .7;
     cursor: pointer;
+    border-radius:5px;
 }
-.arrow-lef {
-    border-radius:0 5px 5px  0;
-}
+
 
 .arrow-r  {
     right:0;
-    border-radius:5px 0  0 5px;
+   
 }
 
 
@@ -143,6 +158,10 @@
 }
 
 
+h3 {
+	font-size:32px;
+}
+
 .showLines {
     margin: 5px 0;
     overflow: hidden;
@@ -153,22 +172,24 @@
 }
 
 .recommendRec li h4 {
-    font-size: 25px;
+    font-size: 30px;
     line-height: 40px;
 
 }
 
 .recommendRec li p {
     -webkit-line-clamp: 3;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .recommendRec li span {
     display: inline-block;
     color: #888;
-    font-size: 14px;
+    font-size: 17px;
 }
 
-
+footer {
+	margin-top:0;
+}
 

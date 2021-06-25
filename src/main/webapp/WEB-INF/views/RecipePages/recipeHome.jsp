@@ -44,9 +44,11 @@
 <jsp:include page="top_nav.jsp"></jsp:include>
 <div class="center">
 
-    <div class="focusBlock">
-        <button href="#" class='arrow-lef'>&lt;</button>
-        <button href="#" class='arrow-r'>&gt;</button>
+   
+    <div class="container">
+     <div class="focusBlock">
+        <button  class='arrow-lef'>&lt;</button>
+        <button  class='arrow-r'>&gt;</button>
         <ul class='carou'>
             <%--推薦食譜輪播圖迴圈--%>
 <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
@@ -63,8 +65,8 @@
         </ol>
 
     </div>
-
-    <div class="container">
+    
+    
         <div class="row  justify-content-center">
             <section class='recommendRec col-xs-11 col-md-11'>
                 <h3 class="littleTitle">推薦食譜</h3>
@@ -72,9 +74,9 @@
                 <ul class='row'>
                     <%--推薦食譜迴圈--%>
                     <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
-                    <li class='col-xs-10 col-md-10'>
+                    <li class='col-xs-12 col-md-12'>
                         <a href="${pageContext.request.contextPath}/recipeDetails?id=${recReccBean.get(loop.index).recId}">
-                            <img src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
+                            <img  src="${recReccBean.get(loop.index).recPic}" alt="${recReccBean.get(loop.index).recTitle}">
                             <div class="row col-xs-8 col-md-8">
                                 <h4 class='showLines'>${recReccBean.get(loop.index).recTitle}</h4>
                                 <span>

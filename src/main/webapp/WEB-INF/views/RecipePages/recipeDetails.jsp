@@ -65,15 +65,16 @@
         <button class='closeMask'>X</button>
         <h4>分享</h4>
         <ul>
-            <li class="fontIcon hyLink">
+           
+            <li class="fontIcon hyLink font">
+                <a class="fontIcon hyLink" id="fbShare" href="#">
+                    <p>FB</p></a>
+            </li>
+			 <li class="fontIcon hyLink">
                 <a href="#" id='lineShare' target="_blank">
                     <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
                     <p>Line</p>
                 </a>
-            </li>
-            <li class="fontIcon hyLink font">
-                <a class="fontIcon hyLink" id="fbShare" href="#">
-                    <p>FB</p></a>
             </li>
 
             <li class="fontIcon hyLink font">
@@ -87,7 +88,7 @@
     </div>
 </div>
 <%--加入收藏圖標--%>
-<div id='blackMaskThree' class='mask1'>
+<div id='blackMaskThree' class='mask'>
     <div class='modalSection' id='sectionThree'>
 <%--        <button class='closeMask'>X</button>--%>
         <jsp:include page="recipeDetails_addfavorite1.jsp"></jsp:include>
@@ -173,7 +174,7 @@
 
             <section class='IngreAndStep row'>
                 <!-- ingredent Block -->
-                <div class="recIngre blockColor col-md-3 col-xs-12">
+                <div class="recIngre blockColor col-lg-3 col-md-12 col-xs-12">
                     <div class='blockOne'>
                         <h3 class="littleTitle">食材</h3>
                         <hr class='underline'>
@@ -200,7 +201,7 @@
                 </div>
 
                 <!-- Step(食譜步驟區) Block -->
-                <div class="recStep blockColor col-md-8 col-xs-12">
+                <div class="recStep blockColor col-md-12 col-lg-8 col-xs-12">
                     <h3 class="littleTitle">作法</h3>
                     <hr class='underline'>
                     <%--載入食譜步驟迴圈--%>
