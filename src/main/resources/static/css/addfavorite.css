@@ -1,0 +1,110 @@
+.maskForFavorite {
+    display: none;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+
+.maskForFavorite > #editConsole {
+    position: relative;
+    top:50px;
+    left: 25%;
+    width: 50vw;
+    height: 500px;
+    background-color: #FAFAFA;
+    padding: 35px;
+    border-radius: 8px;
+    overflow:auto;
+    padding-bottom: 50px;
+}
+
+.maskForFavorite > #editConsole  h2 {
+    display: inline-block;
+}
+
+.maskForFavorite > #editConsole .btnAdd {
+    background-color: transparent;
+    border:1px seagreen solid;
+    color: seagreen;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.maskForFavorite > #editConsole  #btnAddNew {
+    display: block;
+    margin: 50px auto;
+    font-size: 19px;
+    padding: 5px 10px;
+
+}
+.maskForFavorite > #editConsole  #btnAddNew span {
+    padding-right: 5px;
+    font-weight: 700;
+}
+
+.maskForFavorite > #editConsole  .btnAdd:hover {
+    background-color: seagreen;
+    color:white;
+}
+
+.maskForFavorite > #editConsole section .nothing {
+    position: relative;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 75px;
+    height: 50px;
+} 
+
+.maskForFavorite > #editConsole section input[type='submit'] {
+    padding: 5px 10px;
+    position: absolute;
+    right: 35px;
+    margin-bottom: 50px;
+}
+.maskForFavorite > #editConsole section label {
+    display: block;
+}
+
+.maskForFavorite > #editConsole section .favoriteCategory {
+    position: relative;
+    margin: 10px 0;
+    height: 65px;
+    background-color: #efefef;
+}
+
+.maskForFavorite > #editConsole section .favoriteCategory h5 {
+    display: inline-block;
+    font-size: 22px;
+    line-height: 60px;
+    text-indent: 1rem;
+}
+
+.maskForFavorite > #editConsole section .favoriteCategory input[type='checkbox']{
+    position:absolute;
+    right: 25px;
+    top:27px;
+  
+}
+
+
+.maskForFavorite > #editConsole section form .chosen  {
+    box-shadow: 0 0 5px 2px rgb(238, 192, 144);
+    background-color: #fff;
+}
+
+.maskForFavorite > #editConsole  #cancel {
+    position: absolute;
+    top: 0px;
+    right: 25px;
+    font-size: 30px;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
