@@ -15,8 +15,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<%--    <button id='addFavorite'>範例按鈕</button>--%>
-    <button class='closeMask'>X</button>
+
     <div class="maskForFavorite">
 
         <div id='editConsole'>
