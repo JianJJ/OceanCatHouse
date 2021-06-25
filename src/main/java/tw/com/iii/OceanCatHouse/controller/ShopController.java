@@ -10,15 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.OrdersBean;
 import tw.com.iii.OceanCatHouse.model.ProductBean;
 import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.model.UserCreditCardBean;
+import tw.com.iii.OceanCatHouse.repository.OrdersRepository;
 import tw.com.iii.OceanCatHouse.repository.ProductRepository;
 import tw.com.iii.OceanCatHouse.repository.UserPaymentMethodRepository;
 import tw.com.iii.OceanCatHouse.repository.service.OrdersService;
@@ -35,6 +34,7 @@ public class ShopController {
 
     @Autowired
     private OrdersService ordersService;
+
     @Autowired
     private ZeroTools zTools;
 
@@ -128,7 +128,7 @@ public class ShopController {
         else {
             model.addAttribute("state",session.getAttribute("state"));
         }
-        // Jian新增, 付款方式呈現
+        // -------------- Jian : 新增, 付款方式呈現-------------------
         List<UserCreditCardBean> userCreditCardBeans = user.getUserCreditCardBeans();
         System.out.println(userCreditCardBeans);
         if(userCreditCardBeans != null){
@@ -174,6 +174,22 @@ public class ShopController {
             session.setAttribute("address", "台中市南屯區公益路二段51號18樓");
         }
         return "redirect:/complete";
+    }
+
+    // -------------Jian : 送出訂單, 新增訂單 ------------------------
+    @PostMapping("/insertOrder")
+    @ResponseBody
+    public String insertOrder(HttpSession session,
+                              @RequestBody List<ProductBean> productBeanList){
+        UserBean user = (UserBean) session.getAttribute("user");
+        Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
+        for (ProductBean apple : productBeanList){
+            System.out.println(apple);
+        }
+        OrdersBean ordersBean = ordersService.insertOrder(user, cat, productBeanList);
+        session.removeAttribute("cat");
+
+        return "新增成功";
     }
 
 }

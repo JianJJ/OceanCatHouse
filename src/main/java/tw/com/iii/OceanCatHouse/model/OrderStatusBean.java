@@ -14,7 +14,8 @@ public class OrderStatusBean {
     private String statusname;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "orderStatusBean", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderstatusid", referencedColumnName = "orderstatusid")
     private List<OrdersBean> ordersBeans;
 
     public List<OrdersBean> getOrdersBeans() {

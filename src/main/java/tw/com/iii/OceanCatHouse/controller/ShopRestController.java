@@ -113,6 +113,7 @@ public class ShopRestController {
 		System.out.println("************productById******************");
 		Optional<ProductBean> AAA = productRepository.findById(id);
 		System.out.println(AAA.get());
+
 		return AAA.get();
 	}
 

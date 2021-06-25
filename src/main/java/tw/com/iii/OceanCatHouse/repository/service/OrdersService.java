@@ -5,9 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tw.com.iii.OceanCatHouse.model.OrderDetailBean;
 import tw.com.iii.OceanCatHouse.model.OrdersBean;
+import tw.com.iii.OceanCatHouse.model.ProductBean;
+import tw.com.iii.OceanCatHouse.model.UserBean;
 import tw.com.iii.OceanCatHouse.repository.OrderDetailRepository;
 import tw.com.iii.OceanCatHouse.repository.OrdersRepository;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -35,7 +38,26 @@ public class OrdersService {
             orderDetailRepository.save(detailBean);
         }
 
+        return save;
+    }
 
+    // -------------Jian : 送出訂單, 新增訂單 ------------------------
+    public OrdersBean insertOrder(UserBean user, Map<String, Integer> cat, List<ProductBean> productBeanList) {
+        OrdersBean ordersBean = new OrdersBean();
+        ordersBean.setUserid(user.getUserid());
+        ordersBean.setOrderstatusid(1);
+        ordersBean.setAddress(user.getDeliveryAddress());
+        OrderDetailBean orderDetailBean;
+        for (ProductBean productBean : productBeanList){
+            orderDetailBean = new OrderDetailBean();
+            orderDetailBean.setProductid(productBean.getProductid());
+            orderDetailBean.setSellingprice(productBean.getSellingprice());
+            orderDetailBean.setQuantity(cat.get(String.valueOf(productBean.getProductid())));
+            orderDetailBean.setDiscount(1);
+            orderDetailBean.setOrdersBean(ordersBean);
+            ordersBean.getOrderDetailBeans().add(orderDetailBean);
+        }
+        OrdersBean save = ordersRepository.save(ordersBean);
         return save;
     }
 }

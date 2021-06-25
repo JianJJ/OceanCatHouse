@@ -67,8 +67,8 @@ public class OrderDetailBean{
                 ", sellingprice=" + sellingprice +
                 ", quantity=" + quantity +
                 ", discount=" + discount +
-                ", ordersBean=" + ordersBean.getOrderid() +
-                ", productBean=" + productBean.getProductid() +
+//                ", ordersBean=" + ordersBean.getOrderid() +
+//                ", productBean=" + productBean.getProductid() +
                 '}';
     }
 

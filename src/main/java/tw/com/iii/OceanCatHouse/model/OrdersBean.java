@@ -29,7 +29,7 @@ public class OrdersBean {
     private OrderStatusBean orderStatusBean;
 
     @JsonIgnore
-    @OneToMany( cascade = CascadeType.ALL) // mappedBy = "ordersBean",
+    @OneToMany(cascade = CascadeType.ALL) // mappedBy = "ordersBean",
     @JoinColumn(name = "orderid", referencedColumnName = "orderid")
     private List<OrderDetailBean> orderDetailBeans = new LinkedList<>();
 
@@ -81,7 +81,7 @@ public class OrdersBean {
                 ", ordercreateon=" + ordercreateon +
                 ", orderstatusid=" + orderstatusid +
                 ", address='" + address + '\'' +
-                ", orderStatusBean=" + orderStatusBean.getOrderstatusid() +
+//                ", orderStatusBean=" + orderStatusBean.getOrderstatusid() +
                 ", orderDetailBeans=" + orderDetailBeans +
                 '}';
     }
