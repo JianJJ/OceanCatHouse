@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -24,8 +25,9 @@ public class OrdersBean {
     private OrderStatusBean orderStatusBean;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ordersBean", cascade = CascadeType.ALL)
-    private List<OrderDetailBean> orderDetailBeanList;
+    @OneToMany( cascade = CascadeType.ALL) // mappedBy = "ordersBean",
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid")
+    private List<OrderDetailBean> orderDetailBeans = new LinkedList<>();
 
     public String getAddress() {
         return address;
@@ -76,7 +78,7 @@ public class OrdersBean {
                 ", orderstatusid=" + orderstatusid +
                 ", address='" + address + '\'' +
                 ", orderStatusBean=" + orderStatusBean.getOrderstatusid() +
-                ", orderDetailBeanList=" + orderDetailBeanList +
+                ", orderDetailBeans=" + orderDetailBeans +
                 '}';
     }
 
@@ -88,11 +90,11 @@ public class OrdersBean {
         this.orderStatusBean = orderStatusBean;
     }
 
-    public List<OrderDetailBean> getOrderDetailBeanList() {
-        return orderDetailBeanList;
+    public List<OrderDetailBean> getOrderDetailBeans() {
+        return orderDetailBeans;
     }
 
-    public void setOrderDetailBeanList(List<OrderDetailBean> orderDetailBeanList) {
-        this.orderDetailBeanList = orderDetailBeanList;
+    public void setOrderDetailBeans(List<OrderDetailBean> orderDetailBeanList) {
+        this.orderDetailBeans = orderDetailBeanList;
     }
 }

@@ -57,7 +57,7 @@ public class UserCreditCardBean {
                 ", ExpireYear='" + ExpireYear + '\'' +
                 ", VerificationCode='" + VerificationCode + '\'' +
                 ", UseCard=" + UseCard +
-                ", userBean=" + userBean +
+                ", userBean=" + userBean.getUserid() +
                 '}';
     }
 

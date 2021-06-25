@@ -109,11 +109,11 @@ public class ShopController {
     @RequestMapping("/toAddress")
     public String toAddress(HttpSession session,Model model) {
         System.out.println("*****toAddress*****");
-        UserBean bean = (UserBean) session.getAttribute("user");
+        UserBean user = (UserBean) session.getAttribute("user");
         if(session.getAttribute("user") == null){
             model.addAttribute("id",0);}
         else {
-            model.addAttribute("id", bean.getUserid());
+            model.addAttribute("id", user.getUserid());
         }
         Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
         System.out.println(cat);
@@ -129,13 +129,12 @@ public class ShopController {
             model.addAttribute("state",session.getAttribute("state"));
         }
         // Jian新增, 付款方式呈現
-        System.out.println(bean);
-        List<UserCreditCardBean> userCreditCardBeans = bean.getUserCreditCardBeans();
+        List<UserCreditCardBean> userCreditCardBeans = user.getUserCreditCardBeans();
         System.out.println(userCreditCardBeans);
         if(userCreditCardBeans != null){
             for (UserCreditCardBean uccb : userCreditCardBeans){
                 // UseCard 等於1代表上次結帳用這張
-                if(uccb.getUseCard() == 1){
+                if(uccb.getUseCard() != null && uccb.getUseCard() == 1){
                     model.addAttribute("uccb", uccb);
                     System.out.println(uccb);
                     break;

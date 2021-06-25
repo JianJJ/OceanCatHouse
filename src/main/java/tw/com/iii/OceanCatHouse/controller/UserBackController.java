@@ -323,9 +323,9 @@ public class UserBackController {
         List orderStatusBean = new LinkedList();
         for(OrdersBean order : ordersList){
             orderStatusBean.add(order.getOrderStatusBean());
-            orderDetailList.add(order.getOrderDetailBeanList());
+            orderDetailList.add(order.getOrderDetailBeans());
             List product = new LinkedList();
-            for(OrderDetailBean odb : order.getOrderDetailBeanList()){
+            for(OrderDetailBean odb : order.getOrderDetailBeans()){
                 product.add(odb.getProductBean());
             }
             productList.add(product);

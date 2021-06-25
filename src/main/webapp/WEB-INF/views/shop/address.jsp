@@ -10,24 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
-    <link rel="stylesheet" href="/recipe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/recipe/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
 
     <%-- jQuery放這裡 --%>
-    <script src="/recipe/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
     <%-- Header的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/top_nav_forShop.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav_forShop.css">
 
     <%-- GOOGLE API 放這裡    --%>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 
     <%-- footer的CSS、JS樣式放這裡    --%>
-    <link rel="stylesheet" href="/recipe/css/bottom_nav.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="/recipe/css/address.css">
-    <script src="/recipe/js/shop/address.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/address.css">
+    <script src="${pageContext.request.contextPath}/js/shop/address.js"></script>
 
 
     <title>✿海貓食屋✿</title>

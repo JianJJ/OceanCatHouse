@@ -202,7 +202,7 @@ $(document).ready(function (){
                                     `<a href="/OceanCatHouse/userBack/showDetail/${ordersList[i].orderid}">檢視訂單明細</a>`+
                                 `</td>`+
                                 `<td class='orderDate'>${createDate}</td>`+
-                                `<td>NT$ <span class='OrderPrice'>${sum}</span></td>`+
+                                `<td>NT$ <span class='OrderPrice'>${sum + 60}</span></td>`+
                                 `<td class='payment'>貨到付款</td>`+
                                 `<td>`+
                                     `<span class='orderStatus'>${orderStatusBean[i].statusname}</span>`+

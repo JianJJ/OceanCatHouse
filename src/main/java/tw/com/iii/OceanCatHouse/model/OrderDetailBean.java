@@ -17,7 +17,7 @@ public class OrderDetailBean{
     private Integer discount;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orderid", referencedColumnName = "orderid",insertable = false, updatable = false)
     private OrdersBean ordersBean;
 

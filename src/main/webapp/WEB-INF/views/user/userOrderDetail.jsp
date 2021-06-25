@@ -44,7 +44,7 @@
                 <th>金額</th>
                 <th>小記</th>
             </tr>
-            <c:forEach items="${ordersBean.orderDetailBeanList}" var="orderDetail">
+            <c:forEach items="${ordersBean.orderDetailBeans}" var="orderDetail">
                 <tr>
                     <td class="productName">${orderDetail.productBean.productname}</td>
                     <td class="productNum">${orderDetail.quantity}</td>
@@ -58,7 +58,7 @@
                 <td class="shipmentTitle">宅配到府運費</td>
                 <td></td>
                 <td></td>
-                <td>    NT$ <span class="productPrice">80</span></td>
+                <td>    NT$ <span class="productPrice">60</span></td>
             </tr>
         </table>
 

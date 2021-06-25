@@ -32,26 +32,24 @@ var CatProduct = [];
         var c = [];//合計
         //讀去cat資料
         $.ajax({
-            url: "/recipe/catData",
+            url: "/OceanCatHouse/catData",
             type: "get",
             async: false,
             // dataType: "json",
             success: function (json) {
                 CatProduct = json;
                 var key = Object.keys(json);
-
                 for (var A in json) {
-
                     //用id找資料
                     $.ajax({
-                        url: "/recipe/product/" + A,
+                        url: "/OceanCatHouse/product/" + A,
                         type: "get",
                         async: false,
                         success: function (product) {
                             sell[product.productid] = product.sellingprice;
                             c[product.productid] = product.sellingprice * json[product.productid];//合計
                             $('.cat').append('<div class="catProduct col-lg-11" id="catProduct' + product.productid + '">' +
-                                '<img  src="/recipe/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
+                                '<img  src="/OceanCatHouse/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
                                 '<div class="context col-lg-11 row"><h3 class="col-lg-4  col-sm-12 col-md-12">' + product.productname + '</h3>' +
                                 '<span class="standard col-lg-3 d-none d-lg-inline-block">' + product.productspecifications + '</span>' +
                                 ' <span class="pnum col-lg-3 d-none d-lg-inline-block">' + json[product.productid] + '</span>' +
@@ -79,12 +77,12 @@ var CatProduct = [];
         var cat = '${cat}';
         if (cat == 0) {
             alert("未購買商品");
-            window.location.href = "/recipe/views/ShoppingMall";
+            window.location.href = "/OceanCatHouse/views/ShoppingMall";
         }
         var user = '${id}';
         // if (user == 0) {
         //     alert("請先登入");
-        //     window.location.href = "/recipe/views/login";
+        //     window.location.href = "/OceanCatHouse/views/login";
         // }
         //總價
         var key = Object.keys(CatProduct);
