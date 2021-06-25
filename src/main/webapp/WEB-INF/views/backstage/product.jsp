@@ -41,11 +41,16 @@
             background-color: transparent;
             color: white;
         }
+        #canvas{
+            position: fixed;
+            z-index: 50;
+        }
     </style>
 </head>
 
 
 <body>
+<canvas id="canvas">Error</canvas>
 
 <%--圖片--%>
 <div class=" pic">
@@ -186,7 +191,7 @@
 
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
-    <div class="title">廠商後台</div>
+    <a href="<c:url value="/backstage/home" />" class="title">廠商後台</a>
     <button class="userIcon"></button>
 </header>
 
@@ -199,48 +204,54 @@
             訂單管理
         </button>
         <button class="list-group-item"
-                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">商品管理
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">
+            商品管理
         </button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
-        <button class="list-group-item"
+        <button class="list-group-item "
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/staff'">員工管理
         </button>
-        <%--        手風琴--%>
-        <div class="accordion-item text-center">
-            <h2 class="accordion-header BBB text-center" id="headingOne">
-                <button class="accordion-button collapsed AAA text-center" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <%--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
-                    銷售圖表
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">米麵五穀
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">植物油
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">醬料
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">蔬果
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">生鮮
-                    </div>
-                    <div class="list-group-item"
-                         onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">乾貨
-                    </div>
+        <%--        <button class="list-group-item"--%>
+        <%--                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics'">統計--%>
+        <%--        </button>--%>
+        <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion-item ">
+                <h2 class="accordion-header BBB text-center" id="headingOne">
+                    <button class="accordion-button  AAA " type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <%--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                        銷售圖表
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
 
+                    <div class="accordion-body">
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1'">米麵五穀
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2'">植物油
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3'">醬料
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4'">蔬果
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5'">生鮮
+                        </a><br>
+                        <a class=""
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6'">乾貨
+                        </a><br>
+
+                    </div>
                 </div>
             </div>
         </div>
-
     </ul>
 </div>
 <%--    中間主體--%>
@@ -281,17 +292,20 @@
                         <td>售價</td>
                         <td>庫存</td>
                         <td>圖片</td>
+                        <td>圖表</td>
                     </tr>
                     <c:forEach varStatus="loop" begin="0" end="${product.size()-1}" items="${product}" var="s">
                         <tr class="TTT">
                             <td onclick="Detailed(${s.productid})" class="col-lg-1">${s.productid}</td>
                             <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.productmodel}</td>
-                            <td onclick="Detailed(${s.productid})" class="col-lg-2 ">${s.productname}</td>
+                            <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.productname}</td>
                             <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.sellingprice}</td>
                             <td onclick="Detailed(${s.productid})" class="col-lg-1 ">${s.stocks}</td>
                             <td class="col-lg-1 ">
-                                <button type="button" class="btn btn-primary" onclick="addPic(${s.productid})">圖片
-                                </button>
+                                <button type="button" class="btn btn-primary" onclick="addPic(${s.productid})">圖片</button>
+                            </td>
+                            <td class="col-lg-1 ">
+                                <button type="button" class="btn btn-primary" onclick="chart(${s.productid})">圖表</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -354,7 +368,7 @@
     //////////////////////////////////////////////////////////////////////////////////////////
     // 顯細資料
     function Detailed(id) {
-        console.log(id);
+        console.log("${pageContext.request.contextPath}/product/" + id);
         $(".hazy").css("visibility", "visible");
         $(".cat").css("visibility", "visible");
         $.ajax({
@@ -599,6 +613,69 @@
     function doError(json) {
         console.log(json);
     }
+    function chart(productId){
+        var labels = [];
+        var data = [];
+        var ctx = document.getElementById('canvas').getContext('2d');
+        $.ajax({
+            url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}&time=${param.time}",
+            type: "get",
+            async: false,
+            success: function (J) {
+                labels = Object.keys(J);
+                for (var i in J) {
+                    data.push(J[i]);
+                }
+            },
+            error: doError
+        });
+
+        function doError(json) {
+            console.log("error ajax");
+        }
+
+        console.log(labels);
+        console.log(data);
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '# of Votes',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+
+    }
+
+
 
 </script>
 <style>

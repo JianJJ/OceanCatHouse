@@ -95,7 +95,7 @@
 <body>
 <%--    頁首--%>
 <header class="container-fluid mainColor headtop">
-    <div class="title">廠商後台</div>
+    <a href="<c:url value="/backstage/home" />" class="title">廠商後台</a>
 
     <button class="userIcon"></button>
 </header>
@@ -108,7 +108,10 @@
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/order?pag=1&state=1'">
             訂單管理
         </button>
-        <button class="list-group-item" onclick="javascript:location.href='../backstage/product?pag=1'">商品管理</button>
+        <button class="list-group-item"
+                onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/product?pag=1&state=1'">
+            商品管理
+        </button>
         <button class="list-group-item"
                 onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/user/0'">會員管理
         </button>
@@ -189,7 +192,7 @@
     var data = [];
     var ctx = document.getElementById('canvas').getContext('2d');
     $.ajax({
-        url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}",
+        url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}&time=${param.time}",
         type: "get",
         async: false,
         success: function (J) {

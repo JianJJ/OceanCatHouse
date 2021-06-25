@@ -48,6 +48,7 @@ public class BackStageController {
     public String tiem() {
         return "views/backstage/time";
     }
+
     @RequestMapping("/order")
     public String order() {
         return "views/backstage/order";
@@ -62,11 +63,11 @@ public class BackStageController {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //讀取商品資訊 和分頁
     @RequestMapping("/product")
-    public String prod(Model model ,@RequestParam("pag") Integer p,@RequestParam("state") String state) {
+    public String prod(Model model, @RequestParam("pag") Integer p, @RequestParam("state") String state) {
         System.out.println("*****讀取商品資訊 *****");
         Page<ProductBean> page = productRepository.findByProductstatus(state, PageRequest.of(p - 1, 20));
         List<ProductBean> result = page.getContent();
-        model.addAttribute("product",result);
+        model.addAttribute("product", result);
         return "views/backstage/product";
     }
 
@@ -76,7 +77,7 @@ public class BackStageController {
     public Integer page(@PathVariable("page") Integer p) {
         System.out.println("*****讀取最多頁數 *****");
         Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(p - 1, 20));
-         return page.getTotalPages();
+        return page.getTotalPages();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +109,7 @@ public class BackStageController {
         model.addAttribute("productstatus", bean.getStocks());
         Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
         List<ProductBean> result = page.getContent();
-        model.addAttribute("product",result);
+        model.addAttribute("product", result);
         // 判斷欄位輸入
         Map<String, String> errors = new HashMap<>();
         model.addAttribute("errors", errors);
@@ -157,7 +158,7 @@ public class BackStageController {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //搜索商品資訊 和分頁
+    //搜索商品資訊
     @RequestMapping("/selectproduct/{name}")
     @ResponseBody
     public List<ProductBean> product(@PathVariable("name") String name) {
@@ -173,7 +174,7 @@ public class BackStageController {
         System.out.println("*****搜索訂單資訊 *****");
         List<OrdersBean> lis = ordersRepository.findAll();
         List<Map<String, String>> result = new ArrayList<>();
-
+        System.out.println(lis);
         for (OrdersBean bean : lis) {
             if (state == bean.getOrderstatusid()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E");
@@ -219,7 +220,7 @@ public class BackStageController {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //上傳圖片
     @RequestMapping("/addPic/{Productid}")
-    public String pic(MultipartHttpServletRequest multipartRequest, @PathVariable("Productid") Integer Productid,Model model) {
+    public String pic(MultipartHttpServletRequest multipartRequest, @PathVariable("Productid") Integer Productid, Model model) {
         System.out.println("*****上傳圖片 *****");
         Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
         System.out.println(fileMap);
@@ -250,7 +251,7 @@ public class BackStageController {
 
         Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
         List<ProductBean> result = page.getContent();
-        model.addAttribute("product",result);
+        model.addAttribute("product", result);
         return "/views/backstage/product";
 
     }
@@ -355,6 +356,7 @@ public class BackStageController {
 
         return "/views/backstage/staff";
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //員工詳細
     @RequestMapping("/staffDetail/{staffId}")
@@ -365,10 +367,11 @@ public class BackStageController {
 
         return op.get();
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //修改員工資料
     @RequestMapping("/changStaff/{staffId}")
-    public String changStaff(StaffBean bean,Model model,@PathVariable("staffId") Integer staffId) {
+    public String changStaff(StaffBean bean, Model model, @PathVariable("staffId") Integer staffId) {
         System.out.println("*****修改員工資料 *****");
         bean.setId(staffId);
         System.out.println(bean);
@@ -377,30 +380,39 @@ public class BackStageController {
         model.addAttribute("staff", lis);
         return "/views/backstage/staff";
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //統計圖表
     @RequestMapping("/orderStatistics")
     @ResponseBody
-    public Map<String,Integer> orderStatistics(@RequestParam("category")Integer category) {
+    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category) {
         System.out.println("*****統計圖表 *****");
-        List<OrderDetailBean> lis= orderDetailRepository.findAll();
+        //查詢一周訂單
+        List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
 
-        Map<Integer,Integer> count = new HashMap<>();
-        for(OrderDetailBean ODbean: lis){
-            Integer i = ODbean.getQuantity() ;
-            if(count.get(ODbean.getProductid()) == null){
-                count.put(ODbean.getProductid(),i);
-            }else{
-                i=count.get(ODbean.getProductid())+ODbean.getQuantity();
-                count.put(ODbean.getProductid(),i);
+        //紀錄器(商品Id,數量)
+        Map<Integer, Integer> count = new HashMap<>();
+        //查出的訂單去找細節
+        for(OrdersBean ordersBean : ordersBeanList) {
+            List<OrderDetailBean> lis = orderDetailRepository.findByorderid(ordersBean.getOrderid());
+
+            //取出商品 如果紀錄器內沒有  給當前數量, 如果紀錄器內有 拿出紀錄器內數量加當前數量
+            for (OrderDetailBean ODbean : lis) {
+                Integer i = ODbean.getQuantity();
+                if (count.get(ODbean.getProductid()) == null) {
+                    count.put(ODbean.getProductid(), i);
+                } else {
+                    i = count.get(ODbean.getProductid()) + ODbean.getQuantity();
+                    count.put(ODbean.getProductid(), i);
+                }
             }
         }
-        Map<String,Integer> result = new HashMap<>();
-        for(Integer x : count.keySet()){
-            System.out.println(x);
-             ProductBean pBean= productRepository.findByProductidAndProductcategoryid(x,category);
-            System.out.println(pBean);
-            if(pBean != null)result.put(pBean.getProductname(),count.get(x));
+        //宣告結果
+        Map<String, Integer> result = new HashMap<>();
+        //id改名子
+        for (Integer x : count.keySet()) {
+            ProductBean pBean = productRepository.findByProductidAndProductcategoryid(x, category);
+            if (pBean != null) result.put(pBean.getProductname(), count.get(x));
         }
         return result;
     }
