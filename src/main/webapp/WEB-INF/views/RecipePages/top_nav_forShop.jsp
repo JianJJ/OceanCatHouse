@@ -43,7 +43,7 @@
                     <ul>
                       <li><a href="${pageContext.request.contextPath}/userBack/home">個人主頁</a></li>
                       <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
-                      <li><a href="#">登出</a></li>
+                      <li><a href="${pageContext.request.contextPath}/userBack/userLogout">登出</a></li>
                     </ul>
                   </div>
 
@@ -62,7 +62,7 @@
                     	 <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=1&pad=1">米麵五穀</a>
                     </li>
                     <li class="nav-item">
-                    	<a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=5&pad=1">油</a>
+                    	<a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=5&pad=1">植物油</a>
                     </li>
                     <li class="nav-item">
                         <a class="ShopNarBar" href="${pageContext.request.contextPath}/views/ShoppingMall?categoryid=4&pad=1">醬料</a>

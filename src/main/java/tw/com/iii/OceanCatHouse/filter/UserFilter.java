@@ -10,16 +10,16 @@ import java.io.IOException;
 public class UserFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-//        servletRequest.setCharacterEncoding("utf-8");
-//        servletResponse.setCharacterEncoding("utf-8");
-//        HttpServletRequest request = (HttpServletRequest) servletRequest;
-//        HttpServletResponse response = (HttpServletResponse) servletResponse;
-//        UserBean user = (UserBean) request.getSession().getAttribute("user");
-//        if(user == null){
-//            response.sendRedirect(request.getContextPath()+"/views/login");
-//        }else {
+        servletRequest.setCharacterEncoding("utf-8");
+        servletResponse.setCharacterEncoding("utf-8");
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        UserBean user = (UserBean) request.getSession().getAttribute("user");
+        if(user == null){
+            response.sendRedirect(request.getContextPath()+"/views/login");
+        }else {
             chain.doFilter(servletRequest, servletResponse);
-//        }
+        }
 
     }
 }

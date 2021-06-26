@@ -135,22 +135,22 @@
 
                     <div class="accordion-body">
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1'">米麵五穀
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1&time=3'">米麵五穀
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2'">植物油
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2&time=3'">植物油
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3'">醬料
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3&time=3'">醬料
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4'">蔬果
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4&time=3'">蔬果
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5'">生鮮
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5&time=3'">生鮮
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6'">乾貨
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6&time=3'">乾貨
                         </a><br>
 
                     </div>
@@ -168,13 +168,13 @@
             <div class="row">
                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                     <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="sta(1)">
-                    <label class="btn btn-outline-primary state1" for="btncheck1">周</label>
+                    <label class="btn btn-outline-primary state1" for="btncheck1">日</label>
 
                     <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                    <label class="btn btn-outline-primary state2" for="btncheck2" onclick="sta(2)">月</label>
+                    <label class="btn btn-outline-primary state2" for="btncheck2" onclick="sta(2)">周</label>
 
                     <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btncheck3" onclick="sta(3)">年</label>
+                    <label class="btn btn-outline-primary" for="btncheck3" onclick="sta(3)">月</label>
                 </div>
             </div>
 
@@ -190,6 +190,10 @@
 <script>
     var labels = [];
     var data = [];
+    var label= "月";
+    if('${param.time}'=='1' )label = "日";
+    if('${param.time}'=='2' )label = "周";
+
     var ctx = document.getElementById('canvas').getContext('2d');
     $.ajax({
         url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}&time=${param.time}",
@@ -208,14 +212,12 @@
         console.log("error ajax");
     }
 
-    console.log(labels);
-    console.log(data);
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: '# of Votes',
+                label: label,
                 data: data,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -244,6 +246,16 @@
             }
         }
     });
+
+    function sta(s){
+        window.location.href = "${pageContext.request.contextPath}/backstage/statistics?category=${param.category}&time="+s;
+
+    }
+
+
+
+
+
 
 </script>
 

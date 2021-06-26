@@ -54,10 +54,7 @@ public class UserBackController {
     // 到個人首頁
     @RequestMapping("/home")
     public String home(HttpSession session, HttpServletRequest request) {
-        Optional<UserBean> byId = userDao.findById(21);
-        UserBean user = byId.get();
-        session.setAttribute("user", user);
-//        UserBean user = (UserBean) session.getAttribute("user");
+        UserBean user = (UserBean) session.getAttribute("user");
         // 查看user自己的食譜數量
         Integer recCountStatus1 = recipeMainDao.recCountStatus1(user.getUserid());
         Integer recCountStatus0 = recipeMainDao.recCountStatus0(user.getUserid());
@@ -82,7 +79,7 @@ public class UserBackController {
     @RequestMapping("/userLogout")
     public String userLogout(HttpSession session){
         session.removeAttribute("user");
-        return "index2";
+        return "index";
     }
 
     // 到個人資料設定頁

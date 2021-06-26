@@ -16,6 +16,9 @@ public class FilterConfig {
 
         // 添加過濾路徑
         filterRegistrationBean.addUrlPatterns("/userBack/*");
+        filterRegistrationBean.addUrlPatterns("/addPay");
+        filterRegistrationBean.addUrlPatterns("/insertOrder");
+        filterRegistrationBean.addUrlPatterns("/toAddress");
 
         return filterRegistrationBean;
     }

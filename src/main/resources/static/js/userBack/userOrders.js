@@ -44,7 +44,7 @@ $(document).ready(function (){
                     for(var i=0;i<uccbList.length;i++){
                         use = "";
                         if(uccbList[i].useCard == 1){
-                            use = "最近一次使用這張卡片";
+                            use = "最近一次消費使用這張卡片";
                         }
                         $('.showCard').append(
                             `<div class="created used cardDetail" id="${uccbList[i].cardId}">`+
@@ -118,7 +118,6 @@ $(document).ready(function (){
                 async : false,
                 cache: false,  //不做快取
                 success : function (msg){
-                    console.log(msg);
                     $('#showCardBtn').click();
                 },
                 error : function (returndata){

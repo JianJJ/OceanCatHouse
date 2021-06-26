@@ -13,6 +13,8 @@ public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
     List<OrdersBean> selectWeek();
     @Query(" FROM OrdersBean WHERE MONTH(date_format(ordercreateon,'%Y-%m-%d')) = MONTH(now())")
     List<OrdersBean> selectMonth();
+    @Query(" FROM OrdersBean WHERE DAYOFYEAR(date_format(ordercreateon,'%Y-%m-%d')) = DAYOFYEAR(now())")
+    List<OrdersBean> selectDay();
 
     List<OrdersBean> findByUserid(Integer userId);
 
