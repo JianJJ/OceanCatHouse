@@ -8,8 +8,8 @@ $(function () {
     $('#mail').on('click', function () {
         var path = window.location.href;
 
-        recipeContext = '<html><head> <meta charset="UTF-8"></head><body><h3> ' + recTitle + ' </h3>' +
-            '<img src="' + img + '" style="width: 309px; height: 220px;">' +
+        recipeContext = '<html><head> <meta charset="UTF-8"></head><body><h3 style="font-size:30px;"> ' + recTitle + ' </h3>' +
+            '<img src="' + img + '" style="width: 376px; height: 270px;"><br/>' + content +
             '<br/>材料：<br/>' + ingrearray + '<br/><a href="' + path + '">快到✿海貓食屋✿看看' + recTitle + '的做法吧 ε=ε=ε=ε=ε=┌(°▽°)┘</a></body></html>';
 
         $('#blackMask').fadeIn();

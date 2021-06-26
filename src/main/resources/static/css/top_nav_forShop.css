@@ -44,16 +44,16 @@
 }
 
 #mainTitle {
-    font-size: 28px;
+    font-size: 31px;
     margin-left: 25px;
 }
 
 .navColor {
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     margin-right:100px;
-    text-shadow:1px 1px 2px #444;
+    text-shadow:1px 1px 3px #444;
    }
 
 .navLink {
@@ -77,7 +77,7 @@ input:focus {
 }
 
 /* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	*/
-.mainColor {
+.mainColor:not(footer){
     background: linear-gradient(to bottom, #62A5A1, #ddf5d5);
     background: -webkit-linear-​gradient(to bottom, #62A5A1, #ddf5d5);
 }
@@ -195,4 +195,15 @@ em {
 	color:#444;
 }
 
+footer > .clearfix > dl > dd > a {
+	text-shadow:1px 1px 3px #222;
+}
 
+footer > .clearfix > dl > dd > a:hover {
+	color:#444;
+}
+
+footer {
+	 background: linear-gradient(to top, #62A5A1, #ddf5d5);
+    background: -webkit-linear-​gradient(to top, #62A5A1, #ddf5d5);
+}

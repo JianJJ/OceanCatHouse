@@ -28,11 +28,14 @@
 }
 
 .maskForFavorite > #editConsole .btnAdd {
+	
+	margin-left:35px;
     background-color: transparent;
     border:1px seagreen solid;
     color: seagreen;
     border-radius: 5px;
     cursor: pointer;
+    padding:5px 8px;
 
 }
 

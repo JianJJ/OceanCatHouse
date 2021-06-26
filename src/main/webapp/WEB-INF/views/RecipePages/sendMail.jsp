@@ -20,7 +20,8 @@
 
 <body>
 	<h3 id='mailPageTitle'>將食譜寄送到信箱</h3>
-		<a id='mailPageLink' href='${pageContext.request.contextPath}/views/ShoppingMall'>或者到我們的商城逛逛</a>
+	<!-- 
+		<a id='mailPageLink' href='${pageContext.request.contextPath}/views/ShoppingMall'>或者到我們的商城逛逛</a><br> -->
 	 <form id="form">
         <div class="field form-floating mb-3">
             <label for="recTitle">食譜名稱</label>

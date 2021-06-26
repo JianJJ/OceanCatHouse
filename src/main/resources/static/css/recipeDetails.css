@@ -503,8 +503,8 @@ background:#86e3bc;
 }
 
 #mailPageLink {
-	position:relative;
-	left:500px;
+	position:absolute;
+	right:50px;
 	color:#86e39c;
 	font-weight:700;
 }

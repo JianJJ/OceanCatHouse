@@ -54,7 +54,7 @@
             var recTitle = '${recMainBean.recTitle}';
             var recipeContext = "";
             var img = '${recMainBean.recPic}';
-
+			var content = '${recMainBean.recText}';
         </script>
         <button class='closeMask'>X</button>
         <jsp:include page="sendMail.jsp"></jsp:include>
