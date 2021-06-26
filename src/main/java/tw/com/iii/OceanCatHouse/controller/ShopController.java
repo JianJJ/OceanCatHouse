@@ -9,9 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
 import tw.com.iii.OceanCatHouse.model.*;
@@ -199,5 +197,22 @@ public class ShopController {
         }
         return "redirect:/complete";
     }
+    // -------------Jian : 送出訂單, 新增訂單 ------------------------
+    @PostMapping("/insertOrder")
+    @ResponseBody
+    public String insertOrder(HttpSession session,
+                              @RequestBody List<ProductBean> productBeanList){
+        UserBean user = (UserBean) session.getAttribute("user");
+        Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
+        for (ProductBean apple : productBeanList){
+            System.out.println(apple);
+        }
+        OrdersBean ordersBean = ordersService.insertOrder(user, cat, productBeanList);
+        session.removeAttribute("cat");
+
+        return "新增成功";
+    }
 
 }
+
+
