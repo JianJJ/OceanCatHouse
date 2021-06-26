@@ -84,18 +84,17 @@ public class ShopRestController {
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
-	// 同類商品
-	@GetMapping("/category/{id}")
-	public ResponseEntity<List<ProductBean>> category(@PathVariable("id") Integer id) {
-		System.out.println("category******************************************************************" + id);
-		List<ProductBean> result = productRepository.findProductcategoryid(id);
-
-		if (result != null) {
-			return ResponseEntity.ok(result);
-		} else {
-			return ResponseEntity.noContent().build();
-		}
-	}
+//	// 同類商品
+//	@GetMapping("/category/{id}")
+//	public ResponseEntity<List<ProductBean>> category(@PathVariable("id") Integer id) {
+//		System.out.println("category******************************************************************" + id);
+//		List<ProductBean> result = productRepository.findProductcategoryid(id);
+//		if (result != null) {
+//			return ResponseEntity.ok(result);
+//		} else {
+//			return ResponseEntity.noContent().build();
+//		}
+//	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 幫轉購物車資料給js
@@ -156,27 +155,27 @@ public class ShopRestController {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 推薦食譜
-	@RequestMapping("/recommend/{productid}")
-	public List<RecipeMainBean> recommend(@PathVariable("productid") Integer productid) {
-		System.out.println("********************推薦食譜*********************" );
-		Optional<ProductBean> op = productRepository.findById(productid);
-		ProductBean productBean = op.get();
-		Page<Integer> page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(0, 6));
-		int rand = (int) (Math.random()*page.getTotalPages());
-		page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(rand, 6));
-		System.out.println(page);
-		List<Integer> set = page.getContent();
-		System.out.println(set+" set ");
-		List<RecipeMainBean> result = new ArrayList<>();
-		for(Integer i : set){
-			Optional<RecipeMainBean> recipeOP =  recipeRepository.findById(i);
-			System.out.println(recipeOP+" recipeOP ");
-			RecipeMainBean recipe = recipeOP.get();
-			System.out.println(recipe+" recipe ");
-			result.add(recipe);
-		}
-		return result;
-	}
+//	@RequestMapping("/recommend/{productid}")
+//	public List<RecipeMainBean> recommend(@PathVariable("productid") Integer productid) {
+//		System.out.println("********************推薦食譜*********************" );
+//		Optional<ProductBean> op = productRepository.findById(productid);
+//		ProductBean productBean = op.get();
+//		Page<Integer> page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(0, 6));
+//		int rand = (int) (Math.random()*page.getTotalPages());
+//		page = recipeMaterialRepository.findRecId(productBean.getProductkey(),PageRequest.of(rand, 6));
+//		System.out.println(page);
+//		List<Integer> set = page.getContent();
+//		System.out.println(set+" set ");
+//		List<RecipeMainBean> result = new ArrayList<>();
+//		for(Integer i : set){
+//			Optional<RecipeMainBean> recipeOP =  recipeRepository.findById(i);
+//			System.out.println(recipeOP+" recipeOP ");
+//			RecipeMainBean recipe = recipeOP.get();
+//			System.out.println(recipe+" recipe ");
+//			result.add(recipe);
+//		}
+//		return result;
+//	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//取得最大頁面數
 	@RequestMapping("/pag/")

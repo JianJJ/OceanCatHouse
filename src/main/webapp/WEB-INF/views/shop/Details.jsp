@@ -14,11 +14,11 @@
     <%-- bootstrap的CSS、JS樣式放這裡 --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    
+
 
     <%-- jQuery放這裡 --%>
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-    
+
     <%-- Header的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/top_nav_forShop.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Details.css">
@@ -27,13 +27,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
 
-
-
     <script type="text/javascript">
         var id = "${id}";
         console.log("id : " + id);
     </script>
-    
+
 
     <title>✿海貓食屋✿</title>
 </head>
@@ -55,7 +53,7 @@
                 <li class="fontIcon"><span id="f1"></span></li>
             </ul>
         </div>
-      
+
         <!-- 網頁中間內文 -->
         <div class="col-lg-11">
             <div class="cenBody">
@@ -63,6 +61,8 @@
                 <div class="cenDetail row">
                     <div class="col-lg-6 col-md-12 leftImg ">
                         <div class="banner">
+                            <button class="bLeft">&laquo;</button>
+                            <button class="bRight">&raquo;</button>
                             <div class="list">
                                 <!--這裡有輪播圖  -->
                             </div>
@@ -72,151 +72,210 @@
 
                         </div>
                     </div>
-                   
+
                     <div class="col-lg-5 col-md-12 rightImg ">
-                    
-                    <h2 class="productname"> ${productname}</h2>
 
-                    <hr>
-                   
-                    <div class="producttext">${producttext}</div>
+                        <h2 class="productname"> ${productname}</h2>
 
-                    
-                    <div class="productspecifications">商品規格 : ${productspecifications}</div>
-                   
-                    <div class='productPayment'>付款方式 : 貨到付款
-                        <br> 運送方式 : 
-                        宅配 ($80)
+                        <hr>
+
+                        <div class="producttext">${producttext}</div>
+
+
+                        <div class="productspecifications">商品規格 : ${productspecifications}</div>
+
+                        <div class='productPayment'>付款方式 : 貨到付款
+                            <br> 運送方式 :
+                            宅配 ($80)
+                        </div>
+                        <hr>
+                        <div class="sellingprice">售價 $${sellingprice}</div>
+                        <div>
+
+                            <form action="${pageContext.request.contextPath}/cat/${id}">
+                                <button class="leftButton" type="button" onclick="leftButton()">-</button>
+                                <input type="text" name="num" value="1" class="num">
+                                <button class="rightButton" type="button" onclick="rightButton()">+</button>
+
+                                <button type="submit" value="加入購物車" class="btn btn-outline-dark btn-lg bs">加入購物車
+                                </button>
+                            </form>
+
+                        </div>
+
+
                     </div>
-                    <hr>
-                    <div class="sellingprice">售價 $${sellingprice}</div>
-                    <div>
+                </div>
 
-                        <form action="${pageContext.request.contextPath}/cat/${id}">
-                            <button class="leftButton" type="button" onclick="leftButton()">-</button>
-                            <input type="text" name="num" value="1" class="num">
-                            <button class="rightButton" type="button" onclick="rightButton()">+</button>
+                <hr class='divLine'>
 
-                            <button type="submit" value="加入購物車" class="btn btn-outline-dark btn-lg bs">加入購物車</button>
-                        </form>
+                <!-- 推薦食譜 -->
+                <div class="recommend row">
+                    <p>推薦食譜</p>
+                    <c:forEach varStatus="loop" begin="0" end="${recommend.size()-1}" items="${recommend}"
+                               var="r">
+                        <a href="../recipeDetails?id=${r.recId}" class="col-lg-6 col-sm-6">
+                            <div class="row recommendRecipe">
+                                <img class="col-lg-3 col-md-7 col-sm-6 rsNavItem" src='${r.recPic}' alt="">
+                                <p class="col-lg-6 col-sm-6">${r.recTitle}</p>
+                            </div>
+                        </a>
+                    </c:forEach>
 
-                    </div>
+
+                </div>
+                <hr class='divLine'>
+                <!-- 同類商品 -->
+                <div class="SimilarProducts row">
+                    <p>同類商品</p>
+                    <c:forEach varStatus="loop" begin="0" end="${SimilarProducts.size()-1}" items="${SimilarProducts}"
+                               var="s">
+                        <figure class="col-lg-2 col-sm-4">
+                            <a href="${pageContext.request.contextPath}/Details/${s.productid}">
+                                <img src="../images/shop/${s.productmodel}-1.jpg" alt="">
+                                    ${s.productname}
+                            </a>
+                        </figure>
+
+                    </c:forEach>
 
 
                 </div>
             </div>
-            
-            <hr class='divLine'>
-            
-            <!-- 推薦食譜 -->
-            <div class="recommend row">
-                <p>推薦食譜</p>
-                
-            </div>
-            <hr class='divLine'>
-            <!-- 同類商品 -->
-            <div class="SimilarProducts row">
-                
-                <p>同類商品</p>
+        </div>
 
-               
+        <!-- 右邊至頂 -->
 
-            </div>
+        <div class="toUP">
+            <span class="fontIcon" id="toUp"></span>
         </div>
     </div>
-
-    <!-- 右邊至頂 -->
-
-    <div class="toUP">
-        <span class="fontIcon" id="toUp"></span>
-    </div>
-</div>
 </div>
 
 </body>
 
- 
 
 <script>
-                    $.ajax({
-                        url: "${pageContext.request.contextPath}/recommend/${id}",
-                        type: "get",
-                        success: function (json) {
-                            for (var A of json) {
-                                console.log(A);
-                                $(".recommend").append('<a href="../recipeDetails?id=' + A.recId + '" class="col-lg-6 col-sm-6"><div class="row recommendRecipe">' +
-                                    '<img class="col-lg-3 col-md-7 col-sm-6 rsNavItem" src=' + A.recPic + ' alt="">' +
-                                    ' <p class="col-lg-6 col-sm-6">' + A.recTitle + '</p>' +
-                                    ' </div> </a>');
-                            }
-                        },
-                        error: function (json) {
-                            console.log("error 推薦食譜" + json);
-                        }
-                    });
-                </script>
-                
-                <script>
-                    $.ajax({
-                        url: "${pageContext.request.contextPath}/category/" + id,
-                        type: "get",
-                        success: function (json) {
-                            var arr = Object.keys(json);
-                            var a = 1
-                            if (arr.length > 4) {
-                                a = 4;
-                            } else {
-                                a = arr.length;
-                            }
+    var index = 0;//設定輪播圖位置
+    var maxIdex//設定有幾張圖片
+    <%--<!-- 推薦食譜 -->--%>
+    <%--$.ajax({--%>
+    <%--    url: "${pageContext.request.contextPath}/recommend/${id}",--%>
+    <%--    type: "get",--%>
+    <%--    success: function (json) {--%>
+    <%--        for (var A of json) {--%>
+    <%--            console.log(A);--%>
+    <%--            $(".recommend").append('<a href="../recipeDetails?id=' + A.recId + '" class="col-lg-6 col-sm-6">' +--%>
+    <%--                '<div class="row recommendRecipe">' +--%>
+    <%--                '<img class="col-lg-3 col-md-7 col-sm-6 rsNavItem" src=' + A.recPic + ' alt="">' +--%>
+    <%--                '<p class="col-lg-6 col-sm-6">' + A.recTitle + '</p>' +--%>
+    <%--                '</div> ' +--%>
+    <%--                '</a>');--%>
+    <%--        }--%>
+    <%--    },--%>
+    <%--    error: function (json) {--%>
+    <%--        console.log("error 推薦食譜" + json);--%>
+    <%--    }--%>
+    <%--});--%>
+    <%--//同類商品--%>
+    <%--$.ajax({--%>
+    <%--    url: "${pageContext.request.contextPath}/category/" + id,--%>
+    <%--    type: "get",--%>
+    <%--    success: function (json) {--%>
+    <%--        var arr = Object.keys(json);--%>
+    <%--        var a = 1--%>
+    <%--        if (arr.length > 4) {--%>
+    <%--            a = 4;--%>
+    <%--        } else {--%>
+    <%--            a = arr.length;--%>
+    <%--        }--%>
 
-                            for (var i = 0; i < a; i++)
-                                $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4"><a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '"><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');
-                        },
-                        error: function (json) {
-                            console.log("errr");
-                        }
-                    });
-                    $('.catReturn').click(function () {
-                        $(".hazy").css("visibility", "hidden");
-                    });
+    <%--        for (var i = 0; i < a; i++)--%>
+    <%--            $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4">' +--%>
+    <%--                '<a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '">' +--%>
+    <%--                '<img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');--%>
+    <%--    },--%>
+    <%--    error: function (json) {--%>
+    <%--        console.log("errr");--%>
+    <%--    }--%>
+    <%--});--%>
+    $('.catReturn').click(function () {
+        $(".hazy").css("visibility", "hidden");
+    });
 
-                </script>
 
-<script>
-
-$('.toUP').click(function(){
-    $('html, body').stop().animate( {
-        scrollTop: 0
+    $('.toUP').click(function () {
+        $('html, body').stop().animate({
+            scrollTop: 0
         }, 100)
-});
+    });
 
-$(window).scroll(function(){
-    if($(document).scrollTop() >= 450){
-        $('.toUP').fadeIn(300);
-    }
+    $(window).scroll(function () {
+        if ($(document).scrollTop() >= 450) {
+            $('.toUP').fadeIn(300);
+        }
 
-    if($(document).scrollTop() < 450){
-        $('.toUP').fadeOut(300);
-    }
-});
+        if ($(document).scrollTop() < 450) {
+            $('.toUP').fadeOut(300);
+        }
+    });
 
-    // 商品資料
+    // 商品圖片
     $.ajax({
         url: "${pageContext.request.contextPath}/pic/" + id,
         type: "get",
         async: false,
         success: function (pic) {
-
+            maxIdex = pic.length;
             var i = 0;
             for (var A of pic) {
-
                 $(".list").append('<img class="rsimg" src="../images/shop/' + A.producturl + '.jpg" alt="">');
                 $(".producturl").append('<img class="rsNavItem" onclick="rsmove(' + i + ')" src="../images/shop/' + A.producturl + '.jpg" alt="">');
                 i++;
             }
         }
     })
+
+    // 輪播圖按紐
+    function rsmove(i) {
+        $(".list").css("left", -i * 505 + 'px');
+        index = i;
+        if (index == 0) {
+            $(".bLeft").css("visibility", "hidden");
+        } else {
+            $(".bLeft").css("visibility", "visible");
+        }
+
+        if (index == maxIdex - 1) {
+            $(".bRight").css("visibility", "hidden");
+        } else {
+            $(".bRight").css("visibility", "visible");
+        }
+
+
+    }
+
+    $(".bLeft").css("visibility", "hidden");
+
+    $(".bLeft").click(function () {
+        $(".bRight").css("visibility", "visible");
+        index--;
+        if (index == 0) $(".bLeft").css("visibility", "hidden");
+        $(".list").css("left", -index * 505 + 'px');
+    })
+
+    $(".bRight").click(function () {
+        $(".bLeft").css("visibility", "visible");
+        index++;
+        $(".list").css("left", -index * 505 + 'px');
+
+        if (index == maxIdex - 1) $(".bRight").css("visibility", "hidden");
+
+    })
+
+
 </script>
 <script src="../js/shoopCat.js"></script>
+<%--<script src="../js/umbrella.js"></script>--%>
 </html>
 <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>

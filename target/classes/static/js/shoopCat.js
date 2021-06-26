@@ -61,9 +61,7 @@ $.ajax({
 })
 // 數量按鈕
 // $(document).ready(function() {
-function rsmove(i) {
-	$(".list").css("left", -i * 505 + 'px');
-}
+
 function rightButton() {
 	var i = $(".num").val();
 	i++;
