@@ -109,12 +109,9 @@ function addCat(A) {
 	$("#pnum" + A).val(i);
 	CatProduct[A]++;
 	$("#total" + A).text("合計:$ " + CatProduct[A] * sell[A]);//計算合計
-
-
 }
 // 減少數量
 function cutCat(A) {
-
 	var i = $("#pnum" + A).val();
 	if (i == 1) {
 		i = 1;

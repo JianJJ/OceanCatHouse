@@ -428,11 +428,13 @@ public class BackStageController {
     //統計圖表
     @RequestMapping("/orderStatistics")
     @ResponseBody
-    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category) {
+    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category,@RequestParam("time")Integer time) {
         System.out.println("*****統計圖表 *****");
         //查詢一周訂單
-        List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
 
+        List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
+        if(time == 1) ordersBeanList = ordersRepository.selectDay();
+        if(time == 2) ordersBeanList = ordersRepository.selectWeek();
         //紀錄器(商品Id,數量)
         Map<Integer, Integer> count = new HashMap<>();
         //查出的訂單去找細節
