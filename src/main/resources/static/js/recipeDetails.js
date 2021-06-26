@@ -98,9 +98,14 @@ $('#addFavorite').click(function(){
 function addFavorite(){
 	var id = 376575;
 
-	$.post({
+	var favId = $("input[name='favId']:checked").serialize();
+
+	$.ajax({
+		type:"post",
 		url:`/OceanCatHouse/recipeDetails?id=${id}`,
-		data:{"favId":$(".favID").val()},
+		data:favId,
+		dataType:'json',
+		transitional:true,
 		success:function (data,status){
 			// console.log(data);
 			console.log(status);

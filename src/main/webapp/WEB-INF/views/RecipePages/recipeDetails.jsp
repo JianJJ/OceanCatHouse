@@ -98,21 +98,21 @@
                 <button id='cancel'>x</button>
                 <hr>
                 <section>
-                    <%--                    <form action="">--%>
+<%--                    <form >--%>
                     <label for="cate1">
                         <div class="favoriteCategory">
                             <h5 class="categoryName">豬肚雞湯</h5>
-                            <input type="checkbox" id="cate1" class="favID" value="100">
+                            <input type="checkbox" id="cate1" class="favID" value="100" name="favId">
                         </div>
                     </label>
                     <label for="cate1">
                         <div class="favoriteCategory">
-                            <h5 class="categoryName">豬肚雞湯</h5>
-                            <input type="checkbox" id="cate2" class="favID" value="200">
+                            <h5 class="categoryName">擔擔麵</h5>
+                            <input type="checkbox" id="cate2" class="favID" value="200" name="favId">
                         </div>
                     </label>
                     <input type="submit" class="btnAdd" value="完成" onclick="addFavorite()">
-                    <%--                    </form>--%>
+<%--                    </form>--%>
                 </section>
             </div>
         </div>

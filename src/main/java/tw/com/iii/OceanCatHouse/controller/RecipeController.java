@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import tw.com.iii.OceanCatHouse.model.*;
 import tw.com.iii.OceanCatHouse.repository.UserFavoritesCategoryRepository;
@@ -46,6 +47,7 @@ public class RecipeController {
             path = {"/recipeDetails"}
 
     )
+    @ResponseBody
     public ModelAndView recipeDetails(@RequestParam(required = false) Integer id, Integer[] favId) {
         //設定食譜ID--------------------------------------------------------------------
 //        int id = 374855;
