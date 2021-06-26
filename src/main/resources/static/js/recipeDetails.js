@@ -93,3 +93,28 @@ $('#addFavorite').click(function(){
 
 });
 
+
+//加入收藏頁面ajax部分:
+function addFavorite(){
+	var id = 376575;
+
+	$.post({
+		url:`/OceanCatHouse/recipeDetails?id=${id}`,
+		data:{"favId":$(".favID").val()},
+		success:function (data,status){
+			// console.log(data);
+			console.log(status);
+
+		}
+
+	})
+
+
+
+
+
+
+
+
+}
+

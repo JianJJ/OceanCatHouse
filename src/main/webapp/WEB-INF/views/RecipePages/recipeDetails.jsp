@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/recipeDetails.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addfavorite.css">
+    <script src="${pageContext.request.contextPath}/js/addFavorite.js"></script>
     <title>${recMainBean.recTitle}</title>
 </head>
 
@@ -65,12 +67,12 @@
         <button class='closeMask'>X</button>
         <h4>分享</h4>
         <ul>
-           
+
             <li class="fontIcon hyLink font">
                 <a class="fontIcon hyLink" id="fbShare" href="#">
                     <p>FB</p></a>
             </li>
-			 <li class="fontIcon hyLink">
+            <li class="fontIcon hyLink">
                 <a href="#" id='lineShare' target="_blank">
                     <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
                     <p>Line</p>
@@ -90,8 +92,30 @@
 <%--加入收藏圖標--%>
 <div id='blackMaskThree' class='mask'>
     <div class='modalSection' id='sectionThree'>
-<%--        <button class='closeMask'>X</button>--%>
-        <jsp:include page="recipeDetails_addfavorite3.jsp"></jsp:include>
+        <div class="maskForFavorite">
+            <div id='editConsole'>
+                <h2>選擇收藏夾</h2>
+                <button id='cancel'>x</button>
+                <hr>
+                <section>
+                    <%--                    <form action="">--%>
+                    <label for="cate1">
+                        <div class="favoriteCategory">
+                            <h5 class="categoryName">豬肚雞湯</h5>
+                            <input type="checkbox" id="cate1" class="favID" value="100">
+                        </div>
+                    </label>
+                    <label for="cate1">
+                        <div class="favoriteCategory">
+                            <h5 class="categoryName">豬肚雞湯</h5>
+                            <input type="checkbox" id="cate2" class="favID" value="200">
+                        </div>
+                    </label>
+                    <input type="submit" class="btnAdd" value="完成" onclick="addFavorite()">
+                    <%--                    </form>--%>
+                </section>
+            </div>
+        </div>
     </div>
 </div>
 
