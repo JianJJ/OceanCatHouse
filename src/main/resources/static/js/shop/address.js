@@ -1,13 +1,19 @@
 $(function(){
-	
-	$('#pay1').click(function(){
-		$('#cardPaySection').slideDown();
-	});
-	
+
+    $('#pay1').click(function(){
+        $('#addNewCard').slideUp();
+        $('#usedCardDiv').slideUp()
+    }).click();
 	$('#pay2').click(function(){
-		$('#cardPaySection').slideUp();
+        $('#usedCardDiv').slideDown()
+		$('#addNewCard').slideUp();
 	});
-	
+	$('#pay3').click(function(){
+		$('#addNewCard').slideDown();
+        $('#usedCardDiv').slideUp()
+	});
+
+
 	$('input').keyup(function(e){   
     if($(this).val().length==$(this).attr('maxlength')){   
     $(this).next(':input').focus();   
@@ -16,7 +22,8 @@ $(function(){
 	
 	var expireMonthStr = "";
 	for(i = 1;i <=12; i++) {
-		expireMonthStr = expireMonthStr +" <option value='" + i +"'>" + i + "</option>";
+        var strI = i < 10  ? "0"+ i:i;
+		expireMonthStr = expireMonthStr +" <option value='" + strI +"'>" + strI + "</option>";
 	}
 	$('#expireMonth').html(expireMonthStr);
 	
@@ -28,99 +35,153 @@ $(function(){
 	
 
 	var productList = [];
-var CatProduct = [];
-        var sell = [];
-        var c = [];//合計
-        //讀去cat資料
+    var CatProduct = [];
+    var sell = [];
+    var c = [];//合計
+    //讀去cat資料
+    $.ajax({
+        url: "/OceanCatHouse/catData",
+        type: "get",
+        async: false,
+        // dataType: "json",
+        success: function (json) {
+            CatProduct = json;
+            var key = Object.keys(json);
+            for (var A in json) {
+                //用id找資料
+                $.ajax({
+                    url: "/OceanCatHouse/product/" + A,
+                    type: "get",
+                    async: false,
+                    success: function (product) {
+                        productList.push(product);
+                        sell[product.productid] = product.sellingprice;
+                        c[product.productid] = product.sellingprice * json[product.productid];//合計
+                        $('.cat').append('<div class="catProduct col-lg-11" id="catProduct' + product.productid + '">' +
+                            '<img  src="/OceanCatHouse/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
+                            '<div class="context col-lg-11 row"><h3 class="col-lg-4  col-sm-12 col-md-12">' + product.productname + '</h3>' +
+                            '<span class="standard col-lg-3 d-none d-lg-inline-block">' + product.productspecifications + '</span>' +
+                            ' <span class="pnum col-lg-3 d-none d-lg-inline-block">' + json[product.productid] + '</span>' +
+                            '<span class="total col-lg-1  col-sm-12 col-md-12" id="total' + product.productid + '">$' + c[product.productid] + '</span>' +
+                            '</div>' +
+                            '</div>');
+
+                    }
+                    , error: function (json) {
+                        console.log("err " + json);
+
+                        function suc(product, A) {
+
+                        }
+
+                    }
+                })
+
+
+            }
+        }, error: function (json) {
+            console.log("err " + json);
+        }
+    })
+    var cat = '${cat}';
+    if (cat == 0) {
+        alert("未購買商品");
+        window.location.href = "/OceanCatHouse/views/ShoppingMall";
+    }
+    var user = '${id}';
+    // if (user == 0) {
+    //     alert("請先登入");
+    //     window.location.href = "/OceanCatHouse/views/login";
+    // }
+    //總價
+    var key = Object.keys(CatProduct);
+    var m = 0;
+    for (var k of key) {
+        m += CatProduct[k] * sell[k];
+    }
+    $(".PPP").text("商品金額 :$ " + m);
+    var a = m + 60
+    $(".SSS").text("訂單金額 :$ " + a);
+
+  // ---------------- Jian ----------------------------
+    //送出訂單
+    $('#insertOrder').click(function (){
+        // 判斷付款方式
+        var PaymentId = 1;
+        var cardId = 0;
+        var addCard = {};
+        if($('#pay1').prop('checked')){
+            // 貨到付款
+            PaymentId = 2;
+        }else if($('#pay2').prop('checked')){
+            // 使用原有的卡片
+            cardId = parseInt($('#pay2').val());
+        }else {
+            // 使用新增的卡片
+            addCard = {
+                "userCardName" : $('#userCardName').val(),
+                "cardNumberP1" : $('#cardNumberP1').val(),
+                "cardNumberP2" : $('#cardNumberP2').val(),
+                "cardNumberP3" : $('#cardNumberP3').val(),
+                "cardNumberP4" : $('#cardNumberP4').val(),
+                "expireMonth"  : $('#expireMonth').val(),
+                "expireYear"   : $('#expireYear').val(),
+                "checkNumber"  : $('#checkNumber').val()
+            };
+        }
+        // 紀錄結帳資訊
+        var pay = {
+            "PaymentId" : PaymentId,    // 1=信用卡, 2=貨到付款
+            "cardId"    : cardId,       // 0=新增卡片, !=0使用舊卡片
+            "addCard"   : addCard       // cardId=0, 新增卡片的資料
+        };
         $.ajax({
-            url: "/OceanCatHouse/catData",
-            type: "get",
-            async: false,
-            // dataType: "json",
-            success: function (json) {
-                CatProduct = json;
-                var key = Object.keys(json);
-                for (var A in json) {
-                    //用id找資料
-                    $.ajax({
-                        url: "/OceanCatHouse/product/" + A,
-                        type: "get",
-                        async: false,
-                        success: function (product) {
-                            productList.push(product);
-                            sell[product.productid] = product.sellingprice;
-                            c[product.productid] = product.sellingprice * json[product.productid];//合計
-                            $('.cat').append('<div class="catProduct col-lg-11" id="catProduct' + product.productid + '">' +
-                                '<img  src="/OceanCatHouse/images/shop/' + product.productmodel + '-1.jpg" alt="">' +
-                                '<div class="context col-lg-11 row"><h3 class="col-lg-4  col-sm-12 col-md-12">' + product.productname + '</h3>' +
-                                '<span class="standard col-lg-3 d-none d-lg-inline-block">' + product.productspecifications + '</span>' +
-                                ' <span class="pnum col-lg-3 d-none d-lg-inline-block">' + json[product.productid] + '</span>' +
-                                '<span class="total col-lg-1  col-sm-12 col-md-12" id="total' + product.productid + '">$' + c[product.productid] + '</span>' +
-                                '</div>' +
-                                '</div>');
+            url : "/OceanCatHouse/addPay",
+            type : "POST",
+            data : JSON.stringify(pay),// 付款方式
+            contentType : "application/json;charset=utf-8",
+            async : false,
+            cache : false,
+            success : function () {
 
-                        }
-                        , error: function (json) {
-                            console.log("err " + json);
-
-                            function suc(product, A) {
-
-                            }
-
-                        }
-                    })
-
-
-                }
-            }, error: function (json) {
-                console.log("err " + json);
+            },
+            error : function (){
+                alert("系統忙碌中，請聯繫我們！");
             }
         })
-        var cat = '${cat}';
-        if (cat == 0) {
-            alert("未購買商品");
-            window.location.href = "/OceanCatHouse/views/ShoppingMall";
-        }
-        var user = '${id}';
-        // if (user == 0) {
-        //     alert("請先登入");
-        //     window.location.href = "/OceanCatHouse/views/login";
-        // }
-        //總價
-        var key = Object.keys(CatProduct);
-        var m = 0;
-        for (var k of key) {
-            m += CatProduct[k] * sell[k];
-        }
-        $(".PPP").text("商品金額 :$ " + m);
-        var a = m + 60
-        $(".SSS").text("訂單金額 :$ " + a);
-
-  // ----------------Jian 新增訂單----------------------------
-
-    $('#insertOrder').click(function (){
-        // 是否新增信用卡資料
-        // 更改最後一次付款方式
-        // 信用卡最後使用的卡片
-        // 紀錄送貨方式
-
         $.ajax({
             url : "/OceanCatHouse/insertOrder",
             type : "POST",
-            data : JSON.stringify(productList),
+            data : JSON.stringify(productList),// productList購買的商品
             contentType : "application/json;charset=utf-8",
             async : false,
             cache : false,
             success : function () {
                 if(confirm("訂單已送出，是否要繼續購物呢？")){
-                    console.log("OK");
+                    $(location).attr("href", "/OceanCatHouse/views/ShoppingMall");
+                }else {
+                    $(location).attr("href", "/OceanCatHouse");
                 }
-                console.log("OK");
             },
             error : function (){
                 alert("系統忙碌中，請聯繫我們！");
             }
         })
     })
+
+    // 選擇其他信用卡
+    $('#changeCardBtn').click(function (){
+        $('.mask').show();
+    })
+    $('.mask').click(function(){
+        $(this).hide();
+    })
+    $('.thisCard').on('click', 'div', function (){
+        $('#myCard').empty();
+        $('#myCard').append($(this).html());
+        $('#pay2').val($(this).prop('id'));
+        console.log($(this).prop('id'));
+    })
+
 });
 

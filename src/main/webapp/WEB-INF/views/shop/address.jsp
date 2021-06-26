@@ -69,60 +69,80 @@
         </div>
 
         <div class="col-lg-8 col-md-12 order-sm-2 order-lg-1 address">
-            <form>
-                <h3>收件人資料</h3>
+            <h3>收件人資料</h3>
 
-                <input type="text" name="userName" placeholder="姓名" size="50"
-                       value="${sessionScope.user.username}"><br/>
-                <input type="tel" name="userPhone" placeholder="手機號碼" size="50"
-                       value="${sessionScope.user.userphone}"><br/>
-                <input type="email" name="userEmail" placeholder="Email" size="50"
-                       value="${sessionScope.user.email}"><br/>
-                <input type="text" name="address" placeholder="收件地址" size="50"
-                       value="${sessionScope.user.deliveryAddress}"><br/>
+            <input type="text" name="userName" placeholder="姓名" size="50"
+                   value="${sessionScope.user.username}"><br/>
+            <input type="tel" name="userPhone" placeholder="手機號碼" size="50"
+                   value="${sessionScope.user.userphone}"><br/>
+            <input type="email" name="userEmail" placeholder="Email" size="50"
+                   value="${sessionScope.user.email}"><br/>
+            <input type="text" name="address" placeholder="收件地址" size="50"
+                   value="${sessionScope.user.deliveryAddress}"><br/>
 
 
-                <h3 style="margin-top:50px;">付款方式</h3>
+            <h3 style="margin-top:50px;">付款方式</h3>
 <%--                1. 貨到付款--%>
-                <input type="radio" name="payMethod" id='pay1' value='byCash'>
-                <label for='pay1'>貨到付款</label><br/>
+            <input type="radio" name="payMethod" id='pay1' value='byCash'>
+            <label for='pay1'>貨到付款</label><br/>
 
-                <%--        2. 如果上次使用信用卡付款, 顯示上次的卡片--%>
-                <input type="radio" name="payMethod" id='pay2' value='byCreditCard'>
-                <label for='pay2'>使用最近一次結帳的卡片</label><br/>
-                <div class="contain">
-                    <div class="created used">
-                        <img src="${pageContext.request.contextPath}/images/homePic/VISA.jpg">
-                        <h5>Visa <span>****</span> <span id='cardLastFour'>2363</span></h5>
-                        <p>過期時間 <span id='expiredDate'>09/2026</span></p>
+            <%--        2. 如果上次使用信用卡付款, 顯示上次的卡片--%>
+            <input type="radio" name="payMethod" id='pay2' value="${lastUccb.cardId}">
+            <label for='pay2'>信用卡</label><br/>
+            <div class="contain" id="usedCardDiv">
+                <div class="created used" id="myCard">
+                    <c:choose>
+                        <c:when test="${lastUccb != null}">
+                            <img src="${pageContext.request.contextPath}/images/homePic/VISA.jpg">
+                            <h5>Visa <span>****</span> <span id='cardLastFour'>${lastUccb.cardNumberP4}</span></h5>
+                            <p>過期時間 <span id='expiredDate'>${lastUccb.expireMonth}/20${lastUccb.expireYear}</span></p>
+                            <p>最近一次消費使用這張卡片</p>
+                        </c:when>
+                        <c:otherwise>
+                            <h5>請選擇使用的卡片</h5>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <button type="button" class="btn btn-outline-dark" id="changeCardBtn" style="height: 50px">選擇其他卡片</button>
+            </div>
+<%--                2-1 瀏覽全部卡片--%>
+            <div class="mask" id="showCards">
+                <c:forEach items="${uccbList}" var="uccb">
+                    <div class="contain thisCard">
+                        <div class="created used thisCard" id="${uccb.cardId}">
+                            <img src="${pageContext.request.contextPath}/images/homePic/VISA.jpg">
+                            <h5>Visa <span>****</span>${uccb.cardNumberP4}</h5>
+                            <p>過期時間 ${uccb.expireMonth}/20${uccb.expireYear}</p>
+                            <p>${uccb.useCard == 1? "最近一次消費使用這張卡片":""}</p>
+                        </div>
                     </div>
-                </div>
+                </c:forEach>
+            </div>
+
 <%--               3. 輸入其他卡片, 並新增卡片--%>
-                <input type="radio" name="payMethod" id='pay3' value='byCreditCard'>
-                <label for='pay3'>使用並儲存新的卡片</label><br/>
-                <div id='cardPaySection' style="margin-left:45px">
-                    持卡人姓名:
-                    <input type="text" name="userCardName"><br/>
-                    信用卡號碼:
-                    <input type="text" maxlength="4" size="2" name="cardNumberP1" class="cardNumber"> -
-                    <input type="text" maxlength="4" size="2" name="cardNumberP2" class="cardNumber"> -
-                    <input type="text" maxlength="4" size="2" name="cardNumberP3" class="cardNumber"> -
-                    <input type="text" maxlength="4" size="2" name="cardNumberP4" class="cardNumber"><br/>
-                    到期日:
-                    <select name="hour" id="expireMonth"></select> / <select name="hour" id="expireYear"></select><br/>
+            <input type="radio" name="payMethod" id='pay3' value='newCard'>
+            <label for='pay3'>使用並新增信用卡</label><br/>
+            <div id='addNewCard' style="margin-left:45px">
+                <input type="text" id="userCardName" name="CardName" size='30' required><br/>
+                信用卡號碼:
+                <input type="text" maxlength="4" size="2" id="cardNumberP1" name="CardNumberP1" class="cardNumber" pattern="\d{4}" required> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP2" name="CardNumberP2" class="cardNumber" pattern="\d{4}" required> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP3" name="CardNumberP3" class="cardNumber" pattern="\d{4}" required> -
+                <input type="text" maxlength="4" size="2" id="cardNumberP4" name="CardNumberP4" class="cardNumber" pattern="\d{4}" required><br/>
+                到期日:
+                <select name="ExpireMonth" id="expireMonth" required></select> / <select name="ExpireYear" id="expireYear" required></select><br/>
 
-                    安全驗證碼:
-                    <input type="text" size="2" maxlength=3 name="checkNumber" class="cardNumber">
-                </div>
+                安全驗證碼:
+                <input type="text" size="2" maxlength=3 id="checkNumber" name="VerificationCode" class="cardNumber" pattern="\d{3}" required>
+            </div>
 
-                <div class="g-recaptcha"
-                     data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-                     data-callback='verifyCallback' data-action='ubmit'>Submit
-                </div>
+            <div class="g-recaptcha"
+                 data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
+                 data-callback='verifyCallback' data-action='ubmit'>Submit
+            </div>
 
-                <button class="btn btn-primary sbtn" id="insertOrder">送出訂單</button>
-                <span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>
-            </form>
+            <button class="btn btn-primary sbtn" id="insertOrder">送出訂單</button>
+            <span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>
         </div>
 
     </div>

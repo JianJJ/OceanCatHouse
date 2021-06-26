@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.util.ToStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -150,15 +151,14 @@ public class ShopController {
         else {
             model.addAttribute("state",session.getAttribute("state"));
         }
-        // Jian新增, 付款方式呈現
+        // ----Jian--- 付款方式呈現
         List<UserCreditCardBean> userCreditCardBeans = user.getUserCreditCardBeans();
-        System.out.println(userCreditCardBeans);
+        model.addAttribute("uccbList", userCreditCardBeans);
         if(userCreditCardBeans != null){
             for (UserCreditCardBean uccb : userCreditCardBeans){
                 // UseCard 等於1代表上次結帳用這張
                 if(uccb.getUseCard() != null && uccb.getUseCard() == 1){
-                    model.addAttribute("uccb", uccb);
-                    System.out.println(uccb);
+                    model.addAttribute("lastUccb", uccb);
                     break;
                 }
             }
@@ -202,17 +202,26 @@ public class ShopController {
     @ResponseBody
     public String insertOrder(HttpSession session,
                               @RequestBody List<ProductBean> productBeanList){
+        // 付款方式
+        Map<String, Object> payMap = (Map<String, Object>) session.getAttribute("payMap");
+        // 會員
         UserBean user = (UserBean) session.getAttribute("user");
+        // 購物車資訊
         Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
-        for (ProductBean apple : productBeanList){
-            System.out.println(apple);
-        }
-        OrdersBean ordersBean = ordersService.insertOrder(user, cat, productBeanList);
+        ordersService.insertOrder(user, cat, productBeanList, payMap);
         session.removeAttribute("cat");
 
         return "新增成功";
     }
 
+    // ------------送出訂單, 新增付款方式------------
+    @PostMapping("/addPay")
+    @ResponseBody
+    public String addPay(HttpSession session,
+                         @RequestBody Map<String, Object> payMap){
+        session.setAttribute("payMap", payMap);
+        return "傳送成功";
+    }
 }
 
 

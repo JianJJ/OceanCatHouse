@@ -1,9 +1,6 @@
 package tw.com.iii.OceanCatHouse.model;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,6 +19,12 @@ public class OrdersBean {
     private Date ordercreateon;
     private Integer orderstatusid;
     private  String address;
+    private Integer PaymentId;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "PaymentId", referencedColumnName = "PaymentId",insertable = false, updatable = false)
+    private UserPaymentMethodBean userPaymentMethodBean;
 
     @JsonIgnore
     @ManyToOne
@@ -73,19 +76,6 @@ public class OrdersBean {
         this.orderstatusid = orderstatusid;
     }
 
-    @Override
-    public String toString() {
-        return "OrdersBean{" +
-                "orderid=" + orderid +
-                ", userid=" + userid +
-                ", ordercreateon=" + ordercreateon +
-                ", orderstatusid=" + orderstatusid +
-                ", address='" + address + '\'' +
-//                ", orderStatusBean=" + orderStatusBean.getOrderstatusid() +
-                ", orderDetailBeans=" + orderDetailBeans +
-                '}';
-    }
-
     public OrderStatusBean getOrderStatusBean() {
         return orderStatusBean;
     }
@@ -100,5 +90,28 @@ public class OrdersBean {
 
     public void setOrderDetailBeans(List<OrderDetailBean> orderDetailBeanList) {
         this.orderDetailBeans = orderDetailBeanList;
+    }
+
+    public Integer getPaymentId() {
+        return PaymentId;
+    }
+
+    public void setPaymentId(Integer paymentId) {
+        PaymentId = paymentId;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersBean{" +
+                "orderid=" + orderid +
+                ", userid=" + userid +
+                ", ordercreateon=" + ordercreateon +
+                ", orderstatusid=" + orderstatusid +
+                ", address='" + address + '\'' +
+                ", PaymentId=" + PaymentId +
+//                ", userPaymentMethodBean=" + userPaymentMethodBean +
+//                ", orderStatusBean=" + orderStatusBean +
+                ", orderDetailBeans=" + orderDetailBeans +
+                '}';
     }
 }

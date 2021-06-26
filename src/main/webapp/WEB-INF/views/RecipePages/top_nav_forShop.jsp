@@ -43,7 +43,7 @@
                     <ul>
                       <li><a href="${pageContext.request.contextPath}/userBack/home">個人主頁</a></li>
                       <li><a href="${pageContext.request.contextPath}/userBack/userSetting">帳號設定</a></li>
-                      <li><a href="#">登出</a></li>
+                      <li><a href="${pageContext.request.contextPath}/userBack/userLogout">登出</a></li>
                     </ul>
                   </div>
 
