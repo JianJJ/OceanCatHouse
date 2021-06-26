@@ -32,42 +32,6 @@ pageEncoding="UTF-8"%>
                             <input type="checkbox" name="chooseFavorite" id="cate1" value="">
                         </div>
                     </label>
-            
-                    <label for="cate2">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">酸菜魚</h5>
-                            <input type="checkbox" name="chooseFavorite" id="cate2" value="">
-                        </div>
-                    </label>
-                    <label for="cate3">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">河豚生魚片</h5>
-                            <input type="checkbox" name="chooseFavorite" id="cate3" value="">
-                        </div>
-                    </label>
-
-                    <label for="cate4">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">酸辣土豆絲</h5>
-                            <input type="checkbox" name="chooseFavorite" id="cate4" value="">
-                           
-                        </div>
-                    </label>
-                    <label for="cate5">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">麻的豆腐腦真的很噁</h5>
-                            <input type="checkbox" name="chooseFavorite" id="cate5" value="">
-                        </div>
-                    </label>
-
-                    <label for="cate6">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">毛血旺</h5>
-                            <input type="checkbox" name="chooseFavorite" id="cate6" value="">
-                        </div>
-                    </label>
-
-
                     <input type="submit" class="btnAdd" value="完成">
                 </form>
             </section>

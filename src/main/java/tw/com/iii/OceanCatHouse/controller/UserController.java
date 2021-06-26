@@ -131,7 +131,7 @@ public class UserController {
                     bean = userRepository.findByemail(bean.getEmail());
                     session.setAttribute("state", bean.getState());
                     session.setAttribute("user", bean);
-                    return "index2";
+                    return "index";
                 } else {
                     System.out.println("密碼錯誤");
                     errors.put("userpassword", "密碼錯誤");
@@ -195,9 +195,9 @@ public class UserController {
 
         // 成功後去向
         if (action.equals("login")) {
-            return "index2";
+            return "index";
         } else {
-            return "index2";
+            return "index";
         }
 
     }

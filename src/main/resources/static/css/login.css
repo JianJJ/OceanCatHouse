@@ -79,16 +79,16 @@
 }
 
 .main .grid-row .formSubmit{
-	position:absolute;
-	bottom:-20px;
-	right:70px;
-    display:inline-block;
+
     padding:7px 25px;
     font-size:18px;
     background:#7de9fa;
     border:1px solid #659bcd;
     border-radius: 5px;
-
+	position:relative;
+	display:block;
+	margin:0 auto;
+	width:350px;
 }
 
 .main .grid-row .formSubmit:hover {
@@ -105,7 +105,7 @@
 
 .main .grid-row hr {
 	display:inline-block;
-	width:46%;
+	width:45%;
 	vertical-align:middle;
 	margin:20px auto;
 	background:#666;
@@ -123,17 +123,25 @@
 	height:40px;
 	margin:35px auto;
 	width:80%;
+	
 }
 
 .g-recaptcha{
-    display: inline-block;
-    margin:10px 10px 30px 50px;
+
     width:50%;
+    margin:0 auto;
+     display:block;
 }
 
 /* 錯誤訊息 */
-.error{
+.main .grid-row  .error{
 	color :red;
+}
+
+.checkerror {
+	display:block;
+	margin:0 auto;
+	 text-align:center;
 }
 
 .main .grid-row  .forOtherLog {

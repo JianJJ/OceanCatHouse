@@ -1,167 +1,169 @@
 @charset "UTF-8";
 
- /* 購物車 */
-            .hazy {
-                visibility: hidden;
-                position:fixed;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 100;
-                top:0;
+/* 購物車 */
+.hazy {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    top: 0;
 
-            }
+}
 
-            .cat {
-                border: #ddd 3px groove;
-                background-color: white;
-                width: 850px;
-				left:25%;
-                position: absolute;
-                margin: 0 auto;
-                top: 100px;
-                border-radius: 10px;
-                visibility: hidden;
-                padding:25px 15px;
-            }
+.cat {
+    border: #ddd 3px groove;
+    background-color: white;
+    width: 850px;
+    left: 25%;
+    position: absolute;
+    margin: 0 auto;
+    top: 100px;
+    border-radius: 10px;
+    visibility: hidden;
+    padding: 25px 15px;
+    z-index: 101;
+}
 
-            /* 購物車返回 */
-            .catReturn {
-                top: -20px;
-                right: -20px;
-                position: absolute;
-                background-color: tomato;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-            }
+/* 購物車返回 */
+.catReturn {
+    top: -20px;
+    right: -20px;
+    position: absolute;
+    background-color: tomato;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 .catReturn:hover, .cat .catProduct .del:hover {
-	background-color: #fa411b;
-	color:white;
-	font-weight:600;
+    background-color: #fa411b;
+    color: white;
+    font-weight: 600;
 }
 
-.hazy .catProduct button {
-	background:#DDF5D5;
-	vertical-align: middle;
-	line-height:16px;
+.catProduct button {
+    background: #DDF5D5;
+    vertical-align: middle;
+    line-height: 16px;
 }
-            .cat .foot {
-                bottom: 0px;
-                position: relative;
-                width: 800px;
-                height: 50px;
-	
-            }
 
-            .cat .foot .PPP {
-                position: absolute;
-                right: 100px;
-                bottom: 10px;
-            }
+.cat .foot {
+    bottom: 0px;
+    position: relative;
+    width: 800px;
+    height: 50px;
 
-            .cat .foot .catSubmit {
-                position: absolute;
-                right: 10px;
-                bottom: 10px;
-				background:#DDF5D5;
-				vertical-align: middle;
-				line-height:24px;
-				padding:5px 15px;
-				border-radius: 10px;
-            }
+}
 
-			.cat .foot .catSubmit:hover{
-				background:#7FB8AD;
-			}
+.cat .foot .PPP {
+    position: absolute;
+    right: 100px;
+    bottom: 10px;
+}
 
-            .cat .catProduct {
-				position:relative;
-                border: #DDF5D5 3px solid;
-                box-shadow: 0px 0px 2px 1px #69AE1E;
-                width: 780px;
-                height: 140px;
-				margin:0 15px 25px 15px;
-                border-radius: 5px;
-            }
+.cat .foot .catSubmit {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #DDF5D5;
+    vertical-align: middle;
+    line-height: 24px;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
 
-            .cat .catProduct img {
-                position: absolute;
-                width: 140px;
-                height: 135px;
-                border-radius: 5px 0 0 5px;
-            }
+.cat .foot .catSubmit:hover {
+    background: #7FB8AD;
+}
 
-            .cat .catProduct .del {
-                top: 100px;
-                position: absolute;
-                height: 30px;
-                right: 10px;
-                background:tomato;
-                padding:5px 15px;
-                border-radius: 8px;
-                line-height:16px;
-            }
+.cat .catProduct {
+    position: relative;
+    border: #DDF5D5 3px solid;
+    box-shadow: 0px 0px 2px 1px #69AE1E;
+    width: 780px;
+    height: 140px;
+    margin: 0 15px 25px 15px;
+    border-radius: 5px;
+}
 
-            /* 文字部分 */
-            .cat .catProduct .context {
-                position: absolute;
-                right: 100px;
-                bottom: 10px;
-                left: 150px;
-                width: 400px;
-            }
+.cat .catProduct img {
+    position: absolute;
+    width: 140px;
+    height: 135px;
+    border-radius: 5px 0 0 5px;
+}
 
-            .cat .catProduct .cash {
-                position: absolute;
-                top: 60px;
-                right: 210px;
-            }
+.cat .catProduct .del {
+    top: 100px;
+    position: absolute;
+    height: 30px;
+    right: 10px;
+    background: tomato;
+    padding: 5px 15px;
+    border-radius: 8px;
+    line-height: 16px;
+}
 
-            /* +-按鈕 */
-            .cat .catProduct .catProductLeftButton {
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                right: 155px;
-                top: 60px;
-   
-            }
+/* 文字部分 */
+.cat .catProduct .context {
+    position: absolute;
+    right: 100px;
+    bottom: 10px;
+    left: 150px;
+    width: 400px;
+}
 
-            .cat .catProduct .pnum {
-                position: absolute;
-                width: 50px;
-                text-align: center;
-                right: 110px;
-                top: 60px;
-                height: 20px;
-            }
+.cat .catProduct .cash {
+    position: absolute;
+    top: 60px;
+    right: 210px;
+}
 
-            .cat .catProduct .catProductRightButton {
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                right: 110px;
-                top: 60px;
-            }
+/* +-按鈕 */
+.cat .catProduct .catProductLeftButton {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 155px;
+    top: 60px;
 
-            .cat .catProduct .total {
-                position: absolute;
-                top: 60px;
-                right: 10px;
-            }
+}
+
+.cat .catProduct .pnum {
+    position: absolute;
+    width: 50px;
+    text-align: center;
+    right: 110px;
+    top: 60px;
+    height: 20px;
+}
+
+.cat .catProduct .catProductRightButton {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 110px;
+    top: 60px;
+}
+
+.cat .catProduct .total {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+}
 
 
-
-            /* 購物車數量 */
-            .catNum {
-                cursor: pointer;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                position: absolute;
-                z-index: 61;
-                color: #000;
-                /*top: 6px;*/
-                right: -25px;
-            }
+/* 購物車數量 */
+.catNum {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 61;
+    color: #000;
+    /*top: 6px;*/
+    right: -25px;
+}

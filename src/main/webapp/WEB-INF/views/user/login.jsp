@@ -53,7 +53,7 @@
 
     <!-- 網頁中間內文 -->
     <div class="main">
-        <div class="grid-row">
+        <div class="grid-row" style="height:790px;">
             <div class="loginTitle">✿海貓食屋✿</div>
           <!-- <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button> -->  
 
@@ -66,11 +66,12 @@
                      data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
                      data-callback='verifyCallback' data-action='ubmit'>Submit
                 </div>
-                <span class="error" style="margin-left:70px;">${errors.recaptcha}</span>
-                <input class="formSubmit" type="submit" value="登入">
+                 <br>
+                <span class="error checkerror">${errors.recaptcha}</span>
+                 <br><input class="formSubmit" type="submit" value="登入">
 
             </form>
- 			 <a href="${pageContext.request.contextPath}/views/forget">忘記密碼?</a>
+ 			 <a style='margin-left:125px;line-height:50px;' href="${pageContext.request.contextPath}/views/forget">忘記密碼?</a>
  			 
  			 <div class='orblock'><hr><span> 或是 </span><hr></div>
  			 
