@@ -26,7 +26,8 @@ $(function(){
 	}
 	$('#expireYear').html(expireYearStr);
 	
-	
+
+	var productList = [];
 var CatProduct = [];
         var sell = [];
         var c = [];//合計
@@ -46,6 +47,7 @@ var CatProduct = [];
                         type: "get",
                         async: false,
                         success: function (product) {
+                            productList.push(product);
                             sell[product.productid] = product.sellingprice;
                             c[product.productid] = product.sellingprice * json[product.productid];//合計
                             $('.cat').append('<div class="catProduct col-lg-11" id="catProduct' + product.productid + '">' +
@@ -94,6 +96,31 @@ var CatProduct = [];
         var a = m + 60
         $(".SSS").text("訂單金額 :$ " + a);
 
-  
+  // ----------------Jian 新增訂單----------------------------
+
+    $('#insertOrder').click(function (){
+        // 紀錄送貨方式
+        // 是否新增信用卡資料
+        // 更改最後一次付款方式
+        // 信用卡最後使用的卡片
+
+        $.ajax({
+            url : "/OceanCatHouse/insertOrder",
+            type : "POST",
+            data : JSON.stringify(productList),
+            contentType : "application/json;charset=utf-8",
+            async : false,
+            cache : false,
+            success : function () {
+                if(confirm("訂單已送出，是否要繼續購物呢？")){
+                    console.log("OK");
+                }
+                console.log("OK");
+            },
+            error : function (){
+                alert("系統忙碌中，請聯繫我們！");
+            }
+        })
+    })
 });
 

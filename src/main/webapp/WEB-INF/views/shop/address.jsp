@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-lg-8 col-md-12 order-sm-2 order-lg-1 address">
-            <form action="/recipe/saveOrder/${id}">
+            <form>
                 <h3>收件人資料</h3>
 
                 <input type="text" name="userName" placeholder="姓名" size="50"
@@ -133,7 +133,7 @@
                      data-callback='verifyCallback' data-action='ubmit'>Submit
                 </div>
 
-                <button class="btn btn-primary sbtn" type="submit">送出訂單</button>
+                <button class="btn btn-primary sbtn" id="insertOrder">送出訂單</button>
                 <span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>
             </form>
         </div>
