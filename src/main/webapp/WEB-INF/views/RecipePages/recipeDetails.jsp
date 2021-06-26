@@ -91,7 +91,7 @@
 <div id='blackMaskThree' class='mask'>
     <div class='modalSection' id='sectionThree'>
 <%--        <button class='closeMask'>X</button>--%>
-        <jsp:include page="recipeDetails_addfavorite1.jsp"></jsp:include>
+        <jsp:include page="recipeDetails_addfavorite3.jsp"></jsp:include>
     </div>
 </div>
 

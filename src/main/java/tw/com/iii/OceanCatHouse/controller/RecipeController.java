@@ -63,11 +63,11 @@ public class RecipeController {
       mav.addObject("recTag",recTags);
       mav.addObject("recTagLen",recTagLen);
 //食譜收藏功能相關----------------------------------------------------------
-        UserBean user = (UserBean) session.getAttribute("user");
-        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
-        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
-        mav.addObject("mainBeanList", mainList);
-        mav.addObject("UFCBList", UFCBList);
+//        UserBean user = (UserBean) session.getAttribute("user");
+//        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+//        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+//        mav.addObject("mainBeanList", mainList);
+//        mav.addObject("UFCBList", UFCBList);
 
 
 
