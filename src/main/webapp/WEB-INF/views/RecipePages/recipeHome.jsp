@@ -53,7 +53,7 @@
             <%--推薦食譜輪播圖迴圈--%>
 <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
     <li>
-        <a href="${pageContext.request.contextPath}/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+        <a href="${pageContext.request.contextPath}/userBack/recipeDetails?id=${recReccBean.get(loop.index).recId}">
             <h2>${recReccBean.get(loop.index).recTitle}</h2>
             <img src="${recReccBean.get(loop.index).recPic}" alt="">
         </a>

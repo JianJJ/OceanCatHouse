@@ -95,24 +95,20 @@
         <div class="maskForFavorite">
             <div id='editConsole'>
                 <h2>選擇收藏夾</h2>
+                <a href="${pageContext.request.contextPath}/userBack/favorites" target="_blank"><input type="button" value="編輯收藏夾" class="btnAdd" ></a>
+
                 <button id='cancel'>x</button>
                 <hr>
                 <section>
-<%--                    <form >--%>
-                    <label for="cate1">
+                <c:forEach varStatus="loop" begin="0" end="${UFCBList.size()-1}">
+                    <label >
                         <div class="favoriteCategory">
-                            <h5 class="categoryName">豬肚雞湯</h5>
-                            <input type="checkbox" id="cate1" class="favID" value="100" name="favId">
+                            <h5 class="categoryName">${UFCBList.get(loop.index).favoriteCategoryName}</h5>
+                            <input type="checkbox" id="cate${loop.index}" class="favID" value="${UFCBList.get(loop.index).favoritesCategoryId}" name="favId">
                         </div>
                     </label>
-                    <label for="cate1">
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">擔擔麵</h5>
-                            <input type="checkbox" id="cate2" class="favID" value="200" name="favId">
-                        </div>
-                    </label>
-                    <input type="submit" class="btnAdd" value="完成" onclick="addFavorite()">
-<%--                    </form>--%>
+                </c:forEach>
+                   <input type="submit" class="btnAdd" value="完成" onclick="addFavorite(${recMainBean.recId})">
                 </section>
             </div>
         </div>

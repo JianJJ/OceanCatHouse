@@ -44,11 +44,11 @@ public class RecipeController {
 
     //1.食譜詳細頁面
     @RequestMapping(
-            path = {"/recipeDetails"}
+            path = {"/userBack/recipeDetails"}
 
     )
     @ResponseBody
-    public ModelAndView recipeDetails(@RequestParam(required = false) Integer id, Integer[] favId) {
+    public ModelAndView recipeDetails(@RequestParam(required = false) Integer id, Integer[] favId,HttpSession session) {
         //設定食譜ID--------------------------------------------------------------------
 //        int id = 374855;
         RecipeMainBean recipeData = service.getRecipeMainData(id);
@@ -65,11 +65,14 @@ public class RecipeController {
       mav.addObject("recTag",recTags);
       mav.addObject("recTagLen",recTagLen);
 //食譜收藏功能相關----------------------------------------------------------
-//        UserBean user = (UserBean) session.getAttribute("user");
-//        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
-//        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
-//        mav.addObject("mainBeanList", mainList);
-//        mav.addObject("UFCBList", UFCBList);
+
+        UserBean user = (UserBean) session.getAttribute("user");
+        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+        mav.addObject("mainBeanList", mainList);
+        mav.addObject("UFCBList", UFCBList);
+
+
         if(favId != null){
             for(Integer x : favId){
                 System.out.println("接收參數:" + x);
