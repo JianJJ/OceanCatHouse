@@ -176,7 +176,7 @@ $(function(){
     $('.mask').click(function(){
         $(this).hide();
     })
-    $('.thisCard').on('click', 'div', function (){
+    $('.thisCard').on('click', function (){
         $('#myCard').empty();
         $('#myCard').append($(this).html());
         $('#pay2').val($(this).prop('id'));

@@ -156,10 +156,9 @@ border-radius: 5px;
 
 /* 上次使用卡片 */
 .contain {
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-
 }
 
 .contain > div {
@@ -170,7 +169,6 @@ border-radius: 5px;
 	margin: 20px;
 	vertical-align: middle;
 	border-radius: 2px;
-
 }
 
 .contain > .created {
@@ -218,21 +216,16 @@ border-radius: 5px;
 	position: fixed;
 	top:0;
 	left: 0;
-	width: 80vw;
-	height: 80vh;
+	width: 100vw;
+	height: 100vh;
 	z-index: 200;
 	background-color: rgba(0, 0, 0, .3);
-	margin: 75px 125px;
+}
+.mask1{
+	margin: 75px auto;
 	padding: 35px 50px;
-	background:linear-gradient(to bottom, #eee4d2 , transparent);
-	background:-webkit-linear-gradient(to bottom, #eee4d2 , transparent);
+	background-color: white;
 	border-radius: 10px;
-	min-width:1000px;
-}
-.thisCard{
-	display: inline;
-}
-.used{
-	width: 200px;
-	height: 150px;
+	width: 90vw;
+	height: 80vh;
 }

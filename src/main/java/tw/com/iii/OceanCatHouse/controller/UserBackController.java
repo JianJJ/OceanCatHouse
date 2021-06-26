@@ -79,6 +79,7 @@ public class UserBackController {
     @RequestMapping("/userLogout")
     public String userLogout(HttpSession session){
         session.removeAttribute("user");
+        session.removeAttribute("cat");
         return "index";
     }
 

@@ -198,7 +198,6 @@ public class CreateRecipeController {
             recipeStepBean.setRecId(recid);
             recipeStepDao.save(recipeStepBean);
         }
-        System.out.println("mainBean:"+mainBean);
         return "/OceanCatHouse/userBack/home";
     }
 

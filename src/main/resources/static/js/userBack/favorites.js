@@ -79,7 +79,7 @@ $(document).ready(function (){
                             title = `${data[i].recTitle}`;
                         }else {
                             h = "javascript:void(0);";
-                            img = "/OceanCatHouse/images/homePic/status00.jpg";
+                            img = "/OceanCatHouse/images/homePic/noshow.png";
                             title = `食譜已被下架...  ${data[i].recTitle}`;
                         }
                         $('#showMain').append(

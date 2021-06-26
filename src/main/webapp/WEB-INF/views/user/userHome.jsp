@@ -65,10 +65,10 @@
             <div class="container">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group" >
                     <input type="radio" class="btn-check statusBtn" name="RecStatusRadio" id="RecStatus1" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="RecStatus1">正在發布 <span class="badge bg-secondary">${recCountStatus1}</span></label>
+                    <label class="btn btn-outline-warning" for="RecStatus1">正在發布 <span class="badge bg-secondary">${recCountStatus1}</span></label>
 
                     <input type="radio" class="btn-check statusBtn" name="RecStatusRadio" id="RecStatus0" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="RecStatus0">未發布 <span class="badge bg-secondary">${recCountStatus0}</span></label>
+                    <label class="btn btn-outline-warning" for="RecStatus0">未發布 <span class="badge bg-secondary">${recCountStatus0}</span></label>
                 </div>
             </div>
 

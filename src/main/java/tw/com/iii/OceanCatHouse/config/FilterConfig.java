@@ -19,6 +19,7 @@ public class FilterConfig {
         filterRegistrationBean.addUrlPatterns("/addPay");
         filterRegistrationBean.addUrlPatterns("/insertOrder");
         filterRegistrationBean.addUrlPatterns("/toAddress");
+        filterRegistrationBean.addUrlPatterns("/cat");
 
         return filterRegistrationBean;
     }
