@@ -28,7 +28,7 @@
 
 
     <%-- 主要的CSS、JS放在這裡--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
+   
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
             rel="stylesheet">
@@ -45,97 +45,94 @@
 <body>
 <!-- 拼接header -->
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>
-<canvas id="canvas"></canvas>
+
 <!-- header部分 -->
 
 <!-- 中間部分 -->
 <div class="center">
-
-    <!-- 左邊浮動區塊 -->
-<%--    <div class="barNav">--%>
-<%--        <ul>--%>
-<%--            <li class="fontIcon"></li>--%>
-<%--            <li class="fontIcon"></li>--%>
-<%--            <li class="fontIcon"></li>--%>
-<%--            <li class="fontIcon"></li>--%>
-<%--        </ul>--%>
-<%--    </div>--%>
-
-
+<canvas id="canvas"></canvas>
     <!-- 網頁中間內文 -->
     <div class="main">
-        <div class="grid-row">
+        <div class="grid-row" style='height:820px;'>
             <div class="loginTitle">✿海貓食屋✿</div>
-            <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button>
-            <div class="g-signin2" data-onsuccess="onSignIn" data-width="376" data-height="50"
-                 data-longtitle="true"></div>
-            <p>_____________________________________________________</p>
+            <!-- <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button> -->
+           
             <form action="/OceanCatHouse/signup/signup">
-                <input class="formCSS" type="email" placeholder="Email" name="email" value="${email}"><br>
-                <span class="error">${errors.email}</span><br> <input
-                    class="formCSS" type="text" placeholder="暱稱" name="username" value="${username}"><br>
-                <span class="error">${errors.username}</span><br> <input
-                    class="formCSS" type="text" placeholder="密碼" name="userpassword" value="${userpassword}"><br>
-                <span class="error">${errors.userpassword}</span><br>
+                <input class="formCSS" type="email" placeholder="Email" name="email" value="${email}">
+                <span class="error">${errors.email}</span> <input
+                    class="formCSS" type="text" placeholder="暱稱" name="username" value="${username}">
+                <span class="error">${errors.username}</span> <input
+                    class="formCSS" type="text" placeholder="密碼" name="userpassword" value="${userpassword}">
+                <span class="error">${errors.userpassword}</span>
 
                 <div class="g-recaptcha"
                      data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
-                     data-callback='verifyCallback' data-action='submit'>Submit
+                     data-callback='verifyCallback'   data-action='submit'>Submit
                 </div>
                 <br>
-                <span class="error">${errors.recaptcha}</span><br>
-                <!--  -->
+                <span class="error checkerror" >${errors.recaptcha}</span><br>
+          
 
-                <input class="formSubmit" type="submit"><br>
+                <input class="formSubmit" type="submit" value='註冊'><br>
             </form>
 
-
-            <a href="/OceanCatHouse/views/forget">忘記密碼?</a><br> <br> <span>已經有帳號？
-				</span><a href="/OceanCatHouse/views/login"> 登入</a>
+                 <div class='orblock'><hr><span> 或是 </span><hr></div>
+                  <div class="g-signin2" style="margin-left:115px;" data-onsuccess="onSignIn" data-width="376" data-height="50"
+                 data-longtitle="true"></div>
+           <br>
+ <br>
+             <span style="margin-left:115px;line-height:45px;">已經有帳號？
+				</span><a href="/OceanCatHouse/views/login" style="color:#1497de;"> 登入</a>
         </div>
     </div>
 
-    <!-- 右邊至頂 -->
 
-    <div class="toUP">
-        <span class="fontIcon" id="toUp"></span>
-    </div>
 </div>
 
 <script src="../js/recaptcha.js"></script>
 <script src="../js/oauth.js"></script>
 <script>
-    var x = [];
-    var y = [];
-    var d = [];//下落速度
-    var size = [];
-    var canvas = document.getElementById("canvas");
-    var w = canvas.width = window.innerWidth;
-    var h = canvas.height = window.innerHeight;
+var x = [];
+var y = [];
+var d = [];//下落速度
+var size = [];
+var canvas = document.getElementById("canvas");
+var w = canvas.width = window.innerWidth;
+var h = canvas.height = window.innerHeight;
 
-    var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "red";
-    for (var s = 0; s < 200; s++) {
-        x[s] = window.innerWidth * Math.random();
-        y[s] = window.innerHeight * Math.random();
-        d[s] = Math.random() * 3 + 1;
-        size[s]=Math.floor( Math.random() * 3+1);
-    }
+var ctx = canvas.getContext("2d");
 
-    setInterval(() => {
-        ctx.clearRect(0, 0, w, h);
 
-        for (var i = 0; i < 200; i++) {
-            x[i] = x[i] + Math.random()*3;
-            y[i] = y[i] + d[i];
-            ctx.fillRect(x[i], y[i], 3,3);
-            if (y[i] > h) y[i] = 0;
-            if (x[i] > w) x[i] = 0;
+for (var s = 0; s < 350; s++) {
+	
+x[s] = window.innerWidth * Math.random();
+y[s] = window.innerHeight * Math.random();
+d[s] = Math.random() * 3 + 1;
+size[s]=Math.floor( Math.random() * 3+1);
 
-        }
-    }, 100);
+}
+
+setInterval(() => {
+ctx.clearRect(0, 0, w, h);
+
+for (var i = 0; i < 350; i++) {
+	if(i%3 === 0){
+		ctx.fillStyle = "#0063c7";
+	}else if(i%3 === 2) {
+		ctx.fillStyle = "#33b5ac";
+	} else {
+		ctx.fillStyle = "#3340b5";
+	}
+x[i] = x[i] + Math.random()*3;
+y[i] = y[i] + d[i];
+ctx.fillRect(x[i], y[i], 3,3);
+if (y[i] > h) y[i] = 0;
+if (x[i] > w) x[i] = 0;
+
+}
+}, 100);
+
 </script>
 </body>
 
 </html>
-<jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>
