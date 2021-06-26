@@ -152,3 +152,63 @@ border-radius: 5px;
 .sbtn {
 	margin-left:50px;
 }
+
+
+/* 上次使用卡片 */
+.contain {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+}
+
+.contain > div {
+	position: relative;
+	height: 210px;
+	width: 320px;
+	border: 1px solid #bbb;
+	margin: 20px;
+	vertical-align: middle;
+	border-radius: 2px;
+
+}
+
+.contain > .created {
+	position: relative;
+	background-color: white;
+	border: 1px solid #bbb;
+	padding-left: 25px;
+}
+
+.contain div:hover {
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, .3);
+}
+
+.contain > .used {
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, .3);
+}
+
+.contain > .created img {
+	position: relative;
+	top: 15px;
+	width: 50px;
+	height: 30px;
+	margin-left: -10px;
+}
+
+.contain > .created h5 {
+	margin-top: 30px;
+	font-size: 30px;
+}
+
+.contain > .created h5 :first-child {
+	font-size: 20px;
+	display: inline-block;
+	margin: 5px;
+	margin-bottom: 0;
+}
+
+.contain  > .created p {
+	color: #777;
+	font-size: 16px;
+}

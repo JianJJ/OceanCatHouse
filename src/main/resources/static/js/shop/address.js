@@ -99,10 +99,10 @@ var CatProduct = [];
   // ----------------Jian 新增訂單----------------------------
 
     $('#insertOrder').click(function (){
-        // 紀錄送貨方式
         // 是否新增信用卡資料
         // 更改最後一次付款方式
         // 信用卡最後使用的卡片
+        // 紀錄送貨方式
 
         $.ajax({
             url : "/OceanCatHouse/insertOrder",

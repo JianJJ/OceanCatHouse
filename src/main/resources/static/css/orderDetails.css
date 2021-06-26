@@ -95,7 +95,7 @@ a {
 
 .contain table tr td:first-child {
     min-width: 180px;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .contain table tr td {
@@ -103,7 +103,7 @@ a {
     line-height: 45px;
     position: relative;
     color: #777;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .contain table tr td .productPrice {

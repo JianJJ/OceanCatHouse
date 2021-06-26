@@ -81,36 +81,25 @@
                 <input type="text" name="address" placeholder="收件地址" size="50"
                        value="${sessionScope.user.deliveryAddress}"><br/>
 
-                <%--                	<input type="checkbox" id='saveInfo'>--%>
-                <%--                    <label for='saveInfo'>保存本次訂單的收件資訊</label>--%>
 
                 <h3 style="margin-top:50px;">付款方式</h3>
-                <%--         如果上次使用信用卡付款, 顯示上次的卡片--%>
-<%--                <input type="radio" name="payMethod" id='pay1' value='byCreditCard'>--%>
-<%--                <label for='pay1'>信用卡支付</label><br/>--%>
-<%--                <div id='cardPaySection' style="margin-left:45px">--%>
-<%--                    持卡人姓名:--%>
-<%--                    <input type="text" name="userCardName"><br/>--%>
-<%--                    信用卡號碼:--%>
-<%--                    <input type="text" maxlength="4" size="2" name="cardNumberP1" class="cardNumber"> ---%>
-<%--                    <input type="text" maxlength="4" size="2" name="cardNumberP2" class="cardNumber"> ---%>
-<%--                    <input type="text" maxlength="4" size="2" name="cardNumberP3" class="cardNumber"> ---%>
-<%--                    <input type="text" maxlength="4" size="2" name="cardNumberP4" class="cardNumber"><br/>--%>
-<%--                    到期日:--%>
-<%--                    <select name="hour">--%>
-<%--                        <option></option>--%>
-<%--                    </select> /--%>
-<%--                    <select name="hour">--%>
-<%--                        <option></option>--%>
-<%--                    </select><br/>--%>
+<%--                1. 貨到付款--%>
+                <input type="radio" name="payMethod" id='pay1' value='byCash'>
+                <label for='pay1'>貨到付款</label><br/>
 
-<%--                    安全驗證碼:--%>
-<%--                    <input type="text" size="2" maxlength=3 name="checkNumber" class="cardNumber">--%>
-<%--                </div>--%>
-
-<%--                此次要新增一張卡片--%>
-                <input type="radio" name="payMethod" id='pay1' value='byCreditCard'>
-                <label for='pay1'>信用卡支付</label><br/>
+                <%--        2. 如果上次使用信用卡付款, 顯示上次的卡片--%>
+                <input type="radio" name="payMethod" id='pay2' value='byCreditCard'>
+                <label for='pay2'>使用最近一次結帳的卡片</label><br/>
+                <div class="contain">
+                    <div class="created used">
+                        <img src="${pageContext.request.contextPath}/images/homePic/VISA.jpg">
+                        <h5>Visa <span>****</span> <span id='cardLastFour'>2363</span></h5>
+                        <p>過期時間 <span id='expiredDate'>09/2026</span></p>
+                    </div>
+                </div>
+<%--               3. 輸入其他卡片, 並新增卡片--%>
+                <input type="radio" name="payMethod" id='pay3' value='byCreditCard'>
+                <label for='pay3'>使用並儲存新的卡片</label><br/>
                 <div id='cardPaySection' style="margin-left:45px">
                     持卡人姓名:
                     <input type="text" name="userCardName"><br/>
@@ -125,8 +114,6 @@
                     安全驗證碼:
                     <input type="text" size="2" maxlength=3 name="checkNumber" class="cardNumber">
                 </div>
-                <input type="radio" name="payMethod" id='pay2' value='byCash'>
-                <label for='pay2'>貨到付款</label><br/>
 
                 <div class="g-recaptcha"
                      data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
