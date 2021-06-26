@@ -5,10 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import tw.com.iii.OceanCatHouse.model.*;
@@ -428,11 +425,13 @@ public class BackStageController {
     //統計圖表
     @RequestMapping("/orderStatistics")
     @ResponseBody
-    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category) {
+    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category,@RequestParam("time")Integer time) {
         System.out.println("*****統計圖表 *****");
         //查詢一周訂單
-        List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
 
+        List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
+        if(time == 1) ordersBeanList = ordersRepository.selectDay();
+        if(time == 2) ordersBeanList = ordersRepository.selectWeek();
         //紀錄器(商品Id,數量)
         Map<Integer, Integer> count = new HashMap<>();
         //查出的訂單去找細節
@@ -460,4 +459,18 @@ public class BackStageController {
         return result;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //商品線圖
+    @RequestMapping("/productLine/{productId}")
+    @ResponseBody
+    public Map<String, Integer> productLine(@PathVariable("productId") Integer productId) {
+        System.out.println("*****商品線圖*****"+productId);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String CreateOn = sdf.format(new Date());
+        List<OrdersBean> ordersBeanList = ordersRepository.findByOrdercreateon(CreateOn);
+        System.out.println(ordersBeanList);
+
+
+        return  null;
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

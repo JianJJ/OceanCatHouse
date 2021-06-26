@@ -65,7 +65,7 @@
                         <h3>${searchResultText}</h3>
                         <%--預設搜尋畫面，在沒有輸入搜尋關鍵字前提下，預設使用推薦系統--%>
                         <c:forEach varStatus="loop" begin="0" end="${recResultBean.size()-1}">
-                            <li class="col-lg-3 col-xs-6"><a href="${pageContext.request.contextPath}/recipeDetails?id=${recResultBean.get(loop.index).recId}">
+                            <li class="col-lg-3 col-xs-6"><a href="${pageContext.request.contextPath}/userBack/recipeDetails?id=${recResultBean.get(loop.index).recId}">
                                 <img src="${recResultBean.get(loop.index).recPic}" alt="${recResultBean.get(loop.index).recTitle}">
                                 <h4 class='showLines'>${recResultBean.get(loop.index).recTitle}</h4>
                                 <p class='showLines'>${recResultBean.get(loop.index).recText}</p>

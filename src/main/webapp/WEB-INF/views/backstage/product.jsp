@@ -231,22 +231,22 @@
 
                     <div class="accordion-body">
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1'">米麵五穀
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=1&time=3'">米麵五穀
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2'">植物油
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=2&time=3'">植物油
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3'">醬料
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=3&time=3'">醬料
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4'">蔬果
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=4&time=3'">蔬果
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5'">生鮮
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=5&time=3'">生鮮
                         </a><br>
                         <a class=""
-                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6'">乾貨
+                           onclick="javascript:location.href='${pageContext.request.contextPath}/backstage/statistics?category=6&time=3'">乾貨
                         </a><br>
 
                     </div>
@@ -614,12 +614,16 @@
     function doError(json) {
         console.log(json);
     }
+
+
+    //圖表
     function chart(productId){
+        console.log(productId);
         var labels = [];
         var data = [];
         var ctx = document.getElementById('canvas').getContext('2d');
         $.ajax({
-            url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}&time=${param.time}",
+            url: "${pageContext.request.contextPath}/backstage/productLine/"+productId,
             type: "get",
             async: false,
             success: function (J) {
@@ -631,14 +635,11 @@
             error: doError
         });
 
-        function doError(json) {
-            console.log("error ajax");
-        }
 
         console.log(labels);
         console.log(data);
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
