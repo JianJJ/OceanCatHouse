@@ -1,25 +1,19 @@
 package tw.com.iii.OceanCatHouse.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import tw.com.iii.OceanCatHouse.Tool.ZeroTools;
-import tw.com.iii.OceanCatHouse.model.OrdersBean;
-import tw.com.iii.OceanCatHouse.model.ProductBean;
-import tw.com.iii.OceanCatHouse.model.UserBean;
-import tw.com.iii.OceanCatHouse.model.UserCreditCardBean;
-import tw.com.iii.OceanCatHouse.repository.OrdersRepository;
-import tw.com.iii.OceanCatHouse.repository.ProductRepository;
-import tw.com.iii.OceanCatHouse.repository.UserPaymentMethodRepository;
+import tw.com.iii.OceanCatHouse.model.*;
+import tw.com.iii.OceanCatHouse.repository.*;
 import tw.com.iii.OceanCatHouse.repository.service.OrdersService;
 
 
@@ -31,12 +25,14 @@ public class ShopController {
 
     @Autowired
     private ProductRepository productRepository;
-
     @Autowired
     private OrdersService ordersService;
-
     @Autowired
     private ZeroTools zTools;
+    @Autowired
+    private RecipeMaterialRepository recipeMaterialRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
 
     @RequestMapping(path = {"/views/ShoppingMall"})
     public String ShoppingMall() {
@@ -101,6 +97,32 @@ public class ShopController {
         model.addAttribute("sellingprice", bean.getSellingprice());
         model.addAttribute("productspecifications", bean.getProductspecifications());
         model.addAttribute("id", bean.getProductid());
+
+        // 同類商品
+        Page<ProductBean> productBeanPage = productRepository.findByProductcategoryid(bean.getProductcategoryid(), PageRequest.of(0, 4));
+        System.out.println(productBeanPage.getContent());
+        model.addAttribute("SimilarProducts",productBeanPage.getContent());
+        // 推薦食譜
+        System.out.println("********************推薦食譜*********************" );
+        Page<Integer> page = recipeMaterialRepository.findRecId(bean.getProductkey(),PageRequest.of(0, 6));
+        int rand = (int) (Math.random()*page.getTotalPages());
+        page = recipeMaterialRepository.findRecId(bean.getProductkey(),PageRequest.of(rand, 6));
+        System.out.println("page : "+ page);
+        if(page.getNumberOfElements() == 0){
+            page = recipeMaterialRepository.findRecId("醬油",PageRequest.of(rand, 6));
+        }
+        List<Integer> set = page.getContent();
+        System.out.println(set+" set ");
+        List<RecipeMainBean> result = new ArrayList<>();
+        for(Integer i : set){
+            Optional<RecipeMainBean> recipeOP =  recipeRepository.findById(i);
+            System.out.println(" recipeOP "+recipeOP);
+            RecipeMainBean recipe = recipeOP.get();
+            System.out.println(" recipeOP "+recipe);
+            result.add(recipe);
+        }
+        model.addAttribute("recommend", result);
+
         return "views/shop/Details";
     }
 
@@ -128,7 +150,7 @@ public class ShopController {
         else {
             model.addAttribute("state",session.getAttribute("state"));
         }
-        // -------------- Jian : 新增, 付款方式呈現-------------------
+        // Jian新增, 付款方式呈現
         List<UserCreditCardBean> userCreditCardBeans = user.getUserCreditCardBeans();
         System.out.println(userCreditCardBeans);
         if(userCreditCardBeans != null){
@@ -175,7 +197,6 @@ public class ShopController {
         }
         return "redirect:/complete";
     }
-
     // -------------Jian : 送出訂單, 新增訂單 ------------------------
     @PostMapping("/insertOrder")
     @ResponseBody
@@ -193,3 +214,5 @@ public class ShopController {
     }
 
 }
+
+

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PublicController {
 	@GetMapping(
-			path = {"/", "/index"}
+			path = {"/", "/index2"}
 	)
 	public String index() {
-		return "index2";
+		return "index";
 	}
 	
 	@GetMapping(

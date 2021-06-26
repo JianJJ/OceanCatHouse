@@ -1,96 +1,169 @@
-body {
-    width: 100vw;
+
+.mainColor {
+	 background: #88c8eb;
 }
 
-.clearfix::after {
+/*.clearfix::after {
     content: "";
     display: block;
     clear: both;
+}*/
+
+.center {
+	 background:linear-gradient(to bottom, #88c8eb, white);
+    background: -webkit-gradient(​linear,to bottom, #88c8eb, white);
 }
-.center{
-    width: 100vw;
+.main {
+	padding-top:50px;
 }
+
 .footer{
     margin: 0px;
 }
 
-.main{
-    transform:translateX(-0%);
+
+.main .grid-row{
+    border: 1px #aaa solid;
     position: relative;
-    width: 470px;
-    height: 850px;
-    left: 0%;
-    right: 0%;
-    margin: auto;
-}
-.grid-row{
-    border: 1px black solid;
-    position: relative;
-    margin: 50px 0px 50px 0px ;
+    margin: 0px auto 50px auto;
     background-color: white;
-    height: 800px;
-    width: 470px;
-    text-align: center;
+    height: 720px;
+    width: 620px;
     border-radius: 5px;
 }
+
 #canvas {
     position: absolute;
+   
+ 
 }
+
 /* ✿海貓食屋✿ */
 .main .grid-row .loginTitle{
     font-size: 30px;
-    margin: 30px;
+    margin:40px auto;
+    text-align:center;
 }
+
 /* 取消 */
-.main .grid-row .loginReturn{
+.main .grid-row .loginReturn {
     position: absolute;
-    background-color: red;
+    background-color: #eb4034;
+    border: 1px solid rgba(0,0,0,.3);
     width: 35px;
     height: 35px;
-    right:  -5px;
-    top: -5px;
+    right:  -10px;
+    top: -10px;
     border-radius: 50%;
     font-size: 1.3rem;
 }
 
-.main .grid-row .phone{
-    left: 0%;
-    right: 0%;
-    margin: 15px auto 15px auto ;
-    height: 40px;
+.main .grid-row .loginReturn:hover {
+	background:tomato;
+}
 
-    width: 80%;
-    border-radius: 5px;
-    padding-top: 10px;
+.main .grid-row form {
+	position:relative;
 }
+
+
 .main .grid-row .formCSS{
-    height: 30px;
-    font-size: 1.2rem;
-    width: 80%;
-    margin: 10px;
+    width: 65%;
+    margin: 0 0 30px 10%;
     border-radius: 5px;
-    padding-top: 10px;
+    line-height:35px;
+	height:35px;
+	text-indent:0.5rem;
+	border:1px solid #ddd;
+	
 }
+
 .main .grid-row .formSubmit{
-    height: 50px;
-    font-size: 1.2rem;
-    width: 80%;
-    margin: 10px;
+	position:absolute;
+	bottom:-20px;
+	right:70px;
+    display:inline-block;
+    padding:7px 25px;
+    font-size:18px;
+    background:#7de9fa;
+    border:1px solid #659bcd;
     border-radius: 5px;
-    padding-top: 10px;
+
 }
+
+.main .grid-row .formSubmit:hover {
+	 background:#59d9d7;
+}
+
+
 .main .grid-row a{
+	display:inline-block;
     color: black;
     text-decoration:underline;
+    margin-left:50px;
 }
+
+.main .grid-row hr {
+	display:inline-block;
+	width:46%;
+	vertical-align:middle;
+	margin:20px auto;
+	background:#666;
+
+}
+
+.main .grid-row span {
+	line-height:40px;
+	color:#666;
+
+}
+
+.main .grid-row .orblock {
+	line-height:40px;
+	height:40px;
+	margin:35px auto;
+	width:80%;
+}
+
 .g-recaptcha{
     display: inline-block;
+    margin:10px 10px 30px 50px;
+    width:50%;
 }
+
 /* 錯誤訊息 */
 .error{
 	color :red;
 }
+
+.main .grid-row  .forOtherLog {
+	height:60px;
+	margin:0 50px;
+	display:inline-flex;
+	justify-content: space-around;
+}
+
 /* google登入 */
 .g-signin2{
-    display: inline-block;						
+    display: inline-block;	
+    				
 }
+
+
+.main .grid-row .phone {
+	position:relative;
+	display:inline-block;
+	background:#0D6EFD;
+	line-height:30px;
+	padding:5px 15px;
+	color:white;
+    width: 200px;
+    height:50px;
+    border-radius: 5px;
+    margin:0;
+    margin-right:45px;
+
+   
+}
+
+
