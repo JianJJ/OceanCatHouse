@@ -276,6 +276,6 @@
 
 </script>
 <script src="../js/shoopCat.js"></script>
-<%--<script src="../js/umbrella.js"></script>--%>
+<script src="../js/umbrella.js"></script>
 </html>
 <jsp:include page="../RecipePages/bottom_nav.jsp"></jsp:include>

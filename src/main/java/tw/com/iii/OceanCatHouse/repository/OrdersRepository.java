@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import tw.com.iii.OceanCatHouse.model.OrdersBean;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
@@ -15,6 +16,11 @@ public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
     List<OrdersBean> selectMonth();
     @Query(" FROM OrdersBean WHERE DAYOFYEAR(date_format(ordercreateon,'%Y-%m-%d')) = DAYOFYEAR(now())")
     List<OrdersBean> selectDay();
+    @Query(" FROM OrdersBean WHERE  DAYOFYEAR(date_format(ordercreateon,'%Y-%m-%d')) = ?1")
+    List<OrdersBean> selectProductIdAndDay( String date);
+
+
+    List<OrdersBean> findByOrdercreateon(String date);
 
     List<OrdersBean> findByUserid(Integer userId);
 

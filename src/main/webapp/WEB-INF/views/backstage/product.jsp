@@ -614,12 +614,16 @@
     function doError(json) {
         console.log(json);
     }
+
+
+    //圖表
     function chart(productId){
+        console.log(productId);
         var labels = [];
         var data = [];
         var ctx = document.getElementById('canvas').getContext('2d');
         $.ajax({
-            url: "${pageContext.request.contextPath}/backstage/orderStatistics?category=${param.category}&time=${param.time}",
+            url: "${pageContext.request.contextPath}/backstage/productLine/"+productId,
             type: "get",
             async: false,
             success: function (J) {
@@ -631,14 +635,11 @@
             error: doError
         });
 
-        function doError(json) {
-            console.log("error ajax");
-        }
 
         console.log(labels);
         console.log(data);
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
