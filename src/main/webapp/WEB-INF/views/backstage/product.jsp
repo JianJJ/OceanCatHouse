@@ -240,13 +240,15 @@
                     </c:forEach>
                 </table>
             </div>
+
+
             <%--       分頁表--%>
             <div class="row lll">
                 <div class="col-lg-5"></div>
                 <nav aria-label="Page navigation example" class="col-lg-1">
                     <ul class="pagination">
                         <li class="page-item per">
-                            <a class="page-link" href="" aria-label="Previous"> <span>&laquo;</span> </a>
+                            <a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=${param.pag==1?1:param.pag-1}&state=1" aria-label="Previous"> <span>&laquo;</span> </a>
                         </li>
                         <%--                        <li class="page-item"><a class="page-link" href="">1</a></li>--%>
                         <%--                        <li class="page-item"><a class="page-link" href="" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>--%>
@@ -276,10 +278,10 @@
             success: function (max) {
                 for (var i = 1; i <= max; i++) {
 
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=' + i + '">' + i + '</a></li>');
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=' + i + '&state=1">' + i + '</a></li>');
                 }
                 if (max != '${param.pag}')
-                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=${param.pag==null?2:param.pag+1}"' +
+                    $(".pagination").append('<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/backstage/product?pag=${param.pag==null?2:param.pag+1}&state=1"' +
                         'aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>');
             },
             error: function (pag) {
