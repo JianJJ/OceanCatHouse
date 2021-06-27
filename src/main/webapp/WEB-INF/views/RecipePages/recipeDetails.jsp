@@ -100,6 +100,13 @@
                 <button id='cancel'>x</button>
                 <hr>
                 <section>
+<%--                    <label >--%>
+<%--                        <div class="favoriteCategory">--%>
+<%--                            <h5 class="categoryName">全部(默認)</h5>--%>
+<%--                            <input type="checkbox" id="cate" class="favID" value="0" name="favId">--%>
+<%--                        </div>--%>
+<%--                    </label>--%>
+                <c:if test="${UFCBList.size() ne 0}">
                 <c:forEach varStatus="loop" begin="0" end="${UFCBList.size()-1}">
                     <label >
                         <div class="favoriteCategory">
@@ -108,6 +115,10 @@
                         </div>
                     </label>
                 </c:forEach>
+                </c:if>
+                <c:if test="${UFCBList.size() eq 0}">
+                    <jsp:include page="recipeDetails_addfavorite1.jsp"></jsp:include>
+                </c:if>
                    <input type="submit" class="btnAdd" value="完成" onclick="addFavorite(${recMainBean.recId})">
                 </section>
             </div>

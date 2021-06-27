@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
             <hr>
             <section>
                 <div class="nothing">目前無任何收藏夾<br>快新建一個吧</div>
-                <button class='btnAdd' id='btnAddNew'><span>+</span>新建收藏夾</button>
+                <a href="${pageContext.request.contextPath}/userBack/favorites" target="_blank"><button class='btnAdd' id='btnAddNew'><span>+</span>新建收藏夾</button></a>
             </section>
 
         </div>

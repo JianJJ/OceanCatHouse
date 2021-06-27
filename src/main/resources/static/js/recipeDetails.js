@@ -113,6 +113,8 @@ function addFavorite(id) {
 
     })
 
+    $('.maskForFavorite').fadeOut();
+    $('.mask').fadeOut();
 
 }
 

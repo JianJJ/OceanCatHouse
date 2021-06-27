@@ -16,6 +16,14 @@ public class UserFavoritesBean {
     private Integer RecId;
     private String FavoriteCategoryName;
 
+    public String getFavoriteCategoryName() {
+        return FavoriteCategoryName;
+    }
+
+    public void setFavoriteCategoryName(String favoriteCategoryName) {
+        FavoriteCategoryName = favoriteCategoryName;
+    }
+
     @Override
     public String toString() {
         return "UserFavoritesBean{" +
