@@ -75,38 +75,29 @@
 
     <div class='modalSection' id='sectionTwo'>
         <button class='closeMask'>X</button>
-        <%--未登入頁面判斷(分享)--%>
-        <c:if test="${UFCBList eq null}">
-            <h1>請先登入喔!</h1>
-            <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
-                                                                                            value="前往登入頁面"></a>
-        </c:if>
+        <h4>分享</h4>
+        <ul>
 
-        <%--已登入頁面(收藏)--%>
-        <c:if test="${UFCBList ne null}">
-            <h4>分享</h4>
-            <ul>
+            <li class="fontIcon hyLink font">
+                <a class="fontIcon hyLink" id="fbShare" href="#">
+                    <p>FB</p></a>
+            </li>
+            <li class="fontIcon hyLink">
+                <a href="#" id='lineShare' target="_blank">
+                    <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
+                    <p>Line</p>
+                </a>
+            </li>
 
-                <li class="fontIcon hyLink font">
-                    <a class="fontIcon hyLink" id="fbShare" href="#">
-                        <p>FB</p></a>
-                </li>
-                <li class="fontIcon hyLink">
-                    <a href="#" id='lineShare' target="_blank">
-                        <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
-                        <p>Line</p>
-                    </a>
-                </li>
+            <li class="fontIcon hyLink font">
+                <a class="fontIcon hyLink" id='twitterShare' href="#" target="_blank">
+                    <p>Twitter</p></a></li>
+        </ul>
+        <div id='copyConsole'>
+            <textarea readonly class="copy_url_input">${pageContext.request.requestURL}</textarea>
+            <a class="copy_url_a">複製連結</a>
+        </div>
 
-                <li class="fontIcon hyLink font">
-                    <a class="fontIcon hyLink" id='twitterShare' href="#" target="_blank">
-                        <p>Twitter</p></a></li>
-            </ul>
-            <div id='copyConsole'>
-                <textarea readonly class="copy_url_input">${pageContext.request.requestURL}</textarea>
-                <a class="copy_url_a">複製連結</a>
-            </div>
-        </c:if>
     </div>
 </div>
 <%--加入收藏圖標--%>
