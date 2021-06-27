@@ -71,6 +71,8 @@ public class RecipeController {
         mav.addObject("mainBeanList", mainList);
         mav.addObject("UFCBList", UFCBList);
 
+
+
         if(favId != null){
             for(Integer x : favId){
                 System.out.println("接收參數:" + x);

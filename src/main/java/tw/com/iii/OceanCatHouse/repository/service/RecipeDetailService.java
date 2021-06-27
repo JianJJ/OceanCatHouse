@@ -125,11 +125,23 @@ public class RecipeDetailService {
     //10.加入收藏資料庫操作
     public void addFavorite(int userID,int recId,String catName){
 
-            UserFavoritesBean userFavoritesBean = new UserFavoritesBean();
-            userFavoritesBean.setUserid(userID);
-            userFavoritesBean.setRecId(recId);
-            userFavoritesBean.setFavoriteCategoryName(catName);
-            userFavoritesDao.save(userFavoritesBean);
+            Integer checkIfExistsNum = userFavoritesDao.checkIfExists(userID, recId, catName);
+
+            if(checkIfExistsNum.equals(0)){
+                UserFavoritesBean userFavoritesBean = new UserFavoritesBean();
+                userFavoritesBean.setUserid(userID);
+                userFavoritesBean.setRecId(recId);
+                userFavoritesBean.setFavoriteCategoryName(catName);
+                userFavoritesDao.save(userFavoritesBean);
+                System.out.printf("成功新增食譜:%d 到收藏夾:%s !%n",recId,catName);
+            }else{
+
+                System.out.println("食譜已存在收藏夾中!");
+            }
+
+
+
+
 
 
 

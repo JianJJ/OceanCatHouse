@@ -47,9 +47,9 @@ public class TestRecipeMainDao {
    @Transactional
    public void testYu() {
 
-      UserFavoritesCategoryBean byFavoritesCategoryId = userFavoritesCategoryDao.findByFavoritesCategoryId(25);
-      String favoriteCategoryName = byFavoritesCategoryId.getFavoriteCategoryName();
-      System.out.println(favoriteCategoryName);
+      Integer x = userFavoritesDao.checkIfExists(21, 379015, "好吃");
+      System.out.println(x);
+
    }
 
 }

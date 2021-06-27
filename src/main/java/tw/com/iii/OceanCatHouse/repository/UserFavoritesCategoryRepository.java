@@ -17,6 +17,9 @@ public interface UserFavoritesCategoryRepository extends JpaRepository<UserFavor
     @Query("from UserFavoritesCategoryBean where FavoritesCategoryId = :favId")
     UserFavoritesCategoryBean findByFavoritesCategoryId(Integer favId);
 
+
+
+
     @Transactional
     @Modifying
     @Query("delete from UserFavoritesCategoryBean f where f.FavoritesCategoryId=?1")

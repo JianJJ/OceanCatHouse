@@ -16,6 +16,10 @@ public interface UserFavoritesRepository extends JpaRepository<UserFavoritesBean
     @Query("from UserFavoritesBean f where f.userid=:userid")
     List<UserFavoritesBean> findAllByUserId(Integer userid);
 
+    @Query(value="SELECT EXISTS(SELECT * FROM user_favorites WHERE userid = ?1 AND RecId = ?2 AND FavoriteCategoryName = ?3)",nativeQuery=true)
+    Integer checkIfExists(Integer userid,Integer recId,String catName);
+
+
     @Transactional
     @Modifying
     @Query("update UserFavoritesBean set FavoriteCategoryName=:newName where userid=:userid and FavoriteCategoryName=:oldName")
