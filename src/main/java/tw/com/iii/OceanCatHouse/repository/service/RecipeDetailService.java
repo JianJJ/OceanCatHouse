@@ -6,9 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.com.iii.OceanCatHouse.model.RecipeMainBean;
 import tw.com.iii.OceanCatHouse.model.RecipeMaterialBean;
 import tw.com.iii.OceanCatHouse.model.RecipeStepBean;
-import tw.com.iii.OceanCatHouse.repository.RecipeMaterialRepository;
-import tw.com.iii.OceanCatHouse.repository.RecipeRepository;
-import tw.com.iii.OceanCatHouse.repository.RecipeStepRepository;
+import tw.com.iii.OceanCatHouse.model.UserFavoritesBean;
+import tw.com.iii.OceanCatHouse.repository.*;
 
 import java.util.*;
 
@@ -25,6 +24,11 @@ public class RecipeDetailService {
     @Autowired
     private RecipeMaterialRepository recipeMatDao;
 
+    @Autowired
+    private UserFavoritesRepository userFavoritesDao;
+
+    @Autowired
+    private UserFavoritesCategoryRepository userFavoritesCategoryDao;
 
     //1.訪問recipe_main，取得返回Bean
     public RecipeMainBean getRecipeMainData(int id) {
@@ -116,6 +120,24 @@ public class RecipeDetailService {
             newKeyWord = newKeyWord.substring(0,newKeyWord.length() - 1);
         }
         return newKeyWord;
+    }
+
+    //10.加入收藏資料庫操作
+    public void addFavorite(int userID,int recId,String catName){
+
+            UserFavoritesBean userFavoritesBean = new UserFavoritesBean();
+            userFavoritesBean.setUserid(userID);
+            userFavoritesBean.setRecId(recId);
+            userFavoritesBean.setFavoriteCategoryName(catName);
+            userFavoritesDao.save(userFavoritesBean);
+
+
+
+
+
+
+
+
     }
 
 

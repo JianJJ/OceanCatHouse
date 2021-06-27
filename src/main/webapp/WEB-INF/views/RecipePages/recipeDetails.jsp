@@ -100,6 +100,12 @@
                 <button id='cancel'>x</button>
                 <hr>
                 <section>
+<%--                    <label >--%>
+<%--                        <div class="favoriteCategory">--%>
+<%--                            <h5 class="categoryName">全部(默認)</h5>--%>
+<%--                            <input type="checkbox" id="cate" class="favID" value="0" name="favId">--%>
+<%--                        </div>--%>
+<%--                    </label>--%>
                 <c:forEach varStatus="loop" begin="0" end="${UFCBList.size()-1}">
                     <label >
                         <div class="favoriteCategory">

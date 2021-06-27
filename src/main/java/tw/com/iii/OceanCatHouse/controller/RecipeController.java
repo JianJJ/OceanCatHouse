@@ -27,7 +27,7 @@ import java.util.List;
 public class RecipeController {
 
     @Autowired
-    RecipeDetailService service;
+    private RecipeDetailService service;
 
     @Autowired
     private RecipeMainService recipeMainService;
@@ -38,8 +38,7 @@ public class RecipeController {
     @Autowired
     private UserFavoritesCategoryRepository userFavoritesCategoryDao;
 
-    @Autowired
-    private UserFavoritesCategoryService userFavoritesCategoryService;
+
 
 
     //1.食譜詳細頁面
@@ -72,10 +71,10 @@ public class RecipeController {
         mav.addObject("mainBeanList", mainList);
         mav.addObject("UFCBList", UFCBList);
 
-
         if(favId != null){
             for(Integer x : favId){
                 System.out.println("接收參數:" + x);
+                service.addFavorite(user.getUserid(),recipeData.getRecId(),userFavoritesCategoryDao.findByFavoritesCategoryId(x).getFavoriteCategoryName());
             }
         }
 
