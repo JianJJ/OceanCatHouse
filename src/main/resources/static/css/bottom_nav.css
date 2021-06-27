@@ -21,10 +21,30 @@ a:hover {
 /* footer */
 
 footer {
-    position: relative;
+	position:relative;
     margin-top: 50px;
-    text-align: right;
+    
     z-index:5;
+}
+
+footer .info {
+	display: inline-block;
+	position:absolute;
+	width:40%;
+	bottom:0px;
+	height:190px;
+	margin:0px 50px;
+	color:#222;
+}
+
+footer > .info > h4 {
+	font-size:19px;
+	line-height:30px;
+}
+
+footer .clearfix {
+
+	text-align: right;
 }
 
 footer dl {
