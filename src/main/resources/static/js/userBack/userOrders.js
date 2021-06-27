@@ -1,4 +1,59 @@
 $(document).ready(function (){
+    //------------------------ 下面是訂單js------------------------------
+    // 點擊顯示訂單頁
+    $('#showOrdersBtn').click(function (){
+        $(this).addClass('current').siblings().removeClass('current');
+        $('.showOrders').prop('hidden', false);
+        $('.showCard').prop('hidden', true);
+
+        $.ajax({
+            type: "GET",
+            url: "/OceanCatHouse/userBack/selectOrders",
+            async: false,
+            cache: false,  //不做快取
+            success: function (jsonMap) {
+                var ordersList = jsonMap.ordersList;
+                var orderDetailList = jsonMap.orderDetailList;
+                var orderStatusBean = jsonMap.orderStatusBean;
+                var productList = jsonMap.productList;
+                var userPaymentBean = jsonMap.userPaymentBean;
+                if(ordersList!=null){
+                    $('#Otable tr:not(:first-child)').remove();
+                    for (var i=0;i<ordersList.length;i++){
+                        var createDate = `${ordersList[i].ordercreateon}`.slice(0,10);
+                        var sum = 0;
+                        var price = 0;
+                        var quantity = 0;
+                        for(var j=0;j<orderDetailList[i].length;j++){
+                            price = parseInt(`${orderDetailList[i][j].sellingprice}`);
+                            quantity = parseInt(`${orderDetailList[i][j].quantity}`);
+                            sum += price * quantity;
+                        }
+                        $('#Otable').append(
+                            `<tr>`+
+                            `<td>`+
+                            `<img src="/OceanCatHouse/images/shop/${productList[i][0].productmodel}-1.jpg" class='productImg'>`+
+                            `<p class='productName'>(${orderDetailList[i].length})${productList[i][0].productname}</p>`+
+                            `<a href="/OceanCatHouse/userBack/showDetail/${ordersList[i].orderid}">檢視訂單明細</a>`+
+                            `</td>`+
+                            `<td class='orderDate'>${createDate}</td>`+
+                            `<td>NT$ <span class='OrderPrice'>${sum + 60}</span></td>`+
+                            `<td class='payment'>${userPaymentBean[i]["species"]}</td>`+
+                            `<td>`+
+                            `<span class='orderStatus'>${orderStatusBean[i].statusname}</span>`+
+                            `</td></tr>`
+                        );
+                    }
+                }
+            },
+            error: function (returndata) {
+                alert("系統忙碌中, 稍後再試")
+            }
+        })
+    }).click();
+
+    //------------------------ 下面是卡片js------------------------------
+
     $('#editConsole').click(function(e){
         e.stopPropagation();
     });
@@ -161,59 +216,4 @@ $(document).ready(function (){
             }
         })
     })
-
-
-    //------------------------ 下面是訂單js------------------------------
-
-    // 點擊顯示訂單頁
-    $('#showOrdersBtn').click(function (){
-        $(this).addClass('current').siblings().removeClass('current');
-        $('.showOrders').prop('hidden', false);
-        $('.showCard').prop('hidden', true);
-
-        $.ajax({
-            type: "GET",
-            url: "/OceanCatHouse/userBack/selectOrders",
-            async: false,
-            cache: false,  //不做快取
-            success: function (jsonMap) {
-                var ordersList = jsonMap.ordersList;
-                var orderDetailList = jsonMap.orderDetailList;
-                var orderStatusBean = jsonMap.orderStatusBean;
-                var productList = jsonMap.productList;
-                if(ordersList!=null){
-                    $('#Otable tr:not(:first-child)').remove();
-                    for (var i=0;i<ordersList.length;i++){
-                        var createDate = `${ordersList[i].ordercreateon}`.slice(0,10);
-                        var sum = 0;
-                        var price = 0;
-                        var quantity = 0;
-                        for(var j=0;j<orderDetailList[i].length;j++){
-                            price = parseInt(`${orderDetailList[i][j].sellingprice}`);
-                            quantity = parseInt(`${orderDetailList[i][j].quantity}`);
-                            sum += price * quantity;
-                        }
-                        $('#Otable').append(
-                            `<tr>`+
-                                `<td>`+
-                                    `<img src="/OceanCatHouse/images/shop/${productList[i][0].productmodel}-1.jpg" class='productImg'>`+
-                                    `<p class='productName'>(${orderDetailList[i].length})${productList[i][0].productname}</p>`+
-                                    `<a href="/OceanCatHouse/userBack/showDetail/${ordersList[i].orderid}">檢視訂單明細</a>`+
-                                `</td>`+
-                                `<td class='orderDate'>${createDate}</td>`+
-                                `<td>NT$ <span class='OrderPrice'>${sum + 60}</span></td>`+
-                                `<td class='payment'>貨到付款</td>`+
-                                `<td>`+
-                                    `<span class='orderStatus'>${orderStatusBean[i].statusname}</span>`+
-                                `</td></tr>`
-                        );
-                    }
-                }
-            },
-            error: function (returndata) {
-                alert("系統忙碌中, 稍後再試")
-            }
-        })
-    }).click();
-
 })

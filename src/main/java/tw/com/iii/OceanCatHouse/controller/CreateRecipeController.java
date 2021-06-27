@@ -31,6 +31,9 @@ import java.util.*;
 public class CreateRecipeController {
 
     @Autowired
+    private RecipeMainService recipeMainService;
+
+    @Autowired
     private RecipeCategoryService recipeCategoryService;
 
     @Autowired
@@ -59,7 +62,7 @@ public class CreateRecipeController {
     public String save(HttpSession session,
                        MultipartHttpServletRequest multipartRequest) throws ParseException {
 
-        recipeCategoryService.createOrUpdateRecipe(session, multipartRequest);
+        recipeMainService.createOrUpdateRecipe(session, multipartRequest);
 
         return "/OceanCatHouse/userBack/home";
     }

@@ -34,7 +34,7 @@ $(document).ready(function (){
                         );
                     }
                 }else{
-                    alert("發生錯誤請聯繫我們")
+                    $('#FCategory li:not(:first-child)').remove();
                 }
             },
             error : function (returndata){
@@ -142,7 +142,7 @@ $(document).ready(function (){
                     }
                     $('#jumpDiv').prop('hidden',false);
                 }else{
-                    alert("發生錯誤請聯繫我們");
+                    $('#jumpDiv').prop('hidden',false);
                 }
             },
             error : function (returndata){
@@ -210,18 +210,19 @@ $(document).ready(function (){
     // 新增一行類別input
     addRow = function (addBtn){
         var value = $(addBtn).siblings('input').val();
+        $(addBtn).siblings('input').val("");
         $('#liDiv').append(
             `<div class="input-group mb-3 parent">`+
                 `<input type="text" class="form-control inputCname" aria-label="Recipient's username" aria-describedby="button-addon2"`+
                         `value="${value}" readonly required>`+
-                `<button class="btn btn-outline-secondary" type="button" onclick="saveC(this)" hidden>`+
+                `<button class="btn btn-outline-secondary iBtn" type="button" onclick="saveC(this)" hidden>`+
                     `<i class="bi bi-check-lg"></i>`+
                 `</button>`+
-                `<button class="btn btn-outline-secondary" type="button" onclick="openC(this)">`+
+                `<button class="btn btn-outline-secondary iBtn" type="button" onclick="openC(this)">`+
                     `<i class="bi bi-brush"></i>`+
                 `</button>`+
-                `<button class="btn btn-outline-secondary" type="button" onclick="deleteRow(this)">`+
-                    `<i class="bi bi-x-lg"></i>`+
+                `<button class="btn btn-outline-secondary iBtn" type="button" onclick="deleteRow(this)">`+
+                    `<i class="bi bi-trash"></i>`+
                 `</button>`+
             `</div>`
         );
@@ -240,14 +241,5 @@ $(document).ready(function (){
         $('#cover').css('display','none');   //顯示遮罩層
     }
 
-    // 點擊談條視窗之外關閉視窗
-    // $(document).mouseup(function(e){
-    //     var _con = $('#jumpDiv');
-    //     if(!_con.is(e.target) && _con.has(e.target).length === 0){
-    //         cancel();
-    //         console.log('ok');
-    //     }
-    // });
-    
     selectCategory();
 })

@@ -31,4 +31,5 @@ public interface RecipeMaterialRepository extends JpaRepository<RecipeMaterialBe
     @Modifying
     @Query(value = "delete from RecipeMaterialBean where RecId = :recId")
     Integer deleteAllByRecId(Integer recId);
+
 }

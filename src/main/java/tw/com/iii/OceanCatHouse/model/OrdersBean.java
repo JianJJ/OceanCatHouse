@@ -100,6 +100,14 @@ public class OrdersBean {
         PaymentId = paymentId;
     }
 
+    public UserPaymentMethodBean getUserPaymentMethodBean() {
+        return userPaymentMethodBean;
+    }
+
+    public void setUserPaymentMethodBean(UserPaymentMethodBean userPaymentMethodBean) {
+        this.userPaymentMethodBean = userPaymentMethodBean;
+    }
+
     @Override
     public String toString() {
         return "OrdersBean{" +

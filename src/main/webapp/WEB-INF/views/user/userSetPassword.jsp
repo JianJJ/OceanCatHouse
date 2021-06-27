@@ -22,47 +22,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userProfile.css">
+    <script src="${pageContext.request.contextPath}/js/userBack/userSetPassword.js"></script>
 </head>
-<script>
-    $(document).ready(function (){
-        // 變更密碼
-        changePassword = function (){
-            $('#Msg0, #secMsg, #notMsg').prop('hidden', true);
-            $('#pwdNow, #pwdNew, #pwdNewAgian').removeClass('is-invalid');
-            
-            if($('#pwdNow').val() == ""){
-                $('#Msg0').prop("hidden", false);
-                $('#pwdNow').addClass('is-invalid');
-                return;
-            } 
-            if($('#pwdNew').val() != $('#pwdNewAgian').val() || $('#pwdNew').val()==""){
-                $('#secMsg').prop("hidden", false);
-                $('#pwdNew').addClass('is-invalid');
-                $('#pwdNewAgian').addClass('is-invalid');
-                return;
-            }
-            var list = [
-                $('#pwdNow').val(),
-                $('#pwdNew').val(),
-            ];
-            $.ajax({
-                url : '/recipe/userBack/changePassword/'+list[0]+"/"+list[1],
-                type : 'PUT',
-                data : "",
-                async : false,
-                cache: false,  //不做快取
-                success : function (ok){
-                    $('#pwdNow, #pwdNew, #pwdNewAgian').val("");
-                    alert(ok);
-                },
-                error : function (returndata){
-                    console.log("失敗");
-                }
-            })
-        }
-
-    })
-</script>
 <body>
 <%--頁首--%>
 <jsp:include page="../RecipePages/top_nav.jsp"></jsp:include>

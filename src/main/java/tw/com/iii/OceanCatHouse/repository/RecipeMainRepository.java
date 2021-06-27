@@ -25,4 +25,5 @@ public interface RecipeMainRepository extends JpaRepository<RecipeMainBean, Inte
 
     @Query("select count(m) from RecipeMainBean m where m.UserId = :userId and m.RecStatus = 0")
     Integer recCountStatus0(@Param("userId") Integer userId);
+
 }
