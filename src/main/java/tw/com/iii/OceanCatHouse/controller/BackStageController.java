@@ -232,7 +232,7 @@ public class BackStageController {
                 if (fileMap != null && fileMap.get("file" + i) != null) {
                     System.out.println("AAA" + i);
                     //  改名+存檔
-                    fileMap.get("file" + i).transferTo(new File("C:\\JavaFramework0524\\JavaFramework\\OceanCatHouse\\src\\main\\resources\\static\\images/shop/" + Productmodel + "-" + i + ".jpg"));
+                    fileMap.get("file" + i).transferTo(new File("C:/JavaFramework0524/JavaFramework/OceanCatHouse/src/main/resources/static/images/shop/" + Productmodel + "-" + i + ".jpg"));
                     // 3. 儲存檔案名稱到資料庫
                     ProductPictureBean pBean = productPictureJpaReposit.findProducturl(Productmodel + "-" + i);
                     if (pBean == null) {
