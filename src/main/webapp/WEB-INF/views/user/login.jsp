@@ -93,6 +93,9 @@
 <script src="../js/recaptcha.js"></script>
 <script src="../js/oauth.js"></script>
 <script>
+    // 紀錄從哪裡來到登錄頁面
+    // var come = document.referrer;
+
     $(".phone").click(function () {
         window.location.href = "/OceanCatHouse/views/phoneLogin";
     });
@@ -136,10 +139,6 @@
 
         }
         }, 100);
-
-
-
-
 
 </script>
 </div>

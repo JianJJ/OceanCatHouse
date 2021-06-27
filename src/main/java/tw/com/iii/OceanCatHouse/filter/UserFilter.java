@@ -20,6 +20,5 @@ public class UserFilter implements Filter {
         }else {
             chain.doFilter(servletRequest, servletResponse);
         }
-
     }
 }

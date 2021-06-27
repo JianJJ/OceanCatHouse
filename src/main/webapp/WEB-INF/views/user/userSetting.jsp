@@ -32,8 +32,8 @@
             $('#emailMsg').prop('hidden', false);
             $('#floatingInputEmail').addClass('is-invalid');
         } else {
-        	 $('#emailMsg').prop('hidden', true);
-             $('#floatingInputEmail').removeClass('is-invalid');
+            $('#emailMsg').prop('hidden', true);
+            $('#floatingInputEmail').removeClass('is-invalid');
         }
         // 抓取要更新的資料
         var name = '${sessionScope.user.username}';
@@ -47,7 +47,7 @@
             var newAd = $('#floatingInputAd').val();
             if(name != newName || phone != newPhone || email != newEmail || ad != newAd){
                 $.ajax({
-                    url : "/recipe/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail+"/"+newAd,
+                    url : "/OceanCatHouse/userBack/changeNPE/"+newName+"/"+newPhone+"/"+newEmail+"/"+newAd,
                     type : 'PUT',
                     data : "",
                     async : false,

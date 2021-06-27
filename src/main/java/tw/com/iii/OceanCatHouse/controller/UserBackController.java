@@ -230,25 +230,27 @@ public class UserBackController {
         Map<String, String > oldCname = (Map<String, String>) map.get("oldCname");
         UserBean user = (UserBean) session.getAttribute("user");
         UserFavoritesCategoryBean ufcBean = null;
-        for(Map<String, String> idName:update){
-            // 更新UFCB
-            ufcBean = new UserFavoritesCategoryBean();
-            if(idName != null && idName.get("FCid") != ""){
-                ufcBean.setFavoritesCategoryId(Integer.parseInt(idName.get("FCid")));
-                // 更新UFC類別名稱
-                if(oldCname !=null){
-                    String oldname = oldCname.get(idName.get("FCid"));
-                    Integer Uid = user.getUserid();
-                    String name = idName.get("FCname");
-                    // 名字有更新才做更改
-                    if(oldname != name){
-                        userFavoritesDao.updateCategoryName(name, Uid, oldname);
+        if(update != null){
+            for(Map<String, String> idName:update){
+                // 更新UFCB
+                ufcBean = new UserFavoritesCategoryBean();
+                if(idName != null && idName.get("FCid") != ""){
+                    ufcBean.setFavoritesCategoryId(Integer.parseInt(idName.get("FCid")));
+                    // 更新UFC類別名稱
+                    if(oldCname !=null){
+                        String oldname = oldCname.get(idName.get("FCid"));
+                        Integer Uid = user.getUserid();
+                        String name = idName.get("FCname");
+                        // 名字有更新才做更改
+                        if(oldname != name){
+                            userFavoritesDao.updateCategoryName(name, Uid, oldname);
+                        }
                     }
                 }
+                ufcBean.setUserid(user.getUserid());
+                ufcBean.setFavoriteCategoryName(idName.get("FCname"));
+                userFavoritesCategoryDao.save(ufcBean);
             }
-            ufcBean.setUserid(user.getUserid());
-            ufcBean.setFavoriteCategoryName(idName.get("FCname"));
-            UserFavoritesCategoryBean save = userFavoritesCategoryDao.save(ufcBean);
         }
         // 刪除 移除的欄位
         List<String> delete = (List<String>) map.get("delete");
@@ -319,8 +321,10 @@ public class UserBackController {
         List orderDetailList = new LinkedList();
         List productList = new LinkedList();
         List orderStatusBean = new LinkedList();
+        List userPaymentBean = new LinkedList();
         for(OrdersBean order : ordersList){
             orderStatusBean.add(order.getOrderStatusBean());
+            userPaymentBean.add(order.getUserPaymentMethodBean());
             orderDetailList.add(order.getOrderDetailBeans());
             List product = new LinkedList();
             for(OrderDetailBean odb : order.getOrderDetailBeans()){
@@ -331,6 +335,7 @@ public class UserBackController {
         jsonMap.put("ordersList", ordersList);
         jsonMap.put("orderDetailList", orderDetailList);
         jsonMap.put("orderStatusBean", orderStatusBean);
+        jsonMap.put("userPaymentBean", userPaymentBean);
         jsonMap.put("productList", productList);
         return jsonMap;
     }
