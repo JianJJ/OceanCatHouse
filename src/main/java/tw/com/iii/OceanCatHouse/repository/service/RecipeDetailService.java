@@ -135,7 +135,6 @@ public class RecipeDetailService {
                 userFavoritesDao.save(userFavoritesBean);
                 System.out.printf("成功新增食譜:%d 到收藏夾:%s !%n",recId,catName);
             }else{
-
                 System.out.println("食譜已存在收藏夾中!");
             }
 

@@ -101,7 +101,7 @@ function addFavorite(id) {
 
     $.ajax({
         type: "post",
-        url: `/OceanCatHouse/userBack/recipeDetails?id=${id}`,
+        url: `/OceanCatHouse/recipeDetails?id=${id}`,
         data: favId,
         dataType: 'json',
         transitional: true,

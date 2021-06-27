@@ -43,7 +43,7 @@ public class RecipeController {
 
     //1.食譜詳細頁面
     @RequestMapping(
-            path = {"/userBack/recipeDetails"}
+            path = {"/recipeDetails"}
 
     )
     @ResponseBody
@@ -66,19 +66,29 @@ public class RecipeController {
 //食譜收藏功能相關----------------------------------------------------------
 
         UserBean user = (UserBean) session.getAttribute("user");
-        List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
-        List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
-        mav.addObject("mainBeanList", mainList);
-        mav.addObject("UFCBList", UFCBList);
+        if( user != null){
+            System.out.println("使用者成功登入，userID:" + user.getUserid());
+            List<RecipeMainBean> mainList = recipeMainService.findFavoritesByUserId(user.getUserid());
+            List<UserFavoritesCategoryBean> UFCBList = userFavoritesCategoryDao.findAllByUserid(user.getUserid());
+            mav.addObject("mainBeanList", mainList);
+            mav.addObject("UFCBList", UFCBList);
 
-
-
-        if(favId != null){
-            for(Integer x : favId){
-                System.out.println("接收參數:" + x);
-                service.addFavorite(user.getUserid(),recipeData.getRecId(),userFavoritesCategoryDao.findByFavoritesCategoryId(x).getFavoriteCategoryName());
+            if(favId != null){
+                for(Integer x : favId){
+                    System.out.println("接收參數:" + x);
+                    service.addFavorite(user.getUserid(),recipeData.getRecId(),userFavoritesCategoryDao.findByFavoritesCategoryId(x).getFavoriteCategoryName());
+                }
             }
+        }else {
+            System.out.println("使用者未登入");
         }
+
+
+
+
+
+
+
 
 
 

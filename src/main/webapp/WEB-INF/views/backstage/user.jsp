@@ -190,7 +190,7 @@
                             <td>${s.userphone}</td>
                             <td>${s.deliveryAddress}</td>
                             <td>${s.email}</td>
-                            <td>${s.state == 1?"正常":"壞掉的"}</td>
+                            <td>${s.state == 1?"正常":"未驗證"}</td>
                             <td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="order('${s.userid}')">訂單 </button> </td>
                         </tr>
                     </c:forEach>

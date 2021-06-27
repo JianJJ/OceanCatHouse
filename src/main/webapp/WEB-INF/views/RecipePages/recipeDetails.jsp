@@ -54,10 +54,20 @@
             var recTitle = '${recMainBean.recTitle}';
             var recipeContext = "";
             var img = '${recMainBean.recPic}';
-			var content = '${recMainBean.recText}';
+            var content = '${recMainBean.recText}';
         </script>
         <button class='closeMask'>X</button>
-        <jsp:include page="sendMail.jsp"></jsp:include>
+        <%--未登入頁面判斷(信箱)--%>
+        <c:if test="${UFCBList eq null}">
+            <h1>請先登入喔!</h1>
+            <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
+                                                                                            value="前往登入頁面"></a>
+        </c:if>
+
+        <%--已登入頁面(信箱寄送)--%>
+        <c:if test="${UFCBList ne null}">
+            <jsp:include page="sendMail.jsp"></jsp:include>
+        </c:if>
     </div>
 </div>
 
@@ -65,28 +75,38 @@
 
     <div class='modalSection' id='sectionTwo'>
         <button class='closeMask'>X</button>
-        <h4>分享</h4>
-        <ul>
+        <%--未登入頁面判斷(分享)--%>
+        <c:if test="${UFCBList eq null}">
+            <h1>請先登入喔!</h1>
+            <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
+                                                                                            value="前往登入頁面"></a>
+        </c:if>
 
-            <li class="fontIcon hyLink font">
-                <a class="fontIcon hyLink" id="fbShare" href="#">
-                    <p>FB</p></a>
-            </li>
-            <li class="fontIcon hyLink">
-                <a href="#" id='lineShare' target="_blank">
-                    <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
-                    <p>Line</p>
-                </a>
-            </li>
+        <%--已登入頁面(收藏)--%>
+        <c:if test="${UFCBList ne null}">
+            <h4>分享</h4>
+            <ul>
 
-            <li class="fontIcon hyLink font">
-                <a class="fontIcon hyLink" id='twitterShare' href="#" target="_blank">
-                    <p>Twitter</p></a></li>
-        </ul>
-        <div id='copyConsole'>
-            <textarea readonly class="copy_url_input">${pageContext.request.requestURL}</textarea>
-            <a class="copy_url_a">複製連結</a>
-        </div>
+                <li class="fontIcon hyLink font">
+                    <a class="fontIcon hyLink" id="fbShare" href="#">
+                        <p>FB</p></a>
+                </li>
+                <li class="fontIcon hyLink">
+                    <a href="#" id='lineShare' target="_blank">
+                        <img src="${pageContext.request.contextPath}/images/homePic/round_default.png">
+                        <p>Line</p>
+                    </a>
+                </li>
+
+                <li class="fontIcon hyLink font">
+                    <a class="fontIcon hyLink" id='twitterShare' href="#" target="_blank">
+                        <p>Twitter</p></a></li>
+            </ul>
+            <div id='copyConsole'>
+                <textarea readonly class="copy_url_input">${pageContext.request.requestURL}</textarea>
+                <a class="copy_url_a">複製連結</a>
+            </div>
+        </c:if>
     </div>
 </div>
 <%--加入收藏圖標--%>
@@ -94,32 +114,45 @@
     <div class='modalSection' id='sectionThree'>
         <div class="maskForFavorite">
             <div id='editConsole'>
+                <%--未登入頁面判斷(收藏)--%>
+                <c:if test="${UFCBList eq null}">
+                    <h1>請先登入喔!</h1>
+                    <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
+                                                                                                    value="前往登入頁面"></a>
+                </c:if>
+
+                <%--已登入頁面(收藏)--%>
+                <c:if test="${UFCBList.size() ne 0 && UFCBList ne null}">
                 <h2>選擇收藏夾</h2>
-                <a href="${pageContext.request.contextPath}/userBack/favorites" target="_blank"><input type="button" value="編輯收藏夾" class="btnAdd" ></a>
+                <a href="${pageContext.request.contextPath}/userBack/favorites" target="_blank"><input type="button"
+                                                                                                       value="編輯收藏夾"
+                                                                                                       class="btnAdd"></a>
 
                 <button id='cancel'>x</button>
                 <hr>
                 <section>
-<%--                    <label >--%>
-<%--                        <div class="favoriteCategory">--%>
-<%--                            <h5 class="categoryName">全部(默認)</h5>--%>
-<%--                            <input type="checkbox" id="cate" class="favID" value="0" name="favId">--%>
-<%--                        </div>--%>
-<%--                    </label>--%>
-                <c:if test="${UFCBList.size() ne 0}">
-                <c:forEach varStatus="loop" begin="0" end="${UFCBList.size()-1}">
-                    <label >
-                        <div class="favoriteCategory">
-                            <h5 class="categoryName">${UFCBList.get(loop.index).favoriteCategoryName}</h5>
-                            <input type="checkbox" id="cate${loop.index}" class="favID" value="${UFCBList.get(loop.index).favoritesCategoryId}" name="favId">
-                        </div>
-                    </label>
-                </c:forEach>
-                </c:if>
-                <c:if test="${UFCBList.size() eq 0}">
-                    <jsp:include page="recipeDetails_addfavorite1.jsp"></jsp:include>
-                </c:if>
-                   <input type="submit" class="btnAdd" value="完成" onclick="addFavorite(${recMainBean.recId})">
+                        <%--                    <label >--%>
+                        <%--                        <div class="favoriteCategory">--%>
+                        <%--                            <h5 class="categoryName">全部(默認)</h5>--%>
+                        <%--                            <input type="checkbox" id="cate" class="favID" value="0" name="favId">--%>
+                        <%--                        </div>--%>
+                        <%--                    </label>--%>
+
+                    <c:forEach varStatus="loop" begin="0" end="${UFCBList.size()-1}">
+                        <label>
+                            <div class="favoriteCategory">
+                                <h5 class="categoryName">${UFCBList.get(loop.index).favoriteCategoryName}</h5>
+                                <input type="checkbox" id="cate${loop.index}" class="favID"
+                                       value="${UFCBList.get(loop.index).favoritesCategoryId}" name="favId">
+                            </div>
+                        </label>
+                    </c:forEach>
+                    <input type="submit" class="btnAdd" value="完成" onclick="addFavorite(${recMainBean.recId})">
+                    </c:if>
+                    <c:if test="${UFCBList.size() eq 0}">
+                        <jsp:include page="recipeDetails_addfavorite1.jsp"></jsp:include>
+                    </c:if>
+
                 </section>
             </div>
         </div>
@@ -266,7 +299,7 @@
                         <%--推薦食譜迴圈--%>
                         <c:forEach varStatus="loop" begin="0" end="${recReccBean.size()-1}">
                             <li class='col-xs-6 col-md-2'><a
-                                    href="${pageContext.request.contextPath}/userBack/recipeDetails?id=${recReccBean.get(loop.index).recId}">
+                                    href="${pageContext.request.contextPath}/recipeDetails?id=${recReccBean.get(loop.index).recId}">
                                 <img src="${recReccBean.get(loop.index).recPic}"
                                      alt="${recReccBean.get(loop.index).recTitle}">
                                 <h4 class='showLines'>${recReccBean.get(loop.index).recTitle}</h4>
@@ -278,46 +311,6 @@
                     </ul>
                 </section>
             </div>
-
-            <%--                <div class="row">--%>
-            <%--                    <section class='seenRec blockColor col-xs-11 col-md-11'>--%>
-            <%--                        <h3 class="littleTitle">最近看過的食譜</h3>--%>
-            <%--                        <hr class='underline'>--%>
-            <%--                        <ul class='row'>--%>
-            <%--                            <li class='col-xs-6 col-md-2'><a href="#">--%>
-            <%--                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">--%>
-            <%--                                    <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>--%>
-            <%--                                    <p class='showLines'>--%>
-            <%--                                        防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜--%>
-            <%--                                    </p>--%>
-            <%--                                </a></li>--%>
-            <%--                                <li class='col-xs-6 col-md-2'><a href="#">--%>
-            <%--                                    <img src="../../../../resources/static/images/homePic/testPic2.jpg/testPic2.jpg" alt="味噌湯">--%>
-            <%--                                    <h4 class='showLines'>味噌湯</h4>--%>
-            <%--                                    <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>--%>
-            <%--                                </a></li>--%>
-            <%--                                <li class='col-xs-6 col-md-2'><a href="#">--%>
-            <%--                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">--%>
-            <%--                                    <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>--%>
-            <%--                                    <p class='showLines'>--%>
-            <%--                                        防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜--%>
-            <%--                                    </p>--%>
-            <%--                                </a></li>--%>
-            <%--                                <li class='col-xs-6 col-md-2'><a href="#">--%>
-            <%--                                    <img src="../../../../resources/static/images/homePic/testPic2.jpg/testPic2.jpg" alt="味噌湯">--%>
-            <%--                                    <h4 class='showLines'>味噌湯</h4>--%>
-            <%--                                    <p class='showLines'>味噌醬先泡開，加入味噌醬汁後，不要煮到沸騰，還有，海帶嫩芽也不可以煮沸，湯才不會糊掉。</p>--%>
-            <%--                                </a></li>--%>
-            <%--                                <li class='col-xs-6 col-md-2'><a href="#">--%>
-            <%--                                    <img src="../../../../resources/static/images/homePic/testPic1.jpg/testPic1.jpg" alt="鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜">--%>
-            <%--                                    <h4 class='showLines'>鮮蝦南瓜濃湯(南瓜盅)x氣炸烤箱食譜</h4>--%>
-            <%--                                    <p class='showLines'>--%>
-            <%--                                        防疫期間推薦大家選購高營養且耐放的根莖類蔬果，像是馬鈴薯/地瓜/南瓜/洋蔥等蔬菜可放置1~2週以上保存，像是米粒跟大胃先生非常愛喝餐廳的南瓜濃湯，其實在家自己煮超級簡單喔！只要加上一包市售濃湯粉~味道立刻升級~就跟餐廳賣得一模一樣好喝！詳細食譜--%>
-            <%--                                    </p>--%>
-            <%--                                </a></li>--%>
-            <%--                        </ul>--%>
-            <%--                    </section>--%>
-            <%--                </div>--%>
         </div>
     </div>
 
