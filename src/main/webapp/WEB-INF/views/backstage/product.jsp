@@ -14,45 +14,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-icons-1.5.0/bootstrap-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/demo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .headtop {
-            position: sticky;
-            top: 0px;
-            z-index: 5;
-        }
 
-        .navfix {
-            position: fixed;
-            top: 80px;
-            height: 100vh;
-        }
-
-        .navfix li {
-            border: none;
-            cursor: pointer;
-        }
-
-        .navfix li:hover {
-            background-color: #afe3d5;
-            color: #0c4128;
-        }
-
-        .list-group-item {
-            background-color: transparent;
-            color: white;
-        }
-        #canvas{
-            position: fixed;
-            z-index: 50;
-            visibility: hidden;
-        }
     </style>
 </head>
 
 
 <body>
+<div class="char">
+    <button class="catReturn">X</button>
 <canvas id="canvas">Error</canvas>
-
+</div>
 <%--圖片--%>
 <div class=" pic">
     <button class="catReturn">X</button>
@@ -75,55 +49,9 @@
     </form>
 
 </div>
-<style>
-    .pic {
-        border: blue 1px solid;
-        background-color: white;
-        width: 700px;
-        z-index: 50;
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        margin: auto;
-        top: 100px;
-        border-radius: 15px;
-        visibility: hidden;
-    }
-    .accordion-item{
-        text-align: center;
-        background-color: #62A5A1;
-        color: #0c4128;
-    }
-    .AAA{
-        padding-left: 38%;
-        text-align: center;
-        background-color: #62A5A1;
-        color: white;
-    }
-    .accordion-button {
-        text-align: center;
-    }
-
-    .accordion-button:focus{
-        text-align: center;
-        background-color: #62A5A1;
-        color:white;
-    }
-    .accordion-button:not(.collapsed) {
-        text-align: center;
-        background-color: #62A5A1;
-        color:white;
-    }
-    .list-group-item {
-        background-color: transparent;
-        color: white;
-    }
-</style>
-
 
 <!-- 購物車 -->
 <div class="hazy">
-
 </div>
 <div class="cat">
     <button class="catReturn">X</button>
@@ -618,6 +546,7 @@
 
     //圖表
     function chart(productId){
+        $(".char").css("visibility", "visible");
         console.log(productId);
         var labels = [];
         var data = [];
@@ -645,21 +574,15 @@
                 datasets: [{
                     label: '# of Votes',
                     data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
+                    fill: true,
+                    tension: 0.1,
+                    // backgroundColor: [
+                    //     'rgba(255, 99, 132, 1)',
+                    //
+                    // ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+
                     ],
                     borderWidth: 1
                 }]
@@ -682,64 +605,7 @@
 </script>
 <style>
 
-    .error {
-        color: red;
-    }
 
-    .TTT:hover {
-        background-color: #afe3d5;
-    }
-
-    .hazy {
-        visibility: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 50;
-
-    }
-
-    .cat {
-        border: blue 1px solid;
-        background-color: white;
-        width: 830px;
-        z-index: 50;
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        margin: auto;
-        top: 50px;
-        border-radius: 15px;
-        visibility: hidden;
-
-    }
-
-    .cat form {
-        top: 10px;
-        position: relative;
-        left: 20px;
-    }
-
-    .cat input {
-        width: 95%;
-    }
-
-    .cat select {
-        width: 95%;
-    }
-
-    /* 購物車返回 */
-    .catReturn {
-        top: -10px;
-        right: -10px;
-        position: absolute;
-        background-color: red;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        z-index: 20;
-    }
 
 </style>
 </body>
