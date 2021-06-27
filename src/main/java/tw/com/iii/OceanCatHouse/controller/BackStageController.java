@@ -466,11 +466,44 @@ public class BackStageController {
         System.out.println("*****商品線圖*****"+productId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String CreateOn = sdf.format(new Date());
-        List<OrdersBean> ordersBeanList = ordersRepository.findByOrdercreateon(CreateOn);
-        System.out.println(ordersBeanList);
+        Map<String , Integer> result = new HashMap<>();
+//        List<OrdersBean> lis= new ArrayList<>();
 
+        for(int i=0 ; i<7 ; i++) {
+//            String CreateOn = sdf.format(new Date());
+            //取出當天所有訂單
+            List<OrdersBean> ordersBeanList = ordersRepository.selectDay(i);
+            List<OrderDetailBean> orderDetailBeanList = null;//訂單細節
+            //紀錄器(商品Id,數量)
+            Map<Integer, Integer> count = new HashMap<>();
+            //遍歷當天所有訂單
+            for(OrdersBean ob :  ordersBeanList){
 
-        return  null;
+                 CreateOn = sdf.format(ob.getOrdercreateon());
+                System.out.println(CreateOn);
+                //取出訂單細節
+                orderDetailBeanList = ob.getOrderDetailBeans();
+                //遍歷訂單細節
+                for( OrderDetailBean ODBean : orderDetailBeanList){
+                    //找到需要的商品
+                   if( ODBean.getProductid() == productId){
+                       Integer x = ODBean.getQuantity();
+                       if (count.get(ODBean.getProductid()) == null) {
+                           count.put(ODBean.getProductid(), x);
+                       } else {
+                           x = count.get(ODBean.getProductid()) + ODBean.getQuantity();
+                           count.put(ODBean.getProductid(), x);
+                       }
+                   }
+                }
+            }
+            result.put(CreateOn,count.get(productId));
+
+            System.out.println(count);
+            System.out.println(orderDetailBeanList);
+        }
+        System.out.println("result : " +result);
+        return  result;
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

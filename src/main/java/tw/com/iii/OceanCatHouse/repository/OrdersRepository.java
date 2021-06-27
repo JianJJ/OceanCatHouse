@@ -10,18 +10,18 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
 
-    @Query(" FROM OrdersBean WHERE YEARWEEK(date_format(ordercreateon,'%Y-%m-%d')) = YEARWEEK(now())-1")
+    @Query(" FROM OrdersBean WHERE YEARWEEK(date_format(ordercreateon,'%Y-%m-%d')) = YEARWEEK(now())")
     List<OrdersBean> selectWeek();
     @Query(" FROM OrdersBean WHERE MONTH(date_format(ordercreateon,'%Y-%m-%d')) = MONTH(now())")
     List<OrdersBean> selectMonth();
     @Query(" FROM OrdersBean WHERE DAYOFYEAR(date_format(ordercreateon,'%Y-%m-%d')) = DAYOFYEAR(now())")
     List<OrdersBean> selectDay();
-    @Query(" FROM OrdersBean WHERE  DAYOFYEAR(date_format(ordercreateon,'%Y-%m-%d')) = ?1")
-    List<OrdersBean> selectProductIdAndDay( String date);
+    @Query(value ="select * FROM orders WHERE to_days(now())-to_days(ordercreateon)=?1", nativeQuery=true)
+
+    List<OrdersBean> selectDay( Integer i);
 
 
     List<OrdersBean> findByOrdercreateon(String date);
-
     List<OrdersBean> findByUserid(Integer userId);
 
     @Query("from OrdersBean where userid=?1 order by ordercreateon DESC")

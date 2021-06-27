@@ -57,6 +57,10 @@ public class PublicController {
 		return "views/RecipePages/homePage";
 
 	}
+	@RequestMapping("/h")
+	public String home() {
+		return "/views/backstage/backstage";
+	}
 	
 
 
