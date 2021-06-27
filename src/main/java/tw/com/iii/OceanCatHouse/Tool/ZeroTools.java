@@ -36,7 +36,7 @@ public class ZeroTools {
 //    String dateStr = sdf.format(org.apache.commons.lang3.time.DateUtils.addMonths(date,-1));
 
 //    new ModelAndView("redirect:/toList？param1="+value1+"&param2="+value2);
-    //	window.location.href = "/recipe/views/phoneLogin";
+//	window.location.href = "/recipe/views/phoneLogin";
 private String STMP = "";
     private String secret ="";
 
