@@ -220,6 +220,8 @@ public class ShopController {
     public String addPay(HttpSession session,
                          @RequestBody Map<String, Object> payMap){
         session.setAttribute("payMap", payMap);
+        ZeroTools zeroTools = new ZeroTools();
+//        boolean recaptcha = zeroTools.recaptcha();
         return "傳送成功";
     }
 }

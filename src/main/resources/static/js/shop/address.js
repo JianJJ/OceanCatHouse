@@ -105,6 +105,10 @@ $(function(){
 
   // ---------------- Jian ----------------------------
     //送出訂單
+    var Orderkey = "";
+    verifyCallback = function (key){
+        Orderkey = key;
+    }
     $('#insertOrder').click(function (){
         // 判斷付款方式
         var PaymentId = 1;
