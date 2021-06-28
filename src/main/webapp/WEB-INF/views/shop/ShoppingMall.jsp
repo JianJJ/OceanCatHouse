@@ -40,16 +40,20 @@
 
 <!-- 動態背景 -->
 <canvas id="canvas"></canvas>
+
+
+
+
+<!-- 左邊浮動區塊 -->
+<div class="barNav d-none d-lg-inline-block">
+    <ul>
+        <li class="fontIcon"><span  id="f1"></span></li>
+    </ul>
+</div>
 <div class="container">
-	
     <!-- 中間部分 -->
     <div class="row">
-        <!-- 左邊浮動區塊 -->
-        <div class="barNav d-none d-lg-inline-block">
-            <ul>
-                <li class="fontIcon"><span  id="f1"></span></li>
-            </ul>
-        </div>
+
 
         <!-- 網頁中間內文 -->
 
@@ -64,9 +68,6 @@
                 }else{
                     var url ="${pageContext.request.contextPath}/shopping/${param.categoryid}/${param.pag}";
                 }
-
-
-
                 $.ajax({
                     url: url,
                     type: "get",
@@ -78,10 +79,14 @@
                 function doSuccess(json) {
                     console.log(json);
                     for (var x = 0; x < 3; x++) {
-                        $(".main").append('<div class="row AAA' + x + '">');
+                        $(".main").append('<div class="row AAA' + x + ' ">');
                         for (var y = 1; y < 5; y++) {
                             if(json[i]==null)break;
-                            $(".AAA" + x).append('<div class="col-sm-6 col-md-6 col-lg-3 Product"><a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '"><figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt=""><h2>' + json[i].productname + '</h2></figure></a></div>');
+                            $(".AAA" + x).append('' +
+                                '<div class="col-sm-6 col-md-6 col-lg-3 Product">' +
+                                '<a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '">' +
+                                '<figure><img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' +
+                                '<h2>' + json[i].productname + '</h2></figure></a></div>');
                             i++;
                         }
                         $(".main").append('</div>');
@@ -155,7 +160,7 @@
 
 </div>
 </body>
-<%--    <script src="../js/umbrella.js"></script>--%>
+<%--    <script src="../js/star2.js"></script>--%>
     <script src="../js/shoopCat.js"></script>
 
 </html>

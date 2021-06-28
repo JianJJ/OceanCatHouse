@@ -31,7 +31,13 @@
         var id = "${id}";
         console.log("id : " + id);
     </script>
+    <style>
+        body{
+           color: rgba(0,0,0,0.9);
 
+        }
+
+    </style>
 
     <title>✿海貓食屋✿</title>
 </head>
@@ -43,17 +49,16 @@
 <canvas id="canvas"></canvas>
 <!-- <%--購物車插入--%> -->
 <jsp:include page="/WEB-INF/views/shop/shopCat.jsp"></jsp:include>
-<!-- 分類條 -->
+
+<!-- 左邊浮動區塊 -->
+<div class="barNav d-none d-lg-inline-block">
+    <ul>
+        <li class="fontIcon"><span id="f1"></span></li>
+    </ul>
+</div>
 <div class="container">
     <!-- 中間部分 -->
     <div class="row">
-        <!-- 左邊浮動區塊 -->
-        <div class="barNav d-none d-lg-inline-block">
-            <ul>
-                <li class="fontIcon"><span id="f1"></span></li>
-            </ul>
-        </div>
-
         <!-- 網頁中間內文 -->
         <div class="col-lg-11">
             <div class="cenBody">

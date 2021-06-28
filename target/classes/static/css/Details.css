@@ -4,14 +4,14 @@ body {
 
 
 .barNav {
-    position: relative;
+    position: absolute;
     top: 350px;
     width: 100px;
     height:100vh;
     font-size: 35px;
     background-color: transparent;
     text-align: center;
-    
+    left: 5%;
 }
 
 .barNav ul {
@@ -76,6 +76,7 @@ body {
     font-size: 25px;
     padding-top:5%;
     margin-top:30px;
+    margin-bottom: -100px;
 }
 
 .producttext {
@@ -174,7 +175,7 @@ body {
 
 .cenBody  .leftImg .banner .list .rsimg {
     height: 500px;
-    max-width: 500px;
+    width: 500px;
     object-fit:contain;
     margin: 20px 0px;
 
@@ -264,10 +265,10 @@ canvas {
 }
 
 
- footer {
-            margin:-42px;
+footer {
+            margin:-142px;
             z-index: 10;
-        }
+}
        
 .cenBody .SimilarProducts figure {
                 width: 200px;
