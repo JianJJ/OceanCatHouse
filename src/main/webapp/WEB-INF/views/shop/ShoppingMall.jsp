@@ -160,7 +160,7 @@
 
 </div>
 </body>
-<%--    <script src="../js/umbrella.js"></script>--%>
+<%--    <script src="../js/star2.js"></script>--%>
     <script src="../js/shoopCat.js"></script>
 
 </html>

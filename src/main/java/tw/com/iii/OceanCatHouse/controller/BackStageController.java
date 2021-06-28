@@ -45,10 +45,7 @@ public class BackStageController {
     public String time() {
         return "views/backstage/time";
     }
-    @RequestMapping("/t")
-    public String t() {
-        return "views/backstage/time";
-    }
+
 
     @RequestMapping("/order")
     public String order() {
