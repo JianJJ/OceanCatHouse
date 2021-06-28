@@ -409,13 +409,26 @@ padding:0;
         background: white;
 }
 
-#sectionOne {
+#sectionOne,
+.mask #sectionThree {
         top: 10%;
         width: 50%;
         
     }
-    
+   
+#sectionOne .noLogin ,
+.mask #sectionThree .noLogin {
+	color:#62A5A1;
+	margin-left:12px;
+	font-size:18px;
+}
 
+
+#sectionOne .noLogin:hover ,
+.mask #sectionThree .noLogin:hover {
+	color:#222;
+} 
+ 	
  #sectionTwo  #copyConsole {
  margin: 75px 25px 25px 25px;
  height:150px;
@@ -513,11 +526,7 @@ background:#86e3bc;
 	color:#d1ffec;
 }
 
-.mask #sectionThree {
-	width:50vw;
-	top:20%;
-	background:transparent;
-}
+
 
 
 footer {

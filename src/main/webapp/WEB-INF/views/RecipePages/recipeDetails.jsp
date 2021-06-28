@@ -59,9 +59,8 @@
         <button class='closeMask'>X</button>
         <%--未登入頁面判斷(信箱)--%>
         <c:if test="${UFCBList eq null}">
-            <h1>請先登入喔!</h1>
-            <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
-                                                                                            value="前往登入頁面"></a>
+            <h2>請先登入喔!</h1><br/>
+            <a class='noLogin' href="${pageContext.request.contextPath}/views/login" target="_blank">前往登入頁面</a>
         </c:if>
 
         <%--已登入頁面(信箱寄送)--%>
@@ -102,24 +101,31 @@
 </div>
 <%--加入收藏圖標--%>
 <div id='blackMaskThree' class='mask'>
-    <div class='modalSection' id='sectionThree'>
-        <div class="maskForFavorite">
-            <div id='editConsole'>
-                <%--未登入頁面判斷(收藏)--%>
-                <c:if test="${UFCBList eq null}">
-                    <h1>請先登入喔!</h1>
-                    <a href="${pageContext.request.contextPath}/views/login" target="_blank"><input type="button"
-                                                                                                    value="前往登入頁面"></a>
+    <%--未登入頁面判斷(收藏)--%>
+     <c:if test="${UFCBList eq null}">
+     <div class='modalSection' id='sectionThree'>
+     
+     
+     
+     <button class='closeMask' id='closeOne'>X</button>
+                    <h2>請先登入喔!</h1><br/>
+                    <a class='noLogin' href="${pageContext.request.contextPath}/views/login" target="_blank">前往登入頁面</a>
                 </c:if>
-
+       
+              
                 <%--已登入頁面(收藏)--%>
                 <c:if test="${UFCBList.size() ne 0 && UFCBList ne null}">
+                 <div class="maskForFavorite">
+                 
+            <div id='editConsole'>
+            <button class='closeMask' id='closeTwo'>X</button>
+            
                 <h2>選擇收藏夾</h2>
                 <a href="${pageContext.request.contextPath}/userBack/favorites" target="_blank"><input type="button"
                                                                                                        value="編輯收藏夾"
                                                                                                        class="btnAdd"></a>
 
-                <button id='cancel'>x</button>
+                
                 <hr>
                 <section>
                         <%--                    <label >--%>
