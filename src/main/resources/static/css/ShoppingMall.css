@@ -1,12 +1,12 @@
 .barNav {
-    position: relative;
+    position: absolute;
     top: 350px;
     width: 100px;
     height:100vh;
     font-size: 35px;
     background-color: transparent;
     text-align: center;
-    
+    left: 5%;
 }
 
 .barNav ul {
@@ -16,6 +16,7 @@
     width: 50px;
     height:50px;
     padding:0;
+    z-index: 130;
 }
 
 .barNav ul li {

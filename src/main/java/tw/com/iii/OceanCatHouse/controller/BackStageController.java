@@ -42,7 +42,11 @@ public class BackStageController {
     }
 
     @RequestMapping("/time")
-    public String tiem() {
+    public String time() {
+        return "views/backstage/time";
+    }
+    @RequestMapping("/t")
+    public String t() {
         return "views/backstage/time";
     }
 

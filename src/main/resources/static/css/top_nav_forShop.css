@@ -78,8 +78,9 @@ input:focus {
 
 /* header 和footer的顏色 備選色  #D9B35A #FFD77A #FADF84 #FCE1C5	*/
 .mainColor:not(footer){
-    background: linear-gradient(to bottom, #62A5A1, #ddf5d5);
-    background: -webkit-linear-​gradient(to bottom, #62A5A1, #ddf5d5);
+
+    /*background: linear-gradient(to bottom, #62A5A1, #ddf5d5);*/
+    /*background: -webkit-linear-​gradient(to bottom, #62A5A1, #ddf5d5);*/
 }
 
 .btn-search {
@@ -173,7 +174,7 @@ em {
     top:35px;
     width:100vw;
     height: 70px;
-    background-color: #ddf5d5;
+    background-color: #62A5A1;
     z-index:50;
     padding-top:20px;
 }
@@ -204,6 +205,8 @@ footer > .clearfix > dl > dd > a:hover {
 }
 
 footer {
-	 background: linear-gradient(to top, #62A5A1, #ddf5d5);
-    background: -webkit-linear-​gradient(to top, #62A5A1, #ddf5d5);
+
+	/* background: linear-gradient(to top, #62A5A1, #ddf5d5);*/
+    /*background: -webkit-linear-​gradient(to top, #62A5A1, #ddf5d5);*/
+    background-color: #62A5A1;
 }
