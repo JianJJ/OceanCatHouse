@@ -260,11 +260,6 @@ public class UserController {
                     bean.setState("1");
                     userRepository.save(bean);
                 }
-
-
-
-
-
                 session.setAttribute("state", bean.getState());
                 session.setAttribute("user", bean);
 
