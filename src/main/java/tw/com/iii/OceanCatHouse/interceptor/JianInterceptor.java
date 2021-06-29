@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class JianInterceptor implements WebMvcConfigurer {
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/userPic/**").addResourceLocations("file:C:/JavaFramework0524/JavaFramework/OceanCatHouse/src/main/resources/static/images/userPic/");

@@ -59,7 +59,11 @@
     		window.location.href='${pageContext.request.contextPath}/userBack/home';
     		
     	})
-    
+    if(${sessionScope.user.username == null || sessionScope.user.username == ""}){
+        $('#userConsole ul li a').eq(2).text("登入");
+    }else {
+        $('#userConsole ul li a').eq(2).text("登出");
+    }
     </script>
 
 </body>
