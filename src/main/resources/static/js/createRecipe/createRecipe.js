@@ -7,4 +7,8 @@ $(document).ready(function (){
         }
     })
 
+    $('#autologin').click(function (){
+        $('#RecTitle').val("好喝的南瓜濃湯");
+    })
+
 })

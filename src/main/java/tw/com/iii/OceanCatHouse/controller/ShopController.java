@@ -219,10 +219,13 @@ public class ShopController {
     @ResponseBody
     public String addPay(HttpSession session,
                          @RequestBody Map<String, Object> payMap){
-        session.setAttribute("payMap", payMap);
+        String orderkey = (String) payMap.get("Orderkey");
         ZeroTools zeroTools = new ZeroTools();
-//        boolean recaptcha = zeroTools.recaptcha();
-        return "傳送成功";
+        boolean recaptcha = zeroTools.recaptcha(orderkey);
+        if(recaptcha){
+            session.setAttribute("payMap", payMap);
+        }
+        return recaptcha+"";
     }
 }
 

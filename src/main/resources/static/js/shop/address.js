@@ -104,8 +104,10 @@ $(function(){
     $(".SSS").text("訂單金額 :$ " + a);
 
   // ---------------- Jian ----------------------------
-    //送出訂單
+    // 送出訂單
+    // 紀錄機器人驗證key
     var Orderkey = "";
+    var isCheck = false;
     verifyCallback = function (key){
         Orderkey = key;
     }
@@ -137,7 +139,8 @@ $(function(){
         var pay = {
             "PaymentId" : PaymentId,    // 1=信用卡, 2=貨到付款
             "cardId"    : cardId,       // 0=新增卡片, !=0使用舊卡片
-            "addCard"   : addCard       // cardId=0, 新增卡片的資料
+            "addCard"   : addCard,      // cardId=0, 新增卡片的資料
+            "Orderkey"  : Orderkey      // 機器人驗證金鑰
         };
         $.ajax({
             url : "/OceanCatHouse/addPay",
@@ -146,31 +149,39 @@ $(function(){
             contentType : "application/json;charset=utf-8",
             async : false,
             cache : false,
-            success : function () {
-
-            },
-            error : function (){
-                alert("系統忙碌中，請聯繫我們！");
-            }
-        })
-        $.ajax({
-            url : "/OceanCatHouse/insertOrder",
-            type : "POST",
-            data : JSON.stringify(productList),// productList購買的商品
-            contentType : "application/json;charset=utf-8",
-            async : false,
-            cache : false,
-            success : function () {
-                if(confirm("訂單已送出，是否要繼續購物呢？")){
-                    $(location).attr("href", "/OceanCatHouse/views/ShoppingMall");
-                }else {
-                    $(location).attr("href", "/OceanCatHouse");
+            success : function (isOK) {
+                console.log(isOK);
+                if(isOK == "true"){
+                    isCheck = true;
                 }
             },
             error : function (){
                 alert("系統忙碌中，請聯繫我們！");
             }
         })
+        if(isCheck){
+            $.ajax({
+                url : "/OceanCatHouse/insertOrder",
+                type : "POST",
+                data : JSON.stringify(productList),// productList購買的商品
+                contentType : "application/json;charset=utf-8",
+                async : false,
+                cache : false,
+                success : function () {
+                    if(confirm("訂單已送出，是否要繼續購物呢？")){
+                        $(location).attr("href", "/OceanCatHouse/views/ShoppingMall");
+                    }else {
+                        $(location).attr("href", "/OceanCatHouse");
+                    }
+                },
+                error : function (){
+                    alert("系統忙碌中，請聯繫我們！");
+                }
+            })
+        }else {
+            $('#robotCheck').prop('hidden', false);
+        }
+
     })
 
     // 選擇其他信用卡

@@ -58,9 +58,10 @@
           <!-- <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button> -->  
 
             <form action="/OceanCatHouse/signup/login" >
-                <input class="formCSS" type="email" placeholder='Email' name="email" value="${email}">
+                <input class="formCSS" type="email" placeholder='Email' name="email" value="${email}" id="e">
                 <span class="error">${errors.email}</span>
-                <input class="formCSS" type="password" placeholder="密碼" name="userpassword" value="${userpassword}">
+                <input class="formCSS" type="password" placeholder="密碼" name="userpassword" value="${userpassword}" id="p">
+                <button type="button" id="autologin" style="width: 5px ;height: 3px"></button>
                 <span class="error">${errors.userpassword}</span>
                 <div class="g-recaptcha"
                      data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
@@ -95,6 +96,12 @@
 <script>
     // 紀錄從哪裡來到登錄頁面
     // var come = document.referrer;
+
+    // 一鍵登入
+    $('#autologin').click(function (){
+        $('#e').val("AAA@AAA.com");
+        $('#p').val("AAA");
+    })
 
     $(".phone").click(function () {
         window.location.href = "/OceanCatHouse/views/phoneLogin";

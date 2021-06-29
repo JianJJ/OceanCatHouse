@@ -20,38 +20,8 @@
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/createRecipe.css">
     <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipe.js"></script>
-    <style>
-        .inner {
-            border: 1px solid #bcbebf;
-            padding: 15px;
-        }
-
-        .showAD {
-            border: 1px solid #bcbebf;
-            text-align: center;
-        }
-        #pic{
-            margin: 4px;
-        }
-
-        #RecTitle {
-            border-color: #dc3545;
-        }
-
-        .onTop {
-            margin-top: 40px;
-        }
-
-        #CreateNow {
-            width: 200px;
-            float: right;
-        }
-
-        .smallInner {
-            margin: 10px 0px;
-        }
-    </style>
 </head>
 <body>
 <!--頁首-->
@@ -74,8 +44,9 @@
                     <label for="RecTitle">請輸入食譜名稱</label>
                     <div class="input-group inner">
                         <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle" required>
+                        <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
                     </div>
-                    <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
+                    <button type="button" id="autologin" style="width: 5px ;height: 3px"></button>
                     <div class="form-check smallInner">
                         <input class="form-check-input" type="checkbox" value="" id="agree"><!--checked disabled-->
                         <label class="form-check-label" for="agree">

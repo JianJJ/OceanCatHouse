@@ -143,6 +143,7 @@
                  data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
                  data-callback='verifyCallback' data-action='ubmit'>Submit
             </div>
+            <p id="robotCheck" style="color: red" hidden>需要通過驗證</p>
 
             <button class="btn btn-primary sbtn" id="insertOrder">送出訂單</button>
             <span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>

@@ -216,4 +216,16 @@ $(document).ready(function (){
             }
         })
     })
+
+    // 一鍵輸入
+    $('#autologin').click(function (){
+        $('#userCardName').val("JianJhungJian");
+        $('#cardNumberP1').val("5429");
+        $('#cardNumberP2').val("0098");
+        $('#cardNumberP3').val("4589");
+        $('#cardNumberP4').val("9999");
+        $('#expireMonth').val("06");
+        $('#expireYear').val("29");
+        $('#checkNumber').val("168");
+    })
 })

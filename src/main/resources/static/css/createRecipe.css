@@ -1,0 +1,29 @@
+.inner {
+    border: 1px solid #bcbebf;
+    padding: 15px;
+}
+
+.showAD {
+    border: 1px solid #bcbebf;
+    text-align: center;
+}
+#pic{
+    margin: 4px;
+}
+
+#RecTitle {
+    border-color: #dc3545;
+}
+
+.onTop {
+    margin-top: 40px;
+}
+
+#CreateNow {
+    width: 200px;
+    float: right;
+}
+
+.smallInner {
+    margin: 10px 0px;
+}

@@ -80,7 +80,8 @@
 
                 安全驗證碼:
                 <input type="text" size="2" maxlength=3 id="checkNumber" name="VerificationCode" class="cardNumber" pattern="\d{3}" required>
-                <input type="button" id='btnSave' value="儲存付款方式"></input>
+                <button type="button" id="autologin" style="width: 5px ;height: 3px"></button>
+                <input type="button" id='btnSave' value="儲存付款方式"/><br/>
             </div>
         </form>
     </div>
