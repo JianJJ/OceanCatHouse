@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 //@ImportResource("classpath:payment_conf.xml")
-
 public class OceanCatHouseApplication {
 
 	public static void main(String[] args) {

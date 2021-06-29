@@ -186,10 +186,10 @@ $(function(){
 
     // 選擇其他信用卡
     $('#changeCardBtn').click(function (){
-        $('.mask').show();
+        $('.mask').fadeIn("normal");
     })
     $('.mask').click(function(){
-        $(this).hide();
+        $(this).fadeOut("normal");
     })
     $('.thisCard').on('click', function (){
         $('#myCard').empty();

@@ -122,7 +122,7 @@ $(document).ready(function (){
     // 點擊顯示單張卡片, 或是新增卡片
     $('.showCard').on('click','div', function (){
         var CardId= $(this).prop('id');
-        $('.mask').show();
+        $('.mask').fadeIn("normal");
         if(CardId != "" && CardId != null){
             $.ajax({
                 url  : "/OceanCatHouse/userBack/findCard/"+CardId,
@@ -151,7 +151,7 @@ $(document).ready(function (){
 
     // 關閉卡片瀏覽
     $('.mask').click(function(){
-        $(this).hide();
+        $(this).fadeOut("normal");
         $('#checkCardId').val("");
         $('#userCardName').val("");
         $('#cardNumberP1').val("");
