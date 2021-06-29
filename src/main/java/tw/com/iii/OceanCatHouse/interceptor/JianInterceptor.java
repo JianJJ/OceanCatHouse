@@ -13,7 +13,7 @@ public class JianInterceptor implements WebMvcConfigurer {
         registry.addResourceHandler("/images/userPic/**").addResourceLocations("file:C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\userPic\\");
         registry.addResourceHandler("/images/mainpic/**").addResourceLocations("file:C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\mainpic\\");
         registry.addResourceHandler("/images/stepPic/**").addResourceLocations("file:C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\stepPic\\");
-
+        registry.addResourceHandler("/images/shop/**").addResourceLocations("file:C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\shop\\");
     }
 }
 
