@@ -112,7 +112,7 @@ public class RecipeMainService {
             // 2. 儲存圖片到資料夾
             if(fileMap != null && fileMap.get("fileMain") != null){
                 fileMap.get("fileMain").transferTo(
-                        new File("C:/JavaFramework0524/JavaFramework/OceanCatHouse/src/main/resources/static/images/mainpic/"+format));
+                        new File("C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\mainpic\\"+format));
                 // 3. 儲存檔案名稱到資料庫
                 recipeMainBean.setRecPic(format);
             }else {
@@ -137,7 +137,7 @@ public class RecipeMainService {
         }
         // 刪除資料夾舊封面照片, 判斷更新是否有更換圖片
         if(isUpdate && fileMap != null && fileMap.get("fileMain") != null){
-            FileSystemUtils.deleteRecursively(new File("C:/JavaFramework0524/JavaFramework/OceanCatHouse/src/main/resources/static/images/mainpic/" + main.getRecPic()));
+            FileSystemUtils.deleteRecursively(new File("C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\mainpic\\" + main.getRecPic()));
         }
         // 刪除舊食材表
         if(isUpdate && main.getRecipeMaterialBeans() != null){
@@ -176,7 +176,7 @@ public class RecipeMainService {
                 try {
                     stepPicName = sdf.format(new Date())+".jpg";
                     fileMap.get("file"+i).transferTo(
-                            new File("C:/JavaFramework0524/JavaFramework/OceanCatHouse/src/main/resources/static/images/stepPic/"+i+stepPicName));
+                            new File("C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images\\stepPic\\"+i+stepPicName));
                     recipeStepBean.setStepPic(i+stepPicName);
                 } catch (IOException e) {
                     e.printStackTrace();
