@@ -1,8 +1,8 @@
 <?xml  version="1.0" encoding="utf-8"?>
 <Conf>
     <OperatingMode>Test</OperatingMode> <!--Test or Production-->
-    <MercProfile>Stage_Account</MercProfile>
-    <IsProjectContractor>N</IsProjectContractor>
+    <MercProfile>Production_Account</MercProfile>
+    <IsProjectContractor>Y</IsProjectContractor>
     
     <MerchantInfo>
         <MInfo name="Production_Account">

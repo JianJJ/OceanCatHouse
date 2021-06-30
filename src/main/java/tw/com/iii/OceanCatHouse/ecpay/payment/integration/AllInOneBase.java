@@ -3,10 +3,12 @@ package tw.com.iii.OceanCatHouse.ecpay.payment.integration;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import tw.com.iii.OceanCatHouse.ecpay.payment.integration.ecpayOperator.EcpayFunction;
 import tw.com.iii.OceanCatHouse.ecpay.payment.integration.errorMsg.ErrorMessage;
 import tw.com.iii.OceanCatHouse.ecpay.payment.integration.exception.EcpayException;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class AllInOneBase {
 	protected static String operatingMode;
@@ -27,15 +29,15 @@ public class AllInOneBase {
 	protected static Document verifyDoc;
 	protected static String[] ignorePayment;
 	public AllInOneBase(){
-//		try{
+		try{
 			Document doc;
 			/* when using web project*/
-//			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
-//			doc = EcpayFunction.xmlParser(configPath);
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+			String configPath = URLDecoder.decode(classLoader.getResource("payment_conf.xml").getPath(), "UTF-8");
+			doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
-			String paymentConfPath = "./src/main/resources/payment_conf.xml";
-			doc = EcpayFunction.xmlParser(paymentConfPath);
+//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
+//			doc = EcpayFunction.xmlParser(paymentConfPath);
 			
 			doc.getDocumentElement().normalize();
 			//OperatingMode
@@ -68,8 +70,8 @@ public class AllInOneBase {
 			if(HashKey == null){
 				throw new EcpayException(ErrorMessage.MInfo_NOT_SETTING);
 			}
-//		} catch(UnsupportedEncodingException e){
-//			e.printStackTrace();
-//		}
+		} catch(UnsupportedEncodingException e){
+			e.printStackTrace();
+		}
 	}
 }
