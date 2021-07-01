@@ -8,6 +8,9 @@ import tw.com.iii.OceanCatHouse.ecpay.payment.integration.ecpayOperator.EcpayFun
 import tw.com.iii.OceanCatHouse.ecpay.payment.integration.errorMsg.ErrorMessage;
 import tw.com.iii.OceanCatHouse.ecpay.payment.integration.exception.EcpayException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 public class AllInOneBase {
 	protected static String operatingMode;
 	protected static String mercProfile;
@@ -30,13 +33,18 @@ public class AllInOneBase {
 //		try{
 			Document doc;
 			/* when using web project*/
-//			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-//			String configPath = URLDecoder.decode(classLoader.getResource("/payment_conf.xml").getPath(), "UTF-8");
-//			doc = EcpayFunction.xmlParser(configPath);
+			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		String configPath = null;
+		try {
+			configPath = URLDecoder.decode(classLoader.getResource("payment_conf.xml").getPath(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		doc = EcpayFunction.xmlParser(configPath);
 			/* when using testing code*/
-			String paymentConfPath = "./src/main/resources/payment_conf.xml";
-			doc = EcpayFunction.xmlParser(paymentConfPath);
-			System.out.println(doc);
+//			String paymentConfPath = "./src/main/resources/payment_conf.xml";
+//			doc = EcpayFunction.xmlParser(paymentConfPath);
+//			System.out.println(doc);
 			
 			doc.getDocumentElement().normalize();
 			//OperatingMode
