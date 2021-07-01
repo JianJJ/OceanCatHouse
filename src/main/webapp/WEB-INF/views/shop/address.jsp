@@ -139,6 +139,10 @@
                     <input type="text" size="2" maxlength=3 id="checkNumber" name="VerificationCode" class="cardNumber" pattern="\d{3}" required>
                 </div>
             </div>
+            <div>
+                <input type="radio" name="payMethod" id='pay4' value='newCard'>
+                <label for='pay4'>第三方支付-綠界科技Ecpay</label><br/>
+            </div>
             <div class="g-recaptcha"
                  data-sitekey="6LdUNRobAAAAAJJakDhDglshLFmwJP1P2c12MBdP"
                  data-callback='verifyCallback' data-action='ubmit'>Submit
@@ -147,6 +151,10 @@
 
             <button class="btn btn-primary sbtn" id="insertOrder">送出訂單</button>
             <span class="err">${errors.address} </span><span class="err">${errors.recaptcha}</span>
+
+            <div id="orderForEcpay">
+            </div>
+            <button class="btn btn-primary sbtn" id="insertEcpayOrder" hidden>送出訂單</button>
         </div>
 
     </div>

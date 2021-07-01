@@ -2,16 +2,28 @@ $(function(){
 
     $('#pay1').click(function(){
         $('#addNewCard').slideUp();
-        $('#usedCardDiv').slideUp()
+        $('#usedCardDiv').slideUp();
+        $('#insertOrder').prop('hidden', false);
+        $('#insertEcpayOrder').prop('hidden', true);
     }).click();
 	$('#pay2').click(function(){
-        $('#usedCardDiv').slideDown()
+        $('#usedCardDiv').slideDown();
 		$('#addNewCard').slideUp();
+        $('#insertOrder').prop('hidden', false);
+        $('#insertEcpayOrder').prop('hidden', true);
 	});
 	$('#pay3').click(function(){
 		$('#addNewCard').slideDown();
-        $('#usedCardDiv').slideUp()
+        $('#usedCardDiv').slideUp();
+        $('#insertOrder').prop('hidden', false);
+        $('#insertEcpayOrder').prop('hidden', true);
 	});
+	$('#pay4').click(function (){
+        $('#addNewCard').slideUp();
+        $('#usedCardDiv').slideUp();
+        $('#insertOrder').prop('hidden', true);
+        $('#insertEcpayOrder').prop('hidden', false);
+    });
 
 
 	$('input').keyup(function(e){   
@@ -150,7 +162,6 @@ $(function(){
             async : false,
             cache : false,
             success : function (isOK) {
-                console.log(isOK);
                 if(isOK == "true"){
                     isCheck = true;
                 }
@@ -198,5 +209,36 @@ $(function(){
         console.log($(this).prop('id'));
     })
 
+    // 綠界ecpay-送出訂單去結帳
+    $('#insertEcpayOrder').click(function (){
+        var productNameStr = ""
+        for (var i=0;i<productList.length;i++) {
+            productNameStr = productNameStr + `${productList[i].productname}` + "#";
+        }
+        productNameStr = productNameStr.substring(0, productNameStr.length-1);
+        var map = {
+            "productNameStr" : productNameStr, // 商品名稱
+            "total" : a, // 訂單總金額
+            "Orderkey" : Orderkey // 是否驗證機器人金鑰
+        }
+        $.ajax({
+            url : "/OceanCatHouse/ecpayOrder",
+            type : "POST",
+            data : JSON.stringify(map),
+            contentType : "application/json;charset=utf-8",
+            async : false,
+            cache : false,
+            success : function (isOK){
+                if(isOK != "checkAgain"){
+                    $('#orderForEcpay').append(`${isOK}`);
+                }else {
+                    $('#robotCheck').prop('hidden', false);
+                }
+            },
+            error : function (){
+                alert("系統忙碌中，請聯繫我們！")
+            }
+        })
+    })
 });
 

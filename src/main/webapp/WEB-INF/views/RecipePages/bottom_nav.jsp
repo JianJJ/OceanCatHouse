@@ -12,8 +12,8 @@
 
     <footer class="mainColor">
     <div class='info d-none d-lg-block'>
-    	<h4>客服電話： 0975-912-952</h4>
-    	<h4>信箱： c93919@gmail.com</h4>
+    	<h4>客服電話： 0975-999-789</h4>
+    	<h4>信箱： c999889@gmail.com</h4>
     	<h4>客服時間： 週一 ~ 週五&nbsp;&nbsp; 早上8點 ~ 下午6點</h4>
     </div>
         <div class='clearfix'>
