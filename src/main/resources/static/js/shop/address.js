@@ -134,7 +134,7 @@ $(function(){
         }else if($('#pay2').prop('checked')){
             // 使用原有的卡片
             cardId = parseInt($('#pay2').val());
-        }else {
+        }else if($('#pay3').prop('checked')){
             // 使用新增的卡片
             addCard = {
                 "userCardName" : $('#userCardName').val(),
@@ -146,6 +146,8 @@ $(function(){
                 "expireYear"   : $('#expireYear').val(),
                 "checkNumber"  : $('#checkNumber').val()
             };
+        }else {
+            PaymentId = 3;
         }
         // 紀錄結帳資訊
         var pay = {
@@ -178,11 +180,15 @@ $(function(){
                 contentType : "application/json;charset=utf-8",
                 async : false,
                 cache : false,
-                success : function () {
-                    if(confirm("訂單已送出，是否要繼續購物呢？")){
-                        $(location).attr("href", "/OceanCatHouse/views/ShoppingMall");
+                success : function (payNumber) {
+                    if(payNumber == 3){
+                        console.log('前往綠界付款頁面');
                     }else {
-                        $(location).attr("href", "/OceanCatHouse");
+                        if(confirm("訂單已送出，是否要繼續購物呢？")){
+                            $(location).attr("href", "/OceanCatHouse/views/ShoppingMall");
+                        }else {
+                            $(location).attr("href", "/OceanCatHouse");
+                        }
                     }
                 },
                 error : function (){
@@ -211,34 +217,40 @@ $(function(){
 
     // 綠界ecpay-送出訂單去結帳
     $('#insertEcpayOrder').click(function (){
-        var productNameStr = ""
-        for (var i=0;i<productList.length;i++) {
-            productNameStr = productNameStr + `${productList[i].productname}` + "#";
-        }
-        productNameStr = productNameStr.substring(0, productNameStr.length-1);
-        var map = {
-            "productNameStr" : productNameStr, // 商品名稱
-            "total" : a, // 訂單總金額
-            "Orderkey" : Orderkey // 是否驗證機器人金鑰
-        }
-        $.ajax({
-            url : "/OceanCatHouse/ecpayOrder",
-            type : "POST",
-            data : JSON.stringify(map),
-            contentType : "application/json;charset=utf-8",
-            async : false,
-            cache : false,
-            success : function (isOK){
-                if(isOK != "checkAgain"){
-                    $('#orderForEcpay').append(`${isOK}`);
-                }else {
-                    $('#robotCheck').prop('hidden', false);
-                }
-            },
-            error : function (){
-                alert("系統忙碌中，請聯繫我們！")
+        // 先送出新增的訂單
+        $('#insertOrder').trigger('click');
+        // 確認是否通過機器人驗證
+        if(isCheck){
+            console.log('進來了');
+            // 跳轉到綠界支付
+            var productNameStr = ""
+            for (var i=0;i<productList.length;i++) {
+                productNameStr = productNameStr + `${productList[i].productname}` + "#";
             }
-        })
+            productNameStr = productNameStr.substring(0, productNameStr.length-1);
+            var map = {
+                "productNameStr" : productNameStr, // 商品名稱
+                "total" : a, // 訂單總金額
+                // "Orderkey" : Orderkey // 是否驗證機器人金鑰
+            }
+            $.ajax({
+                url : "/OceanCatHouse/ecpayOrder",
+                type : "POST",
+                data : JSON.stringify(map),
+                contentType : "application/json;charset=utf-8",
+                async : false,
+                cache : false,
+                success : function (ecpayPage){
+                    $('#orderForEcpay').append(`${ecpayPage}`);
+                },
+                error : function (){
+                    alert("系統忙碌中，請聯繫我們！")
+                }
+            })
+        }else {
+            $('#robotCheck').prop('hidden', false);
+        }
+
     })
 });
 

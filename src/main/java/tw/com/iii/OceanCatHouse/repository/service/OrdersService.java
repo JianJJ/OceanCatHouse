@@ -45,11 +45,11 @@ public class OrdersService {
     }
 
     // -------------Jian : 送出訂單, 新增訂單 ------------------------
-    public OrdersBean insertOrder(UserBean user, Map<String, Integer> cat, List<ProductBean> productBeanList, Map<String, Object> payMap) {
+    public Integer insertOrder(UserBean user, Map<String, Integer> cat, List<ProductBean> productBeanList, Map<String, Object> payMap) {
         // 新增訂單
         OrdersBean ordersBean = new OrdersBean();
         ordersBean.setUserid(user.getUserid());
-        ordersBean.setOrderstatusid(1);
+        ordersBean.setOrderstatusid(0);
         ordersBean.setAddress(user.getDeliveryAddress());
         ordersBean.setPaymentId((Integer) payMap.get("PaymentId"));
         OrderDetailBean orderDetailBean;
@@ -100,6 +100,6 @@ public class OrdersService {
             }
         }
 
-        return save;
+        return (Integer) payMap.get("PaymentId");
     }
 }

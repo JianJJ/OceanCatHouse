@@ -200,7 +200,7 @@ public class ShopController {
     // -------------Jian : 送出訂單, 新增訂單 ------------------------
     @PostMapping("/insertOrder")
     @ResponseBody
-    public String insertOrder(HttpSession session,
+    public Integer insertOrder(HttpSession session,
                               @RequestBody List<ProductBean> productBeanList){
         // 付款方式
         Map<String, Object> payMap = (Map<String, Object>) session.getAttribute("payMap");
@@ -208,10 +208,10 @@ public class ShopController {
         UserBean user = (UserBean) session.getAttribute("user");
         // 購物車資訊
         Map<String, Integer> cat = (Map<String, Integer>) session.getAttribute("cat");
-        ordersService.insertOrder(user, cat, productBeanList, payMap);
+        Integer payNumber = ordersService.insertOrder(user, cat, productBeanList, payMap);
         session.removeAttribute("cat");
 
-        return "新增成功";
+        return payNumber;
     }
 
     // ------------送出訂單, 新增付款方式------------

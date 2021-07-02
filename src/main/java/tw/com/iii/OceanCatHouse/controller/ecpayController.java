@@ -23,31 +23,24 @@ public class ecpayController {
     @RequestMapping("ecpayOrder")
     @ResponseBody
     public String ecpayOrder(@RequestBody Map<String, String> map){
-        String orderkey = map.get("Orderkey");
         String productNameStr = map.get("productNameStr");
         String total = map.get("total");
-        ZeroTools zeroTools = new ZeroTools();
-        boolean recaptcha = zeroTools.recaptcha(orderkey);
-        if(recaptcha){
-            AllInOne all = new AllInOne("");
-            AioCheckOutALL obj = new AioCheckOutALL();
-            SimpleDateFormat sdfNo = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-            String tradNO = sdfNo.format(new Date());
-            obj.setMerchantTradeNo(tradNO);
-            SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            String tradDate = sdfDate.format(new Date());
-            obj.setMerchantTradeDate(tradDate);
-            obj.setTotalAmount(total);
-            obj.setTradeDesc("訂單交易");
-            obj.setItemName(productNameStr);
-            obj.setReturnURL("http://211.23.128.214:5000");
-            obj.setNeedExtraPaidInfo("N");
-            obj.setExpireDate("3");
-            String form = all.aioCheckOut(obj, null);
-            return form;
-        }else {
-            return "checkAgain";
-        }
+        AllInOne all = new AllInOne("");
+        AioCheckOutALL obj = new AioCheckOutALL();
+        SimpleDateFormat sdfNo = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String tradNO = sdfNo.format(new Date());
+        obj.setMerchantTradeNo(tradNO);
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String tradDate = sdfDate.format(new Date());
+        obj.setMerchantTradeDate(tradDate);
+        obj.setTotalAmount(total);
+        obj.setTradeDesc("訂單交易");
+        obj.setItemName(productNameStr);
+        obj.setReturnURL("http://211.23.128.214:5000");
+        obj.setNeedExtraPaidInfo("N");
+        obj.setExpireDate("3");
+        String form = all.aioCheckOut(obj, null);
+        return form;
     }
 
 }
