@@ -346,9 +346,9 @@
                     i++;
                     console.log(A.productpictureid);
 
-                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + A.productpictureid + '"><img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/shop/' + A.producturl + '.jpg" id="img' + A.productpictureid + '" class="img-thumbnail"/>' +
-                        '<input type="file" accept="image/*" id="file' + A.productpictureid + '" name="nofile' + A.productpictureid + '" onchange="upload(`' + A.productpictureid + '`);" class="fileInput col-lg-3" value=""/>' +
-                        '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + A.productpictureid + ')">刪除</button>' +
+                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + i + '"><img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/shop/' + A.producturl + '.jpg" id="img' + i + '" class="img-thumbnail"/>' +
+                        '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="upload(' + i + ');" class="fileInput col-lg-3" value=""/>' +
+                        '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + i + '`,' + A.productpictureid + ')">刪除</button>' +
                         '</div>');
 
                 }

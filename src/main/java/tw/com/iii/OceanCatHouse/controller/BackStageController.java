@@ -226,11 +226,10 @@ public class BackStageController {
         ProductBean bean = op.get();
         String Productmodel = bean.getProductmodel();
         // 圖片儲存
-
         try {
-            for (int i = 1; i <= fileMap.size(); i++)
+            for (int i = 1; i <= fileMap.size(); i++) {
                 // 2. 儲存圖片到資料夾
-                if (fileMap != null && fileMap.get("file" + i) != null) {
+                if (fileMap.get("file" + i) != null) {
                     System.out.println("AAA" + i);
                     //  改名+存檔
                     fileMap.get("file" + i).transferTo(new File("C:\\OceanCatHouse\\OceanCatHouse\\src\\main\\resources\\static\\images/shop/" + Productmodel + "-" + i + ".jpg"));
@@ -243,6 +242,7 @@ public class BackStageController {
                     pBean.setProductid(Productid);
                     productPictureJpaReposit.save(pBean);
                 }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -426,17 +426,17 @@ public class BackStageController {
     //統計圖表
     @RequestMapping("/orderStatistics")
     @ResponseBody
-    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category,@RequestParam("time")Integer time) {
+    public Map<String, Integer> orderStatistics(@RequestParam("category") Integer category, @RequestParam("time") Integer time) {
         System.out.println("*****統計圖表 *****");
         //查詢一周訂單
 
         List<OrdersBean> ordersBeanList = ordersRepository.selectMonth();
-        if(time == 1) ordersBeanList = ordersRepository.selectDay();
-        if(time == 2) ordersBeanList = ordersRepository.selectWeek();
+        if (time == 1) ordersBeanList = ordersRepository.selectDay();
+        if (time == 2) ordersBeanList = ordersRepository.selectWeek();
         //紀錄器(商品Id,數量)
         Map<Integer, Integer> count = new HashMap<>();
         //查出的訂單去找細節
-        for(OrdersBean ordersBean : ordersBeanList) {
+        for (OrdersBean ordersBean : ordersBeanList) {
             List<OrderDetailBean> lis = orderDetailRepository.findByorderid(ordersBean.getOrderid());
 
             //取出商品 如果紀錄器內沒有  給當前數量, 如果紀錄器內有 拿出紀錄器內數量加當前數量
@@ -459,52 +459,53 @@ public class BackStageController {
         }
         return result;
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //商品線圖
     @RequestMapping("/productLine/{productId}")
     @ResponseBody
     public Map<String, Integer> productLine(@PathVariable("productId") Integer productId) {
-        System.out.println("*****商品線圖*****"+productId);
+        System.out.println("*****商品線圖*****" + productId);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String CreateOn = sdf.format(new Date());
-        Map<String , Integer> result = new HashMap<>();
+        Map<String, Integer> result = new LinkedHashMap<>();
 //        List<OrdersBean> lis= new ArrayList<>();
 
-        for(int i=0 ; i<7 ; i++) {
+        for (int i = 6; i >= 0; i--) {
 //            String CreateOn = sdf.format(new Date());
             //取出當天所有訂單
             List<OrdersBean> ordersBeanList = ordersRepository.selectDay(i);
-            List<OrderDetailBean> orderDetailBeanList = null;//訂單細節
+            List<OrderDetailBean> orderDetailBeanList = new ArrayList<>();//訂單細節
             //紀錄器(商品Id,數量)
             Map<Integer, Integer> count = new HashMap<>();
             //遍歷當天所有訂單
-            for(OrdersBean ob :  ordersBeanList){
-
-                 CreateOn = sdf.format(ob.getOrdercreateon());
+            for (OrdersBean ob : ordersBeanList) {
+                //取出日期/
+                CreateOn = sdf.format(ob.getOrdercreateon());
                 System.out.println(CreateOn);
                 //取出訂單細節
                 orderDetailBeanList = ob.getOrderDetailBeans();
                 //遍歷訂單細節
-                for( OrderDetailBean ODBean : orderDetailBeanList){
+                for (OrderDetailBean ODBean : orderDetailBeanList) {
                     //找到需要的商品
-                   if( ODBean.getProductid() == productId){
-                       Integer x = ODBean.getQuantity();
-                       if (count.get(ODBean.getProductid()) == null) {
-                           count.put(ODBean.getProductid(), x);
-                       } else {
-                           x = count.get(ODBean.getProductid()) + ODBean.getQuantity();
-                           count.put(ODBean.getProductid(), x);
-                       }
-                   }
+                    if (ODBean.getProductid() == productId) {
+                        Integer x = ODBean.getQuantity();
+                        if (count.get(ODBean.getProductid()) == null) {
+                            count.put(ODBean.getProductid(), x);
+                        } else {
+                            x = count.get(ODBean.getProductid()) + ODBean.getQuantity();
+                            count.put(ODBean.getProductid(), x);
+                        }
+                    }
                 }
             }
-            result.put(CreateOn,count.get(productId));
+            result.put(CreateOn, count.get(productId));
 
             System.out.println(count);
             System.out.println(orderDetailBeanList);
         }
-        System.out.println("result : " +result);
-        return  result;
+        System.out.println("result : " + result);
+        return result;
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

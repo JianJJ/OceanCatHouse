@@ -172,6 +172,7 @@
             <option value="1">1 新訂單</option>
             <option value="2">2 包裝完成</option>
             <option value="3">3 出貨</option>
+            <option value="4">4 完成</option>
         </select><br>
         <button type="submit" class="btn btn-primary pciSubmit ">完成</button>
     </form>
