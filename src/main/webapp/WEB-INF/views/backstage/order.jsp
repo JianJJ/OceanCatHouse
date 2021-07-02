@@ -327,7 +327,7 @@
             var StatusId = A.orderStatusId;
             switch (StatusId) {
                 case "0" :
-                    state = "刪除";
+                    state = "訂單成立,未付款";
                     break;
                 case "1" :
                     state = "訂單成立,未包裝";
@@ -343,7 +343,7 @@
                     break;
             }
             $(".orderTable").append('' +
-                '<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">' +
+                '<tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`,' + A.orderStatusId + ')">' +
                 '<td class="col-lg-1">' + A.orderId + '</td>' +
                 '<td class="col-lg-1 ">' + A.userName + '(' + A.userId + ')</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
@@ -358,7 +358,7 @@
     }
 
     // 訂單細節
-    function Detailed(id, address, name) {
+    function Detailed(id, address, name,state) {
         $(".detailTTT").remove();
         $(".hazy").css("visibility", "visible");
         $(".cat").css("visibility", "visible");

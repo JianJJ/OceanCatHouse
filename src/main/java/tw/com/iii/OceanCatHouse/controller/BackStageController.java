@@ -173,8 +173,25 @@ public class BackStageController {
         List<OrdersBean> lis = ordersRepository.findAll();
         List<Map<String, String>> result = new ArrayList<>();
         System.out.println(lis);
+        int s = 0;
         for (OrdersBean bean : lis) {
-            if (state == bean.getOrderstatusid()) {
+            switch (bean.getOrderstatusid()) {
+                case 0:
+                case 1:
+                    s=1;
+                    break;
+                case 2:
+                    s=2;
+                    break;
+                case 3:
+                case 4:
+                s=3;
+            }
+
+            if (state == s ) {//狀態對才做
+
+                System.out.println(bean);
+                System.out.println(bean.getOrderstatusid());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E");
                 String CreateOn = sdf.format(bean.getOrdercreateon());
                 Map<String, String> map = new HashMap<>();
@@ -186,6 +203,7 @@ public class BackStageController {
                 map.put("userName", userBean.getUsername());
                 map.put("orderStatusId", bean.getOrderstatusid() + "");
                 map.put("address", bean.getAddress());
+
                 result.add(map);
             }
         }
@@ -277,14 +295,15 @@ public class BackStageController {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//刪除圖案
+//修改訂單
     @RequestMapping("/state/{orderId}")
     public String state(@PathVariable("orderId") Integer orderId, @RequestParam("orderStatus") Integer orderStatus) {
         Optional<OrdersBean> op = ordersRepository.findById(orderId);
         OrdersBean bean = op.get();
         bean.setOrderstatusid(orderStatus);
         ordersRepository.save(bean);
-        return "redirect:/backstage/order?pag=1&state=1";
+        if(orderStatus == 4)orderStatus = 3;
+        return "redirect:/backstage/order?pag=1&state="+orderStatus;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
