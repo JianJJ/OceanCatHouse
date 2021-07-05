@@ -333,7 +333,7 @@
                     state = "訂單成立,未包裝";
                     break;
                 case "2" :
-                    state = "訂單成立,未出貨";
+                    state = "包裝完成,未出貨";
                     break;
                 case "3" :
                     state = "已出貨";

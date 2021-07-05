@@ -89,9 +89,9 @@
 
                         <div class="productspecifications">商品規格 : ${productspecifications}</div>
 
-                        <div class='productPayment'>付款方式 : 貨到付款
+                        <div class='productPayment'>付款方式 : 貨到付款 , 信用卡 , 第三方支付-綠界支付
                             <br> 運送方式 :
-                            宅配 ($80)
+                            宅配 ($60)
                         </div>
                         <hr>
                         <div class="sellingprice">售價 $${sellingprice}</div>
@@ -163,47 +163,7 @@
 <script>
     var index = 0;//設定輪播圖位置
     var maxIdex//設定有幾張圖片
-    <%--<!-- 推薦食譜 -->--%>
-    <%--$.ajax({--%>
-    <%--    url: "${pageContext.request.contextPath}/recommend/${id}",--%>
-    <%--    type: "get",--%>
-    <%--    success: function (json) {--%>
-    <%--        for (var A of json) {--%>
-    <%--            console.log(A);--%>
-    <%--            $(".recommend").append('<a href="../recipeDetails?id=' + A.recId + '" class="col-lg-6 col-sm-6">' +--%>
-    <%--                '<div class="row recommendRecipe">' +--%>
-    <%--                '<img class="col-lg-3 col-md-7 col-sm-6 rsNavItem" src=' + A.recPic + ' alt="">' +--%>
-    <%--                '<p class="col-lg-6 col-sm-6">' + A.recTitle + '</p>' +--%>
-    <%--                '</div> ' +--%>
-    <%--                '</a>');--%>
-    <%--        }--%>
-    <%--    },--%>
-    <%--    error: function (json) {--%>
-    <%--        console.log("error 推薦食譜" + json);--%>
-    <%--    }--%>
-    <%--});--%>
-    <%--//同類商品--%>
-    <%--$.ajax({--%>
-    <%--    url: "${pageContext.request.contextPath}/category/" + id,--%>
-    <%--    type: "get",--%>
-    <%--    success: function (json) {--%>
-    <%--        var arr = Object.keys(json);--%>
-    <%--        var a = 1--%>
-    <%--        if (arr.length > 4) {--%>
-    <%--            a = 4;--%>
-    <%--        } else {--%>
-    <%--            a = arr.length;--%>
-    <%--        }--%>
 
-    <%--        for (var i = 0; i < a; i++)--%>
-    <%--            $(".SimilarProducts").append('<figure class="col-lg-2 col-sm-4">' +--%>
-    <%--                '<a href="${pageContext.request.contextPath}/Details/' + json[i].productid + '">' +--%>
-    <%--                '<img src="../images/shop/' + json[i].productmodel + '-1.jpg" alt="">' + json[i].productname + '</a></figure>');--%>
-    <%--    },--%>
-    <%--    error: function (json) {--%>
-    <%--        console.log("errr");--%>
-    <%--    }--%>
-    <%--});--%>
     $('.catReturn').click(function () {
         $(".hazy").css("visibility", "hidden");
     });
