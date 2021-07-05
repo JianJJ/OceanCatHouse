@@ -18,58 +18,9 @@
     <%-- footer的CSS、JS樣式放這裡    --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bottom_nav.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/createRecipeDetail.css">
     <script src="${pageContext.request.contextPath}/js/createRecipe/createRecipeDetail.js"></script>
 
-    <style>
-        body {
-            background-color: #EFECE8;
-        }
-
-        .fileInput {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            opacity: 0;
-            display: block;
-            width: 100%;
-            clear: both;
-        }
-
-        .inner {
-            border: 1px solid #bcbebf;
-            padding: 15px;
-        }
-
-        .picmain, .picstep {
-            position: relative;
-            background-color: #EFECE8;
-            text-align: center;
-        }
-
-        #img-main, .img-step {
-            width: 100%;
-            height: 100%;
-        }
-
-        .row {
-            margin: 30px 0px;
-        }
-
-        .Lbody {
-            background-color: #ffffff;
-            padding: 20px;
-        }
-        i{
-            font-size: 1.3rem;
-        }
-        .iBtn{
-            border-width: 0px;
-            background-color: white;
-        }
-    </style>
 </head>
 <body>
 <!--頁首-->
@@ -108,6 +59,7 @@
                     <label for="RecText">請輸入食譜簡介</label>
                     <textarea class="form-control" id="RecText" rows="3"></textarea>
                 </div>
+                <button type="button" id="autologin" style="width: 4px ;height: 3px"></button>
             </div>
             <%--                標籤 RecTag --%>
             <div class="row">
@@ -136,7 +88,7 @@
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
-                        <option>4</option>
+                        <option value="4">4</option>
                         <option>5</option>
                         <option>6</option>
                         <option>7</option>
@@ -152,7 +104,7 @@
                         <option>5</option>
                         <option>10</option>
                         <option>15</option>
-                        <option>20</option>
+                        <option value="20">20</option>
                         <option>30</option>
                         <option>45</option>
                         <option>60</option>

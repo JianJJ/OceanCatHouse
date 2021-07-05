@@ -44,9 +44,11 @@
                     <label for="RecTitle">請輸入食譜名稱</label>
                     <div class="input-group inner">
                         <input type="text" class="form-control" placeholder="例如：番茄炒蛋" id="RecTitle" name="RecTitle" required>
-                        <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
                     </div>
-                    <button type="button" id="autologin" style="width: 5px ;height: 3px"></button>
+                    <div>
+                        <p style="color: #bcbebf">建議不要加上個人化名稱，像是「安德森的廚房」，避免食譜名稱過長。</p>
+                        <button type="button" id="autologin" style="width: 4px ;height: 3px"></button>
+                    </div>
                     <div class="form-check smallInner">
                         <input class="form-check-input" type="checkbox" value="" id="agree"><!--checked disabled-->
                         <label class="form-check-label" for="agree">

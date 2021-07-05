@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    // 一鍵輸入資料
+    $('#autologin').click(function (){
+        $('#RecText').val("烤馬鈴薯，台灣又稱焗烤馬鈴薯、焗薯，是以馬鈴薯為主料，加上各式配佐料，創造出豐富的視覺及獨特口感的現烤馬鈴薯食品。");
+        $('#RecTag').val("馬鈴薯、起司");
+        $('#RecCal').val("1000");
+        $('#RecNum').val("4");
+        $('#RecTime').val("20");
+        $('#MaterialName1').val("馬鈴薯");
+        $('#UnitNum1').val("5顆");
+        $('#MaterialName2').val("起司");
+        $('#UnitNum2').val("1包");
+        $('#stepText1').val("將馬鈴薯蒸熟");
+        $('#stepText2').val("鋪上起司片");
+        $('#stepText3').val("放入烤箱20分鐘");
+    })
+
+
     // 取消編輯
     goBack = function (){
         if(confirm("是否放棄編輯？")){
