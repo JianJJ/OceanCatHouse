@@ -172,9 +172,8 @@ function delCat(id) {
 			}
 			$(".PPP").text("購物車刪除   總價: $" + m);
 
-			if (key.length == 0)
-				window.location.assign("${pageContext.request.contextPath}/Details/"+id);
-			var key = Object.keys(json);
+			if (key.length == 0)window.location.assign("/OceanCatHouse/Details/"+id);
+			// var key = Object.keys(json);
 			if(key.length == 0){
 				$("#f1").text("");
 				$("#f1").hide();
