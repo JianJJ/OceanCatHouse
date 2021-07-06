@@ -150,12 +150,12 @@ public class UserController {
             if (!userRepository.existsByemail(bean.getEmail())) {
                 if (!userRepository.existsByuserpassword(bean.getUsername())) {
                     System.out.println("存資料");
-
+                    UserBean uBean = userRepository.save(bean);
                     //發送註冊信
-                    String text = "<p><a href='http://wizard71029.synology.me:7070/AAA'>海貓食屋歡迎你,點擊認證 </a></p>";
+                    String text = "<p><a href='http://wizard71029.synology.me:8080/OceanCatHouse/welcome/"+uBean.getUserid()+"'>海貓食屋歡迎你,點擊認證 </a></p>";
                     zTools.mail(bean.getEmail(), text);
                     bean.setState("1");
-                    userRepository.save(bean);
+
                 } else {
                     System.out.println("名稱已經存在");
                     errors.put("username", "名稱已經存在");
@@ -270,6 +270,18 @@ public class UserController {
 
         return "true";
     }
+    //忘記密碼
+    @RequestMapping("/welcome/{userId}")
+    public String welcome(@PathVariable("userId") Integer userId) {
+        System.out.println("*****welcome******"+userId);
+        UserBean bean = userRepository.getById(userId);
+        bean.setState("1");
+        userRepository.save(bean);
+        return  "/views/user/welcome";
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 
