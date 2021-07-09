@@ -77,7 +77,7 @@
                 var i = 0;
 
                 function doSuccess(json) {
-                    console.log(json);
+
                     for (var x = 0; x < 3; x++) {
                         $(".main").append('<div class="row AAA' + x + ' ">');
                         for (var y = 1; y < 5; y++) {

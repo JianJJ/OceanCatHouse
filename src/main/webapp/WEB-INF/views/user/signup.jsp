@@ -62,7 +62,7 @@
                 <span class="error">${errors.email}</span> <input
                     class="formCSS" type="text" placeholder="暱稱" name="username" value="${username}">
                 <span class="error">${errors.username}</span> <input
-                    class="formCSS" type="text" placeholder="密碼" name="userpassword" value="${userpassword}">
+                    class="formCSS" type="password" placeholder="密碼" name="userpassword" value="${userpassword}">
                 <span class="error">${errors.userpassword}</span>
 
                 <div class="g-recaptcha"

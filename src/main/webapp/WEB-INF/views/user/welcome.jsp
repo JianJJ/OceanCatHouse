@@ -64,7 +64,7 @@
             <div class="loginTitle">✿海貓食屋✿</div>
             <!-- <button class="loginReturn" onclick=window.location.href="/OceanCatHouse">X</button> -->
             <h3>恭喜驗證成功,歡迎加入海貓食屋</h3>
-            <h3 class="jump"><a href="/OceanCatHouse/login">返回登入</a></h3>
+            <h3 class="jump"><a href="/OceanCatHouse/views/login">返回登入</a></h3>
 
         </div>
     </div>
@@ -88,16 +88,6 @@
     // 紀錄從哪裡來到登錄頁面
     // var come = document.referrer;
 
-    // 一鍵登入
-    $('#autologin').click(function (){
-        $('#e').val("AAA@AAA.com");
-        $('#p').val("AAA");
-    })
-
-    //去電話登入
-    $(".phone").click(function () {
-        window.location.href = "/OceanCatHouse/views/phoneLogin";
-    });
     //雪花特效
     var x = [];
     var y = [];
