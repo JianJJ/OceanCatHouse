@@ -92,23 +92,23 @@
                   <h5>＊基本資料</h5>
                   
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Brad" name='userName' value="${sessionScope.user.username}">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Brad" required name='userName' value="${sessionScope.user.username}">
                     <label for="floatingInput">姓名</label>
                   </div>
                   
                    <h5>＊聯絡資料</h5>
                  
                     <div class="form-floating mb-3">
-                      <input type="tel" class="form-control" id="floatingTel" pattern="[0-9]{10}" placeholder="手機號碼" name="userPhone" value="${sessionScope.user.userphone}">
+                      <input type="tel" class="form-control" id="floatingTel" pattern="[0-9]{10}" required placeholder="手機號碼" name="userPhone" value="${sessionScope.user.userphone}">
                       <label for="floatingInput">手機號碼</label>
                     </div>
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control  is-invalid" id="floatingInputEmail" placeholder="name@example.com" name="userEmail" value="${sessionScope.user.email}">
+                      <input type="email" class="form-control  is-invalid" id="floatingInputEmail" required placeholder="name@example.com" name="userEmail" value="${sessionScope.user.email}">
                       <label for="floatingInputEmail">Email</label>
                       <span id="emailMsg" hidden style="color: red">Email驗證尚未通過</span>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="floatingInputAd" placeholder="送貨地址" name="userAddress" value="${sessionScope.user.deliveryAddress}">
+                        <input type="tel" class="form-control" id="floatingInputAd" placeholder="送貨地址" required name="userAddress" value="${sessionScope.user.deliveryAddress}">
                         <label for="floatingInputAd">送貨地址</label>
                     </div>
                    	<input type="button" value="儲存更新" onclick="changeNPE()">
