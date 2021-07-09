@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>✿海貓食屋✿廠商後台</title>
   <style>
     body {
       background-color:#0d1326;

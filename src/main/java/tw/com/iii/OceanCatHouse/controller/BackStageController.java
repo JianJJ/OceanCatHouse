@@ -268,7 +268,7 @@ public class BackStageController {
         Page<ProductBean> page = productRepository.findByProductstatus("1", PageRequest.of(0, 20));
         List<ProductBean> result = page.getContent();
         model.addAttribute("product", result);
-        return "/views/backstage/product";
+        return "redirect:/backstage/product?pag=1&state=1";
 
     }
 
@@ -286,12 +286,13 @@ public class BackStageController {
 //刪除圖案
     @RequestMapping("/delPic/{Productid}/{productpictureid}")
     @ResponseBody
-    public boolean delPic(@PathVariable("Productid") Integer Productid, @PathVariable("productpictureid") Integer productpictureid) {
+    public String delPic(@PathVariable("Productid") Integer Productid, @PathVariable("productpictureid") Integer productpictureid) {
         System.out.println("*****刪除圖片 *****");
         Optional<ProductPictureBean> op = productPictureJpaReposit.findById(productpictureid);
         ProductPictureBean bean = op.get();
+        System.out.println(bean);
         productPictureJpaReposit.delete(bean);
-        return true;
+        return "true";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

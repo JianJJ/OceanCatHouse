@@ -16,9 +16,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/homePage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-
-    </style>
 </head>
 
 
@@ -261,7 +258,7 @@
     </div>
 </div>
 <script>
-    var pid;//紀錄id 刪除圖片用
+
     var p = '${param.pag}';
     if (p == "") p = 1;
 
@@ -346,9 +343,9 @@
                     i++;
                     console.log(A.productpictureid);
 
-                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + i + '"><img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/shop/' + A.producturl + '.jpg" id="img' + i + '" class="img-thumbnail"/>' +
+                    $(".picmain").append('<div style="width: 350px;height: 340px; position: relative;" class="col-lg-6 d' + A.productpictureid + ' "><img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/shop/' + A.producturl + '.jpg" id="img' + i + '" class="img-thumbnail"/>' +
                         '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="upload(' + i + ');" class="fileInput col-lg-3" value=""/>' +
-                        '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + i + '`,' + A.productpictureid + ')">刪除</button>' +
+                        '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  " onclick="delPic(`' + i + '`,' + A.productpictureid + ')">刪除</button>' +
                         '</div>');
 
                 }
@@ -357,7 +354,7 @@
                 $(".picmain").append(' <div style="width: 350px;height: 340px;" class="col-lg-6 d' + i + '">' +
                     '<img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
                     '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
-                    '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delPic(`' + Productid + '`,' + i + ')">刪除</button>' +
+                    '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  " onclick="delPic(`' + Productid + '`,' + i + ')">刪除</button>' +
                     '</div>');
                 $(".picmain").append('<button type="submit"  class="btn btn-primary pciSubmit">提交</button>');
                 pid = Productid;
@@ -393,7 +390,7 @@
         $(".picmain").append(' <div style="width: 350px;height: 340px;" class="d' + i + '">' +
             '<img style="width: 350px;height: 280px; " src="${pageContext.request.contextPath}/images/homePic/uploadstep.png" id="img' + i + '" class="img-thumbnail"/>' +
             '<input type="file" accept="image/*" id="file' + i + '" name="nofile' + i + '" onchange="newPic(`' + i + '`);" class="fileInput col-lg-3" value=""/>' +
-            '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  delPic" onclick="delNewPic(' + i + ')">刪除</button>' +
+            '<button type="button"  class="col-lg-4 offset-4 btn btn-primary  " onclick="delNewPic(' + i + ')">刪除</button>' +
             '</div>');
         $(".picmain").append('<button  type="submit" class="btn btn-primary pciSubmit">提交</button>');
     };
@@ -406,10 +403,9 @@
             $.ajax({
                 url: "${pageContext.request.contextPath}/backstage/delPic/" + Productid + "/" + productpictureid,
                 type: "get",
-                contentType: "application/json",
-                dataType: "json",
-                success: function (json) {
 
+                success: function (json) {
+                    console.log(json);
                 },
                 error: doError
             });
@@ -602,13 +598,6 @@
 
     }
 
-
-
 </script>
-<style>
-
-
-
-</style>
 </body>
 </html>
