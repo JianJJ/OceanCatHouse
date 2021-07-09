@@ -38,7 +38,7 @@ public class ecpayController {
         obj.setItemName(productNameStr);
         obj.setReturnURL("http://211.23.128.214:5000");
         obj.setNeedExtraPaidInfo("N");
-        obj.setExpireDate("3");
+        obj.setExpireDate("1");
         String form = all.aioCheckOut(obj, null);
         return form;
     }

@@ -526,11 +526,13 @@
                 $(".table").append('<tr class="TTT" onclick="Detailed(' + A.productid + ')"><td class="col-lg-1">' + A.productid + '</td>' +
                     '<td class="col-lg-1 ">' + A.productmodel + '</td>' +
                     '<td class="col-lg-2 ">' + A.productname + '</td>' +
-                    '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
+                    // '<td class="col-lg-1 ">' + A.purchaseprice + '</td>' +
                     '<td class="col-lg-1 ">' + A.sellingprice + '</td>' +
                     '<td class="col-lg-1 ">' + A.stocks + '</td>' +
-                    '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
+                    // '<td class="col-lg-1 ">' + A.productspecifications + '</td>' +
                     '<td  class="col-lg-1 "><button type="button" class="btn btn-primary" onclick="addPic(' + A.productid + ')">圖片 </button> </td>' +
+                    '<td  class="col-lg-1 "> <button type="button" class="btn btn-primary" onclick="chart('+A.productid+')">圖表</button></td>' +
+
                     '</tr>');
             }
         }

@@ -276,19 +276,7 @@
                         <td>顧客(ID)</td>
                         <td>日期</td>
                         <td>狀態</td>
-                        <td>細節</td>
                     </tr>
-
-
-                    <%--                    <c:forEach varStatus="loop" begin="0" end="${order.size()-1}" items="${order}" var="s">--%>
-                    <%--                        <tr class="TTT" onclick="Detailed(' + A.orderId + ',`' + A.address + '`,`' + A.userName + '`)">--%>
-                    <%--                        <td class="col-lg-1">${order}s.orderId + '</td>--%>
-                    <%--                        <td class="col-lg-1 ">${s.}s.userName + '('+A.userId+')</td>--%>
-                    <%--                        <td class="col-lg-1 ">${s.ordercreateon} s.orderCreateOn + '</td>--%>
-                    <%--                        <td class="col-lg-1 ">${s.orderstatusid} state + '</td>--%>
-                    <%--                        <td class="col-lg-1 ">細節</td>--%>
-                    <%--                        </tr>--%>
-                    <%--                    </c:forEach>--%>
                 </table>
             </div>
 
@@ -348,7 +336,7 @@
                 '<td class="col-lg-1 ">' + A.userName + '(' + A.userId + ')</td>' +
                 '<td class="col-lg-1 ">' + A.orderCreateOn + '</td>' +
                 '<td class="col-lg-1 ">' + state + '</td>' +
-                '<td class="col-lg-1 ">細節</td>' +
+
                 '</tr>');
         }
     }
