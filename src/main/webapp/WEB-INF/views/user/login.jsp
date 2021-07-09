@@ -99,8 +99,8 @@
 
     // 一鍵登入
     $('#autologin').click(function (){
-        $('#e').val("AAA@AAA.com");
-        $('#p').val("AAA");
+        $('#e').val("JianCOH@gmail.com");
+        $('#p').val("AAAAAAAAA");
     })
 
     $(".phone").click(function () {
