@@ -1,14 +1,14 @@
 <?xml  version="1.0" encoding="utf-8"?>
 <Conf>
     <OperatingMode>Production</OperatingMode> <!--Test or Production-->
-    <MercProfile>Production_Account</MercProfile>
+    <MercProfile>Stage_Account</MercProfile>
     <IsProjectContractor>Y</IsProjectContractor>
     
     <MerchantInfo>
         <MInfo name="Production_Account">
-            <MerchantID>32753318</MerchantID>
-            <HashKey>7ZHS3FwTtfRpzU8n</HashKey>
-            <HashIV>8Igjk9RKSNN62ztw</HashIV>
+            <MerchantID></MerchantID>
+            <HashKey></HashKey>
+            <HashIV></HashIV>
         </MInfo>
         <MInfo name="Stage_Account">
             <MerchantID>2000132</MerchantID>
